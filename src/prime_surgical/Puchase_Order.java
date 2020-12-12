@@ -361,7 +361,6 @@ public class Puchase_Order extends javax.swing.JFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
-        new PurchaseEntry().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnEditActionPerformed
 
