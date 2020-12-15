@@ -99,6 +99,19 @@ import javax.swing.table.DefaultTableModel;
         }
          
      }
+     String singledata(String query){
+         String data="";
+        try {
+            dbconnect();
+            rs=st.executeQuery(query);
+            if(rs.next()){
+              data=rs.getString(1);
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        return data;
+     }
      /**
       * this method is for getting Real-time data from database; 
       * @param query is string

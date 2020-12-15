@@ -337,7 +337,7 @@ public class Puchase_Order extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jPanel5.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 260, 840, 470);
+        jScrollPane1.setBounds(10, 260, 840, 500);
 
         getContentPane().add(jPanel5);
         jPanel5.setBounds(510, 0, 860, 770);

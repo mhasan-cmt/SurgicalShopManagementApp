@@ -254,7 +254,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
         );
 
         jPanel1.add(Bank);
-        Bank.setBounds(20, 430, 420, 120);
+        Bank.setBounds(20, 430, 420, 115);
 
         jButton5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton5.setText("Exit");
@@ -323,7 +323,6 @@ public class Sales_due_paid extends javax.swing.JFrame {
         headerPane.add(jLabel10);
         jLabel10.setBounds(380, 140, 320, 30);
 
-        jLabel42.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime Surgical\\images\\minimize.png")); // NOI18N
         jLabel42.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel42MouseClicked(evt);
@@ -332,7 +331,6 @@ public class Sales_due_paid extends javax.swing.JFrame {
         headerPane.add(jLabel42);
         jLabel42.setBounds(1262, 10, 40, 40);
 
-        jLabel43.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime Surgical\\images\\error.png")); // NOI18N
         jLabel43.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel43MouseClicked(evt);

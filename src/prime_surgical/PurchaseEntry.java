@@ -277,7 +277,7 @@ public class PurchaseEntry extends javax.swing.JFrame {
         jLabel14.setBounds(160, 50, 250, 50);
 
         jComboBox1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Show Sales", "Show Submits" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Show Purchase", "Show purchase accounts" }));
         jPanel6.add(jComboBox1);
         jComboBox1.setBounds(650, 10, 190, 40);
 

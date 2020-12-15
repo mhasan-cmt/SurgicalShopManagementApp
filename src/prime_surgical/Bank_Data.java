@@ -102,14 +102,12 @@ public class Bank_Data extends javax.swing.JFrame {
         jPanel3.setBounds(0, 0, 20, 80);
 
         jLabel2.setFont(new java.awt.Font("Roboto Black", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Bank Data");
         jPanel2.add(jLabel2);
         jLabel2.setBounds(0, 0, 250, 80);
 
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime Surgical\\src\\img\\error.png")); // NOI18N
         jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel17MouseClicked(evt);
@@ -122,11 +120,9 @@ public class Bank_Data extends javax.swing.JFrame {
         jPanel2.setBounds(0, -1, 1370, 80);
 
         jPanel4.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel4.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 0, 0));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Account Number:");
         jPanel4.add(jLabel1);
@@ -143,7 +139,6 @@ public class Bank_Data extends javax.swing.JFrame {
         jTextField2.setBounds(190, 10, 350, 50);
 
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(0, 0, 0));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Bank Name:");
         jPanel4.add(jLabel5);
@@ -167,7 +162,6 @@ public class Bank_Data extends javax.swing.JFrame {
 
         jLabel3.setBackground(new java.awt.Color(153, 153, 153));
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Add Bank Account:");
         jPanel5.add(jLabel3);
@@ -207,14 +201,12 @@ public class Bank_Data extends javax.swing.JFrame {
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jRadioButton1.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton1.setText("Debit");
         jPanel8.add(jRadioButton1);
         jRadioButton1.setBounds(0, 0, 110, 50);
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jRadioButton2.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton2.setText("Credit");
         jPanel8.add(jRadioButton2);
         jRadioButton2.setBounds(130, 0, 110, 50);
@@ -267,7 +259,6 @@ public class Bank_Data extends javax.swing.JFrame {
         jPanel7.setLayout(null);
 
         jLabel6.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Bank Debits & Credits:");
         jPanel7.add(jLabel6);
@@ -278,10 +269,7 @@ public class Bank_Data extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+
             },
             new String [] {
                 "SL", "Date", "Bank Name", "Account Number", "Status", "Details ", "Amount"
@@ -297,9 +285,9 @@ public class Bank_Data extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Date:");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(780, 80, 90, 50);
+        jLabel11.setBounds(880, 80, 90, 40);
         jPanel1.add(jDateChooser2);
-        jDateChooser2.setBounds(880, 80, 250, 50);
+        jDateChooser2.setBounds(980, 80, 250, 40);
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton2.setText("Show All");
@@ -308,62 +296,61 @@ public class Bank_Data extends javax.swing.JFrame {
 
         jTextField5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField5ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jTextField5);
-        jTextField5.setBounds(700, 150, 380, 50);
+        jTextField5.setBounds(720, 150, 380, 50);
 
         jLabel12.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel12.setText("*Bank Name:");
         jPanel1.add(jLabel12);
-        jLabel12.setBounds(560, 150, 140, 50);
+        jLabel12.setBounds(560, 150, 150, 50);
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton4.setForeground(new java.awt.Color(255, 255, 255));
         jButton4.setText("Month");
         jPanel1.add(jButton4);
-        jButton4.setBounds(1140, 80, 120, 50);
+        jButton4.setBounds(1240, 80, 120, 40);
 
         jPanel9.setBackground(new java.awt.Color(204, 204, 204));
         jPanel9.setLayout(null);
 
         jLabel13.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Credits:");
         jPanel9.add(jLabel13);
         jLabel13.setBounds(0, 0, 90, 40);
 
         jLabel16.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("Debits:");
         jPanel9.add(jLabel16);
         jLabel16.setBounds(0, 40, 90, 40);
 
         jLabel14.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(0, 0, 0));
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Total:");
         jPanel9.add(jLabel14);
         jLabel14.setBounds(0, 80, 90, 50);
 
         jLabel15.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("0.00");
         jPanel9.add(jLabel15);
         jLabel15.setBounds(100, 80, 190, 40);
 
         jLabel19.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel19.setText("0.00");
         jPanel9.add(jLabel19);
         jLabel19.setBounds(100, 0, 190, 40);
 
         jLabel20.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel20.setText("0.00");
         jPanel9.add(jLabel20);
@@ -414,6 +401,10 @@ public class Bank_Data extends javax.swing.JFrame {
             new dbConnection().addData(query, this);
         }
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField5ActionPerformed
 
     /**
      * @param args the command line arguments

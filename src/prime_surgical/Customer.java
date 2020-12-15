@@ -65,7 +65,7 @@ public class Customer extends javax.swing.JFrame {
         try {
             dbConnect();
             getData();
-            String q="INSERT INTO `Customers` VALUES('"+id+"','"+name+"','"+mobile+"','"+shop+"','"+address+"')";
+            String q="INSERT INTO `customers` VALUES('"+id+"','"+name+"','"+mobile+"','"+shop+"','"+address+"')";
             int a=st.executeUpdate(q);
             if(a>0){
                 JOptionPane.showMessageDialog(this, "Data Added...!");
@@ -131,7 +131,7 @@ public class Customer extends javax.swing.JFrame {
         try {
             dbConnect();
             getData();
-            String q="UPDATE `Customers` SET `customer name`='"+name+"',`mobile`='"+mobile+"',`shop name`='"+shop+"',`address`='"+address+"' where `id`='"+txtId.getText()+"'";
+            String q="UPDATE `customers` SET `customer name`='"+name+"',`mobile`='"+mobile+"',`shop name`='"+shop+"',`address`='"+address+"' where `id`='"+txtId.getText()+"'";
             int a=st.executeUpdate(q);
             if(a>0){
                 JOptionPane.showMessageDialog(this, "Data Updated...!");

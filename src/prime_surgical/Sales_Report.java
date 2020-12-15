@@ -100,7 +100,7 @@ public class Sales_Report extends javax.swing.JFrame {
         productPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         productPanel.setLayout(null);
 
-        header6.setBackground(new java.awt.Color(0, 204, 204));
+        header6.setBackground(new java.awt.Color(0, 102, 102));
         header6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         header6.setLayout(null);
 
@@ -137,14 +137,14 @@ public class Sales_Report extends javax.swing.JFrame {
         comProduct1.setBounds(1063, 24, 274, 41);
 
         jComboBox3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         header6.add(jComboBox3);
         jComboBox3.setBounds(10, 140, 320, 50);
         header6.add(jDateChooser1);
         jDateChooser1.setBounds(650, 140, 352, 50);
 
         comProduct.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        comProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         header6.add(comProduct);
         comProduct.setBounds(330, 140, 320, 50);
 
@@ -206,7 +206,7 @@ public class Sales_Report extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel5.setText("Date:");
         header6.add(jLabel5);
-        jLabel5.setBounds(650, 100, 320, 42);
+        jLabel5.setBounds(650, 100, 350, 42);
 
         productPanel.add(header6);
         header6.setBounds(0, 0, 1360, 200);
@@ -227,10 +227,10 @@ public class Sales_Report extends javax.swing.JFrame {
         jScrollPane5.setViewportView(jTable5);
 
         jPanel14.add(jScrollPane5);
-        jScrollPane5.setBounds(10, 10, 1330, 440);
+        jScrollPane5.setBounds(10, 10, 1330, 450);
 
         productPanel.add(jPanel14);
-        jPanel14.setBounds(10, 210, 1350, 460);
+        jPanel14.setBounds(10, 210, 1350, 470);
 
         jButton5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jButton5.setText("Exit");

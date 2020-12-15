@@ -245,6 +245,7 @@ Connection con = null;
 
         jLabel27.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel27.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_product_40px.png")); // NOI18N
         jLabel27.setText("Stock");
         jLabel27.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -255,16 +256,17 @@ Connection con = null;
             }
         });
         jPanel30.add(jLabel27);
-        jLabel27.setBounds(0, 0, 224, 70);
+        jLabel27.setBounds(4, 0, 290, 80);
 
         HomePanel.add(jPanel30);
-        jPanel30.setBounds(610, 200, 0, 70);
+        jPanel30.setBounds(280, 410, 300, 80);
 
         jPanel14.setBackground(new java.awt.Color(204, 255, 204));
         jPanel14.setLayout(null);
 
         jLabel14.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_safe_40px.png")); // NOI18N
         jLabel14.setText("Bank Data");
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -282,6 +284,7 @@ Connection con = null;
 
         jLabel49.setFont(new java.awt.Font("Roboto", 0, 26)); // NOI18N
         jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel49.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\return-on-investment.png")); // NOI18N
         jLabel49.setText("Product Returns");
         jLabel49.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -292,13 +295,14 @@ Connection con = null;
         jLabel49.setBounds(0, 0, 300, 80);
 
         HomePanel.add(jPanel10);
-        jPanel10.setBounds(280, 230, 300, 80);
+        jPanel10.setBounds(280, 320, 300, 80);
 
         jPanel12.setBackground(new java.awt.Color(204, 255, 204));
         jPanel12.setLayout(null);
 
         jLabel18.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel18.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_paper_money_40px.png")); // NOI18N
         jLabel18.setText("Costs");
         jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -309,16 +313,17 @@ Connection con = null;
             }
         });
         jPanel12.add(jLabel18);
-        jLabel18.setBounds(0, 0, 300, 70);
+        jLabel18.setBounds(0, 0, 300, 80);
 
         HomePanel.add(jPanel12);
-        jPanel12.setBounds(590, 320, 300, 70);
+        jPanel12.setBounds(590, 320, 300, 80);
 
         jPanel13.setBackground(new java.awt.Color(204, 255, 204));
         jPanel13.setLayout(null);
 
         jLabel15.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_cost_40px.png")); // NOI18N
         jLabel15.setText("Cash Data");
         jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -326,16 +331,17 @@ Connection con = null;
             }
         });
         jPanel13.add(jLabel15);
-        jLabel15.setBounds(0, 0, 300, 70);
+        jLabel15.setBounds(0, 0, 300, 80);
 
         HomePanel.add(jPanel13);
-        jPanel13.setBounds(280, 320, 300, 70);
+        jPanel13.setBounds(280, 230, 300, 80);
 
         jPanel15.setBackground(new java.awt.Color(204, 255, 204));
         jPanel15.setLayout(null);
 
         jLabel17.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel17.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\prime_surgical\\icons8_payroll_40px.png")); // NOI18N
         jLabel17.setText("Sales Officer's");
         jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -346,7 +352,7 @@ Connection con = null;
         jLabel17.setBounds(0, 0, 300, 80);
 
         HomePanel.add(jPanel15);
-        jPanel15.setBounds(450, 400, 300, 80);
+        jPanel15.setBounds(590, 410, 300, 80);
 
         jPanel6.setLayout(null);
 

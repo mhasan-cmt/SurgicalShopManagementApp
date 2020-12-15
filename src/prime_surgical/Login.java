@@ -53,7 +53,7 @@ public class Login extends javax.swing.JFrame {
         try {
             dbConnect();
             getData();
-            String query= "SELECT * FROM `LoginUsers` WHERE `user`='"+user+"' AND `password`='"+pass+"'";
+            String query= "SELECT * FROM `users` WHERE `user_name`='"+user+"' AND  `user_password`='"+pass+"'";
             rs=st.executeQuery(query);
             if(rs.next()){
                 new HomePage().setVisible(true);
@@ -70,7 +70,7 @@ public class Login extends javax.swing.JFrame {
     void users(){
         try {
             dbConnect();
-            String q="SELECT `user` FROM `LoginUsers` ";
+            String q="SELECT `user_role` FROM `users` ";
             rs=st.executeQuery(q);
             while(rs.next()){
                 comUser.addItem(rs.getString(1));
@@ -104,7 +104,6 @@ public class Login extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
@@ -218,7 +217,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton2);
-        jButton2.setBounds(50, 270, 120, 40);
+        jButton2.setBounds(50, 270, 200, 40);
 
         jButton3.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
         jButton3.setText("Exit");
@@ -228,17 +227,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton3);
-        jButton3.setBounds(190, 270, 120, 40);
-
-        jButton4.setFont(new java.awt.Font("Serif", 0, 18)); // NOI18N
-        jButton4.setText("Add User");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel2.add(jButton4);
-        jButton4.setBounds(320, 270, 120, 40);
+        jButton3.setBounds(260, 270, 200, 40);
 
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -295,10 +284,6 @@ public class Login extends javax.swing.JFrame {
         txtUser.setText("");
     }//GEN-LAST:event_txtUserMouseClicked
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         login();
@@ -306,7 +291,8 @@ public class Login extends javax.swing.JFrame {
 
     private void comUserPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comUserPopupMenuWillBecomeInvisible
         // TODO add your handling code here:
-        txtUser.setText(comUser.getSelectedItem().toString());
+        String com=comUser.getSelectedItem().toString();
+        txtUser.setText(new dbConnection().singledata("select `user_name` from `users` where `user_role`='"+com+"'"));
     }//GEN-LAST:event_comUserPopupMenuWillBecomeInvisible
 
     private void txtUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyPressed
@@ -368,7 +354,6 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comUser;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;

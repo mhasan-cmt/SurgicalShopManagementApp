@@ -130,7 +130,6 @@ public class Cash_Data extends javax.swing.JFrame {
         jLabel1.setBounds(20, 0, 190, 70);
 
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime Surgical\\src\\img\\error.png")); // NOI18N
         jLabel2.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel2MouseClicked(evt);
@@ -149,10 +148,7 @@ public class Cash_Data extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Sl", "Date", "Details", "Status", "Amount"
@@ -246,7 +242,7 @@ public class Cash_Data extends javax.swing.JFrame {
         jRadioButton4.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton4.setText("Purchase");
         jPanel10.add(jRadioButton4);
-        jRadioButton4.setBounds(80, 80, 123, 40);
+        jRadioButton4.setBounds(80, 80, 132, 40);
 
         buttonGroup2.add(jRadioButton5);
         jRadioButton5.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N

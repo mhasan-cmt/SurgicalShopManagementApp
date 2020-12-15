@@ -33,17 +33,10 @@ public class PurchaseDuePaid extends javax.swing.JFrame {
         jLabel8 = new javax.swing.JLabel();
         comCompany = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        txtId1 = new javax.swing.JTextField();
-        jLabel16 = new javax.swing.JLabel();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         txtSubTotal = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        txtDiscount = new javax.swing.JTextField();
         txtPaid = new javax.swing.JTextField();
         txtDue = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
@@ -56,6 +49,10 @@ public class PurchaseDuePaid extends javax.swing.JFrame {
         comBankName = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
         txtAccount = new javax.swing.JComboBox<>();
+        txtId1 = new javax.swing.JTextField();
+        jLabel16 = new javax.swing.JLabel();
+        jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel15 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -127,31 +124,6 @@ public class PurchaseDuePaid extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel5.setLayout(null);
 
-        jPanel6.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        jPanel6.setLayout(null);
-
-        jLabel15.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel15.setText("Date:");
-        jPanel6.add(jLabel15);
-        jLabel15.setBounds(0, 0, 60, 40);
-
-        txtId1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel6.add(txtId1);
-        txtId1.setBounds(620, 0, 220, 40);
-
-        jLabel16.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel16.setText("Bill no.");
-        jPanel6.add(jLabel16);
-        jLabel16.setBounds(560, 0, 60, 40);
-        jPanel6.add(jDateChooser1);
-        jDateChooser1.setBounds(50, 0, 290, 40);
-
-        jPanel5.add(jPanel6);
-        jPanel6.setBounds(0, 0, 850, 50);
-
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -163,46 +135,36 @@ public class PurchaseDuePaid extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jPanel5.add(jScrollPane1);
-        jScrollPane1.setBounds(0, 50, 850, 490);
+        jScrollPane1.setBounds(0, 0, 850, 490);
 
         txtSubTotal.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel5.add(txtSubTotal);
-        txtSubTotal.setBounds(680, 550, 170, 30);
+        txtSubTotal.setBounds(680, 490, 170, 50);
 
         jLabel17.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
         jLabel17.setText("Sub Total:");
         jPanel5.add(jLabel17);
-        jLabel17.setBounds(590, 550, 90, 30);
-
-        jLabel18.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel18.setText("Discount:");
-        jPanel5.add(jLabel18);
-        jLabel18.setBounds(590, 590, 90, 30);
-
-        txtDiscount.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel5.add(txtDiscount);
-        txtDiscount.setBounds(680, 590, 170, 30);
+        jLabel17.setBounds(590, 490, 90, 50);
 
         txtPaid.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel5.add(txtPaid);
-        txtPaid.setBounds(680, 630, 170, 30);
+        txtPaid.setBounds(680, 540, 170, 50);
 
         txtDue.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel5.add(txtDue);
-        txtDue.setBounds(680, 670, 170, 30);
+        txtDue.setBounds(680, 590, 170, 50);
 
         jLabel20.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Due");
         jPanel5.add(jLabel20);
-        jLabel20.setBounds(590, 670, 90, 30);
+        jLabel20.setBounds(590, 590, 90, 50);
 
         jButton6.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton6.setText("Submit");
         jPanel5.add(jButton6);
-        jButton6.setBounds(630, 720, 170, 40);
+        jButton6.setBounds(590, 660, 170, 40);
 
         buttonGroup1.add(rbBank);
         rbBank.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
@@ -219,7 +181,7 @@ public class PurchaseDuePaid extends javax.swing.JFrame {
             }
         });
         jPanel5.add(rbBank);
-        rbBank.setBounds(220, 540, 120, 40);
+        rbBank.setBounds(200, 540, 120, 40);
 
         buttonGroup1.add(rbCash);
         rbCash.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
@@ -231,13 +193,13 @@ public class PurchaseDuePaid extends javax.swing.JFrame {
             }
         });
         jPanel5.add(rbCash);
-        rbCash.setBounds(90, 540, 110, 40);
+        rbCash.setBounds(70, 540, 110, 40);
 
         jLabel21.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Paid");
         jPanel5.add(jLabel21);
-        jLabel21.setBounds(590, 630, 90, 30);
+        jLabel21.setBounds(590, 550, 90, 40);
 
         Bank.setBackground(new java.awt.Color(0, 153, 153));
         Bank.setBorder(new javax.swing.border.MatteBorder(null));
@@ -273,12 +235,30 @@ public class PurchaseDuePaid extends javax.swing.JFrame {
         txtAccount.setBounds(170, 50, 250, 44);
 
         jPanel5.add(Bank);
-        Bank.setBounds(60, 580, 430, 100);
+        Bank.setBounds(40, 580, 430, 100);
+
+        txtId1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jPanel5.add(txtId1);
+        txtId1.setBounds(430, 490, 140, 40);
+
+        jLabel16.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel16.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel16.setText("Bill no.");
+        jPanel5.add(jLabel16);
+        jLabel16.setBounds(370, 490, 60, 40);
+        jPanel5.add(jDateChooser1);
+        jDateChooser1.setBounds(70, 490, 290, 40);
+
+        jLabel15.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel15.setText("Date:");
+        jPanel5.add(jLabel15);
+        jLabel15.setBounds(20, 490, 60, 40);
 
         getContentPane().add(jPanel5);
         jPanel5.setBounds(510, 0, 860, 770);
 
-        setSize(new java.awt.Dimension(1366, 768));
+        setSize(new java.awt.Dimension(1371, 768));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
@@ -379,7 +359,6 @@ public class PurchaseDuePaid extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
@@ -390,13 +369,11 @@ public class PurchaseDuePaid extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JRadioButton rbBank;
     private javax.swing.JRadioButton rbCash;
     private javax.swing.JComboBox<String> txtAccount;
-    private javax.swing.JTextField txtDiscount;
     private javax.swing.JTextField txtDue;
     private javax.swing.JTextField txtId1;
     private javax.swing.JTextField txtPaid;

@@ -39,7 +39,7 @@ public class Purchase_Report extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         comCustomer = new javax.swing.JComboBox<>();
         jComboBox5 = new javax.swing.JComboBox<>();
-        jDateChooser2 = new com.toedter.calendar.JDateChooser();
+        txtDate = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
@@ -142,11 +142,11 @@ public class Purchase_Report extends javax.swing.JFrame {
         comCustomer.setBounds(1069, 17, 274, 41);
 
         jComboBox5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         header3.add(jComboBox5);
-        jComboBox5.setBounds(16, 133, 360, 50);
-        header3.add(jDateChooser2);
-        jDateChooser2.setBounds(380, 130, 350, 50);
+        jComboBox5.setBounds(0, 110, 360, 50);
+        header3.add(txtDate);
+        txtDate.setBounds(370, 110, 350, 50);
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -196,15 +196,15 @@ public class Purchase_Report extends javax.swing.JFrame {
         jLabel11.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel11.setText("*Select Customer/Shop Name:");
         header3.add(jLabel11);
-        jLabel11.setBounds(20, 90, 330, 42);
+        jLabel11.setBounds(10, 70, 330, 42);
 
         jLabel13.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel13.setText("Date:");
         header3.add(jLabel13);
-        jLabel13.setBounds(380, 90, 350, 42);
+        jLabel13.setBounds(370, 70, 350, 42);
 
         customerPanel.add(header3);
-        header3.setBounds(0, 0, 1360, 200);
+        header3.setBounds(0, 0, 1360, 170);
 
         jPanel13.setBackground(new java.awt.Color(255, 255, 255));
         jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
@@ -225,7 +225,7 @@ public class Purchase_Report extends javax.swing.JFrame {
         jScrollPane4.setBounds(10, 10, 1330, 440);
 
         customerPanel.add(jPanel13);
-        jPanel13.setBounds(10, 210, 1350, 460);
+        jPanel13.setBounds(0, 170, 1360, 470);
 
         jButton4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jButton4.setText("Exit");
@@ -235,7 +235,7 @@ public class Purchase_Report extends javax.swing.JFrame {
             }
         });
         customerPanel.add(jButton4);
-        jButton4.setBounds(660, 690, 150, 40);
+        jButton4.setBounds(640, 660, 240, 40);
 
         jLayeredPane1.setLayer(customerPanel, javax.swing.JLayeredPane.DRAG_LAYER);
         jLayeredPane1.add(customerPanel, "");
@@ -689,7 +689,6 @@ public class Purchase_Report extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox7;
     private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser2;
     private com.toedter.calendar.JDateChooser jDateChooser3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
@@ -727,5 +726,6 @@ public class Purchase_Report extends javax.swing.JFrame {
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
     private javax.swing.JPanel productPanel;
+    private com.toedter.calendar.JDateChooser txtDate;
     // End of variables declaration//GEN-END:variables
 }

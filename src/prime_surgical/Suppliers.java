@@ -5,6 +5,7 @@
  */
 package prime_surgical;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Mahmudul Hasan
@@ -34,8 +35,23 @@ public class Suppliers extends javax.swing.JFrame {
         address=txtAddress.getText();
     }
    void showSuplliers(){
-       String q="SELECT * FROM `suppliers`";
+       String q="SELECT * FROM `suppliers_data`";
        new dbConnection().showDataForSuppliersTable(q, jTable1);
+   }
+   void clear(){
+       txtId.setText("");
+       txtName.setText("");
+       txtMobile.setText("");
+       txtCompany.setText("");
+       txtAddress.setText("");
+   }
+   int datacheck(){
+      int check=0; 
+       if (txtId.getText().isEmpty() && txtName.getText().isEmpty() && txtMobile.getText().isEmpty() && txtAddress.getText().isEmpty()) {
+          check=1; 
+          JOptionPane.showMessageDialog(this, "Enter all data!");
+       }
+       return check;
    }
 
     /**
@@ -127,6 +143,11 @@ public class Suppliers extends javax.swing.JFrame {
 
         jButton1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton1.setText("Delete");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton1);
         jButton1.setBounds(330, 420, 130, 40);
 
@@ -172,6 +193,11 @@ public class Suppliers extends javax.swing.JFrame {
 
         jButton6.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton6.setText("Clear");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton6);
         jButton6.setBounds(250, 470, 130, 40);
 
@@ -258,6 +284,11 @@ public class Suppliers extends javax.swing.JFrame {
                 "Id", "Name", "Mobile Number", "Company Name", "Address"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel5.add(jScrollPane1);
@@ -278,9 +309,13 @@ public class Suppliers extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         getData();
-        String query="INSERT INTO `suppliers` VALUES('"+id+"','"+name+"','"+mobile+"','"+company+"','"+address+"')";
+        while(datacheck()==0){
+       String query="INSERT INTO `suppliers_data` VALUES('"+id+"','"+name+"','"+company+"','"+mobile+"','"+address+"')";
        new dbConnection().addData(query, this);
        showSuplliers();
+        clear();   
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -291,6 +326,30 @@ public class Suppliers extends javax.swing.JFrame {
         // show data to table:
         showSuplliers();
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:  
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        clear();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel dtm=(DefaultTableModel)jTable1.getModel();
+        id=dtm.getValueAt(jTable1.getSelectedRow(), 0).toString();
+        txtId.setText(id);
+        name=dtm.getValueAt(jTable1.getSelectedRow(), 1).toString();
+        txtName.setText(name);
+        mobile=dtm.getValueAt(jTable1.getSelectedRow(), 2).toString();
+        txtMobile.setText(mobile);
+        company=dtm.getValueAt(jTable1.getSelectedRow(), 3).toString();
+        txtCompany.setText(company);
+        address=dtm.getValueAt(jTable1.getSelectedRow(), 4).toString();
+        txtAddress.setText(address);
+    }//GEN-LAST:event_jTable1MouseClicked
 
     /**
      * @param args the command line arguments
