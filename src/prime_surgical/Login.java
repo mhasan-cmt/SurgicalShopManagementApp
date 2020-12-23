@@ -171,7 +171,7 @@ public class Login extends javax.swing.JFrame {
         jLabel9.setForeground(new java.awt.Color(204, 0, 51));
         jLabel9.setText("Email: primesugicall95@gmail.com");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(20, 370, 310, 26);
+        jLabel9.setBounds(20, 370, 310, 24);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 340, 430);
@@ -248,7 +248,7 @@ public class Login extends javax.swing.JFrame {
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Sign In");
         jPanel3.add(jLabel10);
-        jLabel10.setBounds(30, 30, 120, 40);
+        jLabel10.setBounds(20, 20, 120, 60);
 
         comUser.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         comUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User" }));

@@ -35,7 +35,7 @@ public class Suppliers extends javax.swing.JFrame {
         address=txtAddress.getText();
     }
    void showSuplliers(){
-       String q="SELECT * FROM `suppliers_data`";
+       String q="SELECT * FROM `suppliers`";
        new dbConnection().showDataForSuppliersTable(q, jTable1);
    }
    void clear(){
@@ -48,8 +48,7 @@ public class Suppliers extends javax.swing.JFrame {
    int datacheck(){
       int check=0; 
        if (txtId.getText().isEmpty() && txtName.getText().isEmpty() && txtMobile.getText().isEmpty() && txtAddress.getText().isEmpty()) {
-          check=1; 
-          JOptionPane.showMessageDialog(this, "Enter all data!");
+          check=1;
        }
        return check;
    }
@@ -310,7 +309,7 @@ public class Suppliers extends javax.swing.JFrame {
         // TODO add your handling code here:
         getData();
         while(datacheck()==0){
-       String query="INSERT INTO `suppliers_data` VALUES('"+id+"','"+name+"','"+company+"','"+mobile+"','"+address+"')";
+       String query="INSERT INTO `suppliers` VALUES('"+id+"','"+name+"','"+company+"','"+mobile+"','"+address+"')";
        new dbConnection().addData(query, this);
        showSuplliers();
         clear();   

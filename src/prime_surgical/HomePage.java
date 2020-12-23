@@ -199,7 +199,7 @@ Connection con = null;
         jLabel3.setForeground(new java.awt.Color(204, 0, 51));
         jLabel3.setText("Email: primesugicall95@gmail.com");
         headerPane.add(jLabel3);
-        jLabel3.setBounds(710, 130, 320, 26);
+        jLabel3.setBounds(710, 130, 320, 24);
 
         jLabel4.setFont(new java.awt.Font("Kalpurush", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(0, 0, 0));

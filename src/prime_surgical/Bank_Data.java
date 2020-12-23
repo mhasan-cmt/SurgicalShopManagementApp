@@ -120,6 +120,7 @@ public class Bank_Data extends javax.swing.JFrame {
         jPanel2.setBounds(0, -1, 1370, 80);
 
         jPanel4.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel4.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
@@ -250,7 +251,7 @@ public class Bank_Data extends javax.swing.JFrame {
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton5.setText("Submit");
         jPanel6.add(jButton5);
-        jButton5.setBounds(370, 340, 120, 40);
+        jButton5.setBounds(370, 330, 150, 40);
 
         jPanel1.add(jPanel6);
         jPanel6.setBounds(0, 380, 540, 390);
@@ -396,9 +397,11 @@ public class Bank_Data extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        String query="INSERT INTO `bank accounts`(`bank name`,`account no`) VALUES('"+jTextField2.getText()+"','"+jTextField1.getText()+"')";
+        String query="INSERT INTO `bank accounts`(`bank_account_name`,`bank_account_number`) VALUES('"+jTextField2.getText()+"','"+jTextField1.getText()+"')";
         if( !jTextField2.getText().isEmpty() && !jTextField1.getText().isEmpty()){
             new dbConnection().addData(query, this);
+            jTextField2.setText("");
+            jTextField1.setText("");
         }
     }//GEN-LAST:event_jButton3ActionPerformed
 

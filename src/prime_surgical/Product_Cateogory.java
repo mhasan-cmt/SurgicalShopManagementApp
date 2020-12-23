@@ -56,7 +56,7 @@ public class Product_Cateogory extends javax.swing.JFrame {
             // TODO add your handling code here:
             dbConnect();
             getData();
-            String query="INSERT INTO `product cateogory` VALUES('"+Cateogory+"')";
+            String query="INSERT INTO `product cateogory`(cateogory) VALUES('"+Cateogory+"')";
             int add=st.executeUpdate(query);
             if(add>0){
                 JOptionPane.showMessageDialog(this, "Added...!");
