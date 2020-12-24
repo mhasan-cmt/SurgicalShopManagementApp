@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package prime_surgical;
+import java.text.SimpleDateFormat;
 import javax.swing.*;
 
 /**
@@ -18,8 +19,63 @@ public class Cash_Data extends javax.swing.JFrame {
     public Cash_Data() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        showCash();
+        new dbConnection().getDataFromCombo(jComboBox2, "SELECT `bank_account_name` FROM `bank accounts`");
     }
-
+    String date,details,amount,status;
+void showCash(){
+    String query="SELECT * FROM `cash data`";
+    new dbConnection().showCashData(query, jTable1);
+    showTotals();
+}
+void getData(){
+    SimpleDateFormat sm=new SimpleDateFormat("yyyy-MM-dd");
+    date=sm.format(jDateChooser1.getDate());
+    details=jTextField4.getText();
+    amount=jTextField3.getText();
+    if(jRadioButton1.isSelected()){
+        status="debit";
+    }
+    else if(jRadioButton2.isSelected()){
+        status="credit";
+    }
+}
+int checkBlankData(){
+    int check=0;
+    if(((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText().isEmpty()){
+        JOptionPane.showMessageDialog(this, "Enter date!");
+        jDateChooser1.requestFocus();
+    }
+    else if(jTextField4.getText().isEmpty()){
+        JOptionPane.showMessageDialog(this, "Enter Details!");
+        jTextField4.requestFocus();
+    }
+    else if(jTextField3.getText().isEmpty()){
+        JOptionPane.showMessageDialog(this, "Enter Amount!");
+        jTextField3.requestFocus();
+    }
+    else if(!jRadioButton1.isSelected() && !jRadioButton2.isSelected()){
+        JOptionPane.showMessageDialog(this, "Enter Status!");
+    }
+    else{
+        check=1;
+    }
+    return check;
+}
+void addCash(){
+    getData();
+    String query="INSERT INTO `cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('"+date+"','"+details+"','"+status+"','"+amount+"')";
+    new dbConnection().addData(query, this);
+}
+void showTotals(){
+    String cashCredits,cashDebits;
+        cashCredits=new dbConnection().singledata("SELECT SUM(`cash_amount`) FROM `cash data` WHERE `cash_status`=\"credit\"");
+        cashDebits=new dbConnection().singledata("SELECT SUM(`cash_amount`) FROM `cash data` WHERE `cash_status`=\"debit\"");
+        jLabel19.setText(cashCredits);
+        jLabel20.setText(cashDebits);
+        double amount=Double.parseDouble(cashCredits)+Double.parseDouble(cashDebits);
+        jLabel15.setText(""+amount);
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -142,6 +198,11 @@ public class Cash_Data extends javax.swing.JFrame {
         jPanel2.setBounds(0, 0, 1360, 70);
 
         jTabbedPane1.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
+        jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTabbedPane1MouseClicked(evt);
+            }
+        });
 
         jPanel4.setBackground(new java.awt.Color(0, 153, 153));
         jPanel4.setLayout(null);
@@ -165,7 +226,7 @@ public class Cash_Data extends javax.swing.JFrame {
         jPanel9.setLayout(null);
 
         jTextField4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField4.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel9.add(jTextField4);
         jTextField4.setBounds(170, 60, 380, 50);
 
@@ -178,6 +239,11 @@ public class Cash_Data extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton5.setText("Submit");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jPanel9.add(jButton5);
         jButton5.setBounds(920, 80, 130, 60);
 
@@ -203,14 +269,14 @@ public class Cash_Data extends javax.swing.JFrame {
         jLabel11.setBounds(580, 10, 100, 50);
 
         buttonGroup1.add(jRadioButton2);
-        jRadioButton2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jRadioButton2.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jRadioButton2.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton2.setText("Credit");
         jPanel9.add(jRadioButton2);
         jRadioButton2.setBounds(810, 60, 110, 40);
 
         buttonGroup1.add(jRadioButton1);
-        jRadioButton1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jRadioButton1.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton1.setText("Debit");
         jPanel9.add(jRadioButton1);
@@ -242,7 +308,7 @@ public class Cash_Data extends javax.swing.JFrame {
         jRadioButton4.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton4.setText("Purchase");
         jPanel10.add(jRadioButton4);
-        jRadioButton4.setBounds(80, 80, 132, 40);
+        jRadioButton4.setBounds(80, 80, 125, 40);
 
         buttonGroup2.add(jRadioButton5);
         jRadioButton5.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
@@ -357,12 +423,21 @@ public class Cash_Data extends javax.swing.JFrame {
         jLabel17.setBounds(120, 0, 110, 30);
 
         jComboBox2.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
-        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        jComboBox2.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                jComboBox2PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
         jPanel6.add(jComboBox2);
         jComboBox2.setBounds(20, 110, 350, 50);
 
         jComboBox1.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         jPanel6.add(jComboBox1);
         jComboBox1.setBounds(20, 190, 350, 50);
 
@@ -551,6 +626,24 @@ public class Cash_Data extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jButton13ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        if (checkBlankData()==1) {
+         addCash(); 
+         showCash();
+        } 
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jTabbedPane1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTabbedPane1MouseClicked
+        // TODO add your handling code here: 
+    }//GEN-LAST:event_jTabbedPane1MouseClicked
+
+    private void jComboBox2PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox2PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+       String bankName=jComboBox2.getSelectedItem().toString();
+        new dbConnection().getDataFromCombo(jComboBox1, "SELECT `bank_account_number` FROM `bank accounts` WHERE `bank_account_name`='"+bankName+"'");
+    }//GEN-LAST:event_jComboBox2PopupMenuWillBecomeInvisible
 
     /**
      * @param args the command line arguments

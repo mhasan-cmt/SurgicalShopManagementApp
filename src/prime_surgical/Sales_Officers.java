@@ -101,7 +101,7 @@ public class Sales_Officers extends javax.swing.JFrame {
     void update(){
         dbConnection d=new dbConnection();
         SimpleDateFormat sm=new SimpleDateFormat("yyyy-MM-dd");
-        String q="UPDATE `salesofficer` SET `id`='"+txtId.getText()+"' ,`name`='"+txtName.getText()+"', `mobile`='"+txtMobile.getText()+"',`address`='"+txtAddress.getText()+"',`salary`='"+txtSalary.getText()+"',`position`='"+txtPosition.getText()+"',`joining date`='"+sm.format(jDateChooser1.getDate())+"',`reffarel person`='"+txtRefferance.getText()+"', `mobile number`='"+txtRefMobile.getText()+"' WHERE  `id`='"+txtId.getText()+"'";
+        String q="UPDATE `salesofficer` SET `id`='"+txtId.getText()+"' ,`sales_name`='"+txtName.getText()+"', `sales_mobile`='"+txtMobile.getText()+"',`sales_address`='"+txtAddress.getText()+"',`sales_salary`='"+txtSalary.getText()+"',`sales_position`='"+txtPosition.getText()+"',`sales_ref`='"+txtRefferance.getText()+"', `sales_ref_mobile`='"+txtRefMobile.getText()+"' WHERE  `id`='"+txtId.getText()+"'";
         d.updateData(q, this);
         show1();
     }
@@ -151,12 +151,12 @@ public class Sales_Officers extends javax.swing.JFrame {
         txtRefferance = new javax.swing.JTextField();
         txtPosition = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
+        jLabel14 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -213,7 +213,7 @@ public class Sales_Officers extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(410, 330, 130, 30);
+        jButton1.setBounds(410, 320, 130, 40);
 
         jButton2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton2.setText("ADD");
@@ -223,7 +223,7 @@ public class Sales_Officers extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(130, 330, 130, 30);
+        jButton2.setBounds(130, 320, 130, 40);
 
         jButton3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton3.setText("Update");
@@ -233,7 +233,7 @@ public class Sales_Officers extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(270, 330, 130, 30);
+        jButton3.setBounds(270, 320, 130, 40);
 
         jButton4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton4.setText("Exit");
@@ -243,7 +243,7 @@ public class Sales_Officers extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(830, 330, 130, 30);
+        jButton4.setBounds(830, 320, 130, 40);
 
         jButton5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton5.setText("Show");
@@ -253,7 +253,7 @@ public class Sales_Officers extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton5);
-        jButton5.setBounds(550, 330, 130, 30);
+        jButton5.setBounds(550, 320, 130, 40);
 
         jButton6.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton6.setText("Clear");
@@ -263,7 +263,7 @@ public class Sales_Officers extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton6);
-        jButton6.setBounds(690, 330, 130, 30);
+        jButton6.setBounds(690, 320, 130, 40);
 
         jPanel4.setBackground(new java.awt.Color(0, 102, 102));
         jPanel4.setLayout(null);
@@ -325,7 +325,7 @@ public class Sales_Officers extends javax.swing.JFrame {
             }
         });
         jPanel3.add(jTextField2);
-        jTextField2.setBounds(210, 10, 390, 30);
+        jTextField2.setBounds(210, 0, 390, 50);
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -355,12 +355,6 @@ public class Sales_Officers extends javax.swing.JFrame {
         jLabel10.setText("Position:");
         jPanel1.add(jLabel10);
         jLabel10.setBounds(550, 70, 140, 40);
-
-        jLabel11.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel11.setText("Joining Date:");
-        jPanel1.add(jLabel11);
-        jLabel11.setBounds(550, 120, 140, 40);
 
         jLabel12.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
@@ -393,6 +387,12 @@ public class Sales_Officers extends javax.swing.JFrame {
         jScrollPane1.setBounds(10, 420, 1350, 340);
         jPanel1.add(jDateChooser1);
         jDateChooser1.setBounds(690, 110, 370, 60);
+
+        jLabel14.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Joining Date:");
+        jPanel1.add(jLabel14);
+        jLabel14.setBounds(550, 120, 140, 40);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1370, 770);
@@ -458,14 +458,13 @@ public class Sales_Officers extends javax.swing.JFrame {
 
     private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
         // TODO add your handling code here:
+        String search=jTextField2.getText();
+        String query="SELECT * FROM `salesOfficer` where `sales_name` LIKE  '%"+search+"%'";
+        new dbConnection().showDataForSalesOfficerTable(query, jTable1);
     }//GEN-LAST:event_jTextField2KeyReleased
 
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
         // TODO add your handling code here:
-        dbConnection d=new dbConnection();
-        String search=jTextField2.getText();
-        String q="SELECT * FROM `salesofficer` WHERE `name` LIKE '%"+search+"%'";
-        d.searchData(q, jTable1);
     }//GEN-LAST:event_jTextField2KeyPressed
 
     /**
@@ -516,9 +515,9 @@ public class Sales_Officers extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> jComboBox1;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel10;
-    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

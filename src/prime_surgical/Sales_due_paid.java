@@ -26,6 +26,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
         lbCustomer.setVisible(false);
         txtCustomer.setVisible(false);
     }
+    String pay;
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -53,7 +54,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
         jLabel22 = new javax.swing.JLabel();
         comBankName = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
-        txtAccount = new javax.swing.JTextField();
+        jComboBox1 = new javax.swing.JComboBox<>();
         jButton5 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
         txtCustomer = new javax.swing.JTextField();
@@ -107,7 +108,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(230, 610, 130, 40);
+        jButton4.setBounds(90, 600, 300, 40);
 
         jPanel4.setBackground(new java.awt.Color(0, 102, 102));
         jPanel4.setLayout(null);
@@ -161,7 +162,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
         customerType.setBounds(160, 140, 290, 40);
 
         comShop.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        comShop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comShop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         jPanel1.add(comShop);
         comShop.setBounds(160, 250, 290, 40);
 
@@ -190,7 +191,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
             }
         });
         jPanel1.add(rbBank);
-        rbBank.setBounds(150, 370, 120, 40);
+        rbBank.setBounds(180, 360, 120, 40);
 
         buttonGroup1.add(rbCash);
         rbCash.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
@@ -202,7 +203,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
             }
         });
         jPanel1.add(rbCash);
-        rbCash.setBounds(20, 370, 110, 40);
+        rbCash.setBounds(50, 360, 110, 40);
 
         Bank.setBackground(new java.awt.Color(0, 153, 153));
         Bank.setBorder(new javax.swing.border.MatteBorder(null));
@@ -213,12 +214,22 @@ public class Sales_due_paid extends javax.swing.JFrame {
 
         comBankName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         comBankName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        comBankName.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                comBankNamePopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
 
         jLabel19.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel19.setForeground(new java.awt.Color(255, 255, 255));
         jLabel19.setText("Account Number:");
 
-        txtAccount.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jComboBox1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
 
         javax.swing.GroupLayout BankLayout = new javax.swing.GroupLayout(Bank);
         Bank.setLayout(BankLayout);
@@ -232,10 +243,10 @@ public class Sales_due_paid extends javax.swing.JFrame {
                         .addGap(0, 0, 0)
                         .addComponent(comBankName, javax.swing.GroupLayout.PREFERRED_SIZE, 250, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(BankLayout.createSequentialGroup()
-                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 144, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtAccount)))
-                .addGap(19, 19, 19))
+                        .addComponent(jComboBox1, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                .addGap(38, 38, 38))
         );
         BankLayout.setVerticalGroup(
             BankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -246,15 +257,13 @@ public class Sales_due_paid extends javax.swing.JFrame {
                     .addComponent(comBankName, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addGap(10, 10, 10)
                 .addGroup(BankLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                    .addGroup(BankLayout.createSequentialGroup()
-                        .addGap(5, 5, 5)
-                        .addComponent(txtAccount))
-                    .addComponent(jLabel19, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jLabel19, javax.swing.GroupLayout.DEFAULT_SIZE, 40, Short.MAX_VALUE)
+                    .addComponent(jComboBox1))
                 .addContainerGap(17, Short.MAX_VALUE))
         );
 
         jPanel1.add(Bank);
-        Bank.setBounds(20, 430, 420, 115);
+        Bank.setBounds(50, 420, 420, 115);
 
         jButton5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton5.setText("Exit");
@@ -264,7 +273,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton5);
-        jButton5.setBounds(80, 610, 130, 40);
+        jButton5.setBounds(90, 650, 300, 40);
 
         jLabel15.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -302,7 +311,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("প্রাইম সার্জিক্যাল এন্ড সায়েন্টিফিক");
         headerPane.add(jLabel1);
-        jLabel1.setBounds(140, 20, 480, 60);
+        jLabel1.setBounds(140, 30, 480, 57);
 
         jLabel2.setBackground(new java.awt.Color(0, 102, 102));
         jLabel2.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
@@ -310,7 +319,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Prime Surgical & Scientific");
         headerPane.add(jLabel2);
-        jLabel2.setBounds(190, 70, 310, 40);
+        jLabel2.setBounds(200, 70, 310, 30);
 
         jLabel4.setFont(new java.awt.Font("Kalpurush", 0, 18)); // NOI18N
         jLabel4.setText(" ট্রাংক রোড, ফেনী।");
@@ -319,7 +328,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
 
         jLabel10.setFont(new java.awt.Font("Kalpurush", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel10.setText("Email: primesugicall95@gmail.com");
+        jLabel10.setText("Email: primesugical95@gmail.com");
         headerPane.add(jLabel10);
         jLabel10.setBounds(380, 140, 320, 30);
 
@@ -504,13 +513,17 @@ public class Sales_due_paid extends javax.swing.JFrame {
 
     private void rbBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbBankActionPerformed
         // TODO add your handling code here:
+        if(rbBank.isSelected()){
+          Bank.setVisible(true);
+          String query="SELECT `bank_account_name` FROM `bank accounts`";
+          new dbConnection().getDataFromCombo(comBankName, query);
+          pay="Bank";
+      }
     }//GEN-LAST:event_rbBankActionPerformed
 
     private void rbBankMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbBankMouseClicked
         // TODO add your handling code here:
-        if(rbBank.isSelected()){
-          Bank.setVisible(true);
-      }
+        
     }//GEN-LAST:event_rbBankMouseClicked
 
     private void rbCashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbCashMouseClicked
@@ -556,6 +569,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
            lbShop.setVisible(true);
            lbCustomer.setVisible(false);
            txtCustomer.setVisible(false);
+           new dbConnection().getDataFromCombo(comShop, "SELECT `customer name` FROM `customers`");
        }
        else if(s.contains("Customer")){
            comShop.setVisible(false);
@@ -576,6 +590,13 @@ public class Sales_due_paid extends javax.swing.JFrame {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void comBankNamePopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comBankNamePopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        String bankName=comBankName.getSelectedItem().toString();
+        String query="SELECT `bank_account_number` FROM `bank accounts` WHERE `bank_account_name`='"+bankName+"'";
+        new dbConnection().getDataFromCombo(jComboBox1, query);
+    }//GEN-LAST:event_comBankNamePopupMenuWillBecomeInvisible
 
     /**
      * @param args the command line arguments
@@ -638,6 +659,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -680,7 +702,6 @@ public class Sales_due_paid extends javax.swing.JFrame {
     private javax.swing.JLabel lbShop;
     private javax.swing.JRadioButton rbBank;
     private javax.swing.JRadioButton rbCash;
-    private javax.swing.JTextField txtAccount;
     private javax.swing.JTextField txtBill;
     private javax.swing.JTextField txtCustomer;
     // End of variables declaration//GEN-END:variables

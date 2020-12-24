@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package prime_surgical;
+import java.text.SimpleDateFormat;
 import javax.swing.*;
 /**
  *
@@ -17,6 +18,83 @@ public class Bank_Data extends javax.swing.JFrame {
     public Bank_Data() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        initital();
+    }
+    String bankName,bankAccount,date,details,amount,status;
+    void initital(){
+        new dbConnection().getDataFromCombo(jComboBox2, "SELECT `bank_account_name` FROM `bank accounts`");
+        showBank();
+    }
+    void addBankData(){
+        getData();
+        new dbConnection().addData("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('"+date+"','"+bankName+"','"+bankAccount+"','"+details+"','"+status+"','"+amount+"')",this);
+    }
+    void getData(){
+        bankName=jComboBox2.getSelectedItem().toString();
+        bankAccount=jComboBox1.getSelectedItem().toString();
+        if(jRadioButton1.isSelected()){
+            status="Debit";
+        }
+        else if(jRadioButton2.isSelected()){
+            status="Credit";
+        }
+        details=jTextField3.getText();
+        amount=jTextField4.getText();
+        SimpleDateFormat sm=new SimpleDateFormat("yyyy-MM-dd");
+        date=sm.format(jDateChooser1.getDate());
+    }
+    int checkBlankData(){
+        int check=0;
+        if(jComboBox2.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(this, "Select Bank Name!");
+            jComboBox2.requestFocus();
+        }
+        else if(jComboBox1.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(this, "Select Bank Account Number!");
+            jComboBox1.requestFocus();
+        }
+        else if(!jRadioButton1.isSelected() && !jRadioButton2.isSelected()){
+            JOptionPane.showMessageDialog(this, "Select Status!");
+            jRadioButton1.requestFocus();
+        }
+        else if(jTextField3.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Enter Details!");
+            jTextField3.requestFocus();
+        }
+        else if(jTextField4.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Enter Amount!");
+            jTextField4.requestFocus();
+        }
+        else if(((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Enter date!");
+            jDateChooser1.requestFocus();
+        }
+        else{
+            check=1;
+        }
+        return check;
+    }
+    void showBank(){
+        new dbConnection().showBankData(jTable1,this,"SELECT * FROM `bank data`");
+        String bankCredit,bankDebit;
+        bankCredit=new dbConnection().singledata("SELECT SUM(`bank_amount`) FROM `bank data` WHERE `bank_status`='"+"Credit"+"'");
+        bankDebit=new dbConnection().singledata("SELECT SUM(`bank_amount`) FROM `bank data` WHERE `bank_status`='"+"Debit"+"'");
+        jLabel19.setText(bankCredit);
+        jLabel20.setText(bankDebit);
+        double total=Double.parseDouble(bankCredit)+Double.parseDouble(bankDebit);
+        jLabel15.setText(""+total);
+        
+    }
+    void addBankAccount(){
+        String query="INSERT INTO `bank accounts`(`bank_account_name`,`bank_account_number`) VALUES('"+jTextField2.getText()+"','"+jTextField1.getText()+"')";
+        if( !jTextField2.getText().isEmpty() && !jTextField1.getText().isEmpty()){
+            new dbConnection().addData(query, this);
+            jTextField2.setText("");
+            jTextField1.setText("");
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Enter all DATA!");
+        }
     }
 
     /**
@@ -176,6 +254,7 @@ public class Bank_Data extends javax.swing.JFrame {
         jPanel6.setLayout(null);
 
         jComboBox1.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         jPanel6.add(jComboBox1);
         jComboBox1.setBounds(190, 70, 350, 50);
 
@@ -194,6 +273,16 @@ public class Bank_Data extends javax.swing.JFrame {
         jLabel7.setBounds(0, 70, 190, 50);
 
         jComboBox2.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        jComboBox2.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                jComboBox2PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
         jPanel6.add(jComboBox2);
         jComboBox2.setBounds(190, 20, 350, 50);
 
@@ -223,7 +312,7 @@ public class Bank_Data extends javax.swing.JFrame {
         jLabel8.setBounds(10, 170, 150, 50);
 
         jTextField3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jTextField3.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField3.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel6.add(jTextField3);
         jTextField3.setBounds(160, 170, 380, 50);
 
@@ -235,7 +324,7 @@ public class Bank_Data extends javax.swing.JFrame {
         jLabel9.setBounds(10, 220, 150, 50);
 
         jTextField4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jTextField4.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField4.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jPanel6.add(jTextField4);
         jTextField4.setBounds(160, 220, 380, 50);
 
@@ -250,8 +339,13 @@ public class Bank_Data extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton5.setText("Submit");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
         jPanel6.add(jButton5);
-        jButton5.setBounds(370, 330, 150, 40);
+        jButton5.setBounds(370, 320, 150, 50);
 
         jPanel1.add(jPanel6);
         jPanel6.setBounds(0, 380, 540, 390);
@@ -292,14 +386,29 @@ public class Bank_Data extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton2.setText("Show All");
+        jButton2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton2MouseClicked(evt);
+            }
+        });
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton2);
         jButton2.setBounds(1130, 150, 220, 50);
 
-        jTextField5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jTextField5.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField5.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jTextField5.setHorizontalAlignment(javax.swing.JTextField.LEFT);
         jTextField5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jTextField5ActionPerformed(evt);
+            }
+        });
+        jTextField5.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField5KeyReleased(evt);
             }
         });
         jPanel1.add(jTextField5);
@@ -313,10 +422,15 @@ public class Bank_Data extends javax.swing.JFrame {
         jLabel12.setBounds(560, 150, 150, 50);
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jButton4.setForeground(new java.awt.Color(0, 0, 0));
         jButton4.setText("Month");
+        jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jButton4MouseClicked(evt);
+            }
+        });
         jPanel1.add(jButton4);
-        jButton4.setBounds(1240, 80, 120, 40);
+        jButton4.setBounds(1240, 80, 120, 50);
 
         jPanel9.setBackground(new java.awt.Color(204, 204, 204));
         jPanel9.setLayout(null);
@@ -343,19 +457,19 @@ public class Bank_Data extends javax.swing.JFrame {
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel15.setText("0.00");
         jPanel9.add(jLabel15);
-        jLabel15.setBounds(100, 80, 190, 40);
+        jLabel15.setBounds(100, 80, 170, 40);
 
         jLabel19.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel19.setText("0.00");
         jPanel9.add(jLabel19);
-        jLabel19.setBounds(100, 0, 190, 40);
+        jLabel19.setBounds(100, 0, 170, 40);
 
         jLabel20.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel20.setText("0.00");
         jPanel9.add(jLabel20);
-        jLabel20.setBounds(100, 40, 190, 40);
+        jLabel20.setBounds(100, 40, 170, 40);
 
         jPanel1.add(jPanel9);
         jPanel9.setBounds(1070, 640, 290, 130);
@@ -397,17 +511,48 @@ public class Bank_Data extends javax.swing.JFrame {
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
-        String query="INSERT INTO `bank accounts`(`bank_account_name`,`bank_account_number`) VALUES('"+jTextField2.getText()+"','"+jTextField1.getText()+"')";
-        if( !jTextField2.getText().isEmpty() && !jTextField1.getText().isEmpty()){
-            new dbConnection().addData(query, this);
-            jTextField2.setText("");
-            jTextField1.setText("");
-        }
+        addBankAccount();
+        showBank();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jTextField5ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+        if(checkBlankData()==1){
+         addBankData(); 
+         showBank();
+        }   
+    }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void jComboBox2PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox2PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        bankName=jComboBox2.getSelectedItem().toString();
+        new dbConnection().getDataFromCombo(jComboBox1, "SELECT `bank_account_number` FROM `bank accounts` WHERE `bank_account_name`='"+bankName+"'");
+    }//GEN-LAST:event_jComboBox2PopupMenuWillBecomeInvisible
+
+    private void jTextField5KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField5KeyReleased
+        // TODO add your handling code here:
+        String search=jTextField5.getText();
+        new dbConnection().showBankData(jTable1, this, "SELECT * FROM `bank data` WHERE `bank_name` LIKE '%"+search+"%'");
+    }//GEN-LAST:event_jTextField5KeyReleased
+
+    private void jButton2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton2MouseClicked
+        // TODO add your handling code here:
+        new dbConnection().showBankData(jTable1, this, "SELECT * FROM `bank data`");
+    }//GEN-LAST:event_jButton2MouseClicked
+
+    private void jButton4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton4MouseClicked
+        // TODO add your handling code here:
+        new dbConnection().showBankData(jTable1, this, "SELECT * FROM `bank data` ORDER BY `bank_date`");
+    }//GEN-LAST:event_jButton4MouseClicked
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        showBank();
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments

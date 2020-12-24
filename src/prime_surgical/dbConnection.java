@@ -212,4 +212,31 @@ import javax.swing.table.DefaultTableModel;
             Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+     void showBankData(JTable table,JFrame frame,String query){
+        try {
+            dbconnect();
+            DefaultTableModel dtm=(DefaultTableModel)table.getModel();
+            rs=st.executeQuery(query);
+            dtm.setRowCount(0);
+            for(int i=0;rs.next();){i++;
+                dtm.addRow(new Object[]{i,rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7)});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(frame, ex);
+        }
+     }
+     void showCashData(String query,JTable table){
+        try {
+            dbconnect();
+            DefaultTableModel dtm=(DefaultTableModel)table.getModel();
+            rs=st.executeQuery(query);
+            dtm.setRowCount(0);
+            for(int i=0;rs.next();){i++;
+            dtm.addRow(new Object[]{i,rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5)});
+            } 
+        } catch (SQLException ex) {
+            Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+     }
 }

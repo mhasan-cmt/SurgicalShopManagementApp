@@ -59,6 +59,31 @@ Connection con = null;
         AccountsP.setVisible(false);
         AdminP.setVisible(false);
      }
+    void showAccounts(){
+        try {
+            //Bank profits
+        String bankCredits,bankDebits;
+        bankCredits=new dbConnection().singledata("SELECT SUM(`bank_amount`) FROM `bank data` WHERE `bank_status`='"+"Credit"+"'");
+        bankDebits=new dbConnection().singledata("SELECT SUM(`bank_amount`) FROM `bank data` WHERE `bank_status`='"+"Debit"+"'");
+        jTextField2.setText(bankCredits);
+        jTextField3.setText(bankDebits);
+        double bankProfit=Double.parseDouble(bankCredits)-Double.parseDouble(bankDebits);
+        jTextField1.setText(""+bankProfit);
+        //Cash Profits
+        String cashCredits,cashDebits;
+        cashCredits=new dbConnection().singledata("SELECT SUM(`cash_amount`) FROM `cash data` WHERE `cash_status`=\"credit\"");
+        cashDebits=new dbConnection().singledata("SELECT SUM(`cash_amount`) FROM `cash data` WHERE `cash_status`=\"debit\"");
+        jTextField4.setText(cashCredits);
+        jTextField5.setText(cashDebits);
+        double cashProfits=Double.parseDouble(cashCredits)-Double.parseDouble(cashDebits);
+        jTextField7.setText(""+cashProfits);
+        double totalProfits=bankProfit+cashProfits;
+        jTextField6.setText(""+totalProfits);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, e);
+        }
+        
+     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1081,7 +1106,7 @@ Connection con = null;
             }
         });
         SideBarPane.add(jLabel10);
-        jLabel10.setBounds(10, 350, 120, 50);
+        jLabel10.setBounds(10, 350, 130, 50);
 
         homeP.setBackground(new java.awt.Color(255, 78, 80));
 
@@ -1251,6 +1276,7 @@ Connection con = null;
         ReportP.setVisible(false);
         AccountsP.setVisible(true);
         AdminP.setVisible(false);
+        showAccounts();
         
     }//GEN-LAST:event_jLabel8MouseClicked
 

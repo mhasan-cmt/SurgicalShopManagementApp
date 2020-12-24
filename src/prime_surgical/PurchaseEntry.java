@@ -146,6 +146,49 @@ public class PurchaseEntry extends javax.swing.JFrame {
             pDue=txtDue.getText();
         }
     }
+    int checkBlankData(){
+        int check=0;
+        if(comCompany.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(this, "Select company");
+            comCompany.requestFocus();
+        }
+        else if(txtBill.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Enter bill number!");
+            txtBill.requestFocus();
+        }
+        else if( ((JTextField)txtDate.getDateEditor().getUiComponent()).getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Enter date!");
+            txtDate.requestFocus();
+        }
+        else if(comCateogory.getSelectedIndex()==0 && txtCategory.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Select category!");
+            comCateogory.requestFocus();
+        }
+        else if(comProduct.getSelectedIndex()==0 && txtProduct.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Select Product!");
+            comProduct.requestFocus();
+        }
+        else if(txtPrice.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this,"Enter price");
+            txtPrice.requestFocus();
+        }
+        else if(txtQuantity.getText().isEmpty() || Double.parseDouble(txtQuantity.getText())==0.00){
+            JOptionPane.showMessageDialog(this, "Enter quantity!");
+            txtQuantity.requestFocus();
+        }
+        else if(txtTotal.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Enter total!");
+            txtTotal.requestFocus();
+        }
+        else if(txtGR.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Enter gr!");
+            txtGR.requestFocus();
+        }
+        else{
+            check=1;
+        }
+        return check;
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -837,7 +880,9 @@ public class PurchaseEntry extends javax.swing.JFrame {
 
     private void btnPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPurchaseActionPerformed
         // TODO add your handling code here:
-        purchase();
+        if(checkBlankData()==1){
+          purchase();  
+        }   
     }//GEN-LAST:event_btnPurchaseActionPerformed
 
     private void comCompanyPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comCompanyPopupMenuWillBecomeInvisible

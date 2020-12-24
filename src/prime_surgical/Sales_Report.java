@@ -49,6 +49,7 @@ public class Sales_Report extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jButton7 = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
@@ -139,14 +140,14 @@ public class Sales_Report extends javax.swing.JFrame {
         jComboBox3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         header6.add(jComboBox3);
-        jComboBox3.setBounds(10, 140, 320, 50);
+        jComboBox3.setBounds(10, 100, 320, 40);
         header6.add(jDateChooser1);
-        jDateChooser1.setBounds(650, 140, 352, 50);
+        jDateChooser1.setBounds(650, 100, 352, 40);
 
         comProduct.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         comProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         header6.add(comProduct);
-        comProduct.setBounds(330, 140, 320, 50);
+        comProduct.setBounds(330, 100, 320, 40);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -196,17 +197,27 @@ public class Sales_Report extends javax.swing.JFrame {
         jLabel2.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel2.setText("*Select Cateogory:");
         header6.add(jLabel2);
-        jLabel2.setBounds(10, 100, 320, 42);
+        jLabel2.setBounds(10, 70, 320, 30);
 
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel3.setText("Product:");
         header6.add(jLabel3);
-        jLabel3.setBounds(330, 100, 320, 42);
+        jLabel3.setBounds(330, 70, 320, 30);
 
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel5.setText("Date:");
         header6.add(jLabel5);
-        jLabel5.setBounds(650, 100, 350, 42);
+        jLabel5.setBounds(650, 70, 350, 30);
+
+        jButton7.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jButton7.setText("Show Chart");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        header6.add(jButton7);
+        jButton7.setBounds(30, 140, 190, 50);
 
         productPanel.add(header6);
         header6.setBounds(0, 0, 1360, 200);
@@ -227,12 +238,12 @@ public class Sales_Report extends javax.swing.JFrame {
         jScrollPane5.setViewportView(jTable5);
 
         jPanel14.add(jScrollPane5);
-        jScrollPane5.setBounds(10, 10, 1330, 450);
+        jScrollPane5.setBounds(10, 10, 1330, 460);
 
         productPanel.add(jPanel14);
-        jPanel14.setBounds(10, 210, 1350, 470);
+        jPanel14.setBounds(10, 200, 1350, 480);
 
-        jButton5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jButton5.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jButton5.setText("Exit");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -240,7 +251,7 @@ public class Sales_Report extends javax.swing.JFrame {
             }
         });
         productPanel.add(jButton5);
-        jButton5.setBounds(640, 690, 150, 40);
+        jButton5.setBounds(600, 690, 220, 40);
 
         jLayeredPane1.setLayer(productPanel, javax.swing.JLayeredPane.DRAG_LAYER);
         jLayeredPane1.add(productPanel, "");
@@ -635,6 +646,10 @@ public class Sales_Report extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton7ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -687,6 +702,7 @@ public class Sales_Report extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox7;
