@@ -5,6 +5,10 @@
  */
 package prime_surgical;
 
+import java.text.SimpleDateFormat;
+import javax.swing.JOptionPane;
+import javax.swing.JTextField;
+
 /**
  *
  * @author Mahmudul Hasan
@@ -17,6 +21,100 @@ public class Cost extends javax.swing.JFrame {
     public Cost() {
         initComponents();
         Bank.setVisible(false);
+        new dbConnection().getDataFromCombo(comBankName, "SELECT `bank_account_name` FROM `bank accounts`");
+        showCostData();
+    }
+    String costType,details,paidBy,date,payment,bankName,bankAccount;
+    int bill;
+    double amount;
+    void getData(){
+        if(comCostType.getSelectedItem().toString().equals("Sales Cost")){
+            costType="Sales Cost";
+        }
+        else if(comCostType.getSelectedItem().toString().equals("Purchase Cost")){
+            costType="Purchase Cost";
+        }
+        else if(comCostType.getSelectedItem().toString().equals("Others Cost")){
+            costType="Others Cost";
+        }
+        try {
+            bill=Integer.parseInt(txtBill.getText());
+            jLabel2.setText("");
+        } catch (Exception e) {
+            jLabel2.setText("Invalid!! Enter Number");
+        }
+        details=txtDetails.getText();
+        try {
+            amount=Integer.parseInt(txtAmount.getText());
+            jLabel6.setText("");
+        } catch (Exception e) {
+            jLabel6.setText("Invalid!");
+        }
+        paidBy=txtPaidBy.getText();
+        SimpleDateFormat sm=new SimpleDateFormat("yyyy-MM-dd");
+        date=sm.format(jDateChooser1.getDate());
+        if(rbBank.isSelected()){
+           payment="Bank";
+        }
+        else if(rbCash.isSelected()){
+            payment="Cash";
+        }
+        bankName=comBankName.getSelectedItem().toString();
+        bankAccount=jComboBox2.getSelectedItem().toString();
+    }
+    void addCost(){
+             if(rbBank.isSelected()){
+              getData();
+              new dbConnection().addBankOrCash("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('"+date+"','"+bankName+"','"+bankAccount+"','"+details+"','"+"Debit"+"','"+amount+"')");
+              new dbConnection().addData("INSERT INTO `cost data`(`cost_date`,`cost_type`,`cost_bill`,`cost_details`,`cost_paid_by`,`cost_amount`) VALUES('"+date+"','"+costType+"','"+bill+"','"+details+"','"+paidBy+"','"+amount+"')", this); 
+              showCostData();
+             }
+           else if(rbCash.isSelected()){
+               getData();
+               new dbConnection().addBankOrCash("INSERT INTO `cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('"+date+"','"+details+"','"+"Debit"+"','"+amount+"')");
+               new dbConnection().addData("INSERT INTO `cost data`(`cost_date`,`cost_type`,`cost_bill`,`cost_details`,`cost_paid_by`,`cost_amount`) VALUES('"+date+"','"+costType+"','"+bill+"','"+details+"','"+paidBy+"','"+amount+"')", this); 
+               showCostData();
+           }
+      }
+    int checkBlankDate(){
+        int check=0;
+        if(comCostType.getSelectedIndex()==0){
+            JOptionPane.showMessageDialog(this, "Select Cost Type!");
+            comCostType.requestFocus();
+        }
+        else if(txtBill.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Enter bill number!");
+            txtBill.requestFocus();
+        }
+        else if(txtDetails.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Enter Details!");
+            txtDetails.requestFocus();
+        }
+        else if(txtAmount.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Enter amount!");
+            txtAmount.requestFocus();
+        }
+        else if(txtPaidBy.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Enter Paid by!");
+            txtPaidBy.requestFocus();
+        }
+        else if(((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Enter Date!");
+            jDateChooser1.requestFocus();
+        }
+        else if(!rbCash.isSelected() && !rbBank.isSelected()){
+            JOptionPane.showMessageDialog(this, "Select payment method!");
+        }
+        else {
+            check=1;
+        }
+        
+        return check;
+    }
+    void showCostData(){
+        new dbConnection().showCostData("select * FROM `cost data`", jTable1);
+        String total=new dbConnection().singledata("select SUM(`cost_amount`) FROM `cost data`");
+        jLabel1.setText(total);
     }
 
     /**
@@ -36,28 +134,30 @@ public class Cost extends javax.swing.JFrame {
         jLabel10 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
+        txtBill = new javax.swing.JTextField();
+        txtAmount = new javax.swing.JTextField();
+        txtDetails = new javax.swing.JTextField();
+        txtPaidBy = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comCostType = new javax.swing.JComboBox<>();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         Bank = new javax.swing.JPanel();
         jLabel22 = new javax.swing.JLabel();
         comBankName = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
-        txtAccount = new javax.swing.JTextField();
+        jComboBox2 = new javax.swing.JComboBox<>();
         rbBank = new javax.swing.JRadioButton();
         rbCash = new javax.swing.JRadioButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
+        jLabel11 = new javax.swing.JLabel();
+        jLabel12 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -97,7 +197,6 @@ public class Cost extends javax.swing.JFrame {
         jLabel4.setBounds(20, 0, 110, 100);
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime Surgical\\src\\img\\error.png")); // NOI18N
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel10MouseClicked(evt);
@@ -121,30 +220,39 @@ public class Cost extends javax.swing.JFrame {
             }
         });
         jPanel4.add(jButton1);
-        jButton1.setBounds(310, 540, 160, 40);
+        jButton1.setBounds(330, 540, 180, 50);
 
-        jTextField1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jPanel4.add(jTextField1);
-        jTextField1.setBounds(220, 100, 340, 50);
+        txtBill.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        txtBill.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBillKeyPressed(evt);
+            }
+        });
+        jPanel4.add(txtBill);
+        txtBill.setBounds(220, 100, 150, 50);
 
-        jTextField3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jPanel4.add(jTextField3);
-        jTextField3.setBounds(220, 200, 340, 50);
+        txtAmount.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        txtAmount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtAmountKeyPressed(evt);
+            }
+        });
+        jPanel4.add(txtAmount);
+        txtAmount.setBounds(220, 200, 300, 50);
 
-        jTextField4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jPanel4.add(jTextField4);
-        jTextField4.setBounds(220, 150, 340, 50);
+        txtDetails.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jPanel4.add(txtDetails);
+        txtDetails.setBounds(220, 150, 340, 50);
 
-        jTextField6.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jPanel4.add(jTextField6);
-        jTextField6.setBounds(220, 250, 340, 50);
+        txtPaidBy.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jPanel4.add(txtPaidBy);
+        txtPaidBy.setBounds(220, 250, 340, 50);
 
-        jLabel2.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel2.setText("Bill no:");
         jPanel4.add(jLabel2);
-        jLabel2.setBounds(90, 100, 130, 50);
+        jLabel2.setBounds(370, 100, 240, 50);
 
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -153,12 +261,11 @@ public class Cost extends javax.swing.JFrame {
         jPanel4.add(jLabel5);
         jLabel5.setBounds(90, 50, 130, 50);
 
-        jLabel6.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel6.setText("Amount:");
         jPanel4.add(jLabel6);
-        jLabel6.setBounds(90, 200, 130, 50);
+        jLabel6.setBounds(520, 200, 90, 50);
 
         jLabel7.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
@@ -181,10 +288,10 @@ public class Cost extends javax.swing.JFrame {
         jPanel4.add(jLabel9);
         jLabel9.setBounds(90, 250, 130, 50);
 
-        jComboBox1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Sales Cost", "Purchase Cost", "Others Cost" }));
-        jPanel4.add(jComboBox1);
-        jComboBox1.setBounds(220, 50, 340, 50);
+        comCostType.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        comCostType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Sales Cost", "Purchase Cost", "Others Cost" }));
+        jPanel4.add(comCostType);
+        comCostType.setBounds(220, 50, 340, 50);
         jPanel4.add(jDateChooser1);
         jDateChooser1.setBounds(220, 300, 340, 50);
 
@@ -199,6 +306,15 @@ public class Cost extends javax.swing.JFrame {
         jLabel22.setBounds(40, 12, 150, 40);
 
         comBankName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        comBankName.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                comBankNamePopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
         Bank.add(comBankName);
         comBankName.setBounds(190, 12, 250, 40);
 
@@ -208,9 +324,9 @@ public class Cost extends javax.swing.JFrame {
         Bank.add(jLabel19);
         jLabel19.setBounds(40, 62, 150, 40);
 
-        txtAccount.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        Bank.add(txtAccount);
-        txtAccount.setBounds(190, 67, 250, 35);
+        jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        Bank.add(jComboBox2);
+        jComboBox2.setBounds(190, 60, 250, 40);
 
         jPanel4.add(Bank);
         Bank.setBounds(90, 400, 450, 110);
@@ -252,7 +368,7 @@ public class Cost extends javax.swing.JFrame {
             }
         });
         jPanel4.add(jButton2);
-        jButton2.setBounds(150, 540, 160, 40);
+        jButton2.setBounds(150, 540, 180, 50);
 
         jButton3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jButton3.setText("Show by date");
@@ -262,7 +378,7 @@ public class Cost extends javax.swing.JFrame {
             }
         });
         jPanel4.add(jButton3);
-        jButton3.setBounds(150, 580, 160, 40);
+        jButton3.setBounds(150, 590, 180, 50);
 
         jButton4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jButton4.setText("Show by month");
@@ -272,10 +388,24 @@ public class Cost extends javax.swing.JFrame {
             }
         });
         jPanel4.add(jButton4);
-        jButton4.setBounds(310, 580, 160, 40);
+        jButton4.setBounds(330, 590, 180, 50);
+
+        jLabel11.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel11.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel11.setText("Bill no:");
+        jPanel4.add(jLabel11);
+        jLabel11.setBounds(90, 100, 130, 50);
+
+        jLabel12.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel12.setText("Amount:");
+        jPanel4.add(jLabel12);
+        jLabel12.setBounds(90, 200, 130, 50);
 
         jPanel1.add(jPanel4);
-        jPanel4.setBounds(0, 100, 640, 670);
+        jPanel4.setBounds(0, 100, 620, 670);
 
         jPanel5.setBackground(new java.awt.Color(0, 204, 204));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -286,30 +416,30 @@ public class Cost extends javax.swing.JFrame {
 
             },
             new String [] {
-                "Date", "Cost Type", "Bill no.", "Detalis", "Paid by", "Amount"
+                "Sl no.", "Date", "Cost Type", "Bill no.", "Detalis", "Paid by", "Amount"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
 
         jPanel5.add(jScrollPane1);
-        jScrollPane1.setBounds(12, 13, 686, 569);
+        jScrollPane1.setBounds(2, 2, 740, 580);
 
         jLabel1.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel1.setText("0.00");
         jPanel5.add(jLabel1);
-        jLabel1.setBounds(560, 580, 130, 50);
+        jLabel1.setBounds(550, 580, 130, 50);
 
         jLabel3.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(51, 51, 51));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Total:");
         jPanel5.add(jLabel3);
-        jLabel3.setBounds(480, 580, 90, 50);
+        jLabel3.setBounds(480, 580, 70, 50);
 
         jPanel1.add(jPanel5);
-        jPanel5.setBounds(650, 110, 710, 650);
+        jPanel5.setBounds(620, 100, 740, 670);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -351,6 +481,10 @@ public class Cost extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
+        if(checkBlankDate()==1){
+          addCost();  
+        }
+        
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -365,6 +499,32 @@ public class Cost extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jLabel10MouseClicked
+
+    private void comBankNamePopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comBankNamePopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        String bankName=comBankName.getSelectedItem().toString();
+        new dbConnection().getDataFromCombo(jComboBox2, "SELECT `bank_account_number` FROM `bank accounts` WHERE `bank_account_name`='"+bankName+"'");
+    }//GEN-LAST:event_comBankNamePopupMenuWillBecomeInvisible
+
+    private void txtBillKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBillKeyPressed
+        // TODO add your handling code here:
+        try {
+            bill=Integer.parseInt(txtBill.getText());
+            jLabel2.setText("");
+        } catch (Exception e) {
+            jLabel2.setText("Invalid!! Enter Number");
+        }
+    }//GEN-LAST:event_txtBillKeyPressed
+
+    private void txtAmountKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAmountKeyPressed
+        // TODO add your handling code here:
+        try {
+            amount=Integer.parseInt(txtAmount.getText());
+            jLabel6.setText("");
+        } catch (Exception e) {
+            jLabel6.setText("Invalid!");
+        }
+    }//GEN-LAST:event_txtAmountKeyPressed
 
     /**
      * @param args the command line arguments
@@ -405,14 +565,17 @@ public class Cost extends javax.swing.JFrame {
     private javax.swing.JPanel Bank;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> comBankName;
+    private javax.swing.JComboBox<String> comCostType;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JComboBox<String> jComboBox2;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
+    private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel22;
@@ -430,12 +593,11 @@ public class Cost extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField6;
     private javax.swing.JRadioButton rbBank;
     private javax.swing.JRadioButton rbCash;
-    private javax.swing.JTextField txtAccount;
+    private javax.swing.JTextField txtAmount;
+    private javax.swing.JTextField txtBill;
+    private javax.swing.JTextField txtDetails;
+    private javax.swing.JTextField txtPaidBy;
     // End of variables declaration//GEN-END:variables
 }

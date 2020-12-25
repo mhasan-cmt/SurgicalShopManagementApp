@@ -41,16 +41,19 @@ public class Purchase_Report extends javax.swing.JFrame {
         jComboBox5 = new javax.swing.JComboBox<>();
         txtDate = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
-        jPanel7 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
+        jPanel7 = new javax.swing.JPanel();
+        jLabel9 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jPanel13 = new javax.swing.JPanel();
+        jButton4 = new javax.swing.JButton();
+        jTabbedPane1 = new javax.swing.JTabbedPane();
+        jPanel11 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
-        jButton4 = new javax.swing.JButton();
+        jPanel12 = new javax.swing.JPanel();
+        jPanel13 = new javax.swing.JPanel();
         billPanel = new javax.swing.JPanel();
         header5 = new javax.swing.JPanel();
         jPanel4 = new javax.swing.JPanel();
@@ -65,10 +68,13 @@ public class Purchase_Report extends javax.swing.JFrame {
         jButton3 = new javax.swing.JButton();
         jLabel16 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
-        jPanel10 = new javax.swing.JPanel();
-        jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
         jButton6 = new javax.swing.JButton();
+        jTabbedPane2 = new javax.swing.JTabbedPane();
+        jPanel15 = new javax.swing.JPanel();
+        jScrollPane6 = new javax.swing.JScrollPane();
+        jTable6 = new javax.swing.JTable();
+        jPanel16 = new javax.swing.JPanel();
+        jPanel17 = new javax.swing.JPanel();
         productPanel = new javax.swing.JPanel();
         header6 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -85,10 +91,13 @@ public class Purchase_Report extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
+        jTabbedPane3 = new javax.swing.JTabbedPane();
         jPanel14 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
-        jButton5 = new javax.swing.JButton();
+        jPanel18 = new javax.swing.JPanel();
+        jPanel19 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -144,54 +153,56 @@ public class Purchase_Report extends javax.swing.JFrame {
         jComboBox5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         header3.add(jComboBox5);
-        jComboBox5.setBounds(0, 110, 360, 50);
+        jComboBox5.setBounds(10, 110, 350, 50);
         header3.add(txtDate);
         txtDate.setBounds(370, 110, 350, 50);
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 255));
 
-        jLabel9.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Show by Month");
+        jLabel10.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel10.setText("Show by Year");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
         );
 
         header3.add(jPanel3);
-        jPanel3.setBounds(1076, 93, 130, 37);
+        jPanel3.setBounds(1050, 80, 130, 37);
 
         jPanel7.setBackground(new java.awt.Color(102, 102, 255));
 
-        jLabel10.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Show by Year");
+        jLabel9.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Show by Month");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel10, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         header3.add(jPanel7);
-        jPanel7.setBounds(1206, 93, 124, 37);
+        jPanel7.setBounds(1180, 80, 124, 37);
 
         jButton2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jButton2.setText("Show All");
         header3.add(jButton2);
-        jButton2.setBounds(1136, 133, 150, 44);
+        jButton2.setBounds(1110, 120, 150, 44);
 
         jLabel11.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel11.setText("*Select Customer/Shop Name:");
@@ -206,9 +217,19 @@ public class Purchase_Report extends javax.swing.JFrame {
         customerPanel.add(header3);
         header3.setBounds(0, 0, 1360, 170);
 
-        jPanel13.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
-        jPanel13.setLayout(null);
+        jButton4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jButton4.setText("Exit");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        customerPanel.add(jButton4);
+        jButton4.setBounds(610, 720, 240, 40);
+
+        jTabbedPane1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+
+        jPanel11.setLayout(null);
 
         jTable4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
@@ -221,21 +242,19 @@ public class Purchase_Report extends javax.swing.JFrame {
         ));
         jScrollPane4.setViewportView(jTable4);
 
-        jPanel13.add(jScrollPane4);
-        jScrollPane4.setBounds(10, 10, 1330, 440);
+        jPanel11.add(jScrollPane4);
+        jScrollPane4.setBounds(0, 0, 1360, 510);
 
-        customerPanel.add(jPanel13);
-        jPanel13.setBounds(0, 170, 1360, 470);
+        jTabbedPane1.addTab("Textual Report", jPanel11);
 
-        jButton4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jButton4.setText("Exit");
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        customerPanel.add(jButton4);
-        jButton4.setBounds(640, 660, 240, 40);
+        jPanel12.setLayout(null);
+        jTabbedPane1.addTab("Bar Chart", jPanel12);
+
+        jPanel13.setLayout(null);
+        jTabbedPane1.addTab("Pie Chart", jPanel13);
+
+        customerPanel.add(jTabbedPane1);
+        jTabbedPane1.setBounds(0, 180, 1360, 540);
 
         jLayeredPane1.setLayer(customerPanel, javax.swing.JLayeredPane.DRAG_LAYER);
         jLayeredPane1.add(customerPanel, "");
@@ -283,9 +302,9 @@ public class Purchase_Report extends javax.swing.JFrame {
         jComboBox7.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         header5.add(jComboBox7);
-        jComboBox7.setBounds(10, 140, 320, 50);
+        jComboBox7.setBounds(10, 110, 320, 50);
         header5.add(jDateChooser3);
-        jDateChooser3.setBounds(330, 140, 352, 50);
+        jDateChooser3.setBounds(330, 110, 352, 50);
 
         jPanel8.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -297,15 +316,19 @@ public class Purchase_Report extends javax.swing.JFrame {
         jPanel8.setLayout(jPanel8Layout);
         jPanel8Layout.setHorizontalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel14, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         header5.add(jPanel8);
-        jPanel8.setBounds(1070, 100, 130, 37);
+        jPanel8.setBounds(1070, 70, 130, 37);
 
         jPanel9.setBackground(new java.awt.Color(102, 102, 255));
 
@@ -317,54 +340,37 @@ public class Purchase_Report extends javax.swing.JFrame {
         jPanel9.setLayout(jPanel9Layout);
         jPanel9Layout.setHorizontalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel15, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel15, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         header5.add(jPanel9);
-        jPanel9.setBounds(1200, 100, 124, 37);
+        jPanel9.setBounds(1200, 70, 124, 37);
 
         jButton3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jButton3.setText("Show All");
         header5.add(jButton3);
-        jButton3.setBounds(1130, 140, 150, 44);
+        jButton3.setBounds(1130, 110, 150, 44);
 
         jLabel16.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel16.setText("*Select By bill no.");
         header5.add(jLabel16);
-        jLabel16.setBounds(10, 100, 320, 42);
+        jLabel16.setBounds(10, 70, 320, 42);
 
         jLabel18.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel18.setText("Date:");
         header5.add(jLabel18);
-        jLabel18.setBounds(330, 100, 320, 42);
+        jLabel18.setBounds(330, 70, 320, 42);
 
         billPanel.add(header5);
-        header5.setBounds(0, 0, 1360, 200);
-
-        jPanel10.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
-        jPanel10.setLayout(null);
-
-        jTable1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "SL", "Date", "Bill no.", "Company", "Cateogory", "Product", "GR", "Status", "Quantity", "Price", "Total"
-            }
-        ));
-        jScrollPane1.setViewportView(jTable1);
-
-        jPanel10.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 10, 1330, 450);
-
-        billPanel.add(jPanel10);
-        jPanel10.setBounds(10, 210, 1350, 470);
+        header5.setBounds(0, 0, 1360, 170);
 
         jButton6.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jButton6.setText("Exit");
@@ -374,7 +380,36 @@ public class Purchase_Report extends javax.swing.JFrame {
             }
         });
         billPanel.add(jButton6);
-        jButton6.setBounds(690, 690, 150, 40);
+        jButton6.setBounds(690, 720, 160, 40);
+
+        jTabbedPane2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+
+        jPanel15.setLayout(null);
+
+        jTable6.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jTable6.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+
+            },
+            new String [] {
+                "SL", "Date", "Bill no.", "Company", "Cateogory", "Product", "GR", "Status", "Quantity", "Price", "Total"
+            }
+        ));
+        jScrollPane6.setViewportView(jTable6);
+
+        jPanel15.add(jScrollPane6);
+        jScrollPane6.setBounds(0, 0, 1360, 510);
+
+        jTabbedPane2.addTab("Textual Report", jPanel15);
+
+        jPanel16.setLayout(null);
+        jTabbedPane2.addTab("Bar Chart", jPanel16);
+
+        jPanel17.setLayout(null);
+        jTabbedPane2.addTab("Pie Chart", jPanel17);
+
+        billPanel.add(jTabbedPane2);
+        jTabbedPane2.setBounds(0, 170, 1360, 540);
 
         jLayeredPane1.setLayer(billPanel, javax.swing.JLayeredPane.DRAG_LAYER);
         jLayeredPane1.add(billPanel, "");
@@ -422,14 +457,14 @@ public class Purchase_Report extends javax.swing.JFrame {
         jComboBox3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         header6.add(jComboBox3);
-        jComboBox3.setBounds(10, 140, 320, 50);
+        jComboBox3.setBounds(10, 110, 320, 50);
         header6.add(jDateChooser1);
-        jDateChooser1.setBounds(650, 140, 352, 50);
+        jDateChooser1.setBounds(650, 110, 352, 50);
 
         comProduct.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         comProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         header6.add(comProduct);
-        comProduct.setBounds(330, 140, 320, 50);
+        comProduct.setBounds(330, 110, 320, 50);
 
         jPanel1.setBackground(new java.awt.Color(153, 153, 255));
 
@@ -441,15 +476,19 @@ public class Purchase_Report extends javax.swing.JFrame {
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         header6.add(jPanel1);
-        jPanel1.setBounds(1070, 100, 130, 37);
+        jPanel1.setBounds(1070, 80, 130, 37);
 
         jPanel6.setBackground(new java.awt.Color(102, 102, 255));
 
@@ -461,41 +500,55 @@ public class Purchase_Report extends javax.swing.JFrame {
         jPanel6.setLayout(jPanel6Layout);
         jPanel6Layout.setHorizontalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 124, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         header6.add(jPanel6);
-        jPanel6.setBounds(1200, 100, 124, 37);
+        jPanel6.setBounds(1200, 80, 124, 37);
 
         jButton1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jButton1.setText("Show All");
         header6.add(jButton1);
-        jButton1.setBounds(1130, 140, 150, 44);
+        jButton1.setBounds(1130, 120, 150, 44);
 
         jLabel2.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel2.setText("*Select Cateogory:");
         header6.add(jLabel2);
-        jLabel2.setBounds(10, 100, 320, 42);
+        jLabel2.setBounds(10, 70, 320, 42);
 
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel3.setText("Product:");
         header6.add(jLabel3);
-        jLabel3.setBounds(330, 100, 320, 42);
+        jLabel3.setBounds(330, 70, 320, 42);
 
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel5.setText("Date:");
         header6.add(jLabel5);
-        jLabel5.setBounds(650, 100, 320, 42);
+        jLabel5.setBounds(650, 70, 320, 42);
 
         productPanel.add(header6);
-        header6.setBounds(0, 0, 1360, 200);
+        header6.setBounds(0, 0, 1360, 170);
 
-        jPanel14.setBackground(new java.awt.Color(255, 255, 255));
-        jPanel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
+        jButton5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jButton5.setText("Exit");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        productPanel.add(jButton5);
+        jButton5.setBounds(600, 720, 210, 40);
+
+        jTabbedPane3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+
         jPanel14.setLayout(null);
 
         jTable5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
@@ -510,20 +563,18 @@ public class Purchase_Report extends javax.swing.JFrame {
         jScrollPane5.setViewportView(jTable5);
 
         jPanel14.add(jScrollPane5);
-        jScrollPane5.setBounds(10, 10, 1330, 440);
+        jScrollPane5.setBounds(0, 0, 1360, 510);
 
-        productPanel.add(jPanel14);
-        jPanel14.setBounds(10, 210, 1350, 460);
+        jTabbedPane3.addTab("Textual Report", jPanel14);
 
-        jButton5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jButton5.setText("Exit");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        productPanel.add(jButton5);
-        jButton5.setBounds(640, 690, 150, 40);
+        jPanel18.setLayout(null);
+        jTabbedPane3.addTab("Bar Chart", jPanel18);
+
+        jPanel19.setLayout(null);
+        jTabbedPane3.addTab("Pie Chart", jPanel19);
+
+        productPanel.add(jTabbedPane3);
+        jTabbedPane3.setBounds(0, 170, 1360, 550);
 
         jLayeredPane1.setLayer(productPanel, javax.swing.JLayeredPane.DRAG_LAYER);
         jLayeredPane1.add(productPanel, "");
@@ -708,9 +759,15 @@ public class Purchase_Report extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel10;
+    private javax.swing.JPanel jPanel11;
+    private javax.swing.JPanel jPanel12;
     private javax.swing.JPanel jPanel13;
     private javax.swing.JPanel jPanel14;
+    private javax.swing.JPanel jPanel15;
+    private javax.swing.JPanel jPanel16;
+    private javax.swing.JPanel jPanel17;
+    private javax.swing.JPanel jPanel18;
+    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
@@ -719,12 +776,15 @@ public class Purchase_Report extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JTable jTable1;
+    private javax.swing.JScrollPane jScrollPane6;
+    private javax.swing.JTabbedPane jTabbedPane1;
+    private javax.swing.JTabbedPane jTabbedPane2;
+    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTable4;
     private javax.swing.JTable jTable5;
+    private javax.swing.JTable jTable6;
     private javax.swing.JPanel productPanel;
     private com.toedter.calendar.JDateChooser txtDate;
     // End of variables declaration//GEN-END:variables
