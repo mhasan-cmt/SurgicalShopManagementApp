@@ -120,11 +120,6 @@ Connection con = null;
         jPanel32 = new javax.swing.JPanel();
         jPanel33 = new javax.swing.JPanel();
         jLabel12 = new javax.swing.JLabel();
-        AdminPanel = new javax.swing.JPanel();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel56 = new javax.swing.JLabel();
-        jPanel44 = new javax.swing.JPanel();
-        jPanel45 = new javax.swing.JPanel();
         PurchasePanel = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -181,6 +176,11 @@ Connection con = null;
         jLabel36 = new javax.swing.JLabel();
         jPanel42 = new javax.swing.JPanel();
         jPanel43 = new javax.swing.JPanel();
+        AdminPanel = new javax.swing.JPanel();
+        jPanel9 = new javax.swing.JPanel();
+        jLabel56 = new javax.swing.JLabel();
+        jPanel44 = new javax.swing.JPanel();
+        jPanel45 = new javax.swing.JPanel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         SideBarPane = new javax.swing.JPanel();
         lb_Home = new javax.swing.JLabel();
@@ -425,54 +425,6 @@ Connection con = null;
         jPanel6.setBounds(0, 0, 210, 40);
 
         Container.add(HomePanel, "card2");
-
-        AdminPanel.setBackground(new java.awt.Color(84, 121, 128));
-        AdminPanel.setLayout(null);
-
-        jPanel9.setLayout(null);
-
-        jLabel56.setFont(new java.awt.Font("Roboto", 0, 28)); // NOI18N
-        jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel56.setText("Admin");
-        jPanel9.add(jLabel56);
-        jLabel56.setBounds(0, 0, 210, 40);
-
-        jPanel44.setBackground(new java.awt.Color(51, 51, 51));
-
-        javax.swing.GroupLayout jPanel44Layout = new javax.swing.GroupLayout(jPanel44);
-        jPanel44.setLayout(jPanel44Layout);
-        jPanel44Layout.setHorizontalGroup(
-            jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        jPanel44Layout.setVerticalGroup(
-            jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
-        );
-
-        jPanel9.add(jPanel44);
-        jPanel44.setBounds(0, 0, 10, 40);
-
-        jPanel45.setBackground(new java.awt.Color(51, 51, 51));
-
-        javax.swing.GroupLayout jPanel45Layout = new javax.swing.GroupLayout(jPanel45);
-        jPanel45.setLayout(jPanel45Layout);
-        jPanel45Layout.setHorizontalGroup(
-            jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 10, Short.MAX_VALUE)
-        );
-        jPanel45Layout.setVerticalGroup(
-            jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 40, Short.MAX_VALUE)
-        );
-
-        jPanel9.add(jPanel45);
-        jPanel45.setBounds(200, 0, 10, 40);
-
-        AdminPanel.add(jPanel9);
-        jPanel9.setBounds(0, 0, 210, 40);
-
-        Container.add(AdminPanel, "card7");
 
         PurchasePanel.setBackground(new java.awt.Color(42, 54, 59));
         PurchasePanel.setLayout(null);
@@ -1008,6 +960,54 @@ Connection con = null;
         jPanel1.setBounds(0, 0, 210, 40);
 
         Container.add(AccountsPanel, "card7");
+
+        AdminPanel.setBackground(new java.awt.Color(84, 121, 128));
+        AdminPanel.setLayout(null);
+
+        jPanel9.setLayout(null);
+
+        jLabel56.setFont(new java.awt.Font("Roboto", 0, 28)); // NOI18N
+        jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel56.setText("Admin");
+        jPanel9.add(jLabel56);
+        jLabel56.setBounds(0, 0, 210, 40);
+
+        jPanel44.setBackground(new java.awt.Color(51, 51, 51));
+
+        javax.swing.GroupLayout jPanel44Layout = new javax.swing.GroupLayout(jPanel44);
+        jPanel44.setLayout(jPanel44Layout);
+        jPanel44Layout.setHorizontalGroup(
+            jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+        jPanel44Layout.setVerticalGroup(
+            jPanel44Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        jPanel9.add(jPanel44);
+        jPanel44.setBounds(0, 0, 10, 40);
+
+        jPanel45.setBackground(new java.awt.Color(51, 51, 51));
+
+        javax.swing.GroupLayout jPanel45Layout = new javax.swing.GroupLayout(jPanel45);
+        jPanel45.setLayout(jPanel45Layout);
+        jPanel45Layout.setHorizontalGroup(
+            jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+        jPanel45Layout.setVerticalGroup(
+            jPanel45Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 40, Short.MAX_VALUE)
+        );
+
+        jPanel9.add(jPanel45);
+        jPanel45.setBounds(200, 0, 10, 40);
+
+        AdminPanel.add(jPanel9);
+        jPanel9.setBounds(0, 0, 210, 40);
+
+        Container.add(AdminPanel, "card7");
 
         getContentPane().add(Container);
         Container.setBounds(290, 170, 1070, 600);
