@@ -291,13 +291,23 @@ public class Bank_Data extends javax.swing.JFrame {
 
         buttonGroup1.add(jRadioButton1);
         jRadioButton1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jRadioButton1.setText("Debit");
+        jRadioButton1.setText("Deposit");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
         jPanel8.add(jRadioButton1);
         jRadioButton1.setBounds(0, 0, 110, 50);
 
         buttonGroup1.add(jRadioButton2);
         jRadioButton2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jRadioButton2.setText("Credit");
+        jRadioButton2.setText("Withdraw");
+        jRadioButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton2ActionPerformed(evt);
+            }
+        });
         jPanel8.add(jRadioButton2);
         jRadioButton2.setBounds(130, 0, 110, 50);
 
@@ -553,6 +563,14 @@ public class Bank_Data extends javax.swing.JFrame {
         // TODO add your handling code here:
         showBank();
     }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jRadioButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton2ActionPerformed
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
 
     /**
      * @param args the command line arguments

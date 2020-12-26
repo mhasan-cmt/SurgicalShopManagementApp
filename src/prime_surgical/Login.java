@@ -105,6 +105,7 @@ public class Login extends javax.swing.JFrame {
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         txtPassword = new javax.swing.JPasswordField();
+        jLabel13 = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         comUser = new javax.swing.JComboBox<>();
@@ -199,12 +200,12 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(txtUser);
         txtUser.setBounds(50, 60, 370, 70);
 
-        jLabel11.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel11.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jLabel11.setText("Password:");
         jPanel2.add(jLabel11);
         jLabel11.setBounds(50, 130, 200, 40);
 
-        jLabel12.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel12.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jLabel12.setText("User Name:");
         jPanel2.add(jLabel12);
         jLabel12.setBounds(50, 20, 200, 40);
@@ -227,7 +228,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jPanel2.add(jButton3);
-        jButton3.setBounds(260, 270, 200, 40);
+        jButton3.setBounds(260, 270, 190, 40);
 
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -237,18 +238,22 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(txtPassword);
         txtPassword.setBounds(50, 170, 370, 60);
 
+        jLabel13.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\beautiful-color-ui-gradients-backgrounds-celestial.png")); // NOI18N
+        jPanel2.add(jLabel13);
+        jLabel13.setBounds(0, 0, 460, 330);
+
         getContentPane().add(jPanel2);
         jPanel2.setBounds(340, 100, 460, 330);
 
         jPanel3.setBackground(new java.awt.Color(102, 102, 255));
         jPanel3.setLayout(null);
 
-        jLabel10.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
+        jLabel10.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 48)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Sign In");
         jPanel3.add(jLabel10);
-        jLabel10.setBounds(20, 20, 120, 60);
+        jLabel10.setBounds(20, 20, 200, 60);
 
         comUser.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
         comUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User" }));
@@ -358,6 +363,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

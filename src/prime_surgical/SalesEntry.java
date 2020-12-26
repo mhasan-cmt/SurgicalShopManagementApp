@@ -53,7 +53,6 @@ public class SalesEntry extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         comCustomer = new javax.swing.JComboBox<>();
-        txtSR = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
         txtProduct = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
@@ -63,6 +62,8 @@ public class SalesEntry extends javax.swing.JFrame {
         comCateogory = new javax.swing.JComboBox<>();
         jComboBox4 = new javax.swing.JComboBox<>();
         txtDate = new com.toedter.calendar.JDateChooser();
+        txtSR1 = new javax.swing.JTextField();
+        txtSR = new javax.swing.JTextField();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -135,12 +136,12 @@ public class SalesEntry extends javax.swing.JFrame {
         btnEdit.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnEdit.setText("Edit");
         jPanel1.add(btnEdit);
-        btnEdit.setBounds(250, 650, 130, 40);
+        btnEdit.setBounds(250, 650, 140, 40);
 
         btnPurchase.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnPurchase.setText("Sale");
         jPanel1.add(btnPurchase);
-        btnPurchase.setBounds(110, 650, 130, 40);
+        btnPurchase.setBounds(110, 650, 140, 40);
 
         jButton4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton4.setText("Exit");
@@ -150,7 +151,7 @@ public class SalesEntry extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(190, 700, 130, 40);
+        jButton4.setBounds(170, 690, 170, 40);
 
         jPanel4.setBackground(new java.awt.Color(0, 102, 102));
         jPanel4.setLayout(null);
@@ -234,10 +235,6 @@ public class SalesEntry extends javax.swing.JFrame {
         jPanel1.add(comCustomer);
         comCustomer.setBounds(160, 180, 290, 40);
 
-        txtSR.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtSR);
-        txtSR.setBounds(160, 580, 290, 40);
-
         jLabel23.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("SR:");
@@ -297,6 +294,19 @@ public class SalesEntry extends javax.swing.JFrame {
         jComboBox4.setBounds(160, 140, 290, 40);
         jPanel1.add(txtDate);
         txtDate.setBounds(160, 260, 290, 40);
+
+        txtSR1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jPanel1.add(txtSR1);
+        txtSR1.setBounds(160, 580, 80, 40);
+
+        txtSR.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtSR.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSRActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtSR);
+        txtSR.setBounds(240, 580, 210, 40);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 510, 770);
@@ -557,6 +567,10 @@ public class SalesEntry extends javax.swing.JFrame {
         new dbConnection().getDataFromCombo(txtAccount, query);
     }//GEN-LAST:event_comBankNamePopupMenuWillBecomeInvisible
 
+    private void txtSRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSRActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSRActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -655,6 +669,7 @@ public class SalesEntry extends javax.swing.JFrame {
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtProduct;
     private javax.swing.JTextField txtSR;
+    private javax.swing.JTextField txtSR1;
     private javax.swing.JTextField txtSubTotal;
     private javax.swing.JTextField txtTotal;
     private javax.swing.JTextField txtTotal1;

@@ -20,14 +20,15 @@ public class PurchaseEntry extends javax.swing.JFrame {
     int Ggr;
     String purchaseId,company,bill,category,product,price,quantity,total,date,gr;
     String pBill,pGR,pDate,pCompany,pItems,pTotal,pPayment,pDiscount,pPaid,pDue;
+    int bill1;
     void initial(){
         new dbConnection().getDataFromCombo(comCompany, "SELECT `supplier_company_name` FROM `suppliers`");
         String purchase_id=new dbConnection().singledata("SELECT COUNT(`purchase_id`) FROM `purchase entry`");
         int purchase_id_int=Integer.parseInt(purchase_id);
         purchase_id_int++;
         jLabel23.setText(""+purchase_id_int);
-        int bill=new dbConnection().autoIdorBillorGR("SELECT `bill_no` FROM `purchase entry`");
-        bill++;
+        bill1=new dbConnection().autoIdorBillorGR("SELECT `bill_no` FROM `purchase entry`");
+        bill1++;
         txtBill.setText(""+bill);
         Ggr=new dbConnection().autoIdorBillorGR("SELECT `purchase_gr` FROM `purchase entry`");
         Ggr=Ggr+10;
@@ -107,14 +108,22 @@ public class PurchaseEntry extends javax.swing.JFrame {
             bankName=comBankName.getSelectedItem().toString();
             bankAccount=txtAccount.getSelectedItem().toString();
               new dbConnection().addData("INSERT INTO `purchase accounts` VALUES('"+pBill+"','"+pGR+"','"+pDate+"','"+pCompany+"','"+pItems+"','"+pTotal+"','"+pPayment+"','"+pDiscount+"','"+pPaid+"','"+pDue+"')", this);
-              new dbConnection().addBankOrCash("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('"+pDate+"','"+bankName+"','"+bankAccount+"','"+"Purchase"+"','"+"Debit"+"','"+pPaid+"')");
+              new dbConnection().addBankOrCash("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('"+pDate+"','"+bankName+"','"+bankAccount+"','"+"Purchase"+"','"+"Withdraw"+"','"+pPaid+"')");
               componentEnabled();
+            Ggr=Ggr+10;
+            txtGR.setText(Ggr+"");
+            bill1++;
+            txtBill.setText(""+bill1);
             }
            else if(rbCash.isSelected()){
                getDataForPurchaseAccounts();
               new dbConnection().addData("INSERT INTO `purchase accounts` VALUES('"+pBill+"','"+pGR+"','"+pDate+"','"+pCompany+"','"+pItems+"','"+pTotal+"','"+pPayment+"','"+pDiscount+"','"+pPaid+"','"+pDue+"')", this);
               new dbConnection().addBankOrCash("INSERT INTO `cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('"+pDate+"','"+"Purchase"+"','"+"Debit"+"','"+pPaid+"')");
               componentEnabled();
+            Ggr=Ggr+10;
+            txtGR.setText(Ggr+"");
+            bill1++;
+            txtBill.setText(""+bill1);
            }
         }
         else{
