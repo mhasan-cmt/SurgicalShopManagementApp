@@ -65,7 +65,7 @@ public class Cost extends javax.swing.JFrame {
     void addCost(){
              if(rbBank.isSelected()){
               getData();
-              new dbConnection().addBankOrCash("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('"+date+"','"+bankName+"','"+bankAccount+"','"+details+"','"+"Debit"+"','"+amount+"')");
+              new dbConnection().addBankOrCash("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('"+date+"','"+bankName+"','"+bankAccount+"','"+details+"','"+"Withdraw"+"','"+amount+"')");
               new dbConnection().addData("INSERT INTO `cost data`(`cost_date`,`cost_type`,`cost_bill`,`cost_details`,`cost_paid_by`,`cost_amount`) VALUES('"+date+"','"+costType+"','"+bill+"','"+details+"','"+paidBy+"','"+amount+"')", this); 
               showCostData();
              }
@@ -194,7 +194,7 @@ public class Cost extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Costs");
         jPanel3.add(jLabel4);
-        jLabel4.setBounds(20, 0, 110, 100);
+        jLabel4.setBounds(20, 0, 100, 100);
 
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {

@@ -76,13 +76,7 @@ public class Bank_Data extends javax.swing.JFrame {
     }
     void showBank(){
         new dbConnection().showBankData(jTable1,this,"SELECT * FROM `bank data`");
-        String bankCredit,bankDebit;
-        bankCredit=new dbConnection().singledata("SELECT SUM(`bank_amount`) FROM `bank data` WHERE `bank_status`='"+"Credit"+"'");
-        bankDebit=new dbConnection().singledata("SELECT SUM(`bank_amount`) FROM `bank data` WHERE `bank_status`='"+"Debit"+"'");
-        jLabel19.setText(bankCredit);
-        jLabel20.setText(bankDebit);
-        double total=Double.parseDouble(bankCredit)+Double.parseDouble(bankDebit);
-        jLabel15.setText(""+total);
+        
         
     }
     void addBankAccount(){

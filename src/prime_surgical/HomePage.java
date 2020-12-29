@@ -59,31 +59,6 @@ Connection con = null;
         AccountsP.setVisible(false);
         AdminP.setVisible(false);
      }
-    void showAccounts(){
-        try {
-            //Bank profits
-        String bankCredits,bankDebits;
-        bankCredits=new dbConnection().singledata("SELECT SUM(`bank_amount`) FROM `bank data` WHERE `bank_status`='"+"Credit"+"'");
-        bankDebits=new dbConnection().singledata("SELECT SUM(`bank_amount`) FROM `bank data` WHERE `bank_status`='"+"Debit"+"'");
-        jTextField2.setText(bankCredits);
-        jTextField3.setText(bankDebits);
-        double bankProfit=Double.parseDouble(bankCredits)-Double.parseDouble(bankDebits);
-        jTextField1.setText(""+bankProfit);
-        //Cash Profits
-        String cashCredits,cashDebits;
-        cashCredits=new dbConnection().singledata("SELECT SUM(`cash_amount`) FROM `cash data` WHERE `cash_status`=\"credit\"");
-        cashDebits=new dbConnection().singledata("SELECT SUM(`cash_amount`) FROM `cash data` WHERE `cash_status`=\"debit\"");
-        jTextField4.setText(cashCredits);
-        jTextField5.setText(cashDebits);
-        double cashProfits=Double.parseDouble(cashCredits)-Double.parseDouble(cashDebits);
-        jTextField7.setText(""+cashProfits);
-        double totalProfits=bankProfit+cashProfits;
-        jTextField6.setText(""+totalProfits);
-        } catch (Exception e) {
-            JOptionPane.showMessageDialog(this, e);
-        }
-        
-     }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -105,16 +80,22 @@ Connection con = null;
         HomePanel = new javax.swing.JPanel();
         jPanel30 = new javax.swing.JPanel();
         jLabel27 = new javax.swing.JLabel();
+        jLabel44 = new javax.swing.JLabel();
         jPanel14 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
+        jLabel47 = new javax.swing.JLabel();
         jPanel10 = new javax.swing.JPanel();
         jLabel49 = new javax.swing.JLabel();
+        jLabel45 = new javax.swing.JLabel();
         jPanel12 = new javax.swing.JPanel();
         jLabel18 = new javax.swing.JLabel();
+        jLabel20 = new javax.swing.JLabel();
         jPanel13 = new javax.swing.JPanel();
         jLabel15 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
         jPanel15 = new javax.swing.JPanel();
         jLabel17 = new javax.swing.JLabel();
+        jLabel46 = new javax.swing.JLabel();
         jPanel6 = new javax.swing.JPanel();
         jLabel41 = new javax.swing.JLabel();
         jPanel32 = new javax.swing.JPanel();
@@ -122,6 +103,7 @@ Connection con = null;
         jLabel12 = new javax.swing.JLabel();
         jPanel21 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
+        jLabel37 = new javax.swing.JLabel();
         PurchasePanel = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -158,20 +140,6 @@ Connection con = null;
         jPanel38 = new javax.swing.JPanel();
         jPanel39 = new javax.swing.JPanel();
         AccountsPanel = new javax.swing.JPanel();
-        jTextField1 = new javax.swing.JTextField();
-        jTextField2 = new javax.swing.JTextField();
-        jTextField3 = new javax.swing.JTextField();
-        jTextField4 = new javax.swing.JTextField();
-        jTextField5 = new javax.swing.JTextField();
-        jTextField6 = new javax.swing.JTextField();
-        jTextField7 = new javax.swing.JTextField();
-        jLabel29 = new javax.swing.JLabel();
-        jLabel30 = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jLabel32 = new javax.swing.JLabel();
-        jLabel33 = new javax.swing.JLabel();
-        jLabel34 = new javax.swing.JLabel();
-        jLabel35 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
         jPanel42 = new javax.swing.JPanel();
@@ -266,11 +234,11 @@ Connection con = null;
         HomePanel.setLayout(null);
 
         jPanel30.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel30.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel30.setLayout(null);
 
-        jLabel27.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel27.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel27.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_product_40px.png")); // NOI18N
         jLabel27.setText("Stock");
         jLabel27.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -281,15 +249,20 @@ Connection con = null;
             }
         });
         jPanel30.add(jLabel27);
-        jLabel27.setBounds(4, 0, 290, 80);
+        jLabel27.setBounds(0, 100, 200, 50);
+
+        jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel44.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_depot_100px.png")); // NOI18N
+        jPanel30.add(jLabel44);
+        jLabel44.setBounds(0, 0, 200, 100);
 
         HomePanel.add(jPanel30);
-        jPanel30.setBounds(370, 230, 300, 80);
+        jPanel30.setBounds(400, 250, 200, 150);
 
         jPanel14.setBackground(new java.awt.Color(204, 255, 204));
         jPanel14.setLayout(null);
 
-        jLabel13.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        jLabel13.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Product Category");
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -298,17 +271,21 @@ Connection con = null;
             }
         });
         jPanel14.add(jLabel13);
-        jLabel13.setBounds(0, 4, 300, 70);
+        jLabel13.setBounds(0, 70, 290, 70);
+
+        jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel47.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_pill_100px_1.png")); // NOI18N
+        jPanel14.add(jLabel47);
+        jLabel47.setBounds(3, 0, 290, 90);
 
         HomePanel.add(jPanel14);
-        jPanel14.setBounds(370, 320, 300, 80);
+        jPanel14.setBounds(360, 410, 290, 150);
 
         jPanel10.setBackground(new java.awt.Color(204, 255, 204));
         jPanel10.setLayout(null);
 
-        jLabel49.setFont(new java.awt.Font("Roboto", 0, 26)); // NOI18N
+        jLabel49.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
         jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel49.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\return-on-investment.png")); // NOI18N
         jLabel49.setText("Product Returns");
         jLabel49.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -316,17 +293,21 @@ Connection con = null;
             }
         });
         jPanel10.add(jLabel49);
-        jLabel49.setBounds(0, 0, 300, 80);
+        jLabel49.setBounds(0, 90, 270, 60);
+
+        jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel45.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_product_100px_3.png")); // NOI18N
+        jPanel10.add(jLabel45);
+        jLabel45.setBounds(0, 0, 270, 100);
 
         HomePanel.add(jPanel10);
-        jPanel10.setBounds(680, 140, 300, 80);
+        jPanel10.setBounds(610, 90, 270, 150);
 
         jPanel12.setBackground(new java.awt.Color(204, 255, 204));
         jPanel12.setLayout(null);
 
-        jLabel18.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel18.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_paper_money_40px.png")); // NOI18N
         jLabel18.setText("Costs");
         jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -337,17 +318,21 @@ Connection con = null;
             }
         });
         jPanel12.add(jLabel18);
-        jLabel18.setBounds(0, 0, 300, 80);
+        jLabel18.setBounds(0, 100, 200, 50);
+
+        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel20.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_cost_100px.png")); // NOI18N
+        jPanel12.add(jLabel20);
+        jLabel20.setBounds(0, 0, 200, 100);
 
         HomePanel.add(jPanel12);
-        jPanel12.setBounds(60, 230, 300, 80);
+        jPanel12.setBounds(190, 250, 200, 150);
 
         jPanel13.setBackground(new java.awt.Color(204, 255, 204));
         jPanel13.setLayout(null);
 
-        jLabel15.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel15.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_cost_40px.png")); // NOI18N
         jLabel15.setText("Cash Data");
         jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -355,17 +340,29 @@ Connection con = null;
             }
         });
         jPanel13.add(jLabel15);
-        jLabel15.setBounds(0, 0, 300, 80);
+        jLabel15.setBounds(0, 90, 200, 60);
+
+        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel14.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_cash_100px.png")); // NOI18N
+        jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel14MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel14MouseExited(evt);
+            }
+        });
+        jPanel13.add(jLabel14);
+        jLabel14.setBounds(0, 0, 200, 100);
 
         HomePanel.add(jPanel13);
-        jPanel13.setBounds(60, 140, 300, 80);
+        jPanel13.setBounds(190, 90, 200, 150);
 
         jPanel15.setBackground(new java.awt.Color(204, 255, 204));
         jPanel15.setLayout(null);
 
-        jLabel17.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel17.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel17.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\prime_surgical\\icons8_payroll_40px.png")); // NOI18N
         jLabel17.setText("Sales Officer's");
         jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -373,10 +370,15 @@ Connection con = null;
             }
         });
         jPanel15.add(jLabel17);
-        jLabel17.setBounds(0, 0, 300, 80);
+        jLabel17.setBounds(0, 90, 270, 60);
+
+        jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel46.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_gender_neutral_employee_group_100px_1.png")); // NOI18N
+        jPanel15.add(jLabel46);
+        jLabel46.setBounds(0, 0, 270, 100);
 
         HomePanel.add(jPanel15);
-        jPanel15.setBounds(680, 230, 300, 80);
+        jPanel15.setBounds(610, 250, 270, 150);
 
         jPanel6.setLayout(null);
 
@@ -426,9 +428,8 @@ Connection con = null;
         jPanel21.setBackground(new java.awt.Color(204, 255, 204));
         jPanel21.setLayout(null);
 
-        jLabel28.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel28.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel28.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_safe_40px.png")); // NOI18N
         jLabel28.setText("Bank Data");
         jLabel28.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -436,10 +437,15 @@ Connection con = null;
             }
         });
         jPanel21.add(jLabel28);
-        jLabel28.setBounds(0, 0, 300, 80);
+        jLabel28.setBounds(0, 80, 200, 70);
+
+        jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel37.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_bank_100px.png")); // NOI18N
+        jPanel21.add(jLabel37);
+        jLabel37.setBounds(0, 0, 200, 90);
 
         HomePanel.add(jPanel21);
-        jPanel21.setBounds(370, 140, 300, 80);
+        jPanel21.setBounds(400, 90, 200, 150);
 
         Container.add(HomePanel, "card2");
 
@@ -833,83 +839,6 @@ Connection con = null;
         AccountsPanel.setBackground(new java.awt.Color(0, 102, 102));
         AccountsPanel.setLayout(null);
 
-        jTextField1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField1.setText("0.00");
-        AccountsPanel.add(jTextField1);
-        jTextField1.setBounds(660, 180, 230, 50);
-
-        jTextField2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField2.setText("0.00");
-        AccountsPanel.add(jTextField2);
-        jTextField2.setBounds(180, 180, 230, 50);
-
-        jTextField3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField3.setText("0.00");
-        AccountsPanel.add(jTextField3);
-        jTextField3.setBounds(420, 180, 230, 50);
-
-        jTextField4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField4.setText("0.00");
-        AccountsPanel.add(jTextField4);
-        jTextField4.setBounds(180, 280, 230, 50);
-
-        jTextField5.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField5.setText("0.00");
-        AccountsPanel.add(jTextField5);
-        jTextField5.setBounds(420, 280, 230, 50);
-
-        jTextField6.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField6.setText("0.00");
-        AccountsPanel.add(jTextField6);
-        jTextField6.setBounds(660, 380, 230, 50);
-
-        jTextField7.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jTextField7.setText("0.00");
-        AccountsPanel.add(jTextField7);
-        jTextField7.setBounds(660, 280, 230, 50);
-
-        jLabel29.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel29.setText("Total Profit");
-        AccountsPanel.add(jLabel29);
-        jLabel29.setBounds(660, 330, 230, 50);
-
-        jLabel30.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel30.setText("Bank Credit");
-        AccountsPanel.add(jLabel30);
-        jLabel30.setBounds(180, 130, 230, 50);
-
-        jLabel31.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel31.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel31.setText("Bank Debit");
-        AccountsPanel.add(jLabel31);
-        jLabel31.setBounds(420, 130, 230, 50);
-
-        jLabel32.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel32.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel32.setText("Profit");
-        AccountsPanel.add(jLabel32);
-        jLabel32.setBounds(660, 130, 230, 50);
-
-        jLabel33.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel33.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel33.setText("Profit");
-        AccountsPanel.add(jLabel33);
-        jLabel33.setBounds(660, 230, 230, 50);
-
-        jLabel34.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel34.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel34.setText("Cash Debit");
-        AccountsPanel.add(jLabel34);
-        jLabel34.setBounds(420, 230, 230, 50);
-
-        jLabel35.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jLabel35.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel35.setText("Cash Credit");
-        AccountsPanel.add(jLabel35);
-        jLabel35.setBounds(180, 230, 230, 50);
-
         jPanel1.setLayout(null);
 
         jLabel36.setFont(new java.awt.Font("Roboto", 0, 28)); // NOI18N
@@ -1021,6 +950,9 @@ Connection con = null;
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lb_HomeMouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lb_HomeMouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 lb_HomeMouseExited(evt);
             }
@@ -1036,6 +968,9 @@ Connection con = null;
         lb_Purchase.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 lb_PurchaseMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lb_PurchaseMouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 lb_PurchaseMouseExited(evt);
@@ -1053,6 +988,9 @@ Connection con = null;
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel9MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel9MouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jLabel9MouseExited(evt);
             }
@@ -1069,6 +1007,9 @@ Connection con = null;
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel11MouseClicked(evt);
             }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel11MouseEntered(evt);
+            }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jLabel11MouseExited(evt);
             }
@@ -1079,11 +1020,14 @@ Connection con = null;
         jLabel8.setFont(new java.awt.Font("Roboto", 0, 28)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel8.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\accounting.png")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\images\\accounting.png")); // NOI18N
         jLabel8.setText("Accounts");
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel8MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel8MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jLabel8MouseExited(evt);
@@ -1100,6 +1044,9 @@ Connection con = null;
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel10MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel10MouseEntered(evt);
             }
             public void mouseExited(java.awt.event.MouseEvent evt) {
                 jLabel10MouseExited(evt);
@@ -1276,7 +1223,6 @@ Connection con = null;
         ReportP.setVisible(false);
         AccountsP.setVisible(true);
         AdminP.setVisible(false);
-        showAccounts();
         
     }//GEN-LAST:event_jLabel8MouseClicked
 
@@ -1426,6 +1372,7 @@ Connection con = null;
 
     private void jLabel28MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel28MouseClicked
         // TODO add your handling code here:
+        new Bank_Data().setVisible(true);
     }//GEN-LAST:event_jLabel28MouseClicked
 
     private void jLabel13MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel13MouseClicked
@@ -1435,6 +1382,7 @@ Connection con = null;
 
     private void jLabel6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel6MouseClicked
         // TODO add your handling code here:
+        new PurchaseDuePaid().setVisible(true);
     }//GEN-LAST:event_jLabel6MouseClicked
 
     private void jLabel19MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel19MouseClicked
@@ -1448,6 +1396,7 @@ Connection con = null;
 
     private void jLabel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel16MouseClicked
         // TODO add your handling code here:
+        new PurchaseEntry().setVisible(true);
     }//GEN-LAST:event_jLabel16MouseClicked
 
     private void jPanel16MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel16MouseClicked
@@ -1459,6 +1408,44 @@ Connection con = null;
         // TODO add your handling code here:
         new Suppliers().setVisible(true);
     }//GEN-LAST:event_jLabel7MouseClicked
+
+    private void lb_HomeMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_HomeMouseEntered
+        // TODO add your handling code here:
+        lb_Home.setForeground(Color.cyan);
+    }//GEN-LAST:event_lb_HomeMouseEntered
+
+    private void lb_PurchaseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_PurchaseMouseEntered
+        // TODO add your handling code here:
+        lb_Purchase.setForeground(Color.cyan);
+    }//GEN-LAST:event_lb_PurchaseMouseEntered
+
+    private void jLabel9MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseEntered
+        // TODO add your handling code here:
+        jLabel9.setForeground(Color.CYAN);
+    }//GEN-LAST:event_jLabel9MouseEntered
+
+    private void jLabel11MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseEntered
+        // TODO add your handling code here:
+        jLabel11.setForeground(Color.cyan);
+    }//GEN-LAST:event_jLabel11MouseEntered
+
+    private void jLabel8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseEntered
+        // TODO add your handling code here:
+        jLabel8.setForeground(Color.cyan);
+    }//GEN-LAST:event_jLabel8MouseEntered
+
+    private void jLabel10MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseEntered
+        // TODO add your handling code here:
+        jLabel10.setForeground(Color.cyan);
+    }//GEN-LAST:event_jLabel10MouseEntered
+
+    private void jLabel14MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseExited
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel14MouseExited
+
+    private void jLabel14MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel14MouseEntered
 
     /**
      * @param args the command line arguments
@@ -1516,12 +1503,14 @@ Connection con = null;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
+    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
@@ -1530,15 +1519,9 @@ Connection con = null;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel30;
-    private javax.swing.JLabel jLabel31;
-    private javax.swing.JLabel jLabel32;
-    private javax.swing.JLabel jLabel33;
-    private javax.swing.JLabel jLabel34;
-    private javax.swing.JLabel jLabel35;
     private javax.swing.JLabel jLabel36;
+    private javax.swing.JLabel jLabel37;
     private javax.swing.JLabel jLabel38;
     private javax.swing.JLabel jLabel39;
     private javax.swing.JLabel jLabel4;
@@ -1546,6 +1529,10 @@ Connection con = null;
     private javax.swing.JLabel jLabel41;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
+    private javax.swing.JLabel jLabel44;
+    private javax.swing.JLabel jLabel45;
+    private javax.swing.JLabel jLabel46;
+    private javax.swing.JLabel jLabel47;
     private javax.swing.JLabel jLabel49;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel56;
@@ -1589,13 +1576,6 @@ Connection con = null;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField2;
-    private javax.swing.JTextField jTextField3;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
     private javax.swing.JLabel lb_Home;
     private javax.swing.JLabel lb_Purchase;
     // End of variables declaration//GEN-END:variables

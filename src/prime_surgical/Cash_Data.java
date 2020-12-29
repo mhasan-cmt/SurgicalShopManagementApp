@@ -481,6 +481,11 @@ void showTotals(){
 
         jButton11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton11.setText("Submit");
+        jButton11.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton11ActionPerformed(evt);
+            }
+        });
         jPanel6.add(jButton11);
         jButton11.setBounds(70, 410, 250, 60);
 
@@ -644,6 +649,10 @@ void showTotals(){
        String bankName=jComboBox2.getSelectedItem().toString();
         new dbConnection().getDataFromCombo(jComboBox1, "SELECT `bank_account_number` FROM `bank accounts` WHERE `bank_account_name`='"+bankName+"'");
     }//GEN-LAST:event_jComboBox2PopupMenuWillBecomeInvisible
+
+    private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton11ActionPerformed
 
     /**
      * @param args the command line arguments
