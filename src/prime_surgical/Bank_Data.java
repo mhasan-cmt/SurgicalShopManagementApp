@@ -76,7 +76,13 @@ public class Bank_Data extends javax.swing.JFrame {
     }
     void showBank(){
         new dbConnection().showBankData(jTable1,this,"SELECT * FROM `bank data`");
-        
+        String totalWithdraws=new dbConnection().singledata("SELECT SUM(`bank_amount`) FROM `bank data` WHERE `bank_status`=\"Withdraw\"");
+        String totalDeposits=new dbConnection().singledata("SELECT SUM(`bank_amount`) FROM `bank data` WHERE `bank_status`=\"Deposit\"");
+        jLabel19.setText(totalDeposits);
+        jLabel20.setText(totalWithdraws);
+        double total;
+        total=Double.parseDouble(totalDeposits)+Double.parseDouble(totalWithdraws);
+        jLabel15.setText(""+total);
         
     }
     void addBankAccount(){
@@ -441,21 +447,21 @@ public class Bank_Data extends javax.swing.JFrame {
 
         jLabel13.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel13.setText("Credits:");
+        jLabel13.setText("Deposits");
         jPanel9.add(jLabel13);
         jLabel13.setBounds(0, 0, 90, 40);
 
         jLabel16.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel16.setText("Debits:");
+        jLabel16.setText("Withdraws");
         jPanel9.add(jLabel16);
-        jLabel16.setBounds(0, 40, 90, 40);
+        jLabel16.setBounds(0, 40, 100, 40);
 
         jLabel14.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setText("Total:");
         jPanel9.add(jLabel14);
-        jLabel14.setBounds(0, 80, 90, 50);
+        jLabel14.setBounds(0, 80, 90, 40);
 
         jLabel15.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);

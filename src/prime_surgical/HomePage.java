@@ -253,6 +253,17 @@ Connection con = null;
 
         jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel44.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_depot_100px.png")); // NOI18N
+        jLabel44.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel44MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel44MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel44MouseExited(evt);
+            }
+        });
         jPanel30.add(jLabel44);
         jLabel44.setBounds(0, 0, 200, 100);
 
@@ -275,6 +286,17 @@ Connection con = null;
 
         jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel47.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_pill_100px_1.png")); // NOI18N
+        jLabel47.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel47MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel47MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel47MouseExited(evt);
+            }
+        });
         jPanel14.add(jLabel47);
         jLabel47.setBounds(3, 0, 290, 90);
 
@@ -297,6 +319,17 @@ Connection con = null;
 
         jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel45.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_product_100px_3.png")); // NOI18N
+        jLabel45.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel45MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel45MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel45MouseExited(evt);
+            }
+        });
         jPanel10.add(jLabel45);
         jLabel45.setBounds(0, 0, 270, 100);
 
@@ -322,6 +355,17 @@ Connection con = null;
 
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel20.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_cost_100px.png")); // NOI18N
+        jLabel20.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel20MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel20MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel20MouseExited(evt);
+            }
+        });
         jPanel12.add(jLabel20);
         jLabel20.setBounds(0, 0, 200, 100);
 
@@ -345,6 +389,9 @@ Connection con = null;
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_cash_100px.png")); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel14MouseClicked(evt);
+            }
             public void mouseEntered(java.awt.event.MouseEvent evt) {
                 jLabel14MouseEntered(evt);
             }
@@ -374,6 +421,17 @@ Connection con = null;
 
         jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel46.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_gender_neutral_employee_group_100px_1.png")); // NOI18N
+        jLabel46.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel46MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel46MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel46MouseExited(evt);
+            }
+        });
         jPanel15.add(jLabel46);
         jLabel46.setBounds(0, 0, 270, 100);
 
@@ -441,6 +499,17 @@ Connection con = null;
 
         jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel37.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_bank_100px.png")); // NOI18N
+        jLabel37.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel37MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel37MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel37MouseExited(evt);
+            }
+        });
         jPanel21.add(jLabel37);
         jLabel37.setBounds(0, 0, 200, 90);
 
@@ -1441,11 +1510,108 @@ Connection con = null;
 
     private void jLabel14MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseExited
         // TODO add your handling code here:
+        jPanel13.setBackground(new Color(204,255,204));
     }//GEN-LAST:event_jLabel14MouseExited
 
     private void jLabel14MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseEntered
         // TODO add your handling code here:
+        jPanel13.setBackground(Color.lightGray);
     }//GEN-LAST:event_jLabel14MouseEntered
+
+    private void jLabel14MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseClicked
+        // TODO add your handling code here:
+        new Cash_Data().setVisible(true);
+    }//GEN-LAST:event_jLabel14MouseClicked
+
+    private void jLabel37MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel37MouseClicked
+        // TODO add your handling code here:
+        new Bank_Data().setVisible(true);
+    }//GEN-LAST:event_jLabel37MouseClicked
+
+    private void jLabel45MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel45MouseClicked
+        // TODO add your handling code here:
+        new Product_Returns().setVisible(true);
+    }//GEN-LAST:event_jLabel45MouseClicked
+
+    private void jLabel20MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseClicked
+        // TODO add your handling code here:
+        new Cost().setVisible(true);
+    }//GEN-LAST:event_jLabel20MouseClicked
+
+    private void jLabel44MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel44MouseClicked
+        // TODO add your handling code here:
+        new Stock().setVisible(true);
+    }//GEN-LAST:event_jLabel44MouseClicked
+
+    private void jLabel46MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel46MouseClicked
+        // TODO add your handling code here:
+        new Sales_Officers().setVisible(true);
+    }//GEN-LAST:event_jLabel46MouseClicked
+
+    private void jLabel47MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel47MouseClicked
+        // TODO add your handling code here:
+        new Product_Cateogory().setVisible(true);
+    }//GEN-LAST:event_jLabel47MouseClicked
+
+    private void jLabel37MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel37MouseEntered
+        // TODO add your handling code here:
+        jPanel21.setBackground(Color.lightGray);
+    }//GEN-LAST:event_jLabel37MouseEntered
+
+    private void jLabel37MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel37MouseExited
+        // TODO add your handling code here:
+        jPanel21.setBackground(new Color(204,255,204));
+    }//GEN-LAST:event_jLabel37MouseExited
+
+    private void jLabel45MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel45MouseEntered
+        // TODO add your handling code here:
+        jPanel10.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_jLabel45MouseEntered
+
+    private void jLabel45MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel45MouseExited
+        // TODO add your handling code here:
+        jPanel10.setBackground(new Color(204,255,204));
+    }//GEN-LAST:event_jLabel45MouseExited
+
+    private void jLabel20MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseEntered
+        // TODO add your handling code here:
+        jPanel12.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_jLabel20MouseEntered
+
+    private void jLabel20MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseExited
+        // TODO add your handling code here:
+        jPanel12.setBackground(new Color(204,255,204));
+    }//GEN-LAST:event_jLabel20MouseExited
+
+    private void jLabel44MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel44MouseEntered
+        // TODO add your handling code here:
+        jPanel30.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_jLabel44MouseEntered
+
+    private void jLabel44MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel44MouseExited
+        // TODO add your handling code here:
+        jPanel30.setBackground(new Color(204,255,204));
+    }//GEN-LAST:event_jLabel44MouseExited
+
+    private void jLabel46MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel46MouseEntered
+        // TODO add your handling code here:
+        jPanel15.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_jLabel46MouseEntered
+
+    private void jLabel46MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel46MouseExited
+        // TODO add your handling code here:
+        jPanel15.setBackground(new Color(204,255,204));
+    }//GEN-LAST:event_jLabel46MouseExited
+
+    private void jLabel47MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel47MouseEntered
+        // TODO add your handling code here:
+        jPanel14.setBackground(Color.LIGHT_GRAY);
+    }//GEN-LAST:event_jLabel47MouseEntered
+
+    private void jLabel47MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel47MouseExited
+        // TODO add your handling code here:
+        jPanel14.setBackground(new Color(204,255,204));
+    }//GEN-LAST:event_jLabel47MouseExited
 
     /**
      * @param args the command line arguments

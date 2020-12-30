@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package prime_surgical;
+import com.toedter.calendar.JCalendar;
 import java.text.SimpleDateFormat;
 import javax.swing.*;
 
@@ -19,14 +20,14 @@ public class Cash_Data extends javax.swing.JFrame {
     public Cash_Data() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        showCash();
-        new dbConnection().getDataFromCombo(jComboBox2, "SELECT `bank_account_name` FROM `bank accounts`");
+        showCash(jTable1);
+        new dbConnection().getDataFromCombo(jComboBox2, "SELECT `bank_account_name` FROM `bank accounts` group by `bank_account_name`");
     }
-    String date,details,amount,status;
-void showCash(){
+    String date,details,amount,status,bDate,bBank,bAccount,bAmount,bPercentage,cDate;
+void showCash(JTable table){
     String query="SELECT * FROM `cash data`";
-    new dbConnection().showCashData(query, jTable1);
-    showTotals();
+    new dbConnection().showCashData(query, table);
+    showTotals(jLabel19,jLabel20,jLabel15);
 }
 void getData(){
     SimpleDateFormat sm=new SimpleDateFormat("yyyy-MM-dd");
@@ -67,14 +68,61 @@ void addCash(){
     String query="INSERT INTO `cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('"+date+"','"+details+"','"+status+"','"+amount+"')";
     new dbConnection().addData(query, this);
 }
-void showTotals(){
+void showTotals(JLabel credit,JLabel debit,JLabel total){
     String cashCredits,cashDebits;
         cashCredits=new dbConnection().singledata("SELECT SUM(`cash_amount`) FROM `cash data` WHERE `cash_status`=\"credit\"");
         cashDebits=new dbConnection().singledata("SELECT SUM(`cash_amount`) FROM `cash data` WHERE `cash_status`=\"debit\"");
-        jLabel19.setText(cashCredits);
-        jLabel20.setText(cashDebits);
+        credit.setText(cashCredits);
+        debit.setText(cashDebits);
         double amount=Double.parseDouble(cashCredits)+Double.parseDouble(cashDebits);
-        jLabel15.setText(""+amount);
+        total.setText(""+amount);
+}
+int checkBlankForBankSection(){
+    int check=0;
+    if(((JTextField)jDateChooser3.getDateEditor().getUiComponent()).getText().isEmpty()){
+        JOptionPane.showMessageDialog(this, "Enter Date!");
+        jDateChooser3.requestFocus();
+    }
+    else if(jComboBox2.getSelectedIndex()==0){
+        JOptionPane.showMessageDialog(this, "Enter Bank Name!");
+        jComboBox2.requestFocus();
+    }
+    else if(jComboBox1.getSelectedIndex()==0){
+        JOptionPane.showMessageDialog(this, "Enter Bank Account!");
+        jComboBox1.requestFocus();
+    }
+    else if(jTextField6.getText().isEmpty()){
+        JOptionPane.showMessageDialog(this, "Enter Percentage!");
+        jTextField6.requestFocus();
+    }
+    else if(jTextField5.getText().isEmpty()){
+        JOptionPane.showMessageDialog(this,"Amount is missing!");
+        jTextField5.requestFocus();
+    }
+    else{
+        check=1;
+    }
+        return check;
+}
+void getSendToBank(){
+    bDate=jLabel4.getText();
+    bBank=jComboBox2.getSelectedItem().toString();
+    bAccount=jComboBox1.getSelectedItem().toString();
+    bAmount=jTextField5.getText();
+    bPercentage=jTextField6.getText();
+    SimpleDateFormat sm=new SimpleDateFormat("yyyy-MM-dd");
+    cDate=sm.format(jDateChooser3.getDate());
+    
+}
+void sendToBank(){
+   if(checkBlankForBankSection()==1){
+       getSendToBank();
+new dbConnection().addBankOrCash("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('"+bDate+"','"+bBank+"','"+bAccount+"','"+"From Cash"+"','"+"Deposit"+"','"+bAmount+"')");
+new dbConnection().addData("INSERT INTO`cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('"+bDate+"','"+"Bank Deposited"+"','"+"Debit"+"','"+bAmount+"')", this);
+showCash(jTable2);
+showTotals(jLabel27, jLabel28, jLabel26);
+jTextField6.setText("0");
+   }
 }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -141,7 +189,6 @@ void showTotals(){
         jLabel5 = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
-        jButton12 = new javax.swing.JButton();
         jButton13 = new javax.swing.JButton();
         jButton14 = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
@@ -152,6 +199,7 @@ void showTotals(){
         jLabel26 = new javax.swing.JLabel();
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
+        jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -218,7 +266,7 @@ void showTotals(){
         jScrollPane1.setViewportView(jTable1);
 
         jPanel4.add(jScrollPane1);
-        jScrollPane1.setBounds(0, 190, 1360, 350);
+        jScrollPane1.setBounds(0, 160, 1360, 380);
 
         jTabbedPane2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
@@ -245,7 +293,7 @@ void showTotals(){
             }
         });
         jPanel9.add(jButton5);
-        jButton5.setBounds(920, 80, 130, 60);
+        jButton5.setBounds(920, 60, 130, 60);
 
         jLabel8.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -286,6 +334,12 @@ void showTotals(){
 
         jPanel10.setBackground(new java.awt.Color(102, 102, 102));
         jPanel10.setLayout(null);
+
+        jDateChooser2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                jDateChooser2PropertyChange(evt);
+            }
+        });
         jPanel10.add(jDateChooser2);
         jDateChooser2.setBounds(90, 10, 380, 50);
 
@@ -300,6 +354,11 @@ void showTotals(){
         jRadioButton3.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton3.setText("All");
+        jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton3ActionPerformed(evt);
+            }
+        });
         jPanel10.add(jRadioButton3);
         jRadioButton3.setBounds(310, 80, 110, 40);
 
@@ -307,6 +366,11 @@ void showTotals(){
         jRadioButton4.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jRadioButton4.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton4.setText("Purchase");
+        jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton4ActionPerformed(evt);
+            }
+        });
         jPanel10.add(jRadioButton4);
         jRadioButton4.setBounds(80, 80, 125, 40);
 
@@ -314,6 +378,11 @@ void showTotals(){
         jRadioButton5.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jRadioButton5.setForeground(new java.awt.Color(255, 255, 255));
         jRadioButton5.setText("Sales");
+        jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton5ActionPerformed(evt);
+            }
+        });
         jPanel10.add(jRadioButton5);
         jRadioButton5.setBounds(210, 80, 100, 40);
 
@@ -329,18 +398,23 @@ void showTotals(){
 
         jButton8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton8.setText("Month");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
         jPanel10.add(jButton8);
         jButton8.setBounds(510, 10, 150, 50);
 
         jButton9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton9.setText("Show All");
         jPanel10.add(jButton9);
-        jButton9.setBounds(510, 80, 310, 50);
+        jButton9.setBounds(510, 70, 310, 50);
 
         jTabbedPane2.addTab("Show Data", jPanel10);
 
         jPanel4.add(jTabbedPane2);
-        jTabbedPane2.setBounds(0, 0, 1360, 190);
+        jTabbedPane2.setBounds(0, 0, 1360, 160);
 
         jPanel11.setBackground(new java.awt.Color(204, 204, 204));
         jPanel11.setLayout(null);
@@ -402,6 +476,11 @@ void showTotals(){
 
         jButton10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton10.setText("Show All");
+        jButton10.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton10ActionPerformed(evt);
+            }
+        });
         jPanel4.add(jButton10);
         jButton10.setBounds(380, 540, 310, 40);
 
@@ -456,12 +535,23 @@ void showTotals(){
         jLabel18.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setText("(Tk)");
+        jLabel18.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\taka (1).png")); // NOI18N
+        jLabel18.setText("Taka");
         jPanel6.add(jLabel18);
-        jLabel18.setBounds(100, 290, 270, 30);
+        jLabel18.setBounds(120, 280, 130, 40);
 
         jTextField6.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jTextField6.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jTextField6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField6MouseClicked(evt);
+            }
+        });
+        jTextField6.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField6KeyReleased(evt);
+            }
+        });
         jPanel6.add(jTextField6);
         jTextField6.setBounds(20, 320, 80, 50);
 
@@ -475,9 +565,9 @@ void showTotals(){
         jLabel22.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel22.setText("(%)");
+        jLabel22.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\percent.png")); // NOI18N
         jPanel6.add(jLabel22);
-        jLabel22.setBounds(20, 290, 80, 30);
+        jLabel22.setBounds(20, 280, 80, 40);
 
         jButton11.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton11.setText("Submit");
@@ -501,10 +591,7 @@ void showTotals(){
 
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null},
-                {null, null, null, null, null}
+
             },
             new String [] {
                 "Sl", "Date", "Details", "Status", "Amount"
@@ -515,12 +602,6 @@ void showTotals(){
         jPanel5.add(jScrollPane2);
         jScrollPane2.setBounds(410, 70, 940, 430);
 
-        jButton12.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton12.setForeground(new java.awt.Color(0, 0, 0));
-        jButton12.setText("Show All");
-        jPanel5.add(jButton12);
-        jButton12.setBounds(410, 10, 310, 60);
-
         jButton13.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton13.setText("Exit");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -529,19 +610,23 @@ void showTotals(){
             }
         });
         jPanel5.add(jButton13);
-        jButton13.setBounds(540, 550, 310, 40);
+        jButton13.setBounds(540, 530, 310, 60);
 
         jButton14.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton14.setText("Show All");
+        jButton14.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton14ActionPerformed(evt);
+            }
+        });
         jPanel5.add(jButton14);
-        jButton14.setBounds(540, 510, 310, 40);
+        jButton14.setBounds(410, 10, 310, 50);
 
         jLabel4.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel4.setText("Date:");
         jPanel5.add(jLabel4);
-        jLabel4.setBounds(1110, 20, 220, 40);
+        jLabel4.setBounds(1150, 20, 200, 40);
 
         jPanel12.setBackground(new java.awt.Color(204, 204, 204));
         jPanel12.setLayout(null);
@@ -591,6 +676,13 @@ void showTotals(){
         jPanel5.add(jPanel12);
         jPanel12.setBounds(960, 500, 380, 100);
 
+        jLabel6.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel6.setText("Date:");
+        jPanel5.add(jLabel6);
+        jLabel6.setBounds(1090, 20, 60, 40);
+
         jTabbedPane1.addTab("Send to Bank", jPanel5);
 
         jPanel1.add(jTabbedPane1);
@@ -615,6 +707,7 @@ void showTotals(){
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        new dbConnection().showCashData("SELECT * FROM `cash data` ORDER BY YEAR(`cash_date`) desc", jTable1);
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jLabel2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel2MouseClicked
@@ -636,7 +729,7 @@ void showTotals(){
         // TODO add your handling code here:
         if (checkBlankData()==1) {
          addCash(); 
-         showCash();
+         showCash(jTable1);
         } 
     }//GEN-LAST:event_jButton5ActionPerformed
 
@@ -652,7 +745,88 @@ void showTotals(){
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
         // TODO add your handling code here:
+        sendToBank();
     }//GEN-LAST:event_jButton11ActionPerformed
+
+    private void jTextField6KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField6KeyReleased
+        // TODO add your handling code here:
+        try {
+            getSendToBank();
+        if(cDate.isEmpty() && bBank.isEmpty() && bAccount.isEmpty()){
+        }
+        else{
+                if(!jTextField6.getText().isEmpty()){
+          String percentage;
+          getSendToBank();
+          percentage=new dbConnection().singledata("SELECT SUM((`cash_amount`*'"+bPercentage+"')/100.0) \n" +
+"FROM `cash data` \n" +
+"WHERE `cash_date`= '"+cDate+"'AND `cash_status`=\"credit\"");
+          if(!percentage.isEmpty() || bPercentage.equals("0")){
+              jTextField5.setText(""+percentage);
+              jTextField5.setEditable(false);
+          }
+          else{
+              JOptionPane.showMessageDialog(this, "Can't find data!");  
+          }
+          }   
+        }
+        } catch (Exception e) {
+           JOptionPane.showMessageDialog(this, "Can't find data!");  
+        }
+        
+        
+    }//GEN-LAST:event_jTextField6KeyReleased
+
+    private void jDateChooser2PropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_jDateChooser2PropertyChange
+        // TODO add your handling code here:
+        SimpleDateFormat sm=new SimpleDateFormat("yyyy-MM-dd");
+        if(((JTextField)jDateChooser1.getDateEditor().getUiComponent()).getText().isEmpty()){
+            
+        }
+        else{
+            String sDate=sm.format(jDateChooser1.getDate());
+            String query="SELECT * FROM `cash data` where `cash_date`='"+sDate+"'";
+            new dbConnection().showCashData(query, jTable1);
+        }
+    }//GEN-LAST:event_jDateChooser2PropertyChange
+
+    private void jRadioButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton4ActionPerformed
+        // TODO add your handling code here:
+        String query="SELECT * FROM `cash data` where `cash_details`='"+"Purchase"+"'";
+            new dbConnection().showCashData(query, jTable1);
+    }//GEN-LAST:event_jRadioButton4ActionPerformed
+
+    private void jRadioButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton5ActionPerformed
+        // TODO add your handling code here:
+        String query="SELECT * FROM `cash data` where `cash_details`='"+"Sales"+"'";
+            new dbConnection().showCashData(query, jTable1);
+    }//GEN-LAST:event_jRadioButton5ActionPerformed
+
+    private void jRadioButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton3ActionPerformed
+        // TODO add your handling code here:
+        showCash(jTable1);
+    }//GEN-LAST:event_jRadioButton3ActionPerformed
+
+    private void jTextField6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField6MouseClicked
+        // TODO add your handling code here:
+        jTextField6.setText("");
+    }//GEN-LAST:event_jTextField6MouseClicked
+
+    private void jButton14ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton14ActionPerformed
+        // TODO add your handling code here:
+        showCash(jTable2);
+        showTotals(jLabel27, jLabel28, jLabel26);
+    }//GEN-LAST:event_jButton14ActionPerformed
+
+    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
+        // TODO add your handling code here:
+        showCash(jTable1);
+    }//GEN-LAST:event_jButton10ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        new dbConnection().showCashData("SELECT * FROM `cash data` ORDER BY MONTH(`cash_date`)", jTable1);
+    }//GEN-LAST:event_jButton8ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -685,6 +859,10 @@ void showTotals(){
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
                 new Cash_Data().setVisible(true);
+                JCalendar jc=new JCalendar();
+                 SimpleDateFormat sd=new SimpleDateFormat("yyyy-MM-dd");
+                 String m=sd.format(jc.getDate());
+                 jLabel4.setText(m);
             }
         });
     }
@@ -694,7 +872,6 @@ void showTotals(){
     private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
-    private javax.swing.JButton jButton12;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;
     private javax.swing.JButton jButton5;
@@ -727,8 +904,9 @@ void showTotals(){
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
-    private javax.swing.JLabel jLabel4;
+    private static javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
+    private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
