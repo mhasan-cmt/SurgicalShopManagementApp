@@ -247,8 +247,23 @@ import javax.swing.table.DefaultTableModel;
             dtm.setRowCount(0);
             for(int i=0;rs.next();){i++;
             dtm.addRow(new Object[]{i,rs.getString(2),rs.getString(3),rs.getString(4),rs.getString(5),rs.getString(6),rs.getString(7)});
-            }  } catch (SQLException ex) {
+            }  }
+        catch (SQLException ex) {
             Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
 }
+     void showPurchaseAccounts(String query, JTable table){
+      try {
+            dbconnect();
+            DefaultTableModel dtm=(DefaultTableModel)table.getModel();
+            rs=st.executeQuery(query);
+            dtm.setRowCount(0);
+            for(int i=0;rs.next();){i++;
+            //bill,date,items,total,paid,due
+            dtm.addRow(new Object[]{i,rs.getString(1),rs.getString(3),rs.getString(5),rs.getString(6),rs.getString(9),rs.getString(10)});
+            }  }
+        catch (SQLException ex) {
+            Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }   
+     }
  }

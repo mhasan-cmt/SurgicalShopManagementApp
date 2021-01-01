@@ -26,6 +26,7 @@ public class HomePage extends javax.swing.JFrame {
     public HomePage() {
         initComponents();
         initial();
+        jLabel29.setText("Welcome! "+Login.uName);
     }
     //Database connection
 Connection con = null;
@@ -104,6 +105,7 @@ Connection con = null;
         jPanel21 = new javax.swing.JPanel();
         jLabel28 = new javax.swing.JLabel();
         jLabel37 = new javax.swing.JLabel();
+        jLabel29 = new javax.swing.JLabel();
         PurchasePanel = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
@@ -234,6 +236,7 @@ Connection con = null;
         HomePanel.setLayout(null);
 
         jPanel30.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel30.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel30.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel30.setLayout(null);
 
@@ -268,9 +271,10 @@ Connection con = null;
         jLabel44.setBounds(0, 0, 200, 100);
 
         HomePanel.add(jPanel30);
-        jPanel30.setBounds(400, 250, 200, 150);
+        jPanel30.setBounds(410, 270, 200, 150);
 
         jPanel14.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel14.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel14.setLayout(null);
 
         jLabel13.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
@@ -301,9 +305,10 @@ Connection con = null;
         jLabel47.setBounds(3, 0, 290, 90);
 
         HomePanel.add(jPanel14);
-        jPanel14.setBounds(360, 410, 290, 150);
+        jPanel14.setBounds(370, 430, 290, 150);
 
         jPanel10.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel10.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel10.setLayout(null);
 
         jLabel49.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
@@ -334,9 +339,10 @@ Connection con = null;
         jLabel45.setBounds(0, 0, 270, 100);
 
         HomePanel.add(jPanel10);
-        jPanel10.setBounds(610, 90, 270, 150);
+        jPanel10.setBounds(620, 110, 270, 150);
 
         jPanel12.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel12.setLayout(null);
 
         jLabel18.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
@@ -370,9 +376,10 @@ Connection con = null;
         jLabel20.setBounds(0, 0, 200, 100);
 
         HomePanel.add(jPanel12);
-        jPanel12.setBounds(190, 250, 200, 150);
+        jPanel12.setBounds(200, 270, 200, 150);
 
         jPanel13.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel13.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel13.setLayout(null);
 
         jLabel15.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
@@ -403,9 +410,10 @@ Connection con = null;
         jLabel14.setBounds(0, 0, 200, 100);
 
         HomePanel.add(jPanel13);
-        jPanel13.setBounds(190, 90, 200, 150);
+        jPanel13.setBounds(200, 110, 200, 150);
 
         jPanel15.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel15.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel15.setLayout(null);
 
         jLabel17.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
@@ -436,7 +444,7 @@ Connection con = null;
         jLabel46.setBounds(0, 0, 270, 100);
 
         HomePanel.add(jPanel15);
-        jPanel15.setBounds(610, 250, 270, 150);
+        jPanel15.setBounds(620, 270, 270, 150);
 
         jPanel6.setLayout(null);
 
@@ -484,6 +492,7 @@ Connection con = null;
         jPanel6.setBounds(0, 0, 210, 40);
 
         jPanel21.setBackground(new java.awt.Color(204, 255, 204));
+        jPanel21.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel21.setLayout(null);
 
         jLabel28.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
@@ -514,7 +523,13 @@ Connection con = null;
         jLabel37.setBounds(0, 0, 200, 90);
 
         HomePanel.add(jPanel21);
-        jPanel21.setBounds(400, 90, 200, 150);
+        jPanel21.setBounds(410, 110, 200, 150);
+
+        jLabel29.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
+        jLabel29.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel29.setText("Welcome, ");
+        HomePanel.add(jLabel29);
+        jLabel29.setBounds(420, 0, 230, 40);
 
         Container.add(HomePanel, "card2");
 
@@ -1002,7 +1017,7 @@ Connection con = null;
         Container.add(AdminPanel, "card7");
 
         getContentPane().add(Container);
-        Container.setBounds(290, 170, 1070, 600);
+        Container.setBounds(250, 170, 1110, 600);
 
         jLayeredPane1.setLayout(new java.awt.CardLayout());
 
@@ -1223,7 +1238,7 @@ Connection con = null;
         jLayeredPane1.add(SideBarPane, "card8");
 
         getContentPane().add(jLayeredPane1);
-        jLayeredPane1.setBounds(0, 170, 290, 600);
+        jLayeredPane1.setBounds(0, 170, 250, 600);
 
         setSize(new java.awt.Dimension(1359, 768));
         setLocationRelativeTo(null);
@@ -1685,6 +1700,7 @@ Connection con = null;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel27;
     private javax.swing.JLabel jLabel28;
+    private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel36;
     private javax.swing.JLabel jLabel37;

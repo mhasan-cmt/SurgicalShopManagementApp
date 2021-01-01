@@ -20,16 +20,17 @@ public class PurchaseEntry extends javax.swing.JFrame {
     int Ggr;
     String purchaseId,company,bill,category,product,price,quantity,total,date,gr;
     String pBill,pGR,pDate,pCompany,pItems,pTotal,pPayment,pDiscount,pPaid,pDue;
-    int bill1;
+    static int bill1=0;
     void initial(){
         new dbConnection().getDataFromCombo(comCompany, "SELECT `supplier_company_name` FROM `suppliers`");
         String purchase_id=new dbConnection().singledata("SELECT COUNT(`purchase_id`) FROM `purchase entry`");
         int purchase_id_int=Integer.parseInt(purchase_id);
         purchase_id_int++;
         jLabel23.setText(""+purchase_id_int);
-        bill1=new dbConnection().autoIdorBillorGR("SELECT `bill_no` FROM `purchase entry`");
-        bill1++;
-        txtBill.setText(""+bill);
+        int bill_int=new dbConnection().autoIdorBillorGR("SELECT `bill_no` FROM `purchase entry`");
+        bill_int++;
+        bill1=bill_int;
+        txtBill.setText(""+bill_int);
         Ggr=new dbConnection().autoIdorBillorGR("SELECT `purchase_gr` FROM `purchase entry`");
         Ggr=Ggr+10;
         txtGR.setText(""+Ggr);
@@ -81,16 +82,10 @@ public class PurchaseEntry extends javax.swing.JFrame {
         jLabel23.setText(""+purchase_id_int);
     }
     void componentDisbled(){
-        comCompany.setEnabled(false);
-        comCateogory.setEnabled(false);
         txtBill.setEnabled(false);
-        txtDate.setEnabled(false);
     }
     void componentEnabled(){
-        comCompany.setEnabled(true);
-        comCateogory.setEnabled(true);
         txtBill.setEnabled(true);
-        txtDate.setEnabled(true);
     }
     void showPurchase(){
        new dbConnection().showPurchaseEntry("SELECT * FROM `purchase entry` WHERE `bill_no`='"+txtBill.getText()+"' ", jTable1);
@@ -137,7 +132,7 @@ public class PurchaseEntry extends javax.swing.JFrame {
         pCompany=jLabel14.getText();
         pDate=date;
         pGR=gr;
-        pItems=new dbConnection().singledata("SELECT COUNT(`product`) FROM `purchase entry` WHERE `bill_no`='"+pBill+"'");
+        pItems=new dbConnection().singledata("SELECT Sum(`quantity`) FROM `purchase entry` WHERE `bill_no`='"+pBill+"'");
         pTotal=new dbConnection().singledata("SELECT SUM(`total`) FROM `purchase entry` WHERE `bill_no`='"+pBill+"'");
         if(rbBank.isSelected()){
             pPayment="Bank";
@@ -809,7 +804,7 @@ public class PurchaseEntry extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        if(comCompany.isEnabled()){
+        if(txtBill.isEnabled()){
          this.dispose();   
         }
         else{
@@ -822,7 +817,7 @@ public class PurchaseEntry extends javax.swing.JFrame {
         // TODO add your handling code here:
         if(rbBank.isSelected()){
           Bank.setVisible(true);
-          String query="SELECT `bank_account_name` FROM `bank accounts`";
+          String query="SELECT `bank_account_name` FROM `bank accounts` group by `bank_account_name`";
           new dbConnection().getDataFromCombo(comBankName, query);
       }
     }//GEN-LAST:event_rbBankActionPerformed

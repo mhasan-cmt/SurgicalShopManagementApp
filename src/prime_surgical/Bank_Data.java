@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package prime_surgical;
+import java.awt.Color;
 import java.text.SimpleDateFormat;
 import javax.swing.*;
 /**
@@ -22,7 +23,7 @@ public class Bank_Data extends javax.swing.JFrame {
     }
     String bankName,bankAccount,date,details,amount,status;
     void initital(){
-        new dbConnection().getDataFromCombo(jComboBox2, "SELECT `bank_account_name` FROM `bank accounts`");
+        new dbConnection().getDataFromCombo(jComboBox2, "SELECT `bank_account_name` FROM `bank accounts` group by `bank_account_name`");
         showBank();
     }
     void addBankData(){
@@ -223,15 +224,24 @@ public class Bank_Data extends javax.swing.JFrame {
         jPanel4.add(jLabel5);
         jLabel5.setBounds(10, 10, 180, 50);
 
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton3.setText("ADD");
+        jButton3.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\plus.png")); // NOI18N
+        jButton3.setText("Add");
+        jButton3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton3MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton3MouseExited(evt);
+            }
+        });
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
         jPanel4.add(jButton3);
-        jButton3.setBounds(370, 130, 120, 40);
+        jButton3.setBounds(330, 120, 150, 50);
 
         jPanel1.add(jPanel4);
         jPanel4.setBounds(0, 140, 540, 180);
@@ -347,7 +357,7 @@ public class Bank_Data extends javax.swing.JFrame {
         jPanel6.add(jDateChooser1);
         jDateChooser1.setBounds(160, 270, 380, 50);
 
-        jButton5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton5.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         jButton5.setText("Submit");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -390,9 +400,9 @@ public class Bank_Data extends javax.swing.JFrame {
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setText("Date:");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(880, 80, 90, 40);
+        jLabel11.setBounds(810, 80, 90, 50);
         jPanel1.add(jDateChooser2);
-        jDateChooser2.setBounds(980, 80, 250, 40);
+        jDateChooser2.setBounds(910, 80, 250, 50);
 
         jButton2.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton2.setText("Show All");
@@ -433,14 +443,19 @@ public class Bank_Data extends javax.swing.JFrame {
 
         jButton4.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton4.setForeground(new java.awt.Color(0, 0, 0));
-        jButton4.setText("Month");
+        jButton4.setText("Show by Month");
         jButton4.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jButton4MouseClicked(evt);
             }
         });
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
         jPanel1.add(jButton4);
-        jButton4.setBounds(1240, 80, 120, 50);
+        jButton4.setBounds(1160, 80, 200, 50);
 
         jPanel9.setBackground(new java.awt.Color(204, 204, 204));
         jPanel9.setLayout(null);
@@ -484,8 +499,16 @@ public class Bank_Data extends javax.swing.JFrame {
         jPanel1.add(jPanel9);
         jPanel9.setBounds(1070, 640, 290, 130);
 
-        jButton1.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton1.setFont(new java.awt.Font("Olga", 0, 24)); // NOI18N
         jButton1.setText("Exit");
+        jButton1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jButton1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jButton1MouseExited(evt);
+            }
+        });
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
@@ -571,6 +594,31 @@ public class Bank_Data extends javax.swing.JFrame {
     private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        new dbConnection().showBankData(jTable1, this, "SELECT * FROM `bank data` ORDER BY MONTH(`bank_date`) Desc ");
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered
+        // TODO add your handling code here:
+        jButton1.setForeground(Color.red);
+    }//GEN-LAST:event_jButton1MouseEntered
+
+    private void jButton1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseExited
+        // TODO add your handling code here:
+        jButton1.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jButton1MouseExited
+
+    private void jButton3MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseEntered
+        // TODO add your handling code here:
+        jButton3.setForeground(Color.MAGENTA);
+    }//GEN-LAST:event_jButton3MouseEntered
+
+    private void jButton3MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton3MouseExited
+        // TODO add your handling code here:
+        jButton3.setForeground(Color.black);
+    }//GEN-LAST:event_jButton3MouseExited
 
     /**
      * @param args the command line arguments

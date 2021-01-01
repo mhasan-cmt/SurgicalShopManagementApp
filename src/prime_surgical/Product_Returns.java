@@ -103,7 +103,6 @@ public class Product_Returns extends javax.swing.JFrame {
         jLabel2.setBounds(30, 0, 280, 90);
 
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime Surgical\\src\\img\\error.png")); // NOI18N
         jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel1MouseClicked(evt);
@@ -126,6 +125,11 @@ public class Product_Returns extends javax.swing.JFrame {
 
         jComboBox2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Purchase", "Sales" }));
+        jComboBox2.addComponentListener(new java.awt.event.ComponentAdapter() {
+            public void componentMoved(java.awt.event.ComponentEvent evt) {
+                jComboBox2ComponentMoved(evt);
+            }
+        });
         jPanel4.add(jComboBox2);
         jComboBox2.setBounds(20, 10, 360, 50);
 
@@ -229,13 +233,13 @@ public class Product_Returns extends javax.swing.JFrame {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null},
-                {null, null, null, null, null, null, null}
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null},
+                {null, null, null, null, null, null}
             },
             new String [] {
-                "SL", "GR", "Cateogory", "Title 4", "Price", "Quantity", "Total"
+                "SL", "GR", "Cateogory", "Price", "Quantity", "Total"
             }
         ));
         jScrollPane1.setViewportView(jTable1);
@@ -336,6 +340,10 @@ public class Product_Returns extends javax.swing.JFrame {
         // TODO add your handling code here:
         dispose();
     }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jComboBox2ComponentMoved(java.awt.event.ComponentEvent evt) {//GEN-FIRST:event_jComboBox2ComponentMoved
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox2ComponentMoved
 
     /**
      * @param args the command line arguments

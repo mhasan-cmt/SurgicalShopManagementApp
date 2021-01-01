@@ -44,11 +44,11 @@ CREATE TABLE `bank data` (
   `bank_status` varchar(100) default NULL,
   `bank_amount` varchar(100) default NULL,
   PRIMARY KEY  (`sl_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=12 DEFAULT CHARSET=latin1;
 
 /*Data for the table `bank data` */
 
-insert  into `bank data`(`sl_no`,`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) values (1,'2020-12-23','Jamuna bank','1222123233','Purchase','Withdraw','3000'),(3,'2020-12-23','sonali bank','12221','Purchase','Withdraw','200'),(4,'2020-12-23','Jamuna Bank','1222123233','Capital','Deposit','50000'),(5,'2020-12-25','Jamuna bank','1222123233','staff salary','Withdraw','1200.0'),(6,'2020-12-26','Jamuna bank','1222123233','Withdraw','Deposit','10000');
+insert  into `bank data`(`sl_no`,`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) values (1,'2020-12-23','Jamuna bank','1222123233','Purchase','Withdraw','3000'),(3,'2020-12-23','sonali bank','12221','Purchase','Withdraw','200'),(4,'2020-12-23','Jamuna Bank','1222123233','Capital','Deposit','50000'),(5,'2020-12-25','Jamuna bank','1222123233','staff salary','Withdraw','1200.0'),(6,'2020-12-26','Jamuna bank','1222123233','Withdraw','Deposit','10000'),(7,'2020-12-26','Jamuna Bank','1222123233','From Cash','Deposit','104.0'),(8,'2020-12-31','Pubali Bank','989876767','From Cash','Deposit','30'),(9,'2020-12-31','Jamuna Bank','1222123233','From Cash','Deposit','60'),(10,'2020-12-31','Pubali Bank','989876767','From Cash','Deposit','270.3'),(11,'2021-12-01','Jamuna Bank','1222123233','Sales','Debit','1200');
 
 /*Table structure for table `cash data` */
 
@@ -61,11 +61,11 @@ CREATE TABLE `cash data` (
   `cash_status` varchar(100) default NULL,
   `cash_amount` varchar(100) default NULL,
   PRIMARY KEY  (`sl_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=23 DEFAULT CHARSET=latin1;
 
 /*Data for the table `cash data` */
 
-insert  into `cash data`(`sl_no`,`cash_date`,`cash_details`,`cash_status`,`cash_amount`) values (1,'2020-12-23','Purchase','Debit','3000'),(2,'2020-12-23','Purchase','Debit','2000'),(3,'2020-12-23','Purchase','Debit','1500'),(4,'2020-12-23','Purchase','Debit','0.00'),(5,'2020-12-24','Capital','Credit','50000'),(6,'2020-12-24','Current bill','debit','1578'),(7,'2020-12-25','SR comission','Debit','300.0'),(8,'2020-12-25','Purchase','Debit','200'),(9,'2020-12-26','Purchase','Debit','130');
+insert  into `cash data`(`sl_no`,`cash_date`,`cash_details`,`cash_status`,`cash_amount`) values (1,'2020-12-23','Purchase','Debit','3000'),(2,'2020-12-23','Purchase','Debit','2000'),(3,'2020-12-23','Purchase','Debit','1500'),(4,'2020-12-23','Purchase','Debit','0.00'),(5,'2020-12-24','Capital','Credit','50000'),(6,'2020-12-24','Current bill','debit','1578'),(7,'2020-12-25','SR comission','Debit','300.0'),(8,'2020-12-25','Purchase','Debit','200'),(9,'2020-12-26','Purchase','Debit','130'),(10,'2020-12-30','sales','credit','500'),(11,'2020-12-30','Personal','credit','100'),(12,'2021-01-01','test','credit','100'),(13,'2020-12-31','Bank Deposited','Debit','60'),(14,'2020-12-31','Bank Deposited','Debit','270.3'),(15,'2021-01-01','Purchase','Debit','440'),(16,'2021-01-01','Purchase Due','Debit','1244'),(17,'2021-01-01','Purchase Due','Debit','1000'),(18,'2021-01-01','Purchase Due','Debit','2000'),(19,'2021-01-01','Purchase Due','Debit','1000'),(20,'2021-01-01','Purchase Due','Debit','2000'),(21,'2021-01-01','Purchase','Debit','500'),(22,'2021-01-02','Purchase Due','Debit','230');
 
 /*Table structure for table `cost data` */
 
@@ -139,8 +139,8 @@ insert  into `product info`(`product_id`,`product_name`,`product_price`,`product
 DROP TABLE IF EXISTS `purchase accounts`;
 
 CREATE TABLE `purchase accounts` (
-  `bill_no` int(100) NOT NULL,
-  `gr` int(100) NOT NULL,
+  `bill_no` varchar(100) NOT NULL,
+  `gr` varchar(100) default '',
   `date` date default NULL,
   `company` varchar(200) default NULL,
   `items` int(100) default NULL,
@@ -148,13 +148,12 @@ CREATE TABLE `purchase accounts` (
   `payment` varchar(200) default NULL,
   `discount` varchar(100) default NULL,
   `paid` varchar(100) default NULL,
-  `due` varchar(100) default NULL,
-  PRIMARY KEY  (`gr`)
+  `due` varchar(100) default NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `purchase accounts` */
 
-insert  into `purchase accounts`(`bill_no`,`gr`,`date`,`company`,`items`,`total`,`payment`,`discount`,`paid`,`due`) values (17,172,'2020-12-22','Mamun Medical Supply',1,380,'Cash','0.00',NULL,'380'),(18,181,'2020-12-23','Mamun Medical Supply',1,400,'Cash','10','300','90.0'),(19,191,'2020-12-23','Mamun Medical Supply',1,400,'Cash','0.00','300','100.0'),(20,201,'2020-12-23','Mamun Medical Supply',1,100,'Cash','0.00','100','0.0'),(21,211,'2020-12-23','test',1,210,'Cash','10','200','0.0'),(22,221,'2020-12-23','Mamun Medical Supply',1,600,'Cash','100','400','100.0'),(23,231,'2020-12-23','Mamun Medical Supply',1,200,'Cash','0.00','200','0.0'),(24,242,'2020-12-23','Mamun Medical Supply',1,6100,'Cash','0.00','3000','3100.0'),(25,252,'2020-12-23','Mamun Medical Supply',1,4370,'Cash','300','2000','2070.0'),(26,262,'2020-12-23','test',1,2000,'Cash','0.00','1500','500.0'),(27,272,'2020-12-23','Select',1,4370,'Bank','0.00','0.00','4370.0'),(28,282,'2020-12-23','Mamun Medical Supply',1,5000,'Bank','0.00','3000','2000.0'),(29,292,'2020-12-23','Mamun Medical Supply',1,0,'Cash','0.00','0.00','0'),(30,302,'2020-12-23','Mamun Medical Supply',1,2400,'Bank','0','200','2200.0'),(31,312,'2020-12-25','test',1,360,'Cash','10','200','150.0'),(100,322,'2020-12-26','Mamun Medical Supply',1,140,'Cash','10','130','0.0');
+insert  into `purchase accounts`(`bill_no`,`gr`,`date`,`company`,`items`,`total`,`payment`,`discount`,`paid`,`due`) values ('1','13','2021-01-01','Mamun Medical Supply',7,760,'Cash','30','500','230.0'),('1Mamun','Due Paid','2021-01-02','Mamun Medical Supply',0,230,'Cash','0','230','0.0');
 
 /*Table structure for table `purchase entry` */
 
@@ -172,11 +171,11 @@ CREATE TABLE `purchase entry` (
   `quantity` varchar(200) default NULL,
   `total` varchar(1200) default NULL,
   PRIMARY KEY  (`purchase_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=34 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=36 DEFAULT CHARSET=latin1;
 
 /*Data for the table `purchase entry` */
 
-insert  into `purchase entry`(`purchase_id`,`bill_no`,`company_name`,`purchase_date`,`purchase_gr`,`category`,`product`,`price`,`quantity`,`total`) values (1,1,'Mamun Medical Supply','2020-12-21',10,'cough syrup','Alcolf','200','1','200.0'),(2,2,'Mamun Medical Supply','2020-12-22',20,'cough syrup','Alcolf','200','2','400.0'),(3,3,'Mamun Medical Supply','2020-12-22',30,'pain killers','napa extra','70','1','70.0'),(4,4,'Mamun Medical Supply','2020-12-22',40,'pain killers','napa','50','3','150.0'),(5,5,'Mamun Medical Supply','2020-12-22',50,'cough syrup','bashok','190','2','380.0'),(6,6,'Select','2020-12-22',60,'pain killers','napa extra','70','2','140.0'),(7,7,'Mamun Medical Supply','2020-12-22',70,'pain killers','napa extra','70','2','140.0'),(8,8,'Mamun Medical Supply','2020-12-22',80,'pain killers','napa extra','70','2','140.0'),(9,9,'Mamun Medical Supply','2020-12-22',90,'cough syrup','bashok','190','2','380.0'),(10,10,'Mamun Medical Supply','2020-12-22',100,'pain killers','napa extra','70','2','140.0'),(11,11,'Mamun Medical Supply','2020-12-22',110,'pain killers','napa','50','12','600.0'),(12,12,'Mamun Medical Supply','2020-12-22',120,'cough syrup','Alcolf','200','2','400.0'),(13,13,'Mamun Medical Supply','2020-12-22',130,'cough syrup','Alcolf','200','2','400.0'),(14,14,'Select','2020-12-22',140,'pain killers','napa extra','70','2','140.0'),(15,15,'Mamun Medical Supply','2020-12-22',150,'cough syrup','bashok','190','2','380.0'),(16,16,'Mamun Medical Supply','2020-12-22',160,'pain killers','napa extra','70','02','140.0'),(17,17,'Select','2020-12-22',170,'cough syrup','bashok','190','2','380.0'),(18,18,'Mamun Medical Supply','2020-12-23',180,'cough syrup','Alcolf','200','2','400.0'),(19,19,'Mamun Medical Supply','2020-12-23',190,'cough syrup','Alcolf','200','2','400.0'),(20,20,'Mamun Medical Supply','2020-12-23',200,'pain killers','napa','50','2','100.0'),(21,21,'test','2020-12-23',210,'pain killers','napa extra','70','3','210.0'),(22,22,'Mamun Medical Supply','2020-12-23',220,'cough syrup','Alcolf','200','03','600.0'),(23,23,'Mamun Medical Supply','2020-12-23',230,'first aid','quick bandage','10','20','200.0'),(24,23,'Mamun Medical Supply','2020-12-23',231,'Select','Select','','0','0.00'),(25,24,'Mamun Medical Supply','2020-12-23',241,'pain killers','napa','50','122','6100.0'),(26,25,'Mamun Medical Supply','2020-12-23',251,'cough syrup','bashok','190','23','4370.0'),(27,26,'test','2020-12-23',261,'cough syrup','Alcolf','200','10','2000.0'),(28,27,'Select','2020-12-23',271,'cough syrup','bashok','190','23','4370.0'),(29,28,'Mamun Medical Supply','2020-12-23',281,'pain killers','napa','50','100','5000.0'),(30,29,'Mamun Medical Supply','2020-12-23',291,'pain killers','napa','50','0','0.00'),(31,30,'Mamun Medical Supply','2020-12-23',301,'cough syrup','Alcolf','200','12','2400.0'),(32,31,'test','2020-12-25',311,'first aid','viodin','120','3','360.0'),(33,100,'Mamun Medical Supply','2020-12-26',321,'pain killers','napa extra','70','02','140.0');
+insert  into `purchase entry`(`purchase_id`,`bill_no`,`company_name`,`purchase_date`,`purchase_gr`,`category`,`product`,`price`,`quantity`,`total`) values (1,1,'Mamun Medical Supply','2021-01-01',10,'first aid','quick bandage','10','2','20.0'),(2,1,'Mamun Medical Supply','2021-01-01',11,'cough syrup','Alcolf','200','3','600.0'),(3,1,'Mamun Medical Supply','2021-01-01',12,'pain killers','napa extra','70','2','140.0');
 
 /*Table structure for table `sales entry` */
 
@@ -194,9 +193,11 @@ CREATE TABLE `sales entry` (
   `quantity` varchar(200) default NULL,
   `total` varchar(1200) default NULL,
   PRIMARY KEY  (`sales_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=latin1;
 
 /*Data for the table `sales entry` */
+
+insert  into `sales entry`(`sales_id`,`bill_no`,`customer_name`,`sales_date`,`sales_gr`,`category`,`product`,`price`,`quantity`,`total`) values (1,1,'md omuk','2021-01-01',100,'First Aid','quick bandage','10','2','20');
 
 /*Table structure for table `salesofficer` */
 
@@ -253,6 +254,89 @@ CREATE TABLE `users` (
 /*Data for the table `users` */
 
 insert  into `users`(`user_id`,`user_name`,`user_password`,`user_mobile`,`user_email`,`user_role`) values (1,'shafin','123','01875965178','mh@123','developer');
+
+/*Table structure for table `products` */
+
+DROP TABLE IF EXISTS `products`;
+
+/*!50001 DROP VIEW IF EXISTS `products` */;
+/*!50001 DROP TABLE IF EXISTS `products` */;
+
+/*!50001 CREATE TABLE  `products`(
+ `cateogory_id` int(100) ,
+ `cateogory` varchar(100) ,
+ `product_id` int(100) ,
+ `product_name` varchar(100) 
+)*/;
+
+/*Table structure for table `purchase_items` */
+
+DROP TABLE IF EXISTS `purchase_items`;
+
+/*!50001 DROP VIEW IF EXISTS `purchase_items` */;
+/*!50001 DROP TABLE IF EXISTS `purchase_items` */;
+
+/*!50001 CREATE TABLE  `purchase_items`(
+ `cateogory` varchar(100) ,
+ `product` varchar(200) ,
+ `total_purchase` double 
+)*/;
+
+/*Table structure for table `sales_items` */
+
+DROP TABLE IF EXISTS `sales_items`;
+
+/*!50001 DROP VIEW IF EXISTS `sales_items` */;
+/*!50001 DROP TABLE IF EXISTS `sales_items` */;
+
+/*!50001 CREATE TABLE  `sales_items`(
+ `cateogory` varchar(100) ,
+ `product` varchar(200) ,
+ `total_sales` double 
+)*/;
+
+/*Table structure for table `stock` */
+
+DROP TABLE IF EXISTS `stock`;
+
+/*!50001 DROP VIEW IF EXISTS `stock` */;
+/*!50001 DROP TABLE IF EXISTS `stock` */;
+
+/*!50001 CREATE TABLE  `stock`(
+ `cateogory` varchar(100) ,
+ `product` varchar(200) ,
+ `total_purchase` double ,
+ `total_sales` double ,
+ `total` double 
+)*/;
+
+/*View structure for view products */
+
+/*!50001 DROP TABLE IF EXISTS `products` */;
+/*!50001 DROP VIEW IF EXISTS `products` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `products` AS (select `product cateogory`.`cateogory_id` AS `cateogory_id`,`product cateogory`.`cateogory` AS `cateogory`,`product info`.`product_id` AS `product_id`,`product info`.`product_name` AS `product_name` from (`product cateogory` join `product info` on((`product cateogory`.`cateogory_id` = `product info`.`product_category_id`))) group by `product info`.`product_id`) */;
+
+/*View structure for view purchase_items */
+
+/*!50001 DROP TABLE IF EXISTS `purchase_items` */;
+/*!50001 DROP VIEW IF EXISTS `purchase_items` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `purchase_items` AS (select `products`.`cateogory` AS `cateogory`,`purchase entry`.`product` AS `product`,sum(`purchase entry`.`quantity`) AS `total_purchase` from (`purchase entry` join `products` on((`purchase entry`.`product` = `products`.`product_name`))) group by `purchase entry`.`product`) */;
+
+/*View structure for view sales_items */
+
+/*!50001 DROP TABLE IF EXISTS `sales_items` */;
+/*!50001 DROP VIEW IF EXISTS `sales_items` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `sales_items` AS (select `products`.`cateogory` AS `cateogory`,`sales entry`.`product` AS `product`,sum(`sales entry`.`quantity`) AS `total_sales` from (`sales entry` join `products` on((`sales entry`.`product` = `products`.`product_name`))) group by `sales entry`.`product`) */;
+
+/*View structure for view stock */
+
+/*!50001 DROP TABLE IF EXISTS `stock` */;
+/*!50001 DROP VIEW IF EXISTS `stock` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `stock` AS (select `purchase_items`.`cateogory` AS `cateogory`,`purchase_items`.`product` AS `product`,`purchase_items`.`total_purchase` AS `total_purchase`,`sales_items`.`total_sales` AS `total_sales`,(`purchase_items`.`total_purchase` - `sales_items`.`total_sales`) AS `total` from ((`products` join `purchase_items`) left join `sales_items` on((`purchase_items`.`product` = `sales_items`.`product`))) group by `purchase_items`.`product` order by `purchase_items`.`product`) */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

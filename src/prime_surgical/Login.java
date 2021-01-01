@@ -36,6 +36,7 @@ public class Login extends javax.swing.JFrame {
     String url = "jdbc:mysql://localhost:3306/primesurgical";
     String un = "root";
     String pw = "";
+    static String uName="Dummy";
      void dbConnect() {
         try {
             con = DriverManager.getConnection(url, un, pw);
@@ -56,6 +57,7 @@ public class Login extends javax.swing.JFrame {
             String query= "SELECT * FROM `users` WHERE `user_name`='"+user+"' AND  `user_password`='"+pass+"'";
             rs=st.executeQuery(query);
             if(rs.next()){
+                uName=user;
                 new HomePage().setVisible(true);
                 this.dispose();
             }
