@@ -21,7 +21,8 @@ public class SplashScreen extends javax.swing.JFrame {
     public SplashScreen() {
         initComponents();
     }
-
+void test(){
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -40,7 +41,8 @@ public class SplashScreen extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         bar = new javax.swing.JProgressBar();
         jLabel6 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
+        progress = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -68,7 +70,7 @@ public class SplashScreen extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(204, 0, 51));
         jLabel3.setText("Email: primesugicall95@gmail.com");
         headerPane.add(jLabel3);
-        jLabel3.setBounds(510, 140, 320, 26);
+        jLabel3.setBounds(510, 140, 320, 24);
 
         jLabel4.setFont(new java.awt.Font("Kalpurush", 0, 24)); // NOI18N
         jLabel4.setText("যমুনা শপিং সেন্টার(উত্তরা ব্যাংকের নিচ তলা, ফেনী সরকারি বালিকা বিদ্যালয়ের উত্তর পার্শে), ট্রাংক রোড, ফেনী।");
@@ -95,13 +97,20 @@ public class SplashScreen extends javax.swing.JFrame {
         jPanel1.add(jLabel6);
         jLabel6.setBounds(660, 250, 310, 20);
 
-        jLabel8.setBackground(new java.awt.Color(0, 102, 102));
-        jLabel8.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Starting Programm......");
-        jPanel1.add(jLabel8);
-        jLabel8.setBounds(200, 80, 190, 30);
+        progress.setBackground(new java.awt.Color(0, 102, 102));
+        progress.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        progress.setForeground(new java.awt.Color(255, 255, 255));
+        progress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(progress);
+        progress.setBounds(390, 80, 80, 30);
+
+        jLabel9.setBackground(new java.awt.Color(0, 102, 102));
+        jLabel9.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel9.setText("Starting Programm......");
+        jPanel1.add(jLabel9);
+        jLabel9.setBounds(200, 80, 190, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -164,8 +173,9 @@ public class SplashScreen extends javax.swing.JFrame {
         });
         for (int i = 5; i <= 100; i++) {
             try {
-                Thread.sleep(20);
+                Thread.sleep(50);
                 bar.setValue(i);
+                progress.setText(""+i+"%");
                 bar.setForeground(Color.red);
                 bar.setBackground(Color.red);
                 if(i==100){
@@ -191,7 +201,8 @@ public class SplashScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel8;
+    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
+    private static javax.swing.JLabel progress;
     // End of variables declaration//GEN-END:variables
 }

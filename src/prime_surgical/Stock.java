@@ -4,13 +4,14 @@
  * and open the template in the editor.
  */
 package prime_surgical;
+import java.awt.Color;
 import javax.swing.*;
 
 /**
  *
  * @author Mahmudul Hasan
  */
-public class Stock extends javax.swing.JFrame {
+public class Stock extends javax.swing.JFrame{
 
     /**
      * Creates new form Stock
@@ -18,8 +19,13 @@ public class Stock extends javax.swing.JFrame {
     public Stock() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
+        showStock("SELECT * FROM `stock`", jTable1);
     }
-
+    void showStock(String query, JTable table){
+        String totalProducts=new dbConnection().singledata("SELECT COUNT(`product`) FROM `stock`");
+        lbTotalProducts.setText("Total Products: "+totalProducts);
+         new dbConnection().showStock(query, table);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -41,7 +47,7 @@ public class Stock extends javax.swing.JFrame {
         jLabel3 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
+        lbTotalProducts = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -96,16 +102,27 @@ public class Stock extends javax.swing.JFrame {
                 "SL", "Cateogory", "Product", "Purchase Quantity", "Sales Quantity", "Total"
             }
         ));
+        jTable1.setRowHeight(30);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(10, 210, 1350, 550);
 
         txtQuantitySearch.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
+        txtQuantitySearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtQuantitySearchKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtQuantitySearch);
-        txtQuantitySearch.setBounds(500, 160, 340, 50);
+        txtQuantitySearch.setBounds(500, 160, 210, 50);
 
         txtProductSearch.setFont(new java.awt.Font("Serif", 0, 24)); // NOI18N
+        txtProductSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtProductSearchKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtProductSearch);
         txtProductSearch.setBounds(10, 160, 490, 50);
 
@@ -122,6 +139,17 @@ public class Stock extends javax.swing.JFrame {
         jLabel1.setForeground(new java.awt.Color(51, 51, 51));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Show All");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel1MouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
         jPanel4.setLayout(jPanel4Layout);
@@ -143,11 +171,11 @@ public class Stock extends javax.swing.JFrame {
         jPanel1.add(jPanel4);
         jPanel4.setBounds(1140, 140, 220, 60);
 
-        jLabel4.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel4.setText("Total Products:");
-        jPanel1.add(jLabel4);
-        jLabel4.setBounds(850, 160, 280, 50);
+        lbTotalProducts.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
+        lbTotalProducts.setForeground(new java.awt.Color(255, 255, 255));
+        lbTotalProducts.setText("Total Products:");
+        jPanel1.add(lbTotalProducts);
+        lbTotalProducts.setBounds(710, 160, 420, 50);
 
         jLabel6.setFont(new java.awt.Font("Serif", 1, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -174,6 +202,40 @@ public class Stock extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jLabel5MouseClicked
+
+    private void txtProductSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProductSearchKeyReleased
+        // TODO add your handling code here:
+            String search=txtProductSearch.getText();
+            new dbConnection().searchData(jTable1, "SELECT * FROM `stock` WHERE `product` LIKE '%"+search+"%'");
+    }//GEN-LAST:event_txtProductSearchKeyReleased
+
+    private void txtQuantitySearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantitySearchKeyReleased
+        // TODO add your handling code here:
+        if(txtQuantitySearch.getText().isEmpty()){
+            showStock("SELECT * FROM `stock`", jTable1);
+        }else{
+        String search=txtQuantitySearch.getText();
+        int search_int=Integer.parseInt(search);
+        new dbConnection().searchData(jTable1, "SELECT * FROM `stock` WHERE `total_purchase` <='"+search_int+"'"); 
+         
+        }
+            
+    }//GEN-LAST:event_txtQuantitySearchKeyReleased
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        showStock("SELECT * FROM `stock`", jTable1);
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
+        // TODO add your handling code here:
+        jLabel1.setForeground(new Color(237, 28, 49));
+    }//GEN-LAST:event_jLabel1MouseEntered
+
+    private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
+        // TODO add your handling code here:
+        jLabel1.setForeground(Color.BLACK);
+    }//GEN-LAST:event_jLabel1MouseExited
 
     /**
      * @param args the command line arguments
@@ -214,7 +276,6 @@ public class Stock extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JPanel jPanel1;
@@ -223,6 +284,7 @@ public class Stock extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel lbTotalProducts;
     private javax.swing.JTextField txtProductSearch;
     private javax.swing.JTextField txtQuantitySearch;
     // End of variables declaration//GEN-END:variables

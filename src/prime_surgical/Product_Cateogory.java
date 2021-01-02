@@ -321,7 +321,6 @@ else{
             // TODO add your handling code here:
             dbConnect();
             String search=txtSearch.getText();
-            if(!search.isEmpty()){
             DefaultTableModel dtm=(DefaultTableModel)jTable1.getModel();
             String q="SELECT * FROM `product cateogory` WHERE `cateogory` LIKE '%"+search+"%'";
             rs=st.executeQuery(q);
@@ -329,7 +328,7 @@ else{
                 for (int i = 0; rs.next(); ) {i++;
                 dtm.addRow(new Object[]{i,rs.getString(2)});
                 }
-            }
+            
         } catch (SQLException ex) {
             Logger.getLogger(Product_Cateogory.class.getName()).log(Level.SEVERE, null, ex);
         }

@@ -31,7 +31,7 @@ public class SalesEntry extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        txtCustomer = new javax.swing.JTextField();
+        txtCustomerName = new javax.swing.JTextField();
         txtBill = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -60,7 +60,7 @@ public class SalesEntry extends javax.swing.JFrame {
         txtTotal1 = new javax.swing.JTextField();
         txtTotal2 = new javax.swing.JTextField();
         comCateogory = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        comCustomerType = new javax.swing.JComboBox<>();
         txtDate = new com.toedter.calendar.JDateChooser();
         txtSR1 = new javax.swing.JTextField();
         txtSR = new javax.swing.JTextField();
@@ -101,13 +101,13 @@ public class SalesEntry extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setLayout(null);
 
-        txtCustomer.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtCustomer);
-        txtCustomer.setBounds(160, 180, 290, 40);
+        txtCustomerName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jPanel1.add(txtCustomerName);
+        txtCustomerName.setBounds(160, 180, 340, 40);
 
         txtBill.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel1.add(txtBill);
-        txtBill.setBounds(160, 220, 290, 40);
+        txtBill.setBounds(160, 220, 340, 40);
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -187,15 +187,15 @@ public class SalesEntry extends javax.swing.JFrame {
 
         txtTotal.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel1.add(txtTotal);
-        txtTotal.setBounds(160, 500, 290, 40);
+        txtTotal.setBounds(160, 500, 340, 40);
 
         txtPrice.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel1.add(txtPrice);
-        txtPrice.setBounds(300, 420, 150, 40);
+        txtPrice.setBounds(320, 420, 180, 40);
 
         txtGR.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel1.add(txtGR);
-        txtGR.setBounds(160, 380, 290, 40);
+        txtGR.setBounds(160, 380, 340, 40);
 
         comPrice.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         comPrice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
@@ -205,7 +205,7 @@ public class SalesEntry extends javax.swing.JFrame {
             }
         });
         jPanel1.add(comPrice);
-        comPrice.setBounds(160, 420, 140, 40);
+        comPrice.setBounds(160, 420, 160, 40);
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -243,7 +243,7 @@ public class SalesEntry extends javax.swing.JFrame {
 
         txtProduct.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel1.add(txtProduct);
-        txtProduct.setBounds(160, 340, 290, 40);
+        txtProduct.setBounds(160, 340, 340, 40);
 
         jLabel24.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
@@ -259,15 +259,15 @@ public class SalesEntry extends javax.swing.JFrame {
             }
         });
         jPanel1.add(comSR);
-        comSR.setBounds(160, 540, 290, 40);
+        comSR.setBounds(160, 540, 340, 40);
 
         txtTotal1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel1.add(txtTotal1);
-        txtTotal1.setBounds(160, 460, 140, 40);
+        txtTotal1.setBounds(160, 460, 110, 40);
 
         txtTotal2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel1.add(txtTotal2);
-        txtTotal2.setBounds(300, 460, 150, 40);
+        txtTotal2.setBounds(270, 460, 230, 40);
 
         comCateogory.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         comCateogory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
@@ -277,23 +277,23 @@ public class SalesEntry extends javax.swing.JFrame {
             }
         });
         jPanel1.add(comCateogory);
-        comCateogory.setBounds(160, 300, 290, 40);
+        comCateogory.setBounds(160, 300, 340, 40);
 
-        jComboBox4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Permanent", "Customer" }));
-        jComboBox4.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+        comCustomerType.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        comCustomerType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Permanent", "Customer" }));
+        comCustomerType.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                jComboBox4PopupMenuWillBecomeInvisible(evt);
+                comCustomerTypePopupMenuWillBecomeInvisible(evt);
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
-        jPanel1.add(jComboBox4);
-        jComboBox4.setBounds(160, 140, 290, 40);
+        jPanel1.add(comCustomerType);
+        comCustomerType.setBounds(160, 140, 340, 40);
         jPanel1.add(txtDate);
-        txtDate.setBounds(160, 260, 290, 40);
+        txtDate.setBounds(160, 260, 340, 40);
 
         txtSR1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel1.add(txtSR1);
@@ -306,7 +306,7 @@ public class SalesEntry extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtSR);
-        txtSR.setBounds(240, 580, 210, 40);
+        txtSR.setBounds(240, 580, 260, 40);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 510, 770);
@@ -540,26 +540,26 @@ public class SalesEntry extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comCateogoryActionPerformed
 
-    private void jComboBox4PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox4PopupMenuWillBecomeInvisible
+    private void comCustomerTypePopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comCustomerTypePopupMenuWillBecomeInvisible
         // TODO add your handling code here:
         //comCustomer
         String query="SELECT `customer name` FROM `customers`";
-        if(!jComboBox4.getSelectedItem().toString().contains("Select")){
-          if(jComboBox4.getSelectedItem().toString().contains("Permanent")){
+        if(!comCustomerType.getSelectedItem().toString().contains("Select")){
+          if(comCustomerType.getSelectedItem().toString().contains("Permanent")){
             comCustomer.setVisible(true);
-            txtCustomer.setVisible(false);
+            txtCustomerName.setVisible(false);
             new dbConnection().getDataFromCombo(comCustomer, query);
         }else{
               comCustomer.setVisible(false);
-              txtCustomer.setVisible(true);
+              txtCustomerName.setVisible(true);
           }
         }
         else{
             comCustomer.setVisible(false);
-              txtCustomer.setVisible(true);
+              txtCustomerName.setVisible(true);
         }
         
-    }//GEN-LAST:event_jComboBox4PopupMenuWillBecomeInvisible
+    }//GEN-LAST:event_comCustomerTypePopupMenuWillBecomeInvisible
 
     private void comBankNamePopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comBankNamePopupMenuWillBecomeInvisible
         // TODO add your handling code here:
@@ -617,12 +617,12 @@ public class SalesEntry extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comBankName;
     private javax.swing.JComboBox<String> comCateogory;
     private javax.swing.JComboBox<String> comCustomer;
+    private javax.swing.JComboBox<String> comCustomerType;
     private javax.swing.JComboBox<String> comPrice;
     private javax.swing.JComboBox<String> comSR;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox<String> jComboBox1;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -659,7 +659,7 @@ public class SalesEntry extends javax.swing.JFrame {
     private javax.swing.JRadioButton rbCash;
     private javax.swing.JComboBox<String> txtAccount;
     private javax.swing.JTextField txtBill;
-    private javax.swing.JTextField txtCustomer;
+    private javax.swing.JTextField txtCustomerName;
     private com.toedter.calendar.JDateChooser txtDate;
     private javax.swing.JTextField txtDiscount;
     private javax.swing.JTextField txtDue;
