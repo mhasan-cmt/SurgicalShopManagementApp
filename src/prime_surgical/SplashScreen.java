@@ -89,7 +89,7 @@ void test(){
         bar.setBackground(new java.awt.Color(255, 0, 51));
         bar.setForeground(new java.awt.Color(0, 0, 0));
         jPanel1.add(bar);
-        bar.setBounds(200, 110, 600, 40);
+        bar.setBounds(220, 150, 600, 50);
 
         jLabel6.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
@@ -102,7 +102,7 @@ void test(){
         progress.setForeground(new java.awt.Color(255, 255, 255));
         progress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jPanel1.add(progress);
-        progress.setBounds(390, 80, 80, 30);
+        progress.setBounds(410, 110, 70, 40);
 
         jLabel9.setBackground(new java.awt.Color(0, 102, 102));
         jLabel9.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -110,7 +110,7 @@ void test(){
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Starting Programm......");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(200, 80, 190, 30);
+        jLabel9.setBounds(220, 110, 190, 40);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -173,7 +173,7 @@ void test(){
         });
         for (int i = 5; i <= 100; i++) {
             try {
-                Thread.sleep(50);
+                Thread.sleep(100);
                 bar.setValue(i);
                 progress.setText(""+i+"%");
                 bar.setForeground(Color.red);
@@ -201,7 +201,7 @@ void test(){
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel9;
+    private static javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private static javax.swing.JLabel progress;
     // End of variables declaration//GEN-END:variables

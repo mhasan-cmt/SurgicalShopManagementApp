@@ -4,7 +4,13 @@
  * and open the template in the editor.
  */
 package prime_surgical;
+
+import com.toedter.calendar.JCalendar;
+import java.awt.Color;
+import java.text.SimpleDateFormat;
 import javax.swing.*;
+import static prime_surgical.PurchaseEntry.bill1;
+
 /**
  *
  * @author Mahmudul Hasan
@@ -17,7 +23,211 @@ public class SalesEntry extends javax.swing.JFrame {
     public SalesEntry() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        initial();
+    }
+    SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
+    int salesId = 0, bill = 0, gr = 0;
+    String gSalesId, gCustomerName, gBill, gDate, gCategory, 
+    gProductName, gProductPrice, gQuantity,
+    gTotal, gSrCommission, gSrName, Ggr, gPer,gItems,gPayment,gDiscount,gPaid,gDue;
+//initials
+
+    void initial() {
+        new dbConnection().getDataFromCombo(comCateogory, "SELECT `cateogory` FROM `product cateogory` order by `cateogory_id`");
         Bank.setVisible(false);
+        jLabel5.setText("" + autoSalesId());
+        txtBill.setText("" + autoBill());
+        txtBill.setEditable(false);
+        txtGR.setText("" + autoGR());
+        txtGR.setEditable(false);
+        txtFinalPrice.setEditable(false);
+        txtSRCommission.setEditable(false);
+        new dbConnection().getDataFromCombo(comSR, "SELECT `sales_name` FROM `salesofficer` ORDER BY `id`");
+        JCalendar jc = new JCalendar();
+        SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
+        String m = sd.format(jc.getDate());
+        lbDate.setText(m);
+    }
+
+    int autoBill() {
+        bill = 0;
+        bill = new dbConnection().autoIdorBillorGR("SELECT `bill_no` FROM `sales entry` ");
+        bill++;
+        return bill;
+    }
+
+    int autoGR() {
+        gr = 0;
+        gr = new dbConnection().autoIdorBillorGR("SELECT `sales_gr` FROM `sales entry` ");
+        gr = gr + 10;
+        return gr;
+    }
+
+    int autoSalesId() {
+        salesId = 0;
+        salesId = new dbConnection().autoIdorBillorGR("SELECT `sales_id` FROM `sales entry`");
+        salesId++;
+        return salesId;
+    }
+
+    void getData() {
+        gSalesId = jLabel5.getText();
+        if (comCustomerType.getSelectedIndex() == 1) {
+            gCustomerName = comCustomer.getSelectedItem().toString();
+        } else if (comCustomerType.getSelectedIndex() == 2) {
+            gCustomerName = txtCustomerName.getText();
+        }
+        gBill = txtBill.getText();
+        gDate = sm.format(txtDate.getDate());
+        gCategory = comCateogory.getSelectedItem().toString();
+        gProductName = comProduct.getSelectedItem().toString();
+        gQuantity = txtQuantity.getText();
+        Ggr = txtGR.getText();
+        gProductPrice = txtProductPrice.getText();
+        gTotal = txtFinalPrice.getText();
+        gSrName = comSR.getSelectedItem().toString();
+        gSrCommission = txtSRCommission.getText();
+    }
+
+    void addSales() {
+        getData();
+        new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "','" + gBill + "','" + gCustomerName + "','" + gDate + "','" + Ggr + "','" + gCategory + "','" + gProductName + "','" + gProductPrice + "','" + gQuantity + "','" + gTotal + "')", this);
+        gr = autoGR();
+        salesId = autoSalesId();
+        txtGR.setText("" + gr);
+        jLabel5.setText("" + salesId);
+        txtBill.setEnabled(false);
+        showSalesEntry();
+        comCateogory.setSelectedIndex(0);
+        comProduct.setSelectedIndex(0);
+        txtPrice.setText("0.00");
+        txtVAT.setText("0.0");
+        txtQuantity.setText("0");
+        txtFinalPrice.setText("0.00");
+    }
+
+    int blankDataCheck() {
+        int check = 0;
+        if (comCustomerType.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Select Customer Type!");
+            comCustomerType.requestFocus();
+        } else if (txtCustomerName.getText().isEmpty() && comCustomer.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Enter Customer Name!");
+            txtCustomerName.requestFocus();
+        } else if (txtBill.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter bill number!");
+            txtBill.requestFocus();
+        } else if (((JTextField) txtDate.getDateEditor().getUiComponent()).getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter Date!");
+            txtDate.requestFocus();
+        } else if (comProduct.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Enter Product!");
+            comProduct.requestFocus();
+        } else if (txtQuantity.getText().isEmpty() || txtQuantity.getText().equals("0")) {
+            JOptionPane.showMessageDialog(this, "Enter Quantity!");
+        } else if (txtFinalPrice.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Total is missing!");
+        } else {
+            check = 1;
+        }
+        return check;
+    }
+
+    void showSalesEntry() {
+        getData();
+        new dbConnection().showPurchaseEntry("SELECT * FROM `sales entry` WHERE `bill_no`='" + txtBill.getText() + "'", jTable1);
+        double subTotal=Double.parseDouble(new dbConnection().singledata("SELECT SUM(`total`) FROM `sales entry` WHERE `bill_no`='"+gBill+"'"));
+        txtSubTotal.setText(""+subTotal);
+        txtDue.setText(""+subTotal);
+        txtSubTotal.setEditable(false);
+        txtDue.setEditable(false);
+    }
+
+    void getSalesCommision() {
+        gSrName = comSR.getSelectedItem().toString();
+        gSrCommission = txtSRCommission.getText();
+        gPer = txtSRPer.getText();
+
+    }
+
+    int checkSalesBlank() {
+        int check = 0;
+        if (comSR.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Enter Sales officer name!");
+            comSR.requestFocus();
+        } else if (txtSRPer.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter percentege!");
+        } else if (txtSRCommission.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter Commision amount!");
+        } else {
+            check = 1;
+        }
+        return check;
+    }
+
+    void salesCommision() {
+        getSalesCommision();
+        getData();
+        String srId = new dbConnection().singledata("SELECT `id` FROM `salesofficer` WHERE `sales_name`='" + gSrName + "'");
+        new dbConnection().addData("INSERT INTO `sales officer commision`(`s-officer-id`,`c-date`,`per`,`amount`) VALUES('" + srId + "','" + gDate + "','" + gPer + "','" + gSrCommission + "')", this);
+        new dbConnection().addBankOrCash("INSERT INTO `cost data`(`cost_date`,`cost_type`,`cost_bill`,`cost_details`,`cost_paid_by`,`cost_amount`) VALUES('" + gDate + "',\"Sales cost\",'" + txtBill.getText() + "',\"SR Commision\",\"N/A\",'" + gSrCommission + "')");
+    }
+    void salesAccounts() {
+        if (rbCash.isSelected() || rbBank.isSelected()) {
+            if (rbBank.isSelected()) {
+                getDataForSalesAccounts();
+                String bankName, bankAccount;
+                bankName = comBankName.getSelectedItem().toString();
+                bankAccount = txtAccount.getSelectedItem().toString();
+                new dbConnection().addData("INSERT INTO `sales accounts` VALUES('" + gBill + "','" + Ggr + "','" + gDate + "','" + gCustomerName + "','" + gItems + "','" + gTotal + "','" + gPayment + "','" + gDiscount + "','" + gPaid + "','" + gDue + "')", this);
+                new dbConnection().addBankOrCash("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('" + gDate + "','" + bankName + "','" + bankAccount + "','" + "Sales" + "','" + "Deposit" + "','" + gPaid + "')");
+                bill=autoBill();
+                txtBill.setText(""+bill);
+                gr=autoGR();
+                txtGR.setText(""+gr);
+                comCustomer.setSelectedIndex(0);
+                txtCustomerName.setText("");
+                comCustomerType.setSelectedIndex(0);
+                txtBill.setEnabled(true);
+            } else if (rbCash.isSelected()) {
+                getDataForSalesAccounts();
+                new dbConnection().addData("INSERT INTO `purchase accounts` VALUES('" + gBill + "','" + Ggr + "','" + gDate + "','" + gCustomerName + "','" + gItems + "','" + gTotal + "','" + gPayment + "','" + gDiscount + "','" + gPaid + "','" + gDue + "')", this);
+                new dbConnection().addBankOrCash("INSERT INTO `cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('" + gDate + "','" + "Sales" + "','" + "Credit" + "','" + gPaid + "')");
+                bill=autoBill();
+                txtBill.setText(""+bill);
+                gr=autoGR();
+                txtGR.setText(""+gr);
+                txtBill.setEnabled(true);
+                comCustomer.setSelectedIndex(0);
+                txtCustomerName.setText("");
+                comCustomerType.setSelectedIndex(0);
+            }
+        } else {
+            JOptionPane.showMessageDialog(this, "Select Payment method!");
+        }
+
+    }
+    void getDataForSalesAccounts() {
+        gBill = lbBill.getText();
+        gCustomerName = lbShop.getText();
+        gDate = lbDate.getText();
+        Ggr = txtGR.getText();
+        gItems = new dbConnection().singledata("SELECT Sum(`quantity`) FROM `sales entry` WHERE `bill_no`='" + gBill + "'");
+        gTotal = new dbConnection().singledata("SELECT SUM(`total`) FROM `sales entry` WHERE `bill_no`='" + gBill + "'");
+        if (rbBank.isSelected()) {
+            gPayment = "Bank";
+        } else if (rbCash.isSelected()) {
+            gPayment = "Cash";
+        }
+        if (!txtDiscount.getText().isEmpty()) {
+            gDiscount = txtDiscount.getText();
+        }
+        if (!txtPaid.getText().isEmpty()) {
+            gPaid = txtPaid.getText();
+        }
+        if (!txtDue.getText().isEmpty()) {
+            gDue = txtDue.getText();
+        }
     }
 
     /**
@@ -44,41 +254,46 @@ public class SalesEntry extends javax.swing.JFrame {
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        txtTotal = new javax.swing.JTextField();
         txtPrice = new javax.swing.JTextField();
         txtGR = new javax.swing.JTextField();
-        comPrice = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         comCustomer = new javax.swing.JComboBox<>();
         jLabel23 = new javax.swing.JLabel();
-        txtProduct = new javax.swing.JTextField();
         jLabel24 = new javax.swing.JLabel();
         comSR = new javax.swing.JComboBox<>();
-        txtTotal1 = new javax.swing.JTextField();
-        txtTotal2 = new javax.swing.JTextField();
+        txtQuantity = new javax.swing.JTextField();
+        txtFinalPrice = new javax.swing.JTextField();
         comCateogory = new javax.swing.JComboBox<>();
         comCustomerType = new javax.swing.JComboBox<>();
         txtDate = new com.toedter.calendar.JDateChooser();
-        txtSR1 = new javax.swing.JTextField();
-        txtSR = new javax.swing.JTextField();
+        txtSRPer = new javax.swing.JTextField();
+        txtSRCommission = new javax.swing.JTextField();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel27 = new javax.swing.JLabel();
+        txtVAT = new javax.swing.JTextField();
+        comProduct = new javax.swing.JComboBox<>();
+        jLabel28 = new javax.swing.JLabel();
+        txtProductPrice = new javax.swing.JTextField();
+        jPanel3 = new javax.swing.JPanel();
+        jLabel1 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        lbBill = new javax.swing.JLabel();
+        lbDate = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        lbShop = new javax.swing.JLabel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel15 = new javax.swing.JLabel();
-        txtId1 = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel25 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         txtSubTotal = new javax.swing.JTextField();
-        jLabel17 = new javax.swing.JLabel();
+        jlabel1 = new javax.swing.JLabel();
         jLabel18 = new javax.swing.JLabel();
         txtDiscount = new javax.swing.JTextField();
         txtPaid = new javax.swing.JTextField();
@@ -102,10 +317,41 @@ public class SalesEntry extends javax.swing.JFrame {
         jPanel1.setLayout(null);
 
         txtCustomerName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtCustomerName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCustomerNameActionPerformed(evt);
+            }
+        });
+        txtCustomerName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCustomerNameKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCustomerNameKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtCustomerName);
         txtCustomerName.setBounds(160, 180, 340, 40);
 
         txtBill.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtBill.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtBillMouseClicked(evt);
+            }
+        });
+        txtBill.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
+            public void propertyChange(java.beans.PropertyChangeEvent evt) {
+                txtBillPropertyChange(evt);
+            }
+        });
+        txtBill.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtBillKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBillKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtBill);
         txtBill.setBounds(160, 220, 340, 40);
 
@@ -140,6 +386,11 @@ public class SalesEntry extends javax.swing.JFrame {
 
         btnPurchase.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnPurchase.setText("Sale");
+        btnPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPurchaseActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnPurchase);
         btnPurchase.setBounds(110, 650, 140, 40);
 
@@ -160,9 +411,9 @@ public class SalesEntry extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Customer Type:");
+        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jPanel1.add(jLabel5);
-        jLabel5.setBounds(20, 140, 140, 40);
+        jLabel5.setBounds(100, 100, 180, 40);
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -185,74 +436,68 @@ public class SalesEntry extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 0, 510, 100);
 
-        txtTotal.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtTotal);
-        txtTotal.setBounds(160, 500, 340, 40);
-
         txtPrice.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtPrice.setText("0.00");
         jPanel1.add(txtPrice);
-        txtPrice.setBounds(320, 420, 180, 40);
+        txtPrice.setBounds(160, 380, 220, 40);
 
         txtGR.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtGR.setText("0");
         jPanel1.add(txtGR);
-        txtGR.setBounds(160, 380, 340, 40);
-
-        comPrice.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        comPrice.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
-        comPrice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comPriceActionPerformed(evt);
-            }
-        });
-        jPanel1.add(comPrice);
-        comPrice.setBounds(160, 420, 160, 40);
+        txtGR.setBounds(160, 500, 340, 40);
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("GR:");
+        jLabel10.setText("GR");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(20, 380, 140, 40);
+        jLabel10.setBounds(20, 500, 140, 40);
 
         jLabel11.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Product Price");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(20, 420, 140, 40);
+        jLabel11.setBounds(20, 380, 140, 40);
 
         jLabel12.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Product Quantity:");
         jPanel1.add(jLabel12);
-        jLabel12.setBounds(20, 460, 140, 40);
+        jLabel12.setBounds(20, 420, 140, 40);
 
         jLabel13.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel13.setForeground(new java.awt.Color(255, 255, 255));
         jLabel13.setText("Total:");
         jPanel1.add(jLabel13);
-        jLabel13.setBounds(20, 500, 140, 40);
+        jLabel13.setBounds(20, 460, 140, 40);
 
         comCustomer.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        comCustomer.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                comCustomerPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
         jPanel1.add(comCustomer);
         comCustomer.setBounds(160, 180, 290, 40);
 
-        jLabel23.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel23.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel23.setText("SR:");
+        jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel23.setText("(%)");
         jPanel1.add(jLabel23);
-        jLabel23.setBounds(20, 540, 140, 40);
-
-        txtProduct.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtProduct);
-        txtProduct.setBounds(160, 340, 340, 40);
+        jLabel23.setBounds(100, 580, 60, 40);
 
         jLabel24.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel24.setText("Product Name:");
+        jLabel24.setText("Product Name");
         jPanel1.add(jLabel24);
         jLabel24.setBounds(20, 340, 140, 40);
 
         comSR.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        comSR.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        comSR.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "N/A" }));
         comSR.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comSRActionPerformed(evt);
@@ -261,16 +506,42 @@ public class SalesEntry extends javax.swing.JFrame {
         jPanel1.add(comSR);
         comSR.setBounds(160, 540, 340, 40);
 
-        txtTotal1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtTotal1);
-        txtTotal1.setBounds(160, 460, 110, 40);
+        txtQuantity.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtQuantity.setText("0");
+        txtQuantity.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtQuantityMouseClicked(evt);
+            }
+        });
+        txtQuantity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtQuantityKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txtQuantity);
+        txtQuantity.setBounds(160, 420, 110, 40);
 
-        txtTotal2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtTotal2);
-        txtTotal2.setBounds(270, 460, 230, 40);
+        txtFinalPrice.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtFinalPrice.setText("0.00");
+        txtFinalPrice.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtFinalPriceMouseClicked(evt);
+            }
+        });
+        jPanel1.add(txtFinalPrice);
+        txtFinalPrice.setBounds(160, 460, 340, 40);
 
         comCateogory.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         comCateogory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        comCateogory.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                comCateogoryPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
         comCateogory.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 comCateogoryActionPerformed(evt);
@@ -295,18 +566,118 @@ public class SalesEntry extends javax.swing.JFrame {
         jPanel1.add(txtDate);
         txtDate.setBounds(160, 260, 340, 40);
 
-        txtSR1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtSR1);
-        txtSR1.setBounds(160, 580, 80, 40);
-
-        txtSR.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        txtSR.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtSRActionPerformed(evt);
+        txtSRPer.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtSRPer.setText("0");
+        txtSRPer.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtSRPerMouseClicked(evt);
             }
         });
-        jPanel1.add(txtSR);
-        txtSR.setBounds(240, 580, 260, 40);
+        txtSRPer.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSRPerKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txtSRPer);
+        txtSRPer.setBounds(160, 580, 80, 40);
+
+        txtSRCommission.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtSRCommission.setText("0.00");
+        txtSRCommission.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSRCommissionActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtSRCommission);
+        txtSRCommission.setBounds(240, 580, 200, 40);
+
+        jLabel26.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("Customer Type:");
+        jPanel1.add(jLabel26);
+        jLabel26.setBounds(20, 140, 140, 40);
+
+        jLabel27.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel27.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel27.setText("Sales Id:");
+        jPanel1.add(jLabel27);
+        jLabel27.setBounds(20, 100, 70, 40);
+
+        txtVAT.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtVAT.setText("0.00");
+        txtVAT.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtVATMouseClicked(evt);
+            }
+        });
+        txtVAT.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtVATKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txtVAT);
+        txtVAT.setBounds(380, 380, 120, 40);
+
+        comProduct.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        comProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        comProduct.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                comProductComponentAdded(evt);
+            }
+        });
+        comProduct.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                comProductPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        jPanel1.add(comProduct);
+        comProduct.setBounds(160, 340, 340, 40);
+
+        jLabel28.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel28.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel28.setText("SR:");
+        jPanel1.add(jLabel28);
+        jLabel28.setBounds(20, 540, 140, 40);
+
+        txtProductPrice.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jPanel1.add(txtProductPrice);
+        txtProductPrice.setBounds(270, 420, 230, 40);
+
+        jPanel3.setBackground(new java.awt.Color(0, 51, 51));
+
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel1.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\plus.png")); // NOI18N
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel1MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel1MouseExited(evt);
+            }
+        });
+
+        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
+        jPanel3.setLayout(jPanel3Layout);
+        jPanel3Layout.setHorizontalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 60, Short.MAX_VALUE)
+        );
+        jPanel3Layout.setVerticalGroup(
+            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 40, javax.swing.GroupLayout.PREFERRED_SIZE))
+        );
+
+        jPanel1.add(jPanel3);
+        jPanel3.setBounds(440, 580, 60, 40);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 510, 770);
@@ -319,17 +690,16 @@ public class SalesEntry extends javax.swing.JFrame {
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel6.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("bill no.");
-        jPanel6.add(jLabel1);
-        jLabel1.setBounds(70, 40, 120, 40);
+        lbBill.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lbBill.setForeground(new java.awt.Color(255, 255, 255));
+        lbBill.setText("bill no.");
+        jPanel6.add(lbBill);
+        lbBill.setBounds(70, 40, 120, 40);
 
-        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel3.setText("date");
-        jPanel6.add(jLabel3);
-        jLabel3.setBounds(290, 40, 170, 40);
+        lbDate.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lbDate.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel6.add(lbDate);
+        lbDate.setBounds(290, 40, 170, 40);
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -337,11 +707,10 @@ public class SalesEntry extends javax.swing.JFrame {
         jPanel6.add(jLabel9);
         jLabel9.setBounds(10, 80, 150, 50);
 
-        jLabel14.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("shop/hospital");
-        jPanel6.add(jLabel14);
-        jLabel14.setBounds(130, 80, 290, 50);
+        lbShop.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lbShop.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel6.add(lbShop);
+        lbShop.setBounds(130, 80, 290, 50);
 
         jComboBox1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Show Sales", "Show Submits" }));
@@ -354,9 +723,14 @@ public class SalesEntry extends javax.swing.JFrame {
         jPanel6.add(jLabel15);
         jLabel15.setBounds(10, 40, 60, 40);
 
-        txtId1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel6.add(txtId1);
-        txtId1.setBounds(620, 90, 220, 40);
+        txtSearch.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+        jPanel6.add(txtSearch);
+        txtSearch.setBounds(620, 90, 220, 40);
 
         jLabel16.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
@@ -387,41 +761,61 @@ public class SalesEntry extends javax.swing.JFrame {
         jScrollPane1.setBounds(10, 150, 840, 390);
 
         txtSubTotal.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtSubTotal.setText("0.00");
         jPanel5.add(txtSubTotal);
-        txtSubTotal.setBounds(680, 550, 170, 30);
+        txtSubTotal.setBounds(680, 540, 170, 40);
 
-        jLabel17.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Sub Total:");
-        jPanel5.add(jLabel17);
-        jLabel17.setBounds(590, 550, 90, 30);
+        jlabel1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jlabel1.setForeground(new java.awt.Color(255, 255, 255));
+        jlabel1.setText("Sub Total:");
+        jPanel5.add(jlabel1);
+        jlabel1.setBounds(590, 540, 90, 40);
 
         jLabel18.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
         jLabel18.setText("Discount:");
         jPanel5.add(jLabel18);
-        jLabel18.setBounds(590, 590, 90, 30);
+        jLabel18.setBounds(590, 580, 90, 40);
 
         txtDiscount.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtDiscount.setText("0.00");
+        txtDiscount.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtDiscountKeyReleased(evt);
+            }
+        });
         jPanel5.add(txtDiscount);
-        txtDiscount.setBounds(680, 590, 170, 30);
+        txtDiscount.setBounds(680, 580, 170, 40);
 
         txtPaid.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtPaid.setText("0.00");
+        txtPaid.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtPaidKeyReleased(evt);
+            }
+        });
         jPanel5.add(txtPaid);
-        txtPaid.setBounds(680, 630, 170, 30);
+        txtPaid.setBounds(680, 620, 170, 40);
 
         txtDue.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtDue.setForeground(new java.awt.Color(255, 0, 51));
+        txtDue.setText("0.00");
         jPanel5.add(txtDue);
-        txtDue.setBounds(680, 670, 170, 30);
+        txtDue.setBounds(680, 660, 170, 40);
 
         jLabel20.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel20.setForeground(new java.awt.Color(255, 255, 255));
         jLabel20.setText("Due");
         jPanel5.add(jLabel20);
-        jLabel20.setBounds(590, 670, 90, 30);
+        jLabel20.setBounds(590, 660, 90, 40);
 
         jButton6.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton6.setText("Submit");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         jPanel5.add(jButton6);
         jButton6.setBounds(630, 720, 170, 40);
 
@@ -451,6 +845,11 @@ public class SalesEntry extends javax.swing.JFrame {
                 rbCashMouseClicked(evt);
             }
         });
+        rbCash.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbCashActionPerformed(evt);
+            }
+        });
         jPanel5.add(rbCash);
         rbCash.setBounds(90, 540, 110, 40);
 
@@ -458,7 +857,7 @@ public class SalesEntry extends javax.swing.JFrame {
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Paid");
         jPanel5.add(jLabel21);
-        jLabel21.setBounds(590, 630, 90, 30);
+        jLabel21.setBounds(590, 620, 90, 40);
 
         Bank.setBackground(new java.awt.Color(0, 153, 153));
         Bank.setBorder(new javax.swing.border.MatteBorder(null));
@@ -489,7 +888,7 @@ public class SalesEntry extends javax.swing.JFrame {
         Bank.add(jLabel19);
         jLabel19.setBounds(10, 50, 150, 40);
 
-        txtAccount.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        txtAccount.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         Bank.add(txtAccount);
         txtAccount.setBounds(170, 50, 250, 44);
 
@@ -505,32 +904,32 @@ public class SalesEntry extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        this.dispose();
+        if (txtBill.isEnabled()) {
+            this.dispose();
+        } else {
+            JOptionPane.showMessageDialog(this, "Submit Data to exit!", "Error!", JOptionPane.WARNING_MESSAGE);
+        }
+
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void rbBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbBankActionPerformed
         // TODO add your handling code here:
+        if (rbBank.isSelected()) {
+            Bank.setVisible(true);
+            String query = "SELECT `bank_account_name` FROM `bank accounts` group by `bank_account_name`";
+            new dbConnection().getDataFromCombo(comBankName, query);
+        }
     }//GEN-LAST:event_rbBankActionPerformed
 
     private void rbBankMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbBankMouseClicked
         // TODO add your handling code here:
-        if(rbBank.isSelected()){
-          Bank.setVisible(true);
-          String query="SELECT `bank name` FROM `bank accounts`";
-          new dbConnection().getDataFromCombo(comBankName, query);
-      }
+
     }//GEN-LAST:event_rbBankMouseClicked
 
     private void rbCashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbCashMouseClicked
         // TODO add your handling code here:
-        if(rbCash.isSelected()){
-          Bank.setVisible(false);
-      }
-    }//GEN-LAST:event_rbCashMouseClicked
 
-    private void comPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comPriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comPriceActionPerformed
+    }//GEN-LAST:event_rbCashMouseClicked
 
     private void comSRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comSRActionPerformed
         // TODO add your handling code here:
@@ -543,33 +942,266 @@ public class SalesEntry extends javax.swing.JFrame {
     private void comCustomerTypePopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comCustomerTypePopupMenuWillBecomeInvisible
         // TODO add your handling code here:
         //comCustomer
-        String query="SELECT `customer name` FROM `customers`";
-        if(!comCustomerType.getSelectedItem().toString().contains("Select")){
-          if(comCustomerType.getSelectedItem().toString().contains("Permanent")){
-            comCustomer.setVisible(true);
-            txtCustomerName.setVisible(false);
-            new dbConnection().getDataFromCombo(comCustomer, query);
-        }else{
-              comCustomer.setVisible(false);
-              txtCustomerName.setVisible(true);
-          }
-        }
-        else{
+        String query = "SELECT `customer name` FROM `customers`";
+        if (!comCustomerType.getSelectedItem().toString().contains("Select")) {
+            if (comCustomerType.getSelectedItem().toString().contains("Permanent")) {
+                comCustomer.setVisible(true);
+                txtCustomerName.setVisible(false);
+                new dbConnection().getDataFromCombo(comCustomer, query);
+            } else {
+                comCustomer.setVisible(false);
+                txtCustomerName.setVisible(true);
+            }
+        } else {
             comCustomer.setVisible(false);
-              txtCustomerName.setVisible(true);
+            txtCustomerName.setVisible(true);
         }
-        
+
     }//GEN-LAST:event_comCustomerTypePopupMenuWillBecomeInvisible
 
     private void comBankNamePopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comBankNamePopupMenuWillBecomeInvisible
         // TODO add your handling code here:
-        String query="SELECT `account no` FROM `bank accounts` WHERE `bank name`='"+comBankName.getSelectedItem().toString()+"'";
+        String query = "SELECT `bank_account_number` FROM `bank accounts` WHERE `bank_account_name`='" + comBankName.getSelectedItem().toString() + "'";
         new dbConnection().getDataFromCombo(txtAccount, query);
     }//GEN-LAST:event_comBankNamePopupMenuWillBecomeInvisible
 
-    private void txtSRActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSRActionPerformed
+    private void txtSRCommissionActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSRCommissionActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtSRActionPerformed
+    }//GEN-LAST:event_txtSRCommissionActionPerformed
+
+    private void rbCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCashActionPerformed
+        // TODO add your handling code here:
+        if (rbCash.isSelected()) {
+            Bank.setVisible(false);
+        }
+    }//GEN-LAST:event_rbCashActionPerformed
+
+    private void txtCustomerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCustomerNameActionPerformed
+
+    private void txtBillPropertyChange(java.beans.PropertyChangeEvent evt) {//GEN-FIRST:event_txtBillPropertyChange
+        // TODO add your handling code here:
+        lbBill.setText(txtBill.getText());
+    }//GEN-LAST:event_txtBillPropertyChange
+
+    private void txtBillKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBillKeyPressed
+        // TODO add your handling code here:
+
+    }//GEN-LAST:event_txtBillKeyPressed
+
+    private void txtBillKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBillKeyReleased
+        // TODO add your handling code here:
+        if (!txtBill.getText().isEmpty()) {
+            int b = Integer.parseInt(txtBill.getText());
+            lbBill.setText("" + b);
+        }
+
+    }//GEN-LAST:event_txtBillKeyReleased
+
+    private void txtCustomerNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerNameKeyReleased
+        // TODO add your handling code here:
+        if (comCustomerType.getSelectedIndex() > 0) {
+            try {
+                String shop = txtCustomerName.getText();
+                lbShop.setText(shop);
+            } catch (Exception e) {
+                lbShop.setText("");
+            }
+
+        }
+    }//GEN-LAST:event_txtCustomerNameKeyReleased
+
+    private void txtCustomerNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerNameKeyPressed
+        // TODO add your handling code here:
+        if (comCustomerType.getSelectedIndex() > 0) {
+            try {
+                String shop = txtCustomerName.getText();
+                lbShop.setText(shop);
+            } catch (Exception e) {
+                lbShop.setText("");
+            }
+        }
+    }//GEN-LAST:event_txtCustomerNameKeyPressed
+
+    private void comCustomerPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comCustomerPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        if (comCustomer.getSelectedIndex() > 0) {
+            String lCustomer = comCustomer.getSelectedItem().toString();
+            lbShop.setText(new dbConnection().singledata("SELECT `shop name` FROM `customers` WHERE `customer name`='" + lCustomer + "'"));
+        }
+
+    }//GEN-LAST:event_comCustomerPopupMenuWillBecomeInvisible
+
+    private void comCateogoryPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comCateogoryPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        String productCategoryId = new dbConnection().singledata("SELECT `cateogory_id` FROM `product cateogory` WHERE `cateogory`='" + comCateogory.getSelectedItem().toString() + "'");
+        new dbConnection().getDataFromCombo(comProduct, "SELECT `product_name` FROM `product info` where `product_category_id`='" + productCategoryId + "'");
+    }//GEN-LAST:event_comCateogoryPopupMenuWillBecomeInvisible
+
+    private void comProductPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comProductPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        String price = new dbConnection().singledata("SELECT `product_price` FROM `product info` WHERE `product_name`='" + comProduct.getSelectedItem().toString() + "'");
+        txtPrice.setText(price);
+        txtProductPrice.setText(price);
+        txtFinalPrice.setText(price);
+    }//GEN-LAST:event_comProductPopupMenuWillBecomeInvisible
+
+    private void txtQuantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantityKeyReleased
+        // TODO add your handling code here:
+        if (comProduct.getSelectedIndex() > 0) {
+            try {
+                double p = Double.parseDouble(txtFinalPrice.getText());
+                double q = Double.parseDouble(txtQuantity.getText());
+                double t = p * q;
+                txtFinalPrice.setText("" + t);
+            } catch (Exception e) {
+                float t;
+                t = 0;
+                float p = Float.parseFloat(txtPrice.getText());
+                float v = Float.parseFloat(txtVAT.getText());
+                t = p + v;
+                txtFinalPrice.setText("" + t);
+            }
+        }
+    }//GEN-LAST:event_txtQuantityKeyReleased
+
+    private void txtVATKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtVATKeyReleased
+        // TODO add your handling code here:
+        if (comProduct.getSelectedIndex() > 0) {
+            try {
+                float t;
+                t = 0;
+                float p = Float.parseFloat(txtPrice.getText());
+                float v = Float.parseFloat(txtVAT.getText());
+                t = p + v;
+                txtFinalPrice.setText("" + t);
+                txtProductPrice.setText("" + t);
+            } catch (Exception e) {
+                String price = new dbConnection().singledata("SELECT `product_price` FROM `product info` WHERE `product_name`='" + comProduct.getSelectedItem().toString() + "'");
+                txtFinalPrice.setText(price);
+            }
+        }
+    }//GEN-LAST:event_txtVATKeyReleased
+
+    private void comProductComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_comProductComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comProductComponentAdded
+
+    private void txtSRPerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSRPerKeyReleased
+        // TODO add your handling code here:
+        try {
+            if (!txtFinalPrice.getText().isEmpty()) {
+                double total = Double.parseDouble(txtFinalPrice.getText());
+                double per = Double.parseDouble(txtSRPer.getText());
+                double percentage = (total * per) / 100.0;
+                txtSRCommission.setText("" + percentage);
+            }
+        } catch (Exception e) {
+            txtSRCommission.setText("0.00");
+        }
+    }//GEN-LAST:event_txtSRPerKeyReleased
+
+    private void txtFinalPriceMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtFinalPriceMouseClicked
+        // TODO add your handling code here:
+        txtFinalPrice.setText("");
+    }//GEN-LAST:event_txtFinalPriceMouseClicked
+
+    private void btnPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPurchaseActionPerformed
+        // TODO add your handling code here:
+        if (blankDataCheck() == 1) {
+            addSales();
+        }
+    }//GEN-LAST:event_btnPurchaseActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+        salesAccounts();
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void txtVATMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVATMouseClicked
+        // TODO add your handling code here:
+        txtVAT.setText("");
+    }//GEN-LAST:event_txtVATMouseClicked
+
+    private void txtQuantityMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtQuantityMouseClicked
+        // TODO add your handling code here:
+        txtQuantity.setText("");
+    }//GEN-LAST:event_txtQuantityMouseClicked
+
+    private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
+        // TODO add your handling code here:
+        jPanel3.setBackground(Color.cyan);
+    }//GEN-LAST:event_jLabel1MouseEntered
+
+    private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
+        // TODO add your handling code here:
+        jPanel3.setBackground(new Color(0, 51, 51));
+    }//GEN-LAST:event_jLabel1MouseExited
+
+    private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
+        // TODO add your handling code here:
+        if (blankDataCheck() == 1 && checkSalesBlank() == 1) {
+            salesCommision();
+            comSR.setSelectedIndex(0);
+            txtSRCommission.setText("0.00");
+            txtSRPer.setText("0");
+        }
+    }//GEN-LAST:event_jLabel1MouseClicked
+
+    private void txtSRPerMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtSRPerMouseClicked
+        // TODO add your handling code here:
+        txtSRPer.setText("");
+    }//GEN-LAST:event_txtSRPerMouseClicked
+
+    private void txtDiscountKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiscountKeyReleased
+        // TODO add your handling code here:
+        double subtotal,discount;
+        try {
+        subtotal=Double.parseDouble(txtSubTotal.getText());
+        discount=Double.parseDouble(txtDiscount.getText());
+        txtDue.setText(""+(subtotal-discount));    
+        } catch (Exception e) {
+            subtotal=Double.parseDouble(txtSubTotal.getText());
+            txtDue.setText(""+subtotal);
+        }
+        
+    }//GEN-LAST:event_txtDiscountKeyReleased
+
+    private void txtPaidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPaidKeyReleased
+        // TODO add your handling code here:
+        double subtotal,discount,paid;
+        try {
+        subtotal=Double.parseDouble(txtSubTotal.getText());
+        discount=Double.parseDouble(txtDiscount.getText());
+        paid=Double.parseDouble(txtPaid.getText());
+        txtDue.setText(""+((subtotal-discount)-paid));    
+        } catch (Exception e) {
+            subtotal=Double.parseDouble(txtSubTotal.getText());
+            txtDue.setText(""+subtotal);
+        }
+    }//GEN-LAST:event_txtPaidKeyReleased
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // TODO add your handling code here:
+        String search = txtSearch.getText();
+        String customer = new dbConnection().singledata("SELECT `customer_name` FROM `sales entry` WHERE `bill_no`='" + search + "'");
+        if(jComboBox1.getSelectedIndex()==0){
+            try {
+        new dbConnection().showPurchaseEntry("SELECT *FROM `sales entry` WHERE `bill_no`='" + search + "'", jTable1);
+        lbBill.setText(search);
+//        lbShop.setText(customer); 
+        txtSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `sales entry` WHERE `bill_no`='"+search+"'"));
+            } catch (Exception e) {
+                lbBill.setText(txtBill.getText());
+            }
+        }
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void txtBillMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtBillMouseClicked
+        // TODO add your handling code here:
+        lbBill.setText(txtBill.getText());
+    }//GEN-LAST:event_txtBillMouseClicked
 
     /**
      * @param args the command line arguments
@@ -618,7 +1250,7 @@ public class SalesEntry extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comCateogory;
     private javax.swing.JComboBox<String> comCustomer;
     private javax.swing.JComboBox<String> comCustomerType;
-    private javax.swing.JComboBox<String> comPrice;
+    private javax.swing.JComboBox<String> comProduct;
     private javax.swing.JComboBox<String> comSR;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton6;
@@ -628,10 +1260,8 @@ public class SalesEntry extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
@@ -641,7 +1271,9 @@ public class SalesEntry extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
     private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel26;
+    private javax.swing.JLabel jLabel27;
+    private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -650,11 +1282,16 @@ public class SalesEntry extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
+    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
+    private javax.swing.JLabel jlabel1;
+    private javax.swing.JLabel lbBill;
+    private javax.swing.JLabel lbDate;
+    private javax.swing.JLabel lbShop;
     private javax.swing.JRadioButton rbBank;
     private javax.swing.JRadioButton rbCash;
     private javax.swing.JComboBox<String> txtAccount;
@@ -663,16 +1300,16 @@ public class SalesEntry extends javax.swing.JFrame {
     private com.toedter.calendar.JDateChooser txtDate;
     private javax.swing.JTextField txtDiscount;
     private javax.swing.JTextField txtDue;
+    private javax.swing.JTextField txtFinalPrice;
     private javax.swing.JTextField txtGR;
-    private javax.swing.JTextField txtId1;
     private javax.swing.JTextField txtPaid;
     private javax.swing.JTextField txtPrice;
-    private javax.swing.JTextField txtProduct;
-    private javax.swing.JTextField txtSR;
-    private javax.swing.JTextField txtSR1;
+    private javax.swing.JTextField txtProductPrice;
+    private javax.swing.JTextField txtQuantity;
+    private javax.swing.JTextField txtSRCommission;
+    private javax.swing.JTextField txtSRPer;
+    private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtSubTotal;
-    private javax.swing.JTextField txtTotal;
-    private javax.swing.JTextField txtTotal1;
-    private javax.swing.JTextField txtTotal2;
+    private javax.swing.JTextField txtVAT;
     // End of variables declaration//GEN-END:variables
 }

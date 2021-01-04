@@ -5,6 +5,7 @@
  */
 package prime_surgical;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -18,6 +19,7 @@ public class Product_Returns extends javax.swing.JFrame {
     public Product_Returns() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        new dbConnection().getDataFromCombo(comCategory, "SELECT `cateogory` FROM `product cateogory` order by `cateogory_id`");
     }
 
     /**
@@ -35,18 +37,17 @@ public class Product_Returns extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        comBill = new javax.swing.JComboBox<>();
         jComboBox2 = new javax.swing.JComboBox<>();
-        jTextField1 = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jTextField4 = new javax.swing.JTextField();
+        txtPrice = new javax.swing.JTextField();
         jLabel8 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jTextField5 = new javax.swing.JTextField();
+        txtQuantity = new javax.swing.JTextField();
         jComboBox3 = new javax.swing.JComboBox<>();
-        jComboBox4 = new javax.swing.JComboBox<>();
+        comProduct = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jTextField6 = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
@@ -54,17 +55,18 @@ public class Product_Returns extends javax.swing.JFrame {
         jTextField8 = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
+        comCategory = new javax.swing.JComboBox<>();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
         jLabel13 = new javax.swing.JLabel();
         jLabel16 = new javax.swing.JLabel();
         jLabel14 = new javax.swing.JLabel();
-        jLabel15 = new javax.swing.JLabel();
-        jLabel19 = new javax.swing.JLabel();
-        jLabel20 = new javax.swing.JLabel();
+        lbDue = new javax.swing.JLabel();
+        lbSubTotal = new javax.swing.JLabel();
+        lbDiscount = new javax.swing.JLabel();
         jLabel17 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
+        lbPaid = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
 
@@ -118,13 +120,31 @@ public class Product_Returns extends javax.swing.JFrame {
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jPanel4.setLayout(null);
 
-        jComboBox1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
-        jPanel4.add(jComboBox1);
-        jComboBox1.setBounds(20, 210, 360, 40);
+        comBill.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        comBill.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        comBill.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                comBillPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        jPanel4.add(comBill);
+        comBill.setBounds(20, 140, 370, 40);
 
         jComboBox2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Purchase", "Sales" }));
+        jComboBox2.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                jComboBox2PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
         jComboBox2.addComponentListener(new java.awt.event.ComponentAdapter() {
             public void componentMoved(java.awt.event.ComponentEvent evt) {
                 jComboBox2ComponentMoved(evt);
@@ -132,10 +152,6 @@ public class Product_Returns extends javax.swing.JFrame {
         });
         jPanel4.add(jComboBox2);
         jComboBox2.setBounds(20, 10, 360, 50);
-
-        jTextField1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jPanel4.add(jTextField1);
-        jTextField1.setBounds(20, 140, 360, 40);
 
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 204, 255));
@@ -158,9 +174,9 @@ public class Product_Returns extends javax.swing.JFrame {
         jPanel4.add(jLabel7);
         jLabel7.setBounds(120, 250, 130, 30);
 
-        jTextField4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jPanel4.add(jTextField4);
-        jTextField4.setBounds(30, 360, 190, 40);
+        txtPrice.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jPanel4.add(txtPrice);
+        txtPrice.setBounds(20, 360, 200, 40);
 
         jLabel8.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(204, 204, 255));
@@ -176,19 +192,29 @@ public class Product_Returns extends javax.swing.JFrame {
         jPanel4.add(jLabel9);
         jLabel9.setBounds(220, 330, 130, 30);
 
-        jTextField5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jPanel4.add(jTextField5);
-        jTextField5.setBounds(220, 360, 170, 40);
+        txtQuantity.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jPanel4.add(txtQuantity);
+        txtQuantity.setBounds(220, 360, 160, 40);
 
         jComboBox3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        jComboBox3.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                jComboBox3PopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+                jComboBox3PopupMenuWillBecomeVisible(evt);
+            }
+        });
         jPanel4.add(jComboBox3);
         jComboBox3.setBounds(20, 60, 360, 50);
 
-        jComboBox4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jComboBox4.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
-        jPanel4.add(jComboBox4);
-        jComboBox4.setBounds(20, 280, 360, 40);
+        comProduct.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        comProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        jPanel4.add(comProduct);
+        comProduct.setBounds(20, 280, 360, 40);
 
         jLabel10.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(204, 204, 255));
@@ -199,7 +225,7 @@ public class Product_Returns extends javax.swing.JFrame {
 
         jTextField6.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jPanel4.add(jTextField6);
-        jTextField6.setBounds(30, 450, 190, 40);
+        jTextField6.setBounds(20, 450, 200, 40);
 
         jLabel11.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(204, 204, 255));
@@ -210,11 +236,11 @@ public class Product_Returns extends javax.swing.JFrame {
 
         jTextField7.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jPanel4.add(jTextField7);
-        jTextField7.setBounds(220, 450, 170, 40);
+        jTextField7.setBounds(220, 450, 160, 40);
 
         jTextField8.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jPanel4.add(jTextField8);
-        jTextField8.setBounds(30, 530, 360, 50);
+        jTextField8.setBounds(30, 530, 340, 50);
 
         jLabel12.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(204, 204, 255));
@@ -228,20 +254,38 @@ public class Product_Returns extends javax.swing.JFrame {
         jPanel4.add(jButton6);
         jButton6.setBounds(70, 590, 260, 50);
 
+        comCategory.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        comCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        comCategory.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                comCategoryPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        jPanel4.add(comCategory);
+        comCategory.setBounds(20, 210, 360, 40);
+
         jPanel1.add(jPanel4);
         jPanel4.setBounds(10, 110, 400, 650);
 
+        jTable1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null},
-                {null, null, null, null, null, null}
+
             },
             new String [] {
-                "SL", "GR", "Cateogory", "Price", "Quantity", "Total"
+                "SL", "GR", "Cateogory", "Product", "Price", "Quantity", "Total"
             }
         ));
+        jTable1.setRowHeight(30);
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1);
@@ -271,40 +315,40 @@ public class Product_Returns extends javax.swing.JFrame {
         jPanel9.add(jLabel14);
         jLabel14.setBounds(0, 120, 90, 40);
 
-        jLabel15.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel15.setText("0.00");
-        jPanel9.add(jLabel15);
-        jLabel15.setBounds(100, 120, 210, 40);
+        lbDue.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        lbDue.setForeground(new java.awt.Color(0, 0, 0));
+        lbDue.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbDue.setText("0.00");
+        jPanel9.add(lbDue);
+        lbDue.setBounds(100, 120, 210, 40);
 
-        jLabel19.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel19.setText("0.00");
-        jPanel9.add(jLabel19);
-        jLabel19.setBounds(100, 0, 210, 40);
+        lbSubTotal.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        lbSubTotal.setForeground(new java.awt.Color(0, 0, 0));
+        lbSubTotal.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbSubTotal.setText("0.00");
+        jPanel9.add(lbSubTotal);
+        lbSubTotal.setBounds(100, 0, 210, 40);
 
-        jLabel20.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
-        jLabel20.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel20.setText("0.00");
-        jPanel9.add(jLabel20);
-        jLabel20.setBounds(100, 40, 210, 40);
+        lbDiscount.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        lbDiscount.setForeground(new java.awt.Color(0, 0, 0));
+        lbDiscount.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbDiscount.setText("0.00");
+        jPanel9.add(lbDiscount);
+        lbDiscount.setBounds(100, 40, 210, 40);
 
         jLabel17.setFont(new java.awt.Font("Roboto", 0, 20)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setText("Paid:");
         jPanel9.add(jLabel17);
-        jLabel17.setBounds(0, 80, 90, 50);
+        jLabel17.setBounds(0, 80, 90, 40);
 
-        jLabel18.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
-        jLabel18.setText("0.00");
-        jPanel9.add(jLabel18);
-        jLabel18.setBounds(100, 80, 210, 40);
+        lbPaid.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        lbPaid.setForeground(new java.awt.Color(0, 0, 0));
+        lbPaid.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        lbPaid.setText("0.00");
+        jPanel9.add(lbPaid);
+        lbPaid.setBounds(100, 80, 210, 40);
 
         jPanel1.add(jPanel9);
         jPanel9.setBounds(1040, 600, 320, 170);
@@ -345,6 +389,80 @@ public class Product_Returns extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox2ComponentMoved
 
+    private void jComboBox2PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox2PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        if(jComboBox2.getSelectedIndex()>0 && jComboBox2.getSelectedIndex()==1){
+          new dbConnection().getDataFromCombo(jComboBox3, "SELECT `supplier_company_name` FROM `suppliers`");   
+        }
+        if(jComboBox2.getSelectedIndex()>0 && jComboBox2.getSelectedIndex()==2){
+          new dbConnection().getDataFromCombo(jComboBox3, "SELECT `customer_name` FROM `sales entry`GROUP BY `customer_name` ORDER BY `bill_no`");   
+        }
+        
+    }//GEN-LAST:event_jComboBox2PopupMenuWillBecomeInvisible
+
+    private void jComboBox3PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox3PopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        if(jComboBox2.getSelectedIndex()>0 && jComboBox2.getSelectedIndex()==1){
+        String companyName=jComboBox3.getSelectedItem().toString();
+        new dbConnection().getDataFromCombo(comBill, "SELECT `bill_no` FROM `purchase entry` WHERE `company_name`='"+companyName+"' GROUP BY `bill_no` ORDER BY `bill_no`");
+        new dbConnection().showPurchaseEntry("SELECT * FROM `purchase entry` WHERE `company_name`= '"+companyName+"'", jTable1);
+        lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `purchase accounts` WHERE `company`= '"+companyName+"'"));
+        lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `purchase accounts` WHERE `company`= '"+companyName+"'"));
+        lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `purchase accounts` WHERE `company`= '"+companyName+"'"));
+        lbDue.setText(new dbConnection().singledata("SELECT SUM(`due`) FROM `purchase accounts` WHERE `company`= '"+companyName+"'"));
+        }
+        else if(jComboBox2.getSelectedIndex()>0 && jComboBox2.getSelectedIndex()==2){
+        String companyName=jComboBox3.getSelectedItem().toString();
+        new dbConnection().getDataFromCombo(comBill, "SELECT `bill_no` FROM `sales entry` WHERE `customer_name`='"+companyName+"' GROUP BY `bill_no` ORDER BY `bill_no`");
+        new dbConnection().showPurchaseEntry("SELECT * FROM `sales entry` WHERE `customer_name`= '"+companyName+"'", jTable1);
+        lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `sales accounts` WHERE `customer`='"+companyName+"'"));
+        lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `sales accounts` WHERE `customer`= '"+companyName+"'"));
+        lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `sales accounts` WHERE `customer`= '"+companyName+"'"));
+        lbDue.setText(new dbConnection().singledata("SELECT SUM(`due`) FROM `sales accounts` WHERE `customer`= '"+companyName+"'"));
+        }
+    }//GEN-LAST:event_jComboBox3PopupMenuWillBecomeInvisible
+
+    private void comBillPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comBillPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        if(jComboBox2.getSelectedIndex()>0 && jComboBox2.getSelectedIndex()==1){
+        String companyName=jComboBox3.getSelectedItem().toString();
+        String Bill=comBill.getSelectedItem().toString();
+        new dbConnection().showPurchaseEntry("SELECT * FROM `purchase entry` WHERE `bill_no`='" + comBill.getSelectedItem().toString() + "' ", jTable1);
+        lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `purchase accounts` WHERE `company`= '"+companyName+"' AND `bill_no`='"+Bill+"'"));
+        lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `purchase accounts` WHERE `company`= '"+companyName+"' AND `bill_no`='"+Bill+"'"));
+        lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `purchase accounts` WHERE `company`= '"+companyName+"' AND `bill_no`='"+Bill+"'"));
+        lbDue.setText(new dbConnection().singledata("SELECT SUM(`due`) FROM `purchase accounts` WHERE `company`= '"+companyName+"'AND `bill_no`='"+Bill+"'"));
+        }
+        else if(jComboBox2.getSelectedIndex()>0 && jComboBox2.getSelectedIndex()==2){
+        String companyName=jComboBox3.getSelectedItem().toString();
+        String Bill=comBill.getSelectedItem().toString();
+        new dbConnection().showPurchaseEntry("SELECT * FROM `sales entry` WHERE `bill_no`='" + comBill.getSelectedItem().toString() + "' ", jTable1);
+        lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `sales accounts` WHERE `customer`= '"+companyName+"' AND `bill_no`='"+Bill+"'"));
+        lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `sales accounts` WHERE `customer`= '"+companyName+"' AND `bill_no`='"+Bill+"'"));
+        lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `sales accounts` WHERE `customer`= '"+companyName+"' AND `bill_no`='"+Bill+"'"));
+        lbDue.setText(new dbConnection().singledata("SELECT SUM(`due`) FROM `sales accounts` WHERE `customer`= '"+companyName+"'AND `bill_no`='"+Bill+"'"));
+        }
+    }//GEN-LAST:event_comBillPopupMenuWillBecomeInvisible
+
+    private void comCategoryPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comCategoryPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        String productCategoryId = new dbConnection().singledata("SELECT `cateogory_id` FROM `product cateogory` WHERE `cateogory`='" + comCategory.getSelectedItem().toString() + "'");
+        new dbConnection().getDataFromCombo(comProduct, "SELECT `product_name` FROM `product info` where `product_category_id`='" + productCategoryId + "'");
+    }//GEN-LAST:event_comCategoryPopupMenuWillBecomeInvisible
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel dtm=(DefaultTableModel)jTable1.getModel();
+        comCategory.setSelectedItem(dtm.getValueAt(jTable1.getSelectedRow(), 2).toString());
+        comProduct.setSelectedItem(dtm.getValueAt(jTable1.getSelectedRow(), 3).toString());
+        txtPrice.setText(dtm.getValueAt(jTable1.getSelectedRow(), 4).toString());
+        txtQuantity.setText(dtm.getValueAt(jTable1.getSelectedRow(), 5).toString());
+    }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jComboBox3PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox3PopupMenuWillBecomeVisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jComboBox3PopupMenuWillBecomeVisible
+
     /**
      * @param args the command line arguments
      */
@@ -381,26 +499,23 @@ public class Product_Returns extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JComboBox<String> comBill;
+    private javax.swing.JComboBox<String> comCategory;
+    private javax.swing.JComboBox<String> comProduct;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
-    private javax.swing.JComboBox<String> jComboBox1;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
-    private javax.swing.JComboBox<String> jComboBox4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel19;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
@@ -413,11 +528,14 @@ public class Product_Returns extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField1;
-    private javax.swing.JTextField jTextField4;
-    private javax.swing.JTextField jTextField5;
     private javax.swing.JTextField jTextField6;
     private javax.swing.JTextField jTextField7;
     private javax.swing.JTextField jTextField8;
+    private javax.swing.JLabel lbDiscount;
+    private javax.swing.JLabel lbDue;
+    private javax.swing.JLabel lbPaid;
+    private javax.swing.JLabel lbSubTotal;
+    private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtQuantity;
     // End of variables declaration//GEN-END:variables
 }
