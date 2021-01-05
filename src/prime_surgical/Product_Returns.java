@@ -20,6 +20,10 @@ public class Product_Returns extends javax.swing.JFrame {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         new dbConnection().getDataFromCombo(comCategory, "SELECT `cateogory` FROM `product cateogory` order by `cateogory_id`");
+        txtQuantity.setEditable(false);
+        txtNewQuantity.setEditable(false);
+        txtNewTotalPrice.setEditable(false);
+        txtPrice.setEditable(false);
     }
 
     /**
@@ -49,10 +53,10 @@ public class Product_Returns extends javax.swing.JFrame {
         jComboBox3 = new javax.swing.JComboBox<>();
         comProduct = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
-        jTextField6 = new javax.swing.JTextField();
+        txtReturn = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
-        jTextField7 = new javax.swing.JTextField();
-        jTextField8 = new javax.swing.JTextField();
+        txtNewQuantity = new javax.swing.JTextField();
+        txtNewTotalPrice = new javax.swing.JTextField();
         jLabel12 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         comCategory = new javax.swing.JComboBox<>();
@@ -223,9 +227,14 @@ public class Product_Returns extends javax.swing.JFrame {
         jPanel4.add(jLabel10);
         jLabel10.setBounds(30, 420, 130, 30);
 
-        jTextField6.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jPanel4.add(jTextField6);
-        jTextField6.setBounds(20, 450, 200, 40);
+        txtReturn.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        txtReturn.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtReturnKeyReleased(evt);
+            }
+        });
+        jPanel4.add(txtReturn);
+        txtReturn.setBounds(20, 450, 200, 40);
 
         jLabel11.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(204, 204, 255));
@@ -234,13 +243,13 @@ public class Product_Returns extends javax.swing.JFrame {
         jPanel4.add(jLabel11);
         jLabel11.setBounds(220, 420, 160, 30);
 
-        jTextField7.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jPanel4.add(jTextField7);
-        jTextField7.setBounds(220, 450, 160, 40);
+        txtNewQuantity.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jPanel4.add(txtNewQuantity);
+        txtNewQuantity.setBounds(220, 450, 160, 40);
 
-        jTextField8.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jPanel4.add(jTextField8);
-        jTextField8.setBounds(30, 530, 340, 50);
+        txtNewTotalPrice.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jPanel4.add(txtNewTotalPrice);
+        txtNewTotalPrice.setBounds(30, 530, 340, 50);
 
         jLabel12.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(204, 204, 255));
@@ -463,6 +472,22 @@ public class Product_Returns extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox3PopupMenuWillBecomeVisible
 
+    private void txtReturnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtReturnKeyReleased
+        // TODO add your handling code here:
+        try {
+        int q=Integer.parseInt(txtQuantity.getText());
+        int r=Integer.parseInt(txtReturn.getText());
+        int p=Integer.parseInt(txtPrice.getText());
+        txtNewQuantity.setText(""+(q-r));
+        txtNewTotalPrice.setText(""+(r*p));
+        } catch (Exception e) {
+            txtReturn.setText(""+0);
+            txtNewQuantity.setText(""+0);
+            txtNewTotalPrice.setText(""+0);
+        }
+        
+    }//GEN-LAST:event_txtReturnKeyReleased
+
     /**
      * @param args the command line arguments
      */
@@ -528,14 +553,14 @@ public class Product_Returns extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField jTextField6;
-    private javax.swing.JTextField jTextField7;
-    private javax.swing.JTextField jTextField8;
     private javax.swing.JLabel lbDiscount;
     private javax.swing.JLabel lbDue;
     private javax.swing.JLabel lbPaid;
     private javax.swing.JLabel lbSubTotal;
+    private javax.swing.JTextField txtNewQuantity;
+    private javax.swing.JTextField txtNewTotalPrice;
     private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtQuantity;
+    private javax.swing.JTextField txtReturn;
     // End of variables declaration//GEN-END:variables
 }

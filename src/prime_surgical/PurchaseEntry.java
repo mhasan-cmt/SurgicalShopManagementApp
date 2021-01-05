@@ -62,6 +62,8 @@ public class PurchaseEntry extends javax.swing.JFrame {
     void purchase() {
         getData();
         new dbConnection().addData("INSERT INTO `purchase entry` VALUES('" + purchaseId + "','" + bill + "','" + company + "','" + date + "','" + gr + "','" + category + "','" + product + "','" + price + "','" + quantity + "','" + total + "')", this);
+        new dbConnection().addBankOrCash("INSERT INTO `stock`(`category`,`product`,`total_purchase`,`total_sales`) VALUES('"+category+"','"+product+"','"+quantity+"','"+"0"+"')");
+        showPurchase();
         comCateogory.setSelectedIndex(0);
         comProduct.setSelectedIndex(0);
         txtPrice.setText("");
@@ -71,7 +73,6 @@ public class PurchaseEntry extends javax.swing.JFrame {
         Ggr++;
         txtGR.setText("" + Ggr);
         componentDisbled();
-        showPurchase();
         String purchase_id = new dbConnection().singledata("SELECT COUNT(`purchase_id`) FROM `purchase entry`");
         int purchase_id_int = Integer.parseInt(purchase_id);
         purchase_id_int++;
@@ -87,7 +88,7 @@ public class PurchaseEntry extends javax.swing.JFrame {
     }
 
     void showPurchase() {
-        new dbConnection().showPurchaseEntry("SELECT * FROM `purchase entry` WHERE `bill_no`='" + txtBill.getText() + "' ", jTable1);
+        new dbConnection().showPurchaseEntry("SELECT * FROM `purchase entry` WHERE `company_name`='"+comCompany.getSelectedItem().toString()+"' AND `bill_no`='"+txtBill.getText()+"' ", jTable1);
         String total1 = new dbConnection().singledata("SELECT SUM(`total`) FROM `purchase entry` WHERE `bill_no`='" + txtBill.getText() + "'");
         txtSubTotal.setText(total1);
         txtDue.setText(total1);
@@ -842,7 +843,10 @@ public class PurchaseEntry extends javax.swing.JFrame {
         if(comCompany.getSelectedIndex()>0){
            String companyname=comCompany.getSelectedItem().toString();
        jLabel14.setText(companyname);
-        int bill_int = new dbConnection().autoIdorBillorGR("SELECT `bill_no` FROM `purchase entry` WHERE `company_name`='"+companyname+"'GROUP BY `company_name` ORDER BY `bill_no`");
+        int bill_int = new dbConnection().autoIdorBillorGR("SELECT `bill_no` FROM `purchase entry` WHERE `company_name`='"+companyname+"' GROUP BY `bill_no` ");
+        if(bill_int==0){
+          jLabel1.setText(""+bill_int);  
+        }
         bill_int++;
         bill1 = bill_int;
         txtBill.setText("" + bill_int);   
@@ -918,10 +922,11 @@ public class PurchaseEntry extends javax.swing.JFrame {
     private void txtDiscountKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiscountKeyReleased
         // TODO add your handling code here:
         try {
-            double t, d;
+            double t, d, p;
             t = Double.parseDouble(txtSubTotal.getText());
             d = Double.parseDouble(txtDiscount.getText());
-            double due = t - d;
+            p=Double.parseDouble(txtPaid.getText());
+            double due = (t - d)-p;
             txtDue.setText("" + due);
         } catch (Exception e) {
         }

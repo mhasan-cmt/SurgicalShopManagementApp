@@ -9,7 +9,7 @@ import com.toedter.calendar.JCalendar;
 import java.awt.Color;
 import java.text.SimpleDateFormat;
 import javax.swing.*;
-import static prime_surgical.PurchaseEntry.bill1;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -27,9 +27,9 @@ public class SalesEntry extends javax.swing.JFrame {
     }
     SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
     int salesId = 0, bill = 0, gr = 0;
-    String gSalesId, gCustomerName, gBill, gDate, gCategory, 
-    gProductName, gProductPrice, gQuantity,
-    gTotal, gSrCommission, gSrName, Ggr, gPer,gItems,gPayment,gDiscount,gPaid,gDue;
+    String gSalesId, gCustomerName, gBill, gDate, gCategory,
+            gProductName, gProductPrice, gQuantity,
+            gTotal, gSrCommission, gSrName, Ggr, gPer, gItems, gPayment, gDiscount, gPaid, gDue;
 //initials
 
     void initial() {
@@ -91,19 +91,26 @@ public class SalesEntry extends javax.swing.JFrame {
 
     void addSales() {
         getData();
-        new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "','" + gBill + "','" + gCustomerName + "','" + gDate + "','" + Ggr + "','" + gCategory + "','" + gProductName + "','" + gProductPrice + "','" + gQuantity + "','" + gTotal + "')", this);
-        gr = autoGR();
-        salesId = autoSalesId();
-        txtGR.setText("" + gr);
-        jLabel5.setText("" + salesId);
-        txtBill.setEnabled(false);
-        showSalesEntry();
-        comCateogory.setSelectedIndex(0);
-        comProduct.setSelectedIndex(0);
-        txtPrice.setText("0.00");
-        txtVAT.setText("0.0");
-        txtQuantity.setText("0");
-        txtFinalPrice.setText("0.00");
+        int stockCheck = Integer.parseInt(new dbConnection().singledata("SELECT stockfinal.`total` FROM `stockfinal` WHERE stockfinal.`category`='" + gCategory + "' AND stockfinal.`product`='" + gProductName + "'"));
+        int q = Integer.parseInt(gQuantity);
+        if (stockCheck >= q) {
+            new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "','" + gBill + "','" + gCustomerName + "','" + gDate + "','" + Ggr + "','" + gCategory + "','" + gProductName + "','" + gProductPrice + "','" + gQuantity + "','" + gTotal + "')", this);
+            new dbConnection().addBankOrCash("INSERT INTO `stock`(`category`,`product`,`total_purchase`,`total_sales`) VALUES('" + gCategory + "','" + gProductName + "','" + "0" + "','" + gQuantity + "')");
+            gr = autoGR();
+            salesId = autoSalesId();
+            txtGR.setText("" + gr);
+            jLabel5.setText("" + salesId);
+            txtBill.setEnabled(false);
+            showSalesEntry();
+            comCateogory.setSelectedIndex(0);
+            comProduct.setSelectedIndex(0);
+            txtPrice.setText("0.00");
+            txtVAT.setText("0.0");
+            txtQuantity.setText("0");
+            txtFinalPrice.setText("0.00");
+        } else {
+            JOptionPane.showMessageDialog(this, "Not enough product in Stock!");
+        }
     }
 
     int blankDataCheck() {
@@ -136,9 +143,9 @@ public class SalesEntry extends javax.swing.JFrame {
     void showSalesEntry() {
         getData();
         new dbConnection().showPurchaseEntry("SELECT * FROM `sales entry` WHERE `bill_no`='" + txtBill.getText() + "'", jTable1);
-        double subTotal=Double.parseDouble(new dbConnection().singledata("SELECT SUM(`total`) FROM `sales entry` WHERE `bill_no`='"+gBill+"'"));
-        txtSubTotal.setText(""+subTotal);
-        txtDue.setText(""+subTotal);
+        double subTotal = Double.parseDouble(new dbConnection().singledata("SELECT SUM(`total`) FROM `sales entry` WHERE `bill_no`='" + gBill + "'"));
+        txtSubTotal.setText("" + subTotal);
+        txtDue.setText("" + subTotal);
         txtSubTotal.setEditable(false);
         txtDue.setEditable(false);
     }
@@ -172,7 +179,9 @@ public class SalesEntry extends javax.swing.JFrame {
         new dbConnection().addData("INSERT INTO `sales officer commision`(`s-officer-id`,`c-date`,`per`,`amount`) VALUES('" + srId + "','" + gDate + "','" + gPer + "','" + gSrCommission + "')", this);
         new dbConnection().addBankOrCash("INSERT INTO `cost data`(`cost_date`,`cost_type`,`cost_bill`,`cost_details`,`cost_paid_by`,`cost_amount`) VALUES('" + gDate + "',\"Sales cost\",'" + txtBill.getText() + "',\"SR Commision\",\"N/A\",'" + gSrCommission + "')");
     }
+
     void salesAccounts() {
+        DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
         if (rbCash.isSelected() || rbBank.isSelected()) {
             if (rbBank.isSelected()) {
                 getDataForSalesAccounts();
@@ -181,32 +190,53 @@ public class SalesEntry extends javax.swing.JFrame {
                 bankAccount = txtAccount.getSelectedItem().toString();
                 new dbConnection().addData("INSERT INTO `sales accounts` VALUES('" + gBill + "','" + Ggr + "','" + gDate + "','" + gCustomerName + "','" + gItems + "','" + gTotal + "','" + gPayment + "','" + gDiscount + "','" + gPaid + "','" + gDue + "')", this);
                 new dbConnection().addBankOrCash("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('" + gDate + "','" + bankName + "','" + bankAccount + "','" + "Sales" + "','" + "Deposit" + "','" + gPaid + "')");
-                bill=autoBill();
-                txtBill.setText(""+bill);
-                gr=autoGR();
-                txtGR.setText(""+gr);
-                comCustomer.setSelectedIndex(0);
-                txtCustomerName.setText("");
-                comCustomerType.setSelectedIndex(0);
+                bill = autoBill();
+                txtBill.setText("" + bill);
+                gr = autoGR();
+                txtGR.setText("" + gr);
+                if (comCustomerType.getSelectedIndex() == 1) {
+                    comCustomer.setSelectedIndex(0);
+                    comCustomerType.setSelectedIndex(0);
+                } else if (comCustomerType.getSelectedIndex() == 2) {
+                    txtCustomerName.setText("");
+                    comCustomerType.setSelectedIndex(0);
+                }
                 txtBill.setEnabled(true);
+                txtSubTotal.setText("0.00");
+                txtPaid.setText("0.00");
+                txtDiscount.setText("0.00");
+                txtDue.setText("0.00");
+                dm.setRowCount(0);
+
             } else if (rbCash.isSelected()) {
                 getDataForSalesAccounts();
                 new dbConnection().addData("INSERT INTO `purchase accounts` VALUES('" + gBill + "','" + Ggr + "','" + gDate + "','" + gCustomerName + "','" + gItems + "','" + gTotal + "','" + gPayment + "','" + gDiscount + "','" + gPaid + "','" + gDue + "')", this);
                 new dbConnection().addBankOrCash("INSERT INTO `cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('" + gDate + "','" + "Sales" + "','" + "Credit" + "','" + gPaid + "')");
-                bill=autoBill();
-                txtBill.setText(""+bill);
-                gr=autoGR();
-                txtGR.setText(""+gr);
+                bill = autoBill();
+                txtBill.setText("" + bill);
+                gr = autoGR();
+                txtGR.setText("" + gr);
                 txtBill.setEnabled(true);
-                comCustomer.setSelectedIndex(0);
-                txtCustomerName.setText("");
-                comCustomerType.setSelectedIndex(0);
+                if (comCustomerType.getSelectedIndex() == 1) {
+                    comCustomerType.setSelectedIndex(0);
+                    comCustomerType.setSelectedIndex(0);
+                } else if (comCustomerType.getSelectedIndex() == 2) {
+                    txtCustomerName.setText("");
+                    comCustomerType.setSelectedIndex(0);
+                }
+                
+                txtSubTotal.setText("0.00");
+                txtPaid.setText("0.00");
+                txtDiscount.setText("0.00");
+                txtDue.setText("0.00");
+                dm.setRowCount(0);
             }
         } else {
             JOptionPane.showMessageDialog(this, "Select Payment method!");
         }
 
     }
+
     void getDataForSalesAccounts() {
         gBill = lbBill.getText();
         gCustomerName = lbShop.getText();
@@ -1156,29 +1186,31 @@ public class SalesEntry extends javax.swing.JFrame {
 
     private void txtDiscountKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtDiscountKeyReleased
         // TODO add your handling code here:
-        double subtotal,discount;
+        double subtotal, discount, paid, total;
         try {
-        subtotal=Double.parseDouble(txtSubTotal.getText());
-        discount=Double.parseDouble(txtDiscount.getText());
-        txtDue.setText(""+(subtotal-discount));    
+            subtotal = Double.parseDouble(txtSubTotal.getText());
+            discount = Double.parseDouble(txtDiscount.getText());
+            paid = Double.parseDouble(txtPaid.getText());
+            total = (subtotal - discount) - paid;
+            txtDue.setText("" + total);
         } catch (Exception e) {
-            subtotal=Double.parseDouble(txtSubTotal.getText());
-            txtDue.setText(""+subtotal);
+            subtotal = Double.parseDouble(txtSubTotal.getText());
+            txtDue.setText("" + subtotal);
         }
-        
+
     }//GEN-LAST:event_txtDiscountKeyReleased
 
     private void txtPaidKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtPaidKeyReleased
         // TODO add your handling code here:
-        double subtotal,discount,paid;
+        double subtotal, discount, paid;
         try {
-        subtotal=Double.parseDouble(txtSubTotal.getText());
-        discount=Double.parseDouble(txtDiscount.getText());
-        paid=Double.parseDouble(txtPaid.getText());
-        txtDue.setText(""+((subtotal-discount)-paid));    
+            subtotal = Double.parseDouble(txtSubTotal.getText());
+            discount = Double.parseDouble(txtDiscount.getText());
+            paid = Double.parseDouble(txtPaid.getText());
+            txtDue.setText("" + ((subtotal - discount) - paid));
         } catch (Exception e) {
-            subtotal=Double.parseDouble(txtSubTotal.getText());
-            txtDue.setText(""+subtotal);
+            subtotal = Double.parseDouble(txtSubTotal.getText());
+            txtDue.setText("" + subtotal);
         }
     }//GEN-LAST:event_txtPaidKeyReleased
 
@@ -1186,12 +1218,12 @@ public class SalesEntry extends javax.swing.JFrame {
         // TODO add your handling code here:
         String search = txtSearch.getText();
         String customer = new dbConnection().singledata("SELECT `customer_name` FROM `sales entry` WHERE `bill_no`='" + search + "'");
-        if(jComboBox1.getSelectedIndex()==0){
+        if (jComboBox1.getSelectedIndex() == 0) {
             try {
-        new dbConnection().showPurchaseEntry("SELECT *FROM `sales entry` WHERE `bill_no`='" + search + "'", jTable1);
-        lbBill.setText(search);
+                new dbConnection().showPurchaseEntry("SELECT *FROM `sales entry` WHERE `bill_no`='" + search + "'", jTable1);
+                lbBill.setText(search);
 //        lbShop.setText(customer); 
-        txtSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `sales entry` WHERE `bill_no`='"+search+"'"));
+                txtSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `sales entry` WHERE `bill_no`='" + search + "'"));
             } catch (Exception e) {
                 lbBill.setText(txtBill.getText());
             }

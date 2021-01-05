@@ -300,7 +300,7 @@ public class Purchase_Report extends javax.swing.JFrame {
         comBill.setBounds(1063, 24, 274, 41);
 
         jComboBox7.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         header5.add(jComboBox7);
         jComboBox7.setBounds(10, 110, 320, 50);
         header5.add(jDateChooser3);
@@ -455,14 +455,14 @@ public class Purchase_Report extends javax.swing.JFrame {
         comProduct1.setBounds(1063, 24, 274, 41);
 
         jComboBox3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         header6.add(jComboBox3);
         jComboBox3.setBounds(10, 110, 320, 50);
         header6.add(jDateChooser1);
         jDateChooser1.setBounds(650, 110, 352, 50);
 
         comProduct.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        comProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        comProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         header6.add(comProduct);
         comProduct.setBounds(330, 110, 320, 50);
 

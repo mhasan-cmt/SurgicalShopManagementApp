@@ -326,4 +326,20 @@ public class dbConnection {
             Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    void loginAdmin(String query,JFrame frame,JPanel loginpanel, JLabel logo,JPanel mainAdmin){
+        try {
+            dbconnect();
+            rs=st.executeQuery(query);
+            if(rs.next()){
+                loginpanel.setVisible(false);
+                logo.setVisible(false);
+                mainAdmin.setVisible(true);
+            }
+            else{
+                JOptionPane.showMessageDialog(frame, "Username or Password did not matched!");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
 }
