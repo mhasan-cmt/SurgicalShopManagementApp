@@ -924,7 +924,7 @@ Connection con = null;
 
         Container.add(SalesPanel, "card4");
 
-        ReportsPanel.setBackground(new java.awt.Color(0, 102, 102));
+        ReportsPanel.setBackground(new java.awt.Color(24, 44, 97));
         ReportsPanel.setLayout(null);
 
         jPanel24.setBackground(new java.awt.Color(104, 109, 224));
@@ -945,14 +945,6 @@ Connection con = null;
 
         jLabel54.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel54.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_increase_100px.png")); // NOI18N
-        jLabel54.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel54MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel54MouseExited(evt);
-            }
-        });
         jPanel24.add(jLabel54);
         jLabel54.setBounds(0, 0, 270, 110);
 
@@ -977,14 +969,6 @@ Connection con = null;
 
         jLabel53.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel53.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_business_report_100px.png")); // NOI18N
-        jLabel53.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jLabel53MouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jLabel53MouseExited(evt);
-            }
-        });
         jPanel27.add(jLabel53);
         jLabel53.setBounds(0, 0, 270, 110);
 
@@ -1311,7 +1295,7 @@ Connection con = null;
         SideBarPane.add(jLabel10);
         jLabel10.setBounds(30, 350, 120, 50);
 
-        homeP.setBackground(new java.awt.Color(255, 78, 80));
+        homeP.setBackground(new java.awt.Color(252, 66, 123));
 
         javax.swing.GroupLayout homePLayout = new javax.swing.GroupLayout(homeP);
         homeP.setLayout(homePLayout);
@@ -1327,7 +1311,7 @@ Connection con = null;
         SideBarPane.add(homeP);
         homeP.setBounds(0, 100, 20, 50);
 
-        PurchasP.setBackground(new java.awt.Color(255, 78, 80));
+        PurchasP.setBackground(new java.awt.Color(252, 66, 123));
 
         javax.swing.GroupLayout PurchasPLayout = new javax.swing.GroupLayout(PurchasP);
         PurchasP.setLayout(PurchasPLayout);
@@ -1343,7 +1327,7 @@ Connection con = null;
         SideBarPane.add(PurchasP);
         PurchasP.setBounds(0, 150, 20, 50);
 
-        SalesP.setBackground(new java.awt.Color(255, 78, 80));
+        SalesP.setBackground(new java.awt.Color(252, 66, 123));
 
         javax.swing.GroupLayout SalesPLayout = new javax.swing.GroupLayout(SalesP);
         SalesP.setLayout(SalesPLayout);
@@ -1359,7 +1343,7 @@ Connection con = null;
         SideBarPane.add(SalesP);
         SalesP.setBounds(0, 200, 20, 50);
 
-        AccountsP.setBackground(new java.awt.Color(255, 78, 80));
+        AccountsP.setBackground(new java.awt.Color(252, 66, 123));
 
         javax.swing.GroupLayout AccountsPLayout = new javax.swing.GroupLayout(AccountsP);
         AccountsP.setLayout(AccountsPLayout);
@@ -1375,7 +1359,7 @@ Connection con = null;
         SideBarPane.add(AccountsP);
         AccountsP.setBounds(0, 300, 20, 50);
 
-        ReportP.setBackground(new java.awt.Color(255, 78, 80));
+        ReportP.setBackground(new java.awt.Color(252, 66, 123));
 
         javax.swing.GroupLayout ReportPLayout = new javax.swing.GroupLayout(ReportP);
         ReportP.setLayout(ReportPLayout);
@@ -1391,7 +1375,7 @@ Connection con = null;
         SideBarPane.add(ReportP);
         ReportP.setBounds(0, 250, 20, 50);
 
-        AdminP.setBackground(new java.awt.Color(255, 78, 80));
+        AdminP.setBackground(new java.awt.Color(252, 66, 123));
 
         javax.swing.GroupLayout AdminPLayout = new javax.swing.GroupLayout(AdminP);
         AdminP.setLayout(AdminPLayout);
@@ -1418,34 +1402,34 @@ Connection con = null;
 
     private void lb_HomeMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_HomeMouseClicked
         // TODO add your handling code here:
-        HomePanel.setVisible(true);
         PurchasePanel.setVisible(false);
         SalesPanel.setVisible(false);
         AdminPanel.setVisible(false);
         lb_Home.setForeground(Color.red);
-        homeP.setVisible(true);
         PurchasP.setVisible(false);
         SalesP.setVisible(false);
         ReportP.setVisible(false);
         AccountsP.setVisible(false);
         AdminP.setVisible(false);
+        homeP.setVisible(true);
+        HomePanel.setVisible(true);
         
     }//GEN-LAST:event_lb_HomeMouseClicked
 
     private void lb_PurchaseMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_PurchaseMouseClicked
         // TODO add your handling code here:
-        PurchasePanel.setVisible(true);
         HomePanel.setVisible(false);
         SalesPanel.setVisible(false);
         AccountsPanel.setVisible(false);
         AdminPanel.setVisible(false);
         lb_Purchase.setForeground(Color.red);
         homeP.setVisible(false);
-        PurchasP.setVisible(true);
         SalesP.setVisible(false);
         ReportP.setVisible(false);
         AccountsP.setVisible(false);
         AdminP.setVisible(false);
+        PurchasP.setVisible(true);
+        PurchasePanel.setVisible(true);
     }//GEN-LAST:event_lb_PurchaseMouseClicked
 
     private void jLabel9MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel9MouseClicked
@@ -1453,15 +1437,15 @@ Connection con = null;
         HomePanel.setVisible(false);
         PurchasePanel.setVisible(false);
         AccountsPanel.setVisible(false);
-        SalesPanel.setVisible(true);
         AdminPanel.setVisible(false);
         jLabel9.setForeground(Color.red);
         homeP.setVisible(false);
         PurchasP.setVisible(false);
-        SalesP.setVisible(true);
         ReportP.setVisible(false);
         AccountsP.setVisible(false);
         AdminP.setVisible(false);
+        SalesP.setVisible(true);
+        SalesPanel.setVisible(true);
     }//GEN-LAST:event_jLabel9MouseClicked
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
@@ -1470,7 +1454,6 @@ Connection con = null;
         PurchasePanel.setVisible(false);
         SalesPanel.setVisible(false);
         ReportsPanel.setVisible(false);
-        AccountsPanel.setVisible(true);
         AdminPanel.setVisible(false);
         AdminP.setVisible(false);
         jLabel8.setForeground(Color.red);
@@ -1478,8 +1461,10 @@ Connection con = null;
         PurchasP.setVisible(false);
         SalesP.setVisible(false);
         ReportP.setVisible(false);
-        AccountsP.setVisible(true);
         AdminP.setVisible(false);
+        AccountsP.setVisible(true);
+        AccountsPanel.setVisible(true);
+        
         
     }//GEN-LAST:event_jLabel8MouseClicked
 
@@ -1489,15 +1474,15 @@ Connection con = null;
         PurchasePanel.setVisible(false);
         SalesPanel.setVisible(false);
         AccountsPanel.setVisible(false);
-        ReportsPanel.setVisible(true);
         AdminP.setVisible(false);
         jLabel11.setForeground(Color.red);
         homeP.setVisible(false);
         PurchasP.setVisible(false);
         SalesP.setVisible(false);
-        ReportP.setVisible(true);
         AccountsP.setVisible(false);
         AdminP.setVisible(false);
+        ReportP.setVisible(true);
+        ReportsPanel.setVisible(true);
     }//GEN-LAST:event_jLabel11MouseClicked
 
     private void jLabel25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseClicked
@@ -1814,22 +1799,6 @@ new dbConnection().loginAdmin("SELECT * FROM `AdminPower` WHERE `admin_username`
     private void txtAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtAdminActionPerformed
-
-    private void jLabel54MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel54MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel54MouseEntered
-
-    private void jLabel54MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel54MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel54MouseExited
-
-    private void jLabel53MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel53MouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel53MouseEntered
-
-    private void jLabel53MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel53MouseExited
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jLabel53MouseExited
 
     private void jLabel50MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel50MouseExited
         // TODO add your handling code here:

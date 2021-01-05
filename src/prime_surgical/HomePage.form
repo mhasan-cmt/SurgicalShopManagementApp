@@ -1412,7 +1412,7 @@
         <Container class="javax.swing.JPanel" name="ReportsPanel">
           <Properties>
             <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-              <Color blue="66" green="66" red="0" type="rgb"/>
+              <Color blue="61" green="2c" red="18" type="rgb"/>
             </Property>
           </Properties>
           <Constraints>
@@ -1473,10 +1473,6 @@
                       <Image iconType="2" name="F:\Java 23\JavaCodes\Prime_Surgical\src\img\icons8_increase_100px.png"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel54MouseEntered"/>
-                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel54MouseExited"/>
-                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="0" y="0" width="270" height="110"/>
@@ -1533,10 +1529,6 @@
                       <Image iconType="2" name="F:\Java 23\JavaCodes\Prime_Surgical\src\img\icons8_business_report_100px.png"/>
                     </Property>
                   </Properties>
-                  <Events>
-                    <EventHandler event="mouseEntered" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel53MouseEntered"/>
-                    <EventHandler event="mouseExited" listener="java.awt.event.MouseListener" parameters="java.awt.event.MouseEvent" handler="jLabel53MouseExited"/>
-                  </Events>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="0" y="0" width="270" height="110"/>
@@ -2142,7 +2134,7 @@
             <Container class="javax.swing.JPanel" name="homeP">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="50" green="4e" red="ff" type="rgb"/>
+                  <Color blue="7b" green="42" red="fc" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -2167,7 +2159,7 @@
             <Container class="javax.swing.JPanel" name="PurchasP">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="50" green="4e" red="ff" type="rgb"/>
+                  <Color blue="7b" green="42" red="fc" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -2192,7 +2184,7 @@
             <Container class="javax.swing.JPanel" name="SalesP">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="50" green="4e" red="ff" type="rgb"/>
+                  <Color blue="7b" green="42" red="fc" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -2217,7 +2209,7 @@
             <Container class="javax.swing.JPanel" name="AccountsP">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="50" green="4e" red="ff" type="rgb"/>
+                  <Color blue="7b" green="42" red="fc" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -2242,7 +2234,7 @@
             <Container class="javax.swing.JPanel" name="ReportP">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="50" green="4e" red="ff" type="rgb"/>
+                  <Color blue="7b" green="42" red="fc" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
@@ -2267,7 +2259,7 @@
             <Container class="javax.swing.JPanel" name="AdminP">
               <Properties>
                 <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                  <Color blue="50" green="4e" red="ff" type="rgb"/>
+                  <Color blue="7b" green="42" red="fc" type="rgb"/>
                 </Property>
               </Properties>
               <Constraints>
