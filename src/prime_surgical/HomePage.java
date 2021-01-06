@@ -1,4 +1,4 @@
-
+//
 package prime_surgical;
 import java.awt.Color;
 import java.sql.Connection;
@@ -311,7 +311,7 @@ Connection con = null;
             }
         });
         jPanel14.add(jLabel47);
-        jLabel47.setBounds(0, 0, 270, 100);
+        jLabel47.setBounds(0, 0, 290, 100);
 
         HomePanel.add(jPanel14);
         jPanel14.setBounds(160, 370, 290, 150);
@@ -403,7 +403,7 @@ Connection con = null;
             }
         });
         jPanel13.add(jLabel15);
-        jLabel15.setBounds(0, 90, 200, 60);
+        jLabel15.setBounds(0, 100, 290, 50);
 
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel14.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_cash_100px.png")); // NOI18N
@@ -419,7 +419,7 @@ Connection con = null;
             }
         });
         jPanel13.add(jLabel14);
-        jLabel14.setBounds(0, 0, 200, 100);
+        jLabel14.setBounds(0, 0, 290, 100);
 
         HomePanel.add(jPanel13);
         jPanel13.setBounds(160, 70, 290, 150);
@@ -518,7 +518,7 @@ Connection con = null;
             }
         });
         jPanel21.add(jLabel28);
-        jLabel28.setBounds(0, 80, 200, 70);
+        jLabel28.setBounds(0, 100, 200, 50);
 
         jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel37.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_bank_100px.png")); // NOI18N
@@ -534,7 +534,7 @@ Connection con = null;
             }
         });
         jPanel21.add(jLabel37);
-        jLabel37.setBounds(0, 0, 200, 90);
+        jLabel37.setBounds(0, 10, 200, 80);
 
         HomePanel.add(jPanel21);
         jPanel21.setBounds(450, 70, 200, 150);
@@ -1178,7 +1178,7 @@ Connection con = null;
 
         jLayeredPane1.setLayout(new java.awt.CardLayout());
 
-        SideBarPane.setBackground(new java.awt.Color(77, 94, 114));
+        SideBarPane.setBackground(new java.awt.Color(44, 62, 80));
         SideBarPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 0), 2));
         SideBarPane.setLayout(null);
 

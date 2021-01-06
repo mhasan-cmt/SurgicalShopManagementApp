@@ -116,35 +116,37 @@ public class Login extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel1.setBackground(new java.awt.Color(48, 51, 107));
         jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 102), 2));
         jPanel1.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Kalpurush", 1, 33)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel1.setFont(new java.awt.Font("Kalpurush", 1, 36)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(106, 176, 76));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("এন্ড ");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(140, 70, 60, 40);
+        jLabel1.setBounds(0, 70, 340, 40);
 
-        jLabel2.setFont(new java.awt.Font("Kalpurush", 1, 33)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel2.setFont(new java.awt.Font("Kalpurush", 1, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(106, 176, 76));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("সায়েন্টিফিক");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(20, 110, 300, 50);
+        jLabel2.setBounds(0, 110, 340, 50);
 
-        jLabel3.setFont(new java.awt.Font("Kalpurush", 1, 33)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel3.setFont(new java.awt.Font("Kalpurush", 1, 36)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(106, 176, 76));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("প্রাইম সার্জিক্যাল ");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(10, 20, 320, 60);
+        jLabel3.setBounds(0, 20, 340, 60);
 
-        jLabel4.setFont(new java.awt.Font("Kalpurush", 0, 18)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Kalpurush", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(199, 236, 238));
+        jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("ট্রাংক রোড, ফেনী।");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(100, 260, 130, 50);
+        jLabel4.setBounds(0, 270, 340, 50);
 
         jLabel5.setBackground(new java.awt.Color(0, 102, 102));
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 27)); // NOI18N
@@ -154,27 +156,31 @@ public class Login extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
         jLabel5.setBounds(10, 150, 320, 50);
 
-        jLabel6.setFont(new java.awt.Font("Kalpurush", 0, 18)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Kalpurush", 0, 20)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(199, 236, 238));
         jLabel6.setText("যমুনা শপিং সেন্টার(উত্তরা ব্যাংকের নিচ তলা,");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(20, 200, 290, 50);
+        jLabel6.setBounds(20, 210, 310, 40);
 
-        jLabel7.setFont(new java.awt.Font("Kalpurush", 0, 18)); // NOI18N
+        jLabel7.setFont(new java.awt.Font("Kalpurush", 0, 20)); // NOI18N
+        jLabel7.setForeground(new java.awt.Color(199, 236, 238));
         jLabel7.setText(" ফেনী সরকারি বালিকা বিদ্যালয়ের উত্তর পার্শে), ");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(10, 230, 310, 50);
+        jLabel7.setBounds(0, 240, 340, 50);
 
         jLabel8.setFont(new java.awt.Font("Kalpurush", 0, 18)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(204, 0, 51));
+        jLabel8.setForeground(new java.awt.Color(186, 220, 88));
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("মোবাইলঃ ০১৮৮৭-০৩৩৩১১, ০১৮৬৩-৮০৮৯৮১");
         jPanel1.add(jLabel8);
-        jLabel8.setBounds(20, 330, 310, 30);
+        jLabel8.setBounds(0, 330, 340, 30);
 
         jLabel9.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(204, 0, 51));
+        jLabel9.setForeground(new java.awt.Color(186, 220, 88));
+        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Email: primesugicall95@gmail.com");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(20, 370, 310, 24);
+        jLabel9.setBounds(0, 370, 340, 24);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 340, 430);
@@ -242,22 +248,24 @@ public class Login extends javax.swing.JFrame {
 
         jLabel13.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\beautiful-color-ui-gradients-backgrounds-celestial.png")); // NOI18N
         jPanel2.add(jLabel13);
-        jLabel13.setBounds(0, 0, 460, 330);
+        jLabel13.setBounds(0, 0, 460, 350);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(340, 100, 460, 330);
 
-        jPanel3.setBackground(new java.awt.Color(102, 102, 255));
+        jPanel3.setBackground(new java.awt.Color(41, 128, 185));
         jPanel3.setLayout(null);
 
         jLabel10.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 48)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel10.setForeground(new java.awt.Color(199, 236, 238));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Sign In");
         jPanel3.add(jLabel10);
-        jLabel10.setBounds(20, 20, 200, 60);
+        jLabel10.setBounds(0, 20, 220, 60);
 
-        comUser.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        comUser.setBackground(new java.awt.Color(47, 54, 64));
+        comUser.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        comUser.setForeground(new java.awt.Color(199, 236, 238));
         comUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User" }));
         comUser.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
@@ -274,7 +282,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jPanel3);
         jPanel3.setBounds(340, 0, 460, 100);
 
-        setSize(new java.awt.Dimension(799, 433));
+        setSize(new java.awt.Dimension(799, 429));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 

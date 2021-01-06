@@ -39,20 +39,23 @@ void test(){
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        jLabel10 = new javax.swing.JLabel();
+        jLabel8 = new javax.swing.JLabel();
+        jLabel9 = new javax.swing.JLabel();
+        progress = new javax.swing.JLabel();
         bar = new javax.swing.JProgressBar();
         jLabel6 = new javax.swing.JLabel();
-        progress = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
+        jLabel7 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        headerPane.setBackground(new java.awt.Color(255, 255, 255));
+        headerPane.setBackground(new java.awt.Color(48, 51, 107));
         headerPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 102), 3));
         headerPane.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Kalpurush", 1, 48)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(0, 102, 102));
+        jLabel1.setForeground(new java.awt.Color(106, 176, 76));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("প্রাইম সার্জিক্যাল এন্ড সায়েন্টিফিক");
         headerPane.add(jLabel1);
@@ -67,18 +70,19 @@ void test(){
         jLabel2.setBounds(240, 60, 470, 50);
 
         jLabel3.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(204, 0, 51));
+        jLabel3.setForeground(new java.awt.Color(186, 220, 88));
         jLabel3.setText("Email: primesugicall95@gmail.com");
         headerPane.add(jLabel3);
         jLabel3.setBounds(510, 140, 320, 24);
 
         jLabel4.setFont(new java.awt.Font("Kalpurush", 0, 24)); // NOI18N
+        jLabel4.setForeground(new java.awt.Color(199, 236, 238));
         jLabel4.setText("যমুনা শপিং সেন্টার(উত্তরা ব্যাংকের নিচ তলা, ফেনী সরকারি বালিকা বিদ্যালয়ের উত্তর পার্শে), ট্রাংক রোড, ফেনী।");
         headerPane.add(jLabel4);
         jLabel4.setBounds(10, 100, 960, 50);
 
         jLabel5.setFont(new java.awt.Font("Kalpurush", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(204, 0, 51));
+        jLabel5.setForeground(new java.awt.Color(186, 220, 88));
         jLabel5.setText("মোবাইলঃ ০১৮৮৭-০৩৩৩১১, ০১৮৬৩-৮০৮৯৮১");
         headerPane.add(jLabel5);
         jLabel5.setBounds(190, 140, 320, 30);
@@ -86,23 +90,17 @@ void test(){
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setLayout(null);
 
-        bar.setBackground(new java.awt.Color(255, 0, 51));
-        bar.setForeground(new java.awt.Color(0, 0, 0));
-        jPanel1.add(bar);
-        bar.setBounds(220, 150, 600, 50);
+        jLabel10.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(44, 62, 80));
+        jLabel10.setText(" taken.” ― Oscar Wilde");
+        jPanel1.add(jLabel10);
+        jLabel10.setBounds(610, 50, 360, 50);
 
-        jLabel6.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Developed by Mahmudul Hasan Shafin(UTC)");
-        jPanel1.add(jLabel6);
-        jLabel6.setBounds(660, 250, 310, 20);
-
-        progress.setBackground(new java.awt.Color(0, 102, 102));
-        progress.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
-        progress.setForeground(new java.awt.Color(255, 255, 255));
-        progress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(progress);
-        progress.setBounds(410, 110, 70, 40);
+        jLabel8.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(44, 62, 80));
+        jLabel8.setText("“Be yourself, everyone else is already");
+        jPanel1.add(jLabel8);
+        jLabel8.setBounds(400, 10, 580, 40);
 
         jLabel9.setBackground(new java.awt.Color(0, 102, 102));
         jLabel9.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -110,16 +108,40 @@ void test(){
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Starting Programm......");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(220, 110, 190, 40);
+        jLabel9.setBounds(80, 140, 190, 40);
+
+        progress.setBackground(new java.awt.Color(0, 102, 102));
+        progress.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        progress.setForeground(new java.awt.Color(255, 255, 255));
+        progress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jPanel1.add(progress);
+        progress.setBounds(270, 140, 70, 40);
+
+        bar.setForeground(new java.awt.Color(0, 0, 0));
+        bar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
+        jPanel1.add(bar);
+        bar.setBounds(80, 180, 600, 40);
+
+        jLabel6.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel6.setText("Developed by Mahmudul Hasan Shafin(UTC)");
+        jPanel1.add(jLabel6);
+        jLabel6.setBounds(640, 250, 310, 20);
+
+        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel7.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\Untitled-1.png")); // NOI18N
+        jPanel1.add(jLabel7);
+        jLabel7.setBounds(0, -10, 980, 300);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(headerPane, javax.swing.GroupLayout.PREFERRED_SIZE, 980, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                    .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(headerPane, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, 980, Short.MAX_VALUE))
                 .addGap(0, 0, Short.MAX_VALUE))
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -196,13 +218,16 @@ void test(){
     static javax.swing.JProgressBar bar;
     private javax.swing.JPanel headerPane;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
+    private static javax.swing.JLabel jLabel7;
+    private javax.swing.JLabel jLabel8;
     private static javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
-    private static javax.swing.JLabel progress;
+    static javax.swing.JLabel progress;
     // End of variables declaration//GEN-END:variables
 }
