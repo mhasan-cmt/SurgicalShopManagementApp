@@ -361,6 +361,7 @@ public class Sales_Order extends javax.swing.JFrame {
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel3.setLayout(null);
 
+        jTable1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -369,6 +370,7 @@ public class Sales_Order extends javax.swing.JFrame {
                 "SL No.", "Cateogory", "Product", "Price", "Quantity", "Total"
             }
         ));
+        jTable1.setRowHeight(30);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel3.add(jScrollPane1);

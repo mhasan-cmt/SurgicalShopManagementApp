@@ -368,6 +368,7 @@ public class Sales_Officers extends javax.swing.JFrame {
         jPanel1.add(jLabel13);
         jLabel13.setBounds(550, 220, 140, 40);
 
+        jTable1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -376,6 +377,7 @@ public class Sales_Officers extends javax.swing.JFrame {
                 "Id", "Name", "Mobile", "Address", "Salary", "Position", "Joining date", "Refferal Person", "Mobie No."
             }
         ));
+        jTable1.setRowHeight(30);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);

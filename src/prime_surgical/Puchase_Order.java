@@ -326,6 +326,7 @@ public class Puchase_Order extends javax.swing.JFrame {
         jPanel5.add(jPanel6);
         jPanel6.setBounds(10, 10, 830, 240);
 
+        jTable1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -334,6 +335,7 @@ public class Puchase_Order extends javax.swing.JFrame {
                 "SL No.", "Cateogory", "Product", "Price", "Quantity", "Total"
             }
         ));
+        jTable1.setRowHeight(30);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel5.add(jScrollPane1);

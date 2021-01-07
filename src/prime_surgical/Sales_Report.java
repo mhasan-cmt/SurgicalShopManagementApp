@@ -226,7 +226,7 @@ public class Sales_Report extends javax.swing.JFrame {
         jPanel14.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
         jPanel14.setLayout(null);
 
-        jTable5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jTable5.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -235,6 +235,7 @@ public class Sales_Report extends javax.swing.JFrame {
                 "SL", "Date", "Bill no.", "Company", "Cateogory", "Product", "GR", "Status", "Quantity", "Price", "Total"
             }
         ));
+        jTable5.setRowHeight(30);
         jScrollPane5.setViewportView(jTable5);
 
         jPanel14.add(jScrollPane5);
@@ -370,7 +371,7 @@ public class Sales_Report extends javax.swing.JFrame {
         jPanel13.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
         jPanel13.setLayout(null);
 
-        jTable4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jTable4.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -379,6 +380,7 @@ public class Sales_Report extends javax.swing.JFrame {
                 "SL", "Date", "Bill no.", "Company", "Cateogory", "Product", "GR", "Status", "Quantity", "Price", "Total"
             }
         ));
+        jTable4.setRowHeight(30);
         jScrollPane4.setViewportView(jTable4);
 
         jPanel13.add(jScrollPane4);
@@ -509,7 +511,7 @@ public class Sales_Report extends javax.swing.JFrame {
         jPanel10.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 51), 2));
         jPanel10.setLayout(null);
 
-        jTable1.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jTable1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -518,6 +520,7 @@ public class Sales_Report extends javax.swing.JFrame {
                 "SL", "Date", "Bill no.", "Company", "Cateogory", "Product", "GR", "Status", "Quantity", "Price", "Total"
             }
         ));
+        jTable1.setRowHeight(30);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel10.add(jScrollPane1);

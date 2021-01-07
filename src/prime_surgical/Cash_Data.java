@@ -255,6 +255,7 @@ jTextField6.setText("0");
         jPanel4.setBackground(new java.awt.Color(0, 153, 153));
         jPanel4.setLayout(null);
 
+        jTable1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -263,6 +264,7 @@ jTextField6.setText("0");
                 "Sl", "Date", "Details", "Status", "Amount"
             }
         ));
+        jTable1.setRowHeight(30);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel4.add(jScrollPane1);
@@ -589,6 +591,7 @@ jTextField6.setText("0");
         jPanel5.add(jPanel6);
         jPanel6.setBounds(10, 10, 380, 490);
 
+        jTable2.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jTable2.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -597,6 +600,7 @@ jTextField6.setText("0");
                 "Sl", "Date", "Details", "Status", "Amount"
             }
         ));
+        jTable2.setRowHeight(30);
         jScrollPane2.setViewportView(jTable2);
 
         jPanel5.add(jScrollPane2);

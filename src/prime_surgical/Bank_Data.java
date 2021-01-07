@@ -382,6 +382,7 @@ public class Bank_Data extends javax.swing.JFrame {
         jPanel1.add(jPanel7);
         jPanel7.setBounds(0, 320, 540, 60);
 
+        jTable1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -390,6 +391,7 @@ public class Bank_Data extends javax.swing.JFrame {
                 "SL", "Date", "Bank Name", "Account Number", "Status", "Details ", "Amount"
             }
         ));
+        jTable1.setRowHeight(30);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1);

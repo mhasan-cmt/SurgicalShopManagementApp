@@ -231,7 +231,7 @@ public class Purchase_Report extends javax.swing.JFrame {
 
         jPanel11.setLayout(null);
 
-        jTable4.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jTable4.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -240,6 +240,7 @@ public class Purchase_Report extends javax.swing.JFrame {
                 "SL", "Date", "Bill no.", "Company", "Cateogory", "Product", "GR", "Status", "Quantity", "Price", "Total"
             }
         ));
+        jTable4.setRowHeight(30);
         jScrollPane4.setViewportView(jTable4);
 
         jPanel11.add(jScrollPane4);
@@ -386,7 +387,7 @@ public class Purchase_Report extends javax.swing.JFrame {
 
         jPanel15.setLayout(null);
 
-        jTable6.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jTable6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jTable6.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -395,6 +396,7 @@ public class Purchase_Report extends javax.swing.JFrame {
                 "SL", "Date", "Bill no.", "Company", "Cateogory", "Product", "GR", "Status", "Quantity", "Price", "Total"
             }
         ));
+        jTable6.setRowHeight(30);
         jScrollPane6.setViewportView(jTable6);
 
         jPanel15.add(jScrollPane6);
@@ -551,7 +553,7 @@ public class Purchase_Report extends javax.swing.JFrame {
 
         jPanel14.setLayout(null);
 
-        jTable5.setFont(new java.awt.Font("Roboto", 0, 14)); // NOI18N
+        jTable5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jTable5.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 

@@ -71,7 +71,6 @@ public class Suppliers extends javax.swing.JFrame {
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
@@ -102,19 +101,19 @@ public class Suppliers extends javax.swing.JFrame {
 
         txtName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel1.add(txtName);
-        txtName.setBounds(190, 200, 290, 40);
+        txtName.setBounds(190, 200, 290, 50);
 
         txtAddress.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel1.add(txtAddress);
-        txtAddress.setBounds(190, 350, 290, 40);
+        txtAddress.setBounds(190, 350, 290, 50);
 
         txtMobile.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel1.add(txtMobile);
-        txtMobile.setBounds(190, 250, 290, 40);
+        txtMobile.setBounds(190, 250, 290, 50);
 
         txtCompany.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel1.add(txtCompany);
-        txtCompany.setBounds(190, 300, 290, 40);
+        txtCompany.setBounds(190, 300, 290, 50);
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -140,16 +139,6 @@ public class Suppliers extends javax.swing.JFrame {
         jPanel1.add(jLabel7);
         jLabel7.setBounds(30, 300, 160, 40);
 
-        jButton1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jButton1.setText("Delete");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(330, 420, 130, 40);
-
         jButton2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton2.setText("ADD");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -158,7 +147,7 @@ public class Suppliers extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(50, 420, 130, 40);
+        jButton2.setBounds(60, 420, 130, 50);
 
         jButton3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton3.setText("Update");
@@ -168,7 +157,7 @@ public class Suppliers extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(190, 420, 130, 40);
+        jButton3.setBounds(190, 420, 130, 50);
 
         jButton4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton4.setText("Exit");
@@ -178,7 +167,7 @@ public class Suppliers extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(180, 520, 130, 40);
+        jButton4.setBounds(260, 470, 130, 50);
 
         jButton5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton5.setText("Show");
@@ -188,7 +177,7 @@ public class Suppliers extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton5);
-        jButton5.setBounds(110, 470, 130, 40);
+        jButton5.setBounds(130, 470, 130, 50);
 
         jButton6.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton6.setText("Clear");
@@ -198,7 +187,7 @@ public class Suppliers extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton6);
-        jButton6.setBounds(250, 470, 130, 40);
+        jButton6.setBounds(320, 420, 130, 50);
 
         jPanel4.setBackground(new java.awt.Color(0, 102, 102));
         jPanel4.setLayout(null);
@@ -207,7 +196,7 @@ public class Suppliers extends javax.swing.JFrame {
 
         txtId.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel1.add(txtId);
-        txtId.setBounds(190, 150, 290, 40);
+        txtId.setBounds(190, 150, 290, 50);
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
@@ -275,14 +264,17 @@ public class Suppliers extends javax.swing.JFrame {
         jPanel5.setLayout(null);
 
         jTable1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jTable1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
             new String [] {
-                "Id", "Name", "Mobile Number", "Company Name", "Address"
+                "Id", "Name", "Company Name", "Mobile Number", "Address"
             }
         ));
+        jTable1.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        jTable1.setRowHeight(30);
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jTable1MouseClicked(evt);
@@ -325,10 +317,6 @@ public class Suppliers extends javax.swing.JFrame {
         // show data to table:
         showSuplliers();
     }//GEN-LAST:event_jButton5ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:  
-    }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
@@ -386,7 +374,6 @@ public class Suppliers extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;

@@ -421,6 +421,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
         billPanel.add(jLabel18);
         jLabel18.setBounds(10, 270, 80, 40);
 
+        jTable1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -429,6 +430,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
                 "SL.", "Bill", "Date", "Item", "Sub total", "Discount", "Paid"
             }
         ));
+        jTable1.setRowHeight(30);
         jScrollPane1.setViewportView(jTable1);
 
         billPanel.add(jScrollPane1);

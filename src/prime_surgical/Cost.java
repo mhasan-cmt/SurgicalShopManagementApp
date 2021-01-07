@@ -411,6 +411,7 @@ public class Cost extends javax.swing.JFrame {
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel5.setLayout(null);
 
+        jTable1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -419,6 +420,7 @@ public class Cost extends javax.swing.JFrame {
                 "Sl no.", "Date", "Cost Type", "Bill no.", "Detalis", "Paid by", "Amount"
             }
         ));
+        jTable1.setRowHeight(30);
         jScrollPane1.setViewportView(jTable1);
 
         jPanel5.add(jScrollPane1);
