@@ -375,7 +375,7 @@ public class Bank_Data extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Bank Debits & Credits:");
+        jLabel6.setText("Bank Withdraws & Deposits:");
         jPanel7.add(jLabel6);
         jLabel6.setBounds(0, 0, 540, 60);
 

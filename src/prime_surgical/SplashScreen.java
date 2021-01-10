@@ -39,10 +39,10 @@ void test(){
         jLabel4 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
+        progress = new javax.swing.JLabel();
+        jLabel11 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        progress = new javax.swing.JLabel();
         bar = new javax.swing.JProgressBar();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
@@ -90,6 +90,19 @@ void test(){
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setLayout(null);
 
+        progress.setBackground(new java.awt.Color(0, 102, 102));
+        progress.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
+        progress.setForeground(new java.awt.Color(255, 255, 255));
+        progress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        progress.setText("09%");
+        jPanel1.add(progress);
+        progress.setBounds(330, 100, 60, 70);
+
+        jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel11.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\96x96.gif")); // NOI18N
+        jPanel1.add(jLabel11);
+        jLabel11.setBounds(300, 90, 120, 90);
+
         jLabel10.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(44, 62, 80));
         jLabel10.setText(" taken.” ― Oscar Wilde");
@@ -101,21 +114,6 @@ void test(){
         jLabel8.setText("“Be yourself, everyone else is already");
         jPanel1.add(jLabel8);
         jLabel8.setBounds(400, 10, 580, 40);
-
-        jLabel9.setBackground(new java.awt.Color(0, 102, 102));
-        jLabel9.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Starting Programm......");
-        jPanel1.add(jLabel9);
-        jLabel9.setBounds(80, 140, 190, 40);
-
-        progress.setBackground(new java.awt.Color(0, 102, 102));
-        progress.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
-        progress.setForeground(new java.awt.Color(255, 255, 255));
-        progress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jPanel1.add(progress);
-        progress.setBounds(270, 140, 70, 40);
 
         bar.setForeground(new java.awt.Color(0, 0, 0));
         bar.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
@@ -219,6 +217,7 @@ void test(){
     private javax.swing.JPanel headerPane;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
+    private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
@@ -226,7 +225,6 @@ void test(){
     private javax.swing.JLabel jLabel6;
     private static javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
-    private static javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     static javax.swing.JLabel progress;
     // End of variables declaration//GEN-END:variables

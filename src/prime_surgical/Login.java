@@ -7,10 +7,10 @@ package prime_surgical;
 
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
 import java.sql.SQLException;
-import java.sql.Statement;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.JOptionPane;
@@ -30,9 +30,9 @@ public class Login extends javax.swing.JFrame {
         users();
     } 
     String user,pass;
-    Connection con = null;
-    Statement st = null;
-    ResultSet rs = null;
+    Connection con;
+    PreparedStatement st;
+    ResultSet rs;
     String url = "jdbc:mysql://localhost:3306/primesurgical";
     String un = "root";
     String pw = "";
@@ -40,7 +40,6 @@ public class Login extends javax.swing.JFrame {
      void dbConnect() {
         try {
             con = DriverManager.getConnection(url, un, pw);
-            st = con.createStatement();
         } catch (SQLException ex) {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
@@ -54,8 +53,11 @@ public class Login extends javax.swing.JFrame {
         try {
             dbConnect();
             getData();
-            String query= "SELECT * FROM `users` WHERE `user_name`='"+user+"' AND  `user_password`='"+pass+"'";
-            rs=st.executeQuery(query);
+            String query= "SELECT * FROM `users` WHERE `user_name`=? AND  `user_password`=? ";
+            st=con.prepareStatement(query);
+            st.setString(1, user);
+            st.setString(2, pass);
+            rs=st.executeQuery();
             if(rs.next()){
                 uName=user;
                 new HomePage().setVisible(true);
@@ -73,7 +75,8 @@ public class Login extends javax.swing.JFrame {
         try {
             dbConnect();
             String q="SELECT `user_role` FROM `users` ";
-            rs=st.executeQuery(q);
+            st=con.prepareStatement(q);
+            rs=st.executeQuery();
             while(rs.next()){
                 comUser.addItem(rs.getString(1));
             }

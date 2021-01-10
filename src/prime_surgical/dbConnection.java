@@ -326,10 +326,14 @@ public class dbConnection {
             Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    void loginAdmin(String query,JFrame frame,JPanel loginpanel, JLabel logo,JPanel mainAdmin){
+    void loginAdmin(JFrame frame,JTextField user,JTextField pass,JPanel loginpanel, JLabel logo,JPanel mainAdmin){
         try {
             dbconnect();
-            rs=st.executeQuery(query);
+            String query="SELECT * FROM `adminpower` WHERE `admin_username`=? AND `admin_password`=?";
+            PreparedStatement ps=con.prepareStatement(query);
+            ps.setString(1, user.getText());
+            ps.setString(2,pass.getText());
+            rs=ps.executeQuery();
             if(rs.next()){
                 loginpanel.setVisible(false);
                 logo.setVisible(false);

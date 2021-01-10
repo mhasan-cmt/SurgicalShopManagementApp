@@ -132,7 +132,7 @@ public class PurchaseEntry extends javax.swing.JFrame {
         pCompany = jLabel14.getText();
         pDate = date;
         pGR = gr;
-        pItems = new dbConnection().singledata("SELECT Sum(`quantity`) FROM `purchase entry` WHERE `bill_no`='" + pBill + "'");
+        pItems = new dbConnection().singledata("SELECT Sum(`quantity`) FROM `purchase entry` WHERE `bill_no`='" + pBill + "' and `company_name`='"+pCompany+"'");
         pTotal = new dbConnection().singledata("SELECT SUM(`total`) FROM `purchase entry` WHERE `bill_no`='" + pBill + "'");
         if (rbBank.isSelected()) {
             pPayment = "Bank";

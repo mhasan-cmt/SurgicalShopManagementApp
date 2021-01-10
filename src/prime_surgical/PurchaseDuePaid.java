@@ -31,7 +31,7 @@ companyName=comCompany.getSelectedItem().toString();
     new dbConnection().showPurchaseAccounts("SELECT * FROM `purchase accounts` WHERE `company`='"+companyName+"'", jTable1);
     txtSubTotal.setEditable(false);
     txtDue.setEditable(false);
-    String subTotal=new dbConnection().singledata("SELECT SUM(`due`) FROM `purchase accounts` WHERE `company`='"+companyName+"'");
+    String subTotal=new dbConnection().singledata("SELECT SUM(total)-SUM(`paid`) FROM `purchase accounts` WHERE `company`='"+companyName+"'");
     txtSubTotal.setText(subTotal);
     txtDue.setText(subTotal);
 }
@@ -96,7 +96,7 @@ void addPurchaseAccounts(){
     getData();
     if(payment.equals("Bank")){
         getData();
-     new dbConnection().addData("INSERT INTO `purchase accounts` VALUES('"+billNo+"','"+"Due Paid"+"','"+purchaseDate+"','"+companyName+"','"+"0"+"','"+total+"','"+payment+"','"+"0"+"','"+paid+"','"+due+"')", this);
+     new dbConnection().addData("INSERT INTO `purchase accounts` VALUES('"+billNo+"','"+"Due Paid"+"','"+purchaseDate+"','"+companyName+"','"+"0"+"','"+"0"+"','"+payment+"','"+"0"+"','"+paid+"','"+due+"')", this);
      sendBank();
      showPurchaseAccounts();
      txtPaid.setText("0.00");
@@ -106,7 +106,7 @@ void addPurchaseAccounts(){
     }
     else if(payment.equals("Cash")){
         getData();
-     new dbConnection().addData("INSERT INTO `purchase accounts` VALUES('"+billNo+"','"+"Due Paid"+"','"+purchaseDate+"','"+companyName+"','"+"0"+"','"+total+"','"+payment+"','"+"0"+"','"+paid+"','"+due+"')", this);
+     new dbConnection().addData("INSERT INTO `purchase accounts` VALUES('"+billNo+"','"+"Due Paid"+"','"+purchaseDate+"','"+companyName+"','"+"0"+"','"+"0.00"+"','"+payment+"','"+"0"+"','"+paid+"','"+due+"')", this);
      sendCash();
      showPurchaseAccounts();
      txtPaid.setText("0.00");

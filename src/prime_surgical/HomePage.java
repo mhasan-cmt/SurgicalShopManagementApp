@@ -1163,6 +1163,8 @@ public class HomePage extends javax.swing.JFrame {
         });
         LoginPanel.add(jButton1);
         jButton1.setBounds(440, 380, 240, 50);
+
+        txtAdminPass.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         LoginPanel.add(txtAdminPass);
         txtAdminPass.setBounds(320, 320, 480, 50);
 
@@ -1982,8 +1984,7 @@ public class HomePage extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
         if (!txtAdmin.getText().isEmpty()) {
-            new dbConnection().loginAdmin("SELECT * FROM `AdminPower` WHERE `admin_username`='" + txtAdmin.getText() + "'AND `admin_password`='" + txtAdminPass.getText() + "'", this, LoginPanel, logo, MainAdmin);
-        } else {
+        new dbConnection().loginAdmin(this, txtAdmin, txtAdminPass, LoginPanel, logo, MainAdmin);        } else {
             JOptionPane.showMessageDialog(this, "Enter UserName");
         }
     }//GEN-LAST:event_jButton1ActionPerformed

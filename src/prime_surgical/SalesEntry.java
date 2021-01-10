@@ -210,7 +210,7 @@ public class SalesEntry extends javax.swing.JFrame {
 
             } else if (rbCash.isSelected()) {
                 getDataForSalesAccounts();
-                new dbConnection().addData("INSERT INTO `purchase accounts` VALUES('" + gBill + "','" + Ggr + "','" + gDate + "','" + gCustomerName + "','" + gItems + "','" + gTotal + "','" + gPayment + "','" + gDiscount + "','" + gPaid + "','" + gDue + "')", this);
+                new dbConnection().addData("INSERT INTO `sales accounts` VALUES('" + gBill + "','" + Ggr + "','" + gDate + "','" + gCustomerName + "','" + gItems + "','" + gTotal + "','" + gPayment + "','" + gDiscount + "','" + gPaid + "','" + gDue + "')", this);
                 new dbConnection().addBankOrCash("INSERT INTO `cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('" + gDate + "','" + "Sales" + "','" + "Credit" + "','" + gPaid + "')");
                 bill = autoBill();
                 txtBill.setText("" + bill);
@@ -242,7 +242,7 @@ public class SalesEntry extends javax.swing.JFrame {
         gCustomerName = lbShop.getText();
         gDate = lbDate.getText();
         Ggr = txtGR.getText();
-        gItems = new dbConnection().singledata("SELECT Sum(`quantity`) FROM `sales entry` WHERE `bill_no`='" + gBill + "'");
+        gItems = new dbConnection().singledata("SELECT Sum(`quantity`) FROM `sales entry` WHERE `bill_no`='" + gBill + "' and `customer_name`='"+gCustomerName+"'");
         gTotal = new dbConnection().singledata("SELECT SUM(`total`) FROM `sales entry` WHERE `bill_no`='" + gBill + "'");
         if (rbBank.isSelected()) {
             gPayment = "Bank";
@@ -849,7 +849,7 @@ public class SalesEntry extends javax.swing.JFrame {
             }
         });
         jPanel5.add(jButton6);
-        jButton6.setBounds(630, 720, 170, 40);
+        jButton6.setBounds(610, 720, 170, 40);
 
         buttonGroup1.add(rbBank);
         rbBank.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
