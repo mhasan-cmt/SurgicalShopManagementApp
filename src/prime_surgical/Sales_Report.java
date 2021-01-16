@@ -49,7 +49,6 @@ public class Sales_Report extends javax.swing.JFrame {
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jButton7 = new javax.swing.JButton();
         jPanel14 = new javax.swing.JPanel();
         jScrollPane5 = new javax.swing.JScrollPane();
         jTable5 = new javax.swing.JTable();
@@ -208,16 +207,6 @@ public class Sales_Report extends javax.swing.JFrame {
         jLabel5.setText("Date:");
         header6.add(jLabel5);
         jLabel5.setBounds(650, 70, 350, 30);
-
-        jButton7.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-        jButton7.setText("Show Chart");
-        jButton7.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton7ActionPerformed(evt);
-            }
-        });
-        header6.add(jButton7);
-        jButton7.setBounds(30, 140, 190, 50);
 
         productPanel.add(header6);
         header6.setBounds(0, 0, 1360, 200);
@@ -649,10 +638,6 @@ public class Sales_Report extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
-    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton7ActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -705,7 +690,6 @@ public class Sales_Report extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox7;

@@ -24,8 +24,8 @@ public class Product_Returns extends javax.swing.JFrame {
         txtNewQuantity.setEditable(false);
         txtNewTotalPrice.setEditable(false);
         txtPrice.setEditable(false);
-    }
-
+    }int quantity,returnQuantity,newQuantity;
+     Double price,newPrice;
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -72,7 +72,6 @@ public class Product_Returns extends javax.swing.JFrame {
         jLabel17 = new javax.swing.JLabel();
         lbPaid = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
-        jButton7 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -228,6 +227,11 @@ public class Product_Returns extends javax.swing.JFrame {
         jLabel10.setBounds(30, 420, 130, 30);
 
         txtReturn.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        txtReturn.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtReturnActionPerformed(evt);
+            }
+        });
         txtReturn.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtReturnKeyReleased(evt);
@@ -260,6 +264,11 @@ public class Product_Returns extends javax.swing.JFrame {
 
         jButton6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton6.setText("Return");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
         jPanel4.add(jButton6);
         jButton6.setBounds(70, 590, 260, 50);
 
@@ -364,18 +373,14 @@ public class Product_Returns extends javax.swing.JFrame {
 
         jButton5.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
         jButton5.setText("Exit");
+        jButton5.setBorder(null);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton5);
-        jButton5.setBounds(570, 660, 260, 40);
-
-        jButton7.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton7.setText("Show All");
-        jPanel1.add(jButton7);
-        jButton7.setBounds(570, 620, 260, 40);
+        jButton5.setBounds(620, 620, 260, 50);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 1370, 770);
@@ -405,6 +410,12 @@ public class Product_Returns extends javax.swing.JFrame {
         }
         if(jComboBox2.getSelectedIndex()>0 && jComboBox2.getSelectedIndex()==2){
           new dbConnection().getDataFromCombo(jComboBox3, "SELECT `customer_name` FROM `sales entry`GROUP BY `customer_name` ORDER BY `bill_no`");   
+        }
+        if(jComboBox2.getSelectedIndex()==0){
+            DefaultTableModel dtm=(DefaultTableModel)jTable1.getModel();
+            dtm.setRowCount(0);
+            jComboBox3.setSelectedIndex(0);
+            comBill.setSelectedIndex(0);
         }
         
     }//GEN-LAST:event_jComboBox2PopupMenuWillBecomeInvisible
@@ -472,20 +483,29 @@ public class Product_Returns extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jComboBox3PopupMenuWillBecomeVisible
 
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void txtReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtReturnActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtReturnActionPerformed
+
     private void txtReturnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtReturnKeyReleased
         // TODO add your handling code here:
         try {
-        int q=Integer.parseInt(txtQuantity.getText());
-        int r=Integer.parseInt(txtReturn.getText());
-        int p=Integer.parseInt(txtPrice.getText());
-        txtNewQuantity.setText(""+(q-r));
-        txtNewTotalPrice.setText(""+(r*p));
+            quantity=Integer.parseInt(txtQuantity.getText());
+            returnQuantity=Integer.parseInt(txtReturn.getText());
+            if(returnQuantity<=quantity){
+                newQuantity=quantity-returnQuantity;
+                txtNewQuantity.setText(""+newQuantity);
+                newPrice=newQuantity*Double.parseDouble(txtPrice.getText());
+                txtNewTotalPrice.setText(""+newPrice);
+            }
         } catch (Exception e) {
-            txtReturn.setText(""+0);
             txtNewQuantity.setText(""+0);
-            txtNewTotalPrice.setText(""+0);
+            txtNewTotalPrice.setText(""+0.00);
         }
-        
     }//GEN-LAST:event_txtReturnKeyReleased
 
     /**
@@ -529,7 +549,6 @@ public class Product_Returns extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comProduct;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JButton jButton7;
     private javax.swing.JComboBox<String> jComboBox2;
     private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JLabel jLabel1;

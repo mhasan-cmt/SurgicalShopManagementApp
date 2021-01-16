@@ -179,7 +179,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
         jPanel6 = new javax.swing.JPanel();
         jLabel14 = new javax.swing.JLabel();
         lb_currentDate = new javax.swing.JLabel();
-        jLabel16 = new javax.swing.JLabel();
+        lbBill = new javax.swing.JLabel();
         jTextField3 = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
         jTextField4 = new javax.swing.JTextField();
@@ -197,6 +197,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
         txtDue = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         jLabel29 = new javax.swing.JLabel();
+        jLabel25 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -289,8 +290,8 @@ public class Sales_due_paid extends javax.swing.JFrame {
 
         txtBill.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         txtBill.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtBillKeyPressed(evt);
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtBillKeyReleased(evt);
             }
         });
         jPanel1.add(txtBill);
@@ -522,10 +523,9 @@ public class Sales_due_paid extends javax.swing.JFrame {
         billPanel.add(lb_currentDate);
         lb_currentDate.setBounds(460, 190, 250, 40);
 
-        jLabel16.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel16.setText("Bill no:");
-        billPanel.add(jLabel16);
-        jLabel16.setBounds(10, 190, 60, 30);
+        lbBill.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        billPanel.add(lbBill);
+        lbBill.setBounds(70, 190, 60, 30);
 
         jTextField3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         billPanel.add(jTextField3);
@@ -636,6 +636,11 @@ public class Sales_due_paid extends javax.swing.JFrame {
         billPanel.add(jLabel29);
         jLabel29.setBounds(400, 190, 50, 40);
 
+        jLabel25.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel25.setText("Bill no:");
+        billPanel.add(jLabel25);
+        jLabel25.setBounds(10, 190, 60, 30);
+
         jPanel5.add(billPanel);
         billPanel.setBounds(10, 10, 750, 750);
 
@@ -665,7 +670,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
         // TODO add your handling code here:
         if (rbBank.isSelected()) {
             Bank.setVisible(true);
-            String query = "SELECT `bank_account_name` FROM `bank accounts`";
+            String query = "SELECT `bank_account_name` FROM `bank accounts` group by `bank_account_name`";
             new dbConnection().getDataFromCombo(comBankName, query);
             pay = "Bank";
         }
@@ -802,9 +807,10 @@ public class Sales_due_paid extends javax.swing.JFrame {
         
     }//GEN-LAST:event_jTextField5KeyPressed
 
-    private void txtBillKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBillKeyPressed
+    private void txtBillKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtBillKeyReleased
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtBillKeyPressed
+        lbBill.setText(txtBill.getText());
+    }//GEN-LAST:event_txtBillKeyReleased
 
     /**
      * @param args the command line arguments
@@ -875,7 +881,6 @@ public class Sales_due_paid extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
@@ -885,6 +890,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel22;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
+    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
@@ -903,6 +909,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField3;
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
+    private javax.swing.JLabel lbBill;
     private javax.swing.JLabel lbCustomer;
     private javax.swing.JLabel lbShop;
     private javax.swing.JLabel lb_currentDate;
