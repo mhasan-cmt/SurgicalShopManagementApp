@@ -4,6 +4,7 @@
  * and open the template in the editor.
  */
 package prime_surgical;
+
 import javax.swing.*;
 import javax.swing.table.DefaultTableModel;
 
@@ -24,8 +25,10 @@ public class Product_Returns extends javax.swing.JFrame {
         txtNewQuantity.setEditable(false);
         txtNewTotalPrice.setEditable(false);
         txtPrice.setEditable(false);
-    }int quantity,returnQuantity,newQuantity;
-     Double price,newPrice;
+    }
+    int quantity, returnQuantity, newQuantity;
+    Double price, newPrice;
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -405,62 +408,63 @@ public class Product_Returns extends javax.swing.JFrame {
 
     private void jComboBox2PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox2PopupMenuWillBecomeInvisible
         // TODO add your handling code here:
-        if(jComboBox2.getSelectedIndex()>0 && jComboBox2.getSelectedIndex()==1){
-          new dbConnection().getDataFromCombo(jComboBox3, "SELECT `supplier_company_name` FROM `suppliers`");   
+        if (jComboBox2.getSelectedIndex() > 0 && jComboBox2.getSelectedIndex() == 1) {
+            new dbConnection().getDataFromCombo(jComboBox3, "SELECT `supplier_company_name` FROM `suppliers`");
         }
-        if(jComboBox2.getSelectedIndex()>0 && jComboBox2.getSelectedIndex()==2){
-          new dbConnection().getDataFromCombo(jComboBox3, "SELECT `customer_name` FROM `sales entry`GROUP BY `customer_name` ORDER BY `bill_no`");   
+        if (jComboBox2.getSelectedIndex() > 0 && jComboBox2.getSelectedIndex() == 2) {
+            new dbConnection().getDataFromCombo(jComboBox3, "SELECT `customer_name` FROM `sales entry`GROUP BY `customer_name` ORDER BY `bill_no`");
         }
-        if(jComboBox2.getSelectedIndex()==0){
-            DefaultTableModel dtm=(DefaultTableModel)jTable1.getModel();
+        if (jComboBox2.getSelectedIndex() == 0) {
+            DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
             dtm.setRowCount(0);
             jComboBox3.setSelectedIndex(0);
             comBill.setSelectedIndex(0);
         }
-        
+
     }//GEN-LAST:event_jComboBox2PopupMenuWillBecomeInvisible
 
     private void jComboBox3PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox3PopupMenuWillBecomeInvisible
         // TODO add your handling code here:
-        if(jComboBox2.getSelectedIndex()>0 && jComboBox2.getSelectedIndex()==1){
-        String companyName=jComboBox3.getSelectedItem().toString();
-        new dbConnection().getDataFromCombo(comBill, "SELECT `bill_no` FROM `purchase entry` WHERE `company_name`='"+companyName+"' GROUP BY `bill_no` ORDER BY `bill_no`");
-        new dbConnection().showPurchaseEntry("SELECT * FROM `purchase entry` WHERE `company_name`= '"+companyName+"'", jTable1);
-        lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `purchase accounts` WHERE `company`= '"+companyName+"'"));
-        lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `purchase accounts` WHERE `company`= '"+companyName+"'"));
-        lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `purchase accounts` WHERE `company`= '"+companyName+"'"));
-        lbDue.setText(new dbConnection().singledata("SELECT SUM(`due`) FROM `purchase accounts` WHERE `company`= '"+companyName+"'"));
-        }
-        else if(jComboBox2.getSelectedIndex()>0 && jComboBox2.getSelectedIndex()==2){
-        String companyName=jComboBox3.getSelectedItem().toString();
-        new dbConnection().getDataFromCombo(comBill, "SELECT `bill_no` FROM `sales entry` WHERE `customer_name`='"+companyName+"' GROUP BY `bill_no` ORDER BY `bill_no`");
-        new dbConnection().showPurchaseEntry("SELECT * FROM `sales entry` WHERE `customer_name`= '"+companyName+"'", jTable1);
-        lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `sales accounts` WHERE `customer`='"+companyName+"'"));
-        lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `sales accounts` WHERE `customer`= '"+companyName+"'"));
-        lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `sales accounts` WHERE `customer`= '"+companyName+"'"));
-        lbDue.setText(new dbConnection().singledata("SELECT SUM(`due`) FROM `sales accounts` WHERE `customer`= '"+companyName+"'"));
+        if (jComboBox2.getSelectedIndex() > 0 && jComboBox2.getSelectedIndex() == 1) {
+            String companyName = jComboBox3.getSelectedItem().toString();
+            new dbConnection().getDataFromCombo(comBill, "SELECT `bill_no` FROM `purchase entry` WHERE `company_name`='" + companyName + "' GROUP BY `bill_no` ORDER BY `bill_no`");
+            new dbConnection().showPurchaseEntry("SELECT * FROM `purchase entry` WHERE `company_name`= '" + companyName + "'", jTable1);
+            lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `purchase accounts` WHERE `company`= '" + companyName + "'"));
+            lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `purchase accounts` WHERE `company`= '" + companyName + "'"));
+            lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `purchase accounts` WHERE `company`= '" + companyName + "'"));
+            lbDue.setText(new dbConnection().singledata("SELECT SUM(`purchase accounts`.`total`-`purchase accounts`.`paid`) AS due\n"
+                    + "FROM `purchase accounts` WHERE `company`='" + companyName + "'"));
+        } else if (jComboBox2.getSelectedIndex() > 0 && jComboBox2.getSelectedIndex() == 2) {
+            String companyName = jComboBox3.getSelectedItem().toString();
+            new dbConnection().getDataFromCombo(comBill, "SELECT `bill_no` FROM `sales entry` WHERE `customer_name`='" + companyName + "' GROUP BY `bill_no` ORDER BY `bill_no`");
+            new dbConnection().showPurchaseEntry("SELECT * FROM `sales entry` WHERE `customer_name`= '" + companyName + "'", jTable1);
+            lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `sales accounts` WHERE `customer`='" + companyName + "'"));
+            lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `sales accounts` WHERE `customer`= '" + companyName + "'"));
+            lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `sales accounts` WHERE `customer`= '" + companyName + "'"));
+            lbDue.setText(new dbConnection().singledata("SELECT SUM(`due`) FROM `sales accounts` WHERE `customer`= '" + companyName + "'"));
         }
     }//GEN-LAST:event_jComboBox3PopupMenuWillBecomeInvisible
 
     private void comBillPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comBillPopupMenuWillBecomeInvisible
         // TODO add your handling code here:
-        if(jComboBox2.getSelectedIndex()>0 && jComboBox2.getSelectedIndex()==1){
-        String companyName=jComboBox3.getSelectedItem().toString();
-        String Bill=comBill.getSelectedItem().toString();
-        new dbConnection().showPurchaseEntry("SELECT * FROM `purchase entry` WHERE `bill_no`='" + comBill.getSelectedItem().toString() + "' ", jTable1);
-        lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `purchase accounts` WHERE `company`= '"+companyName+"' AND `bill_no`='"+Bill+"'"));
-        lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `purchase accounts` WHERE `company`= '"+companyName+"' AND `bill_no`='"+Bill+"'"));
-        lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `purchase accounts` WHERE `company`= '"+companyName+"' AND `bill_no`='"+Bill+"'"));
-        lbDue.setText(new dbConnection().singledata("SELECT SUM(`due`) FROM `purchase accounts` WHERE `company`= '"+companyName+"'AND `bill_no`='"+Bill+"'"));
-        }
-        else if(jComboBox2.getSelectedIndex()>0 && jComboBox2.getSelectedIndex()==2){
-        String companyName=jComboBox3.getSelectedItem().toString();
-        String Bill=comBill.getSelectedItem().toString();
-        new dbConnection().showPurchaseEntry("SELECT * FROM `sales entry` WHERE `bill_no`='" + comBill.getSelectedItem().toString() + "' ", jTable1);
-        lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `sales accounts` WHERE `customer`= '"+companyName+"' AND `bill_no`='"+Bill+"'"));
-        lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `sales accounts` WHERE `customer`= '"+companyName+"' AND `bill_no`='"+Bill+"'"));
-        lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `sales accounts` WHERE `customer`= '"+companyName+"' AND `bill_no`='"+Bill+"'"));
-        lbDue.setText(new dbConnection().singledata("SELECT SUM(`due`) FROM `sales accounts` WHERE `customer`= '"+companyName+"'AND `bill_no`='"+Bill+"'"));
+        if (jComboBox2.getSelectedIndex() == 0) {
+            String companyName = jComboBox3.getSelectedItem().toString();
+            new dbConnection().getDataFromCombo(comBill, "SELECT `bill_no` FROM `purchase entry` WHERE `company_name`='" + companyName + "' GROUP BY `bill_no` ORDER BY `bill_no`");
+            new dbConnection().showPurchaseEntry("SELECT * FROM `purchase entry` WHERE `company_name`= '" + companyName + "'", jTable1);
+            lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `purchase accounts` WHERE `company`= '" + companyName + "'"));
+            lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `purchase accounts` WHERE `company`= '" + companyName + "'"));
+            lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `purchase accounts` WHERE `company`= '" + companyName + "'"));
+            lbDue.setText(new dbConnection().singledata("SELECT SUM(`purchase accounts`.`total`-`purchase accounts`.`paid`) AS due\n"
+                    + "FROM `purchase accounts` WHERE `company`='" + companyName + "'"));
+        } else if (jComboBox2.getSelectedIndex() > 0) {
+            String companyName = jComboBox3.getSelectedItem().toString();
+            String Bill = comBill.getSelectedItem().toString();
+            new dbConnection().showPurchaseEntry("SELECT * FROM `purchase entry` WHERE `bill_no`='" + comBill.getSelectedItem().toString() + "' and `company_name`='" + companyName + "' ", jTable1);
+            lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `purchase accounts` WHERE `company`= '" + companyName + "' AND `bill_no`='" + Bill + "'"));
+            lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `purchase accounts` WHERE `company`= '" + companyName + "' AND `bill_no`='" + Bill + "'"));
+            lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `purchase accounts` WHERE `company`= '" + companyName + "' AND `bill_no`='" + Bill + "'"));
+            lbDue.setText(new dbConnection().singledata("SELECT SUM(`purchase accounts`.`total`-`purchase accounts`.`paid`) AS due\n"
+                    + "FROM `purchase accounts` WHERE `bill_no`='" + Bill + "' AND `company`='" + companyName + "'"));
         }
     }//GEN-LAST:event_comBillPopupMenuWillBecomeInvisible
 
@@ -472,7 +476,7 @@ public class Product_Returns extends javax.swing.JFrame {
 
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
-        DefaultTableModel dtm=(DefaultTableModel)jTable1.getModel();
+        DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
         comCategory.setSelectedItem(dtm.getValueAt(jTable1.getSelectedRow(), 2).toString());
         comProduct.setSelectedItem(dtm.getValueAt(jTable1.getSelectedRow(), 3).toString());
         txtPrice.setText(dtm.getValueAt(jTable1.getSelectedRow(), 4).toString());
@@ -494,17 +498,17 @@ public class Product_Returns extends javax.swing.JFrame {
     private void txtReturnKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtReturnKeyReleased
         // TODO add your handling code here:
         try {
-            quantity=Integer.parseInt(txtQuantity.getText());
-            returnQuantity=Integer.parseInt(txtReturn.getText());
-            if(returnQuantity<=quantity){
-                newQuantity=quantity-returnQuantity;
-                txtNewQuantity.setText(""+newQuantity);
-                newPrice=newQuantity*Double.parseDouble(txtPrice.getText());
-                txtNewTotalPrice.setText(""+newPrice);
+            quantity = Integer.parseInt(txtQuantity.getText());
+            returnQuantity = Integer.parseInt(txtReturn.getText());
+            if (returnQuantity <= quantity) {
+                newQuantity = quantity - returnQuantity;
+                txtNewQuantity.setText("" + newQuantity);
+                newPrice = newQuantity * Double.parseDouble(txtPrice.getText());
+                txtNewTotalPrice.setText("" + newPrice);
             }
         } catch (Exception e) {
-            txtNewQuantity.setText(""+0);
-            txtNewTotalPrice.setText(""+0.00);
+            txtNewQuantity.setText("" + 0);
+            txtNewTotalPrice.setText("" + 0.00);
         }
     }//GEN-LAST:event_txtReturnKeyReleased
 

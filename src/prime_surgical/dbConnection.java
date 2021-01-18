@@ -303,7 +303,7 @@ public class dbConnection {
             for (int i = 0; rs.next();) {
                 i++;
                 //bill,date,items,total,paid,due
-                dtm.addRow(new Object[]{i, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)});
+                dtm.addRow(new Object[]{i, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)});
             }
         } catch (SQLException ex) {
             Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex);
@@ -319,7 +319,7 @@ public class dbConnection {
             for (int i = 0; rs.next();) {
                 i++;
                 //bill,date,items,total,paid,due
-                dtm.addRow(new Object[]{i, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5)});
+                dtm.addRow(new Object[]{i, rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4)});
 
             }
         } catch (SQLException ex) {

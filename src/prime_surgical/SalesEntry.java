@@ -91,11 +91,10 @@ public class SalesEntry extends javax.swing.JFrame {
 
     void addSales() {
         getData();
-        int stockCheck = Integer.parseInt(new dbConnection().singledata("SELECT stockfinal.`total` FROM `stockfinal` WHERE stockfinal.`category`='" + gCategory + "' AND stockfinal.`product`='" + gProductName + "'"));
+        int stockCheck = Integer.parseInt(new dbConnection().singledata("SELECT `stock` FROM `stock` WHERE stock.`product`='" + gProductName + "'"));
         int q = Integer.parseInt(gQuantity);
-        if (stockCheck >= q) {
-            new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "','" + gBill + "','" + gCustomerName + "','" + gDate + "','" + Ggr + "','" + gCategory + "','" + gProductName + "','" + gProductPrice + "','" + gQuantity + "','" + gTotal + "')", this);
-            new dbConnection().addBankOrCash("INSERT INTO `stock`(`category`,`product`,`total_purchase`,`total_sales`) VALUES('" + gCategory + "','" + gProductName + "','" + "0" + "','" + gQuantity + "')");
+        if (q<=stockCheck) {
+new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "','" + gBill + "','" + gCustomerName + "','" + gDate + "','" + Ggr + "','" + gCategory + "','" + gProductName + "','" + gProductPrice + "','" + gQuantity + "','" + gTotal + "')", this);
             gr = autoGR();
             salesId = autoSalesId();
             txtGR.setText("" + gr);
@@ -238,11 +237,11 @@ public class SalesEntry extends javax.swing.JFrame {
     }
 
     void getDataForSalesAccounts() {
-        gBill = lbBill.getText();
-        gCustomerName = lbShop.getText();
+        gBill = txtBill.getText();
+        gCustomerName = txtCustomerName.getText();
         gDate = lbDate.getText();
         Ggr = txtGR.getText();
-        gItems = new dbConnection().singledata("SELECT Sum(`quantity`) FROM `sales entry` WHERE `bill_no`='" + gBill + "' and `customer_name`='"+gCustomerName+"'");
+        gItems = new dbConnection().singledata("SELECT Sum(`quantity`) FROM `sales entry` WHERE `bill_no`='" + gBill + "'");
         gTotal = new dbConnection().singledata("SELECT SUM(`total`) FROM `sales entry` WHERE `bill_no`='" + gBill + "'");
         if (rbBank.isSelected()) {
             gPayment = "Bank";

@@ -19,10 +19,10 @@ public class Stock extends javax.swing.JFrame{
     public Stock() {
         initComponents();
         setExtendedState(MAXIMIZED_BOTH);
-        showStock("SELECT * FROM `stockFinal`", jTable1);
+        showStock("SELECT * FROM `stock`", jTable1);
     }
     void showStock(String query, JTable table){
-        String totalProducts=new dbConnection().singledata("SELECT COUNT(`product`) FROM `stockFinal`");
+        String totalProducts=new dbConnection().singledata("SELECT COUNT(`product`) FROM `stock`");
         lbTotalProducts.setText("Total Products: "+totalProducts);
          new dbConnection().showStock(query, table);
     }
@@ -99,7 +99,7 @@ public class Stock extends javax.swing.JFrame{
 
             },
             new String [] {
-                "SL", "Cateogory", "Product", "Purchase Quantity", "Sales Quantity", "Total"
+                "SL", "Product", "Purchase Quantity", "Sales Quantity", "Stock"
             }
         ));
         jTable1.setRowHeight(30);
@@ -206,17 +206,17 @@ public class Stock extends javax.swing.JFrame{
     private void txtProductSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtProductSearchKeyReleased
         // TODO add your handling code here:
             String search=txtProductSearch.getText();
-            new dbConnection().searchData(jTable1, "SELECT * FROM `stockFinal` WHERE `product` LIKE '%"+search+"%'");
+            new dbConnection().searchData(jTable1, "SELECT * FROM `stock` WHERE `product` LIKE '%"+search+"%'");
     }//GEN-LAST:event_txtProductSearchKeyReleased
 
     private void txtQuantitySearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantitySearchKeyReleased
         // TODO add your handling code here:
         if(txtQuantitySearch.getText().isEmpty()){
-            showStock("SELECT * FROM `stockFinal`", jTable1);
+            showStock("SELECT * FROM `stock`", jTable1);
         }else{
         String search=txtQuantitySearch.getText();
         int search_int=Integer.parseInt(search);
-        new dbConnection().searchData(jTable1, "SELECT * FROM `stockFinal` WHERE `total` <='"+search_int+"'"); 
+        new dbConnection().searchData(jTable1, "SELECT * FROM `stock` WHERE stock.stock <='"+search_int+"'"); 
          
         }
             
@@ -224,7 +224,7 @@ public class Stock extends javax.swing.JFrame{
 
     private void jLabel1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseClicked
         // TODO add your handling code here:
-        new dbConnection().searchData(jTable1, "SELECT * FROM `stockFinal`"); 
+        new dbConnection().searchData(jTable1, "SELECT * FROM `stock`"); 
     }//GEN-LAST:event_jLabel1MouseClicked
 
     private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered

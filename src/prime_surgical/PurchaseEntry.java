@@ -62,7 +62,6 @@ public class PurchaseEntry extends javax.swing.JFrame {
     void purchase() {
         getData();
         new dbConnection().addData("INSERT INTO `purchase entry` VALUES('" + purchaseId + "','" + bill + "','" + company + "','" + date + "','" + gr + "','" + category + "','" + product + "','" + price + "','" + quantity + "','" + total + "')", this);
-        new dbConnection().addBankOrCash("INSERT INTO `stock`(`category`,`product`,`total_purchase`,`total_sales`) VALUES('"+category+"','"+product+"','"+quantity+"','"+"0"+"')");
         showPurchase();
         comCateogory.setSelectedIndex(0);
         comProduct.setSelectedIndex(0);
