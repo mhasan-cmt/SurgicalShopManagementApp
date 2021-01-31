@@ -193,7 +193,7 @@ public class dbConnection {
             dbconnect();
             rs = st.executeQuery(query);
             while (rs.next()) {
-                a = Integer.parseInt(rs.getString(1));
+                a = rs.getInt(1);
             }
 
         } catch (SQLException ex) {
@@ -326,7 +326,7 @@ public class dbConnection {
             Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    void loginAdmin(JFrame frame,JTextField user,JTextField pass,JPanel loginpanel, JLabel logo,JPanel mainAdmin){
+    void loginAdmin(JFrame frame,JTextField user,JPasswordField pass,JPanel loginpanel, JLabel logo,JPanel mainAdmin){
         try {
             dbconnect();
             String query="SELECT * FROM `adminpower` WHERE `admin_username`=? AND `admin_password`=?";

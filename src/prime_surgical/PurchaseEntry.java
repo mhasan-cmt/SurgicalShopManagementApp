@@ -26,10 +26,9 @@ public class PurchaseEntry extends javax.swing.JFrame {
 
     void initial() {
         new dbConnection().getDataFromCombo(comCompany, "SELECT `supplier_company_name` FROM `suppliers`");
-        String purchase_id = new dbConnection().singledata("SELECT COUNT(`purchase_id`) FROM `purchase entry`");
-        int purchase_id_int = Integer.parseInt(purchase_id);
-        purchase_id_int++;
-        jLabel23.setText("" + purchase_id_int);
+        int purchase_id = new dbConnection().autoIdorBillorGR("SELECT `purchase_id` FROM `purchase entry`");
+        purchase_id++;
+        jLabel23.setText("" + purchase_id);
         Ggr = new dbConnection().autoIdorBillorGR("SELECT `purchase_gr` FROM `purchase entry`");
         Ggr = Ggr + 10;
         txtGR.setText("" + Ggr);
@@ -96,7 +95,7 @@ public class PurchaseEntry extends javax.swing.JFrame {
     }
 
     void purchaseAccounts() {
-        if (rbCash.isSelected() || rbBank.isSelected()) {
+        if (rbCash.isSelected() || rbBank.isSelected()|| rbDue.isSelected()) {
             if (rbBank.isSelected()) {
                 getDataForPurchaseAccounts();
                 String bankName, bankAccount;
@@ -113,6 +112,15 @@ public class PurchaseEntry extends javax.swing.JFrame {
                 getDataForPurchaseAccounts();
                 new dbConnection().addData("INSERT INTO `purchase accounts` VALUES('" + pBill + "','" + pGR + "','" + pDate + "','" + pCompany + "','" + pItems + "','" + pTotal + "','" + pPayment + "','" + pDiscount + "','" + pPaid + "','" + pDue + "')", this);
                 new dbConnection().addBankOrCash("INSERT INTO `cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('" + pDate + "','" + "Purchase" + "','" + "Debit" + "','" + pPaid + "')");
+                componentEnabled();
+                Ggr = Ggr + 10;
+                txtGR.setText(Ggr + "");
+                bill1++;
+                txtBill.setText("" + bill1);
+            }
+            else if (rbDue.isSelected()) {
+                getDataForPurchaseAccounts();
+                new dbConnection().addData("INSERT INTO `purchase accounts` VALUES('" + pBill + "','" + pGR + "','" + pDate + "','" + pCompany + "','" + pItems + "','" + pTotal + "','" + pPayment + "','" + pDiscount + "','" + pPaid + "','" + pDue + "')", this);
                 componentEnabled();
                 Ggr = Ggr + 10;
                 txtGR.setText(Ggr + "");
@@ -137,6 +145,9 @@ public class PurchaseEntry extends javax.swing.JFrame {
             pPayment = "Bank";
         } else if (rbCash.isSelected()) {
             pPayment = "Cash";
+        }
+        else if(rbDue.isSelected()){
+            pPayment="Due";
         }
         if (!txtDiscount.getText().isEmpty()) {
             pDiscount = txtDiscount.getText();
@@ -252,6 +263,7 @@ public class PurchaseEntry extends javax.swing.JFrame {
         comBankName = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
         txtAccount = new javax.swing.JComboBox<>();
+        rbDue = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -329,7 +341,7 @@ public class PurchaseEntry extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Company Name");
+        jLabel5.setText("Supplier Name");
         jPanel1.add(jLabel5);
         jLabel5.setBounds(20, 190, 140, 40);
 
@@ -549,7 +561,7 @@ public class PurchaseEntry extends javax.swing.JFrame {
         jLabel14.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jPanel6.add(jLabel14);
-        jLabel14.setBounds(160, 50, 250, 50);
+        jLabel14.setBounds(170, 50, 240, 50);
 
         jComboBox1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jComboBox1.setForeground(new java.awt.Color(255, 255, 255));
@@ -762,6 +774,13 @@ public class PurchaseEntry extends javax.swing.JFrame {
         jPanel5.add(Bank);
         Bank.setBounds(60, 580, 430, 100);
 
+        buttonGroup1.add(rbDue);
+        rbDue.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        rbDue.setForeground(new java.awt.Color(255, 255, 255));
+        rbDue.setText("Due");
+        jPanel5.add(rbDue);
+        rbDue.setBounds(320, 540, 90, 40);
+
         getContentPane().add(jPanel5);
         jPanel5.setBounds(510, 0, 860, 770);
 
@@ -948,7 +967,10 @@ public class PurchaseEntry extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        purchaseAccounts();
+        if(!txtBill.isEnabled()){
+         purchaseAccounts();   
+        }
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void txtDateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDateMouseClicked
@@ -1069,6 +1091,7 @@ public class PurchaseEntry extends javax.swing.JFrame {
     private javax.swing.JTable jTable1;
     private javax.swing.JRadioButton rbBank;
     private javax.swing.JRadioButton rbCash;
+    private javax.swing.JRadioButton rbDue;
     private javax.swing.JComboBox<String> txtAccount;
     private javax.swing.JTextField txtBill;
     private com.toedter.calendar.JDateChooser txtDate;

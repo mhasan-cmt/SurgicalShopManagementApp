@@ -25,10 +25,83 @@ public class Product_Returns extends javax.swing.JFrame {
         txtNewQuantity.setEditable(false);
         txtNewTotalPrice.setEditable(false);
         txtPrice.setEditable(false);
+        new dbConnection().getDataFromCombo(comProduct, "SELECT `product_name` FROM `product info` group by `product_name`");
+        comCategory.setEditable(false);
+        comProduct.setEditable(false);
     }
-    int quantity, returnQuantity, newQuantity;
+    int quantity, returnQuantity, newQuantity,gr;
     Double price, newPrice;
-
+    void purchaseReturn(){
+        try {
+        newQuantity=Integer.parseInt(txtNewQuantity.getText());
+        newPrice=Double.parseDouble(txtNewTotalPrice.getText());
+        gr=Integer.parseInt(comGR.getSelectedItem().toString());
+        new dbConnection().updateData("UPDATE `purchase entry` SET `quantity`='"+newQuantity+"' ,`total`='"+newPrice+"' WHERE `purchase_gr`='"+gr+"'", this);
+    clearData();
+        } catch (Exception e) {
+        }
+         }
+    void salesReturn(){
+        newQuantity=Integer.parseInt(txtNewQuantity.getText());
+        newPrice=Double.parseDouble(txtNewTotalPrice.getText());
+        gr=Integer.parseInt(comGR.getSelectedItem().toString());
+        new dbConnection().updateData("UPDATE `sales entry` SET `quantity`='"+newQuantity+"',`total`='"+newPrice+"' WHERE `sales_gr`='"+gr+"'", this);
+   clearData();
+    }
+    int blankDataCheck(){
+        int check=0;
+        if(jComboBox2.getSelectedIndex()<=0){
+            JOptionPane.showMessageDialog(this, "Select Purchase Or Sales!");
+            jComboBox2.requestFocus();
+        }
+        else if(jComboBox3.getSelectedIndex()<=0){
+            JOptionPane.showMessageDialog(this, "Select Customer!");
+            jComboBox3.requestFocus();
+        }
+        else if(comGR.getSelectedIndex()<=0){
+            JOptionPane.showMessageDialog(this, "GR Number is Missing!");
+            comGR.requestFocus();
+        }
+        else if(comProduct.getSelectedIndex()<=0){
+            JOptionPane.showMessageDialog(this, "Product Name is Missing!");
+            comProduct.requestFocus();
+        }
+        else if(txtPrice.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Product Price is Missing!");
+            txtPrice.requestFocus();
+        }
+        else if(txtQuantity.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Product Quantity is Missing!");
+            txtQuantity.requestFocus();
+        }
+        else if(txtReturn.getText().isEmpty() || Integer.parseInt(txtReturn.getText())<=0){
+            JOptionPane.showMessageDialog(this, "Please Enter Return Quantity!");
+            txtReturn.requestFocus();
+        }
+        else if(txtNewQuantity.getText().isEmpty() || Integer.parseInt(txtNewQuantity.getText())<=0 ){
+            JOptionPane.showMessageDialog(this, "New Quantity is Missing!");
+        }
+        else if(txtNewTotalPrice.getText().isEmpty() || Double.parseDouble(txtNewTotalPrice.getText())<=0){
+            JOptionPane.showMessageDialog(this, "New Price is Missing!");
+        }
+        else {
+            check=1;
+        }
+        return check;
+    }
+    void clearData(){
+        jComboBox2.setSelectedIndex(0);
+        jComboBox3.setSelectedIndex(0);
+        comBill.setSelectedIndex(0);
+        comGR.setSelectedIndex(0);
+        comCategory.setSelectedIndex(0);
+        comProduct.setSelectedIndex(0);
+        txtPrice.setText("0.00");
+        txtQuantity.setText("0");
+        txtReturn.setText("0");
+        txtNewQuantity.setText("0");
+        txtNewTotalPrice.setText("0.00");
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -63,6 +136,8 @@ public class Product_Returns extends javax.swing.JFrame {
         jLabel12 = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
         comCategory = new javax.swing.JComboBox<>();
+        comGR = new javax.swing.JComboBox<>();
+        jLabel15 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         jPanel9 = new javax.swing.JPanel();
@@ -122,7 +197,7 @@ public class Product_Returns extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 0, 1370, 90);
 
-        jPanel4.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel4.setBackground(new java.awt.Color(0, 102, 153));
         jPanel4.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         jPanel4.setLayout(null);
 
@@ -138,7 +213,7 @@ public class Product_Returns extends javax.swing.JFrame {
             }
         });
         jPanel4.add(comBill);
-        comBill.setBounds(20, 140, 370, 40);
+        comBill.setBounds(20, 140, 190, 40);
 
         jComboBox2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Purchase", "Sales" }));
@@ -162,9 +237,9 @@ public class Product_Returns extends javax.swing.JFrame {
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(204, 204, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Bill:");
+        jLabel5.setText("GR:");
         jPanel4.add(jLabel5);
-        jLabel5.setBounds(120, 110, 130, 30);
+        jLabel5.setBounds(210, 110, 170, 30);
 
         jLabel6.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(204, 204, 255));
@@ -181,6 +256,12 @@ public class Product_Returns extends javax.swing.JFrame {
         jLabel7.setBounds(120, 250, 130, 30);
 
         txtPrice.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        txtPrice.setText("0.00");
+        txtPrice.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtPriceActionPerformed(evt);
+            }
+        });
         jPanel4.add(txtPrice);
         txtPrice.setBounds(20, 360, 200, 40);
 
@@ -199,6 +280,12 @@ public class Product_Returns extends javax.swing.JFrame {
         jLabel9.setBounds(220, 330, 130, 30);
 
         txtQuantity.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        txtQuantity.setText("0");
+        txtQuantity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQuantityActionPerformed(evt);
+            }
+        });
         jPanel4.add(txtQuantity);
         txtQuantity.setBounds(220, 360, 160, 40);
 
@@ -211,7 +298,6 @@ public class Product_Returns extends javax.swing.JFrame {
                 jComboBox3PopupMenuWillBecomeInvisible(evt);
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-                jComboBox3PopupMenuWillBecomeVisible(evt);
             }
         });
         jPanel4.add(jComboBox3);
@@ -230,6 +316,12 @@ public class Product_Returns extends javax.swing.JFrame {
         jLabel10.setBounds(30, 420, 130, 30);
 
         txtReturn.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        txtReturn.setText("0");
+        txtReturn.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                txtReturnMouseClicked(evt);
+            }
+        });
         txtReturn.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtReturnActionPerformed(evt);
@@ -251,10 +343,17 @@ public class Product_Returns extends javax.swing.JFrame {
         jLabel11.setBounds(220, 420, 160, 30);
 
         txtNewQuantity.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        txtNewQuantity.setText("0");
+        txtNewQuantity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtNewQuantityActionPerformed(evt);
+            }
+        });
         jPanel4.add(txtNewQuantity);
         txtNewQuantity.setBounds(220, 450, 160, 40);
 
         txtNewTotalPrice.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        txtNewTotalPrice.setText("0.00");
         jPanel4.add(txtNewTotalPrice);
         txtNewTotalPrice.setBounds(30, 530, 340, 50);
 
@@ -288,6 +387,18 @@ public class Product_Returns extends javax.swing.JFrame {
         });
         jPanel4.add(comCategory);
         comCategory.setBounds(20, 210, 360, 40);
+
+        comGR.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        comGR.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        jPanel4.add(comGR);
+        comGR.setBounds(210, 140, 170, 40);
+
+        jLabel15.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel15.setForeground(new java.awt.Color(204, 204, 255));
+        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel15.setText("Bill:");
+        jPanel4.add(jLabel15);
+        jLabel15.setBounds(20, 110, 190, 30);
 
         jPanel1.add(jPanel4);
         jPanel4.setBounds(10, 110, 400, 650);
@@ -428,6 +539,7 @@ public class Product_Returns extends javax.swing.JFrame {
         if (jComboBox2.getSelectedIndex() > 0 && jComboBox2.getSelectedIndex() == 1) {
             String companyName = jComboBox3.getSelectedItem().toString();
             new dbConnection().getDataFromCombo(comBill, "SELECT `bill_no` FROM `purchase entry` WHERE `company_name`='" + companyName + "' GROUP BY `bill_no` ORDER BY `bill_no`");
+            new dbConnection().getDataFromCombo(comGR, "SELECT `purchase_gr` FROM `purchase entry` WHERE `company_name`='"+companyName+"'");
             new dbConnection().showPurchaseEntry("SELECT * FROM `purchase entry` WHERE `company_name`= '" + companyName + "'", jTable1);
             lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `purchase accounts` WHERE `company`= '" + companyName + "'"));
             lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `purchase accounts` WHERE `company`= '" + companyName + "'"));
@@ -437,34 +549,34 @@ public class Product_Returns extends javax.swing.JFrame {
         } else if (jComboBox2.getSelectedIndex() > 0 && jComboBox2.getSelectedIndex() == 2) {
             String companyName = jComboBox3.getSelectedItem().toString();
             new dbConnection().getDataFromCombo(comBill, "SELECT `bill_no` FROM `sales entry` WHERE `customer_name`='" + companyName + "' GROUP BY `bill_no` ORDER BY `bill_no`");
+            new dbConnection().getDataFromCombo(comGR, "SELECT `sales_gr` FROM `sales entry` WHERE `customer_name`='"+companyName+"'");
             new dbConnection().showPurchaseEntry("SELECT * FROM `sales entry` WHERE `customer_name`= '" + companyName + "'", jTable1);
-            lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `sales accounts` WHERE `customer`='" + companyName + "'"));
-            lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `sales accounts` WHERE `customer`= '" + companyName + "'"));
-            lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `sales accounts` WHERE `customer`= '" + companyName + "'"));
-            lbDue.setText(new dbConnection().singledata("SELECT SUM(`due`) FROM `sales accounts` WHERE `customer`= '" + companyName + "'"));
+            lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `sales accounts` WHERE `customer`='" + companyName +"'"));
+            lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `sales accounts` WHERE `customer`= '"+companyName+"'"));
+            lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `sales accounts` WHERE `customer`= '" +companyName+ "'"));
+            lbDue.setText(new dbConnection().singledata("SELECT SUM(`due`) FROM `sales accounts` WHERE `customer`= '"+companyName +"'"));
         }
     }//GEN-LAST:event_jComboBox3PopupMenuWillBecomeInvisible
 
     private void comBillPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comBillPopupMenuWillBecomeInvisible
         // TODO add your handling code here:
-        if (jComboBox2.getSelectedIndex() == 0) {
+        if (jComboBox2.getSelectedIndex() == 1) {
             String companyName = jComboBox3.getSelectedItem().toString();
-            new dbConnection().getDataFromCombo(comBill, "SELECT `bill_no` FROM `purchase entry` WHERE `company_name`='" + companyName + "' GROUP BY `bill_no` ORDER BY `bill_no`");
-            new dbConnection().showPurchaseEntry("SELECT * FROM `purchase entry` WHERE `company_name`= '" + companyName + "'", jTable1);
+            new dbConnection().showPurchaseEntry("SELECT * FROM `purchase entry` WHERE `company_name`= '" + companyName + "' and bill_no='"+comBill.getSelectedItem().toString()+"'", jTable1);
             lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `purchase accounts` WHERE `company`= '" + companyName + "'"));
             lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `purchase accounts` WHERE `company`= '" + companyName + "'"));
             lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `purchase accounts` WHERE `company`= '" + companyName + "'"));
             lbDue.setText(new dbConnection().singledata("SELECT SUM(`purchase accounts`.`total`-`purchase accounts`.`paid`) AS due\n"
                     + "FROM `purchase accounts` WHERE `company`='" + companyName + "'"));
-        } else if (jComboBox2.getSelectedIndex() > 0) {
+        } else if (jComboBox2.getSelectedIndex()==2) {
             String companyName = jComboBox3.getSelectedItem().toString();
             String Bill = comBill.getSelectedItem().toString();
-            new dbConnection().showPurchaseEntry("SELECT * FROM `purchase entry` WHERE `bill_no`='" + comBill.getSelectedItem().toString() + "' and `company_name`='" + companyName + "' ", jTable1);
-            lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `purchase accounts` WHERE `company`= '" + companyName + "' AND `bill_no`='" + Bill + "'"));
-            lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `purchase accounts` WHERE `company`= '" + companyName + "' AND `bill_no`='" + Bill + "'"));
-            lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `purchase accounts` WHERE `company`= '" + companyName + "' AND `bill_no`='" + Bill + "'"));
-            lbDue.setText(new dbConnection().singledata("SELECT SUM(`purchase accounts`.`total`-`purchase accounts`.`paid`) AS due\n"
-                    + "FROM `purchase accounts` WHERE `bill_no`='" + Bill + "' AND `company`='" + companyName + "'"));
+            new dbConnection().showPurchaseEntry("SELECT * FROM `sales entry` WHERE `bill_no`='" + comBill.getSelectedItem().toString() + "' and `customer_name`='" + companyName + "' ", jTable1);
+            lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `sales accounts` WHERE `customer`= '" + companyName + "' AND `bill_no`='" + Bill + "'"));
+            lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `sales accounts` WHERE `customer`= '" + companyName + "' AND `bill_no`='" + Bill + "'"));
+            lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `sales accounts` WHERE `customer`= '" + companyName + "' AND `bill_no`='" + Bill + "'"));
+            lbDue.setText(new dbConnection().singledata("SELECT SUM(`sales accounts`.`total`-`sales accounts`.`paid`) AS due\n"
+                    + "FROM `sales accounts` WHERE `bill_no`='" + Bill + "' AND `company`='" + companyName + "'"));
         }
     }//GEN-LAST:event_comBillPopupMenuWillBecomeInvisible
 
@@ -481,14 +593,19 @@ public class Product_Returns extends javax.swing.JFrame {
         comProduct.setSelectedItem(dtm.getValueAt(jTable1.getSelectedRow(), 3).toString());
         txtPrice.setText(dtm.getValueAt(jTable1.getSelectedRow(), 4).toString());
         txtQuantity.setText(dtm.getValueAt(jTable1.getSelectedRow(), 5).toString());
+        comGR.setSelectedItem(dtm.getValueAt(jTable1.getSelectedRow(), 1).toString());
     }//GEN-LAST:event_jTable1MouseClicked
-
-    private void jComboBox3PopupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_jComboBox3PopupMenuWillBecomeVisible
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jComboBox3PopupMenuWillBecomeVisible
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
+        if(blankDataCheck()==1){
+            if(jComboBox2.getSelectedIndex()==1){
+                purchaseReturn();
+            }
+            else if(jComboBox2.getSelectedIndex()==2){
+                salesReturn();
+            }}
+        
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void txtReturnActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtReturnActionPerformed
@@ -511,6 +628,23 @@ public class Product_Returns extends javax.swing.JFrame {
             txtNewTotalPrice.setText("" + 0.00);
         }
     }//GEN-LAST:event_txtReturnKeyReleased
+
+    private void txtPriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPriceActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtPriceActionPerformed
+
+    private void txtQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQuantityActionPerformed
+
+    private void txtNewQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtNewQuantityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtNewQuantityActionPerformed
+
+    private void txtReturnMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtReturnMouseClicked
+        // TODO add your handling code here:
+        txtReturn.setText("");
+    }//GEN-LAST:event_txtReturnMouseClicked
 
     /**
      * @param args the command line arguments
@@ -550,6 +684,7 @@ public class Product_Returns extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JComboBox<String> comBill;
     private javax.swing.JComboBox<String> comCategory;
+    private javax.swing.JComboBox<String> comGR;
     private javax.swing.JComboBox<String> comProduct;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
@@ -561,6 +696,7 @@ public class Product_Returns extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel14;
+    private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel2;

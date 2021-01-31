@@ -96,7 +96,7 @@ void test(){
         progress.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         progress.setText("09%");
         jPanel1.add(progress);
-        progress.setBounds(330, 100, 60, 70);
+        progress.setBounds(320, 100, 80, 70);
 
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel11.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\96x96.gif")); // NOI18N

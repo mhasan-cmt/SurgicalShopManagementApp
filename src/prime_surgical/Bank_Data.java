@@ -34,10 +34,10 @@ public class Bank_Data extends javax.swing.JFrame {
         bankName=jComboBox2.getSelectedItem().toString();
         bankAccount=jComboBox1.getSelectedItem().toString();
         if(jRadioButton1.isSelected()){
-            status="Debit";
+            status="Deposit";
         }
         else if(jRadioButton2.isSelected()){
-            status="Credit";
+            status="Withdraw";
         }
         details=jTextField3.getText();
         amount=jTextField4.getText();
@@ -259,28 +259,28 @@ public class Bank_Data extends javax.swing.JFrame {
         jPanel1.add(jPanel5);
         jPanel5.setBounds(0, 80, 540, 60);
 
-        jPanel6.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel6.setBackground(new java.awt.Color(0, 102, 153));
         jPanel6.setBorder(new javax.swing.border.MatteBorder(null));
         jPanel6.setLayout(null);
 
         jComboBox1.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         jPanel6.add(jComboBox1);
-        jComboBox1.setBounds(190, 70, 350, 50);
+        jComboBox1.setBounds(200, 70, 340, 50);
 
         jLabel4.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel4.setText("Bank Name:");
         jPanel6.add(jLabel4);
-        jLabel4.setBounds(0, 20, 190, 50);
+        jLabel4.setBounds(50, 20, 140, 50);
 
         jLabel7.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setText("Account Number:");
         jPanel6.add(jLabel7);
-        jLabel7.setBounds(0, 70, 190, 50);
+        jLabel7.setBounds(10, 70, 190, 50);
 
         jComboBox2.setFont(new java.awt.Font("Roboto Black", 0, 24)); // NOI18N
         jComboBox2.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
@@ -294,7 +294,7 @@ public class Bank_Data extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jComboBox2);
-        jComboBox2.setBounds(190, 20, 350, 50);
+        jComboBox2.setBounds(200, 20, 340, 50);
 
         jPanel8.setBackground(new java.awt.Color(153, 153, 153));
         jPanel8.setLayout(null);
@@ -365,7 +365,7 @@ public class Bank_Data extends javax.swing.JFrame {
             }
         });
         jPanel6.add(jButton5);
-        jButton5.setBounds(370, 320, 150, 50);
+        jButton5.setBounds(300, 330, 220, 50);
 
         jPanel1.add(jPanel6);
         jPanel6.setBounds(0, 380, 540, 390);
@@ -517,7 +517,7 @@ public class Bank_Data extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(690, 650, 200, 60);
+        jButton1.setBounds(690, 650, 200, 50);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -599,7 +599,7 @@ public class Bank_Data extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        new dbConnection().showBankData(jTable1, this, "SELECT * FROM `bank data` ORDER BY MONTH(`bank_date`) Desc ");
+        new dbConnection().showBankData(jTable1, this, "SELECT * FROM `bank data` ORDER BY MONTH(`bank_date`) ");
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jButton1MouseEntered

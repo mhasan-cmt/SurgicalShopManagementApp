@@ -92,7 +92,7 @@ public class SalesEntry extends javax.swing.JFrame {
     void addSales() {
         getData();
         int stockCheck = Integer.parseInt(new dbConnection().singledata("SELECT `stock` FROM `stock` WHERE stock.`product`='" + gProductName + "'"));
-        int q = Integer.parseInt(gQuantity);
+        int q = Integer.parseInt(txtQuantity.getText());
         if (q<=stockCheck) {
 new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "','" + gBill + "','" + gCustomerName + "','" + gDate + "','" + Ggr + "','" + gCategory + "','" + gProductName + "','" + gProductPrice + "','" + gQuantity + "','" + gTotal + "')", this);
             gr = autoGR();
@@ -174,14 +174,12 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
     void salesCommision() {
         getSalesCommision();
         getData();
-        String srId = new dbConnection().singledata("SELECT `id` FROM `salesofficer` WHERE `sales_name`='" + gSrName + "'");
-        new dbConnection().addData("INSERT INTO `sales officer commision`(`s-officer-id`,`c-date`,`per`,`amount`) VALUES('" + srId + "','" + gDate + "','" + gPer + "','" + gSrCommission + "')", this);
         new dbConnection().addBankOrCash("INSERT INTO `cost data`(`cost_date`,`cost_type`,`cost_bill`,`cost_details`,`cost_paid_by`,`cost_amount`) VALUES('" + gDate + "',\"Sales cost\",'" + txtBill.getText() + "',\"SR Commision\",\"N/A\",'" + gSrCommission + "')");
     }
 
     void salesAccounts() {
         DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
-        if (rbCash.isSelected() || rbBank.isSelected()) {
+        if (rbCash.isSelected() || rbBank.isSelected() || rbDue.isSelected()) {
             if (rbBank.isSelected()) {
                 getDataForSalesAccounts();
                 String bankName, bankAccount;
@@ -230,6 +228,28 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
                 txtDue.setText("0.00");
                 dm.setRowCount(0);
             }
+            else if (rbDue.isSelected()) {
+                getDataForSalesAccounts();
+                new dbConnection().addData("INSERT INTO `sales accounts` VALUES('" + gBill + "','" + Ggr + "','" + gDate + "','" + gCustomerName + "','" + gItems + "','" + gTotal + "','" + gPayment + "','" + gDiscount + "','" + gPaid + "','" + gDue + "')", this);
+                bill = autoBill();
+                txtBill.setText("" + bill);
+                gr = autoGR();
+                txtGR.setText("" + gr);
+                txtBill.setEnabled(true);
+                if (comCustomerType.getSelectedIndex() == 1) {
+                    comCustomerType.setSelectedIndex(0);
+                    comCustomerType.setSelectedIndex(0);
+                } else if (comCustomerType.getSelectedIndex() == 2) {
+                    txtCustomerName.setText("");
+                    comCustomerType.setSelectedIndex(0);
+                }
+                
+                txtSubTotal.setText("0.00");
+                txtPaid.setText("0.00");
+                txtDiscount.setText("0.00");
+                txtDue.setText("0.00");
+                dm.setRowCount(0);
+            }
         } else {
             JOptionPane.showMessageDialog(this, "Select Payment method!");
         }
@@ -238,7 +258,7 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
 
     void getDataForSalesAccounts() {
         gBill = txtBill.getText();
-        gCustomerName = txtCustomerName.getText();
+        gCustomerName =lbShop.getText();
         gDate = lbDate.getText();
         Ggr = txtGR.getText();
         gItems = new dbConnection().singledata("SELECT Sum(`quantity`) FROM `sales entry` WHERE `bill_no`='" + gBill + "'");
@@ -247,6 +267,9 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
             gPayment = "Bank";
         } else if (rbCash.isSelected()) {
             gPayment = "Cash";
+        }
+        else if(rbDue.isSelected()){
+            gPayment="Due";
         }
         if (!txtDiscount.getText().isEmpty()) {
             gDiscount = txtDiscount.getText();
@@ -337,6 +360,7 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
         comBankName = new javax.swing.JComboBox<>();
         jLabel19 = new javax.swing.JLabel();
         txtAccount = new javax.swing.JComboBox<>();
+        rbDue = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -721,7 +745,6 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
 
         lbBill.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lbBill.setForeground(new java.awt.Color(255, 255, 255));
-        lbBill.setText("bill no.");
         jPanel6.add(lbBill);
         lbBill.setBounds(70, 40, 120, 40);
 
@@ -732,14 +755,14 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Shop/Hospital:");
+        jLabel9.setText("Customer Name:");
         jPanel6.add(jLabel9);
         jLabel9.setBounds(10, 80, 150, 50);
 
         lbShop.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lbShop.setForeground(new java.awt.Color(255, 255, 255));
         jPanel6.add(lbShop);
-        lbShop.setBounds(130, 80, 290, 50);
+        lbShop.setBounds(150, 80, 270, 50);
 
         jComboBox1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Show Sales", "Show Submits" }));
@@ -848,7 +871,7 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
             }
         });
         jPanel5.add(jButton6);
-        jButton6.setBounds(610, 720, 170, 40);
+        jButton6.setBounds(590, 720, 170, 40);
 
         buttonGroup1.add(rbBank);
         rbBank.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
@@ -925,6 +948,12 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
 
         jPanel5.add(Bank);
         Bank.setBounds(60, 580, 430, 100);
+
+        rbDue.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        rbDue.setForeground(new java.awt.Color(255, 255, 255));
+        rbDue.setText("Due");
+        jPanel5.add(rbDue);
+        rbDue.setBounds(320, 540, 90, 40);
 
         getContentPane().add(jPanel5);
         jPanel5.setBounds(510, 0, 860, 770);
@@ -1059,7 +1088,7 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
         // TODO add your handling code here:
         if (comCustomer.getSelectedIndex() > 0) {
             String lCustomer = comCustomer.getSelectedItem().toString();
-            lbShop.setText(new dbConnection().singledata("SELECT `shop name` FROM `customers` WHERE `customer name`='" + lCustomer + "'"));
+            lbShop.setText(lCustomer);
         }
 
     }//GEN-LAST:event_comCustomerPopupMenuWillBecomeInvisible
@@ -1082,11 +1111,11 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
         // TODO add your handling code here:
         if (comProduct.getSelectedIndex() > 0) {
             try {
-                double p = Double.parseDouble(txtFinalPrice.getText());
+                double p = Double.parseDouble(txtProductPrice.getText());
                 double q = Double.parseDouble(txtQuantity.getText());
                 double t = p * q;
                 txtFinalPrice.setText("" + t);
-            } catch (Exception e) {
+        } catch (Exception e) {
                 float t;
                 t = 0;
                 float p = Float.parseFloat(txtPrice.getText());
@@ -1104,13 +1133,12 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
                 float t;
                 t = 0;
                 float p = Float.parseFloat(txtPrice.getText());
+                int q=Integer.parseInt(txtQuantity.getText());
                 float v = Float.parseFloat(txtVAT.getText());
-                t = p + v;
-                txtFinalPrice.setText("" + t);
-                txtProductPrice.setText("" + t);
+                txtProductPrice.setText("" +(p + v));
             } catch (Exception e) {
                 String price = new dbConnection().singledata("SELECT `product_price` FROM `product info` WHERE `product_name`='" + comProduct.getSelectedItem().toString() + "'");
-                txtFinalPrice.setText(price);
+                txtProductPrice.setText(price);
             }
         }
     }//GEN-LAST:event_txtVATKeyReleased
@@ -1147,7 +1175,9 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        salesAccounts();
+        if(!txtBill.isEnabled()){
+         salesAccounts();   
+        }
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void txtVATMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtVATMouseClicked
@@ -1327,6 +1357,7 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
     private javax.swing.JLabel lbShop;
     private javax.swing.JRadioButton rbBank;
     private javax.swing.JRadioButton rbCash;
+    private javax.swing.JRadioButton rbDue;
     private javax.swing.JComboBox<String> txtAccount;
     private javax.swing.JTextField txtBill;
     private javax.swing.JTextField txtCustomerName;

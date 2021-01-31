@@ -19,16 +19,13 @@ public class Sales_due_paid extends javax.swing.JFrame {
     public Sales_due_paid() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
-        Bank.setVisible(false);
-        comShop.setVisible(false);
-        lbShop.setVisible(false);
-        lbCustomer.setVisible(false);
-        txtCustomer.setVisible(false);
+        Bank.setVisible(false);;
         JCalendar jc = new JCalendar();
         SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
         String m = sd.format(jc.getDate());
         lb_currentDate.setText(m);
         jTextField3.setEditable(false);
+        new dbConnection().getDataFromCombo(comShop, "SELECT `customer` FROM `sales accounts` GROUP BY `customer`");
     }
     String pay, shop, bill, date, address, subTotal, paid, due;
     
@@ -38,7 +35,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
         } else if (rbCash.isSelected()) {
             pay = "Cash";
         }
-        shop = jTextField3.getText();
+        shop = comShop.getSelectedItem().toString();
         bill = txtBill.getText();
         address = jTextField4.getText();
         date = lb_currentDate.getText();
@@ -49,16 +46,9 @@ public class Sales_due_paid extends javax.swing.JFrame {
     
     int blankDataCheck() {
         int check = 0;
-        if (customerType.getSelectedIndex() == 0) {
-            JOptionPane.showMessageDialog(this, "Select customer type!");
-            customerType.requestFocus();
-        } else if (comShop.getSelectedIndex() == 0 && txtCustomer.getText().isEmpty()) {
-            JOptionPane.showMessageDialog(this, "Enter shop name/customer name!");
-            if (customerType.getSelectedIndex() == 1) {
-                comShop.requestFocus();
-            } else if (customerType.getSelectedIndex() == 2) {
-                txtCustomer.requestFocus();
-            }
+        if (comShop.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Enter customer name!");
+            
         } else if (txtBill.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Enter Bill!");
         } else if (!rbBank.isSelected() && !rbCash.isSelected()) {
@@ -106,7 +96,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
                     txtSubTotal.setText("0.00");
                     txtPaid.setText("0.00");
                     txtSubTotal.setText("0.00");
-                    customerType.setSelectedIndex(0);
+                    comShop.setSelectedIndex(0);
                     txtBill.setText("");
                     dm.setRowCount(0);
                     
@@ -146,10 +136,8 @@ public class Sales_due_paid extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jButton4 = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        customerType = new javax.swing.JComboBox<>();
         comShop = new javax.swing.JComboBox<>();
         lbShop = new javax.swing.JLabel();
         txtBill = new javax.swing.JTextField();
@@ -162,8 +150,6 @@ public class Sales_due_paid extends javax.swing.JFrame {
         jComboBox1 = new javax.swing.JComboBox<>();
         jButton5 = new javax.swing.JButton();
         jLabel15 = new javax.swing.JLabel();
-        txtCustomer = new javax.swing.JTextField();
-        lbCustomer = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         billPanel = new javax.swing.JPanel();
         headerPane = new javax.swing.JPanel();
@@ -215,18 +201,12 @@ public class Sales_due_paid extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(90, 600, 300, 40);
+        jButton4.setBounds(90, 560, 300, 40);
 
         jPanel4.setBackground(new java.awt.Color(0, 102, 102));
         jPanel4.setLayout(null);
         jPanel1.add(jPanel4);
         jPanel4.setBounds(490, 80, 0, 500);
-
-        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Customer Type:");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(20, 140, 140, 40);
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -249,25 +229,6 @@ public class Sales_due_paid extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 0, 510, 100);
 
-        customerType.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        customerType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Permanent", "Customer" }));
-        customerType.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                customerTypePopupMenuWillBecomeInvisible(evt);
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-        });
-        customerType.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                customerTypeActionPerformed(evt);
-            }
-        });
-        jPanel1.add(customerType);
-        customerType.setBounds(160, 140, 290, 40);
-
         comShop.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         comShop.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         comShop.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
@@ -280,13 +241,13 @@ public class Sales_due_paid extends javax.swing.JFrame {
             }
         });
         jPanel1.add(comShop);
-        comShop.setBounds(160, 250, 290, 40);
+        comShop.setBounds(170, 150, 290, 40);
 
         lbShop.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lbShop.setForeground(new java.awt.Color(255, 255, 255));
-        lbShop.setText("Shop/Hospital:");
+        lbShop.setText("Customer Name:");
         jPanel1.add(lbShop);
-        lbShop.setBounds(20, 250, 140, 40);
+        lbShop.setBounds(30, 150, 140, 40);
 
         txtBill.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         txtBill.addKeyListener(new java.awt.event.KeyAdapter() {
@@ -295,7 +256,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txtBill);
-        txtBill.setBounds(160, 290, 290, 40);
+        txtBill.setBounds(170, 200, 290, 40);
 
         buttonGroup1.add(rbBank);
         rbBank.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
@@ -312,7 +273,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
             }
         });
         jPanel1.add(rbBank);
-        rbBank.setBounds(180, 360, 120, 40);
+        rbBank.setBounds(180, 290, 120, 40);
 
         buttonGroup1.add(rbCash);
         rbCash.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
@@ -323,8 +284,13 @@ public class Sales_due_paid extends javax.swing.JFrame {
                 rbCashMouseClicked(evt);
             }
         });
+        rbCash.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbCashActionPerformed(evt);
+            }
+        });
         jPanel1.add(rbCash);
-        rbCash.setBounds(50, 360, 110, 40);
+        rbCash.setBounds(50, 290, 110, 40);
 
         Bank.setBackground(new java.awt.Color(0, 153, 153));
         Bank.setBorder(new javax.swing.border.MatteBorder(null));
@@ -384,7 +350,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
         );
 
         jPanel1.add(Bank);
-        Bank.setBounds(50, 420, 420, 115);
+        Bank.setBounds(50, 350, 420, 115);
 
         jButton5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton5.setText("Exit");
@@ -394,28 +360,13 @@ public class Sales_due_paid extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton5);
-        jButton5.setBounds(90, 650, 300, 40);
+        jButton5.setBounds(90, 610, 300, 40);
 
         jLabel15.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Bill no.");
         jPanel1.add(jLabel15);
-        jLabel15.setBounds(20, 290, 140, 40);
-
-        txtCustomer.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        txtCustomer.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyReleased(java.awt.event.KeyEvent evt) {
-                txtCustomerKeyReleased(evt);
-            }
-        });
-        jPanel1.add(txtCustomer);
-        txtCustomer.setBounds(160, 250, 290, 40);
-
-        lbCustomer.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        lbCustomer.setForeground(new java.awt.Color(255, 255, 255));
-        lbCustomer.setText("Customer Name:");
-        jPanel1.add(lbCustomer);
-        lbCustomer.setBounds(20, 250, 140, 40);
+        jLabel15.setBounds(30, 200, 140, 40);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 510, 770);
@@ -537,6 +488,11 @@ public class Sales_due_paid extends javax.swing.JFrame {
         jLabel17.setBounds(10, 230, 80, 40);
 
         jTextField4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jTextField4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTextField4MouseClicked(evt);
+            }
+        });
         billPanel.add(jTextField4);
         jTextField4.setBounds(90, 270, 650, 40);
 
@@ -683,14 +639,8 @@ public class Sales_due_paid extends javax.swing.JFrame {
 
     private void rbCashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbCashMouseClicked
         // TODO add your handling code here:
-        if (rbCash.isSelected()) {
-            Bank.setVisible(false);
-        }
+        
     }//GEN-LAST:event_rbCashMouseClicked
-
-    private void customerTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_customerTypeActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_customerTypeActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
@@ -716,35 +666,6 @@ public class Sales_due_paid extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_jLabel43MouseEntered
 
-    private void customerTypePopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_customerTypePopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-        String s = customerType.getSelectedItem().toString();
-        if (s.contains("Permanent")) {
-            comShop.setVisible(true);
-            lbShop.setVisible(true);
-            lbCustomer.setVisible(false);
-            txtCustomer.setVisible(false);
-            jTextField3.setText("");
-            jTextField4.setText("");
-            new dbConnection().getDataFromCombo(comShop, "SELECT `shop name` FROM `customers`");
-        } else if (s.contains("Customer")) {
-            comShop.setVisible(false);
-            lbShop.setVisible(false);
-            lbCustomer.setVisible(true);
-            txtCustomer.setVisible(true);
-            jTextField3.setText("");
-            jTextField4.setText("");
-        } else if (s.contains("Select")) {
-            comShop.setVisible(false);
-            lbShop.setVisible(false);
-            lbCustomer.setVisible(false);
-            txtCustomer.setVisible(false);
-            jTextField3.setText("");
-            jTextField4.setText("");
-        }
-
-    }//GEN-LAST:event_customerTypePopupMenuWillBecomeInvisible
-
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         // TODO add your handling code here:
 
@@ -759,25 +680,15 @@ public class Sales_due_paid extends javax.swing.JFrame {
 
     private void comShopPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comShopPopupMenuWillBecomeInvisible
         // TODO add your handling code here:
-        if (customerType.getSelectedIndex() > 0 && customerType.getSelectedIndex() == 1) {
+        if (comShop.getSelectedIndex()>0) {
             showAccounts();
             shop = comShop.getSelectedItem().toString();
             jTextField3.setText(shop);
-            address = new dbConnection().singledata("SELECT `address` FROM `customers` WHERE `shop name`='" + comShop.getSelectedItem().toString() + "'");
+            address = new dbConnection().singledata("SELECT `address` FROM `customers` WHERE `customer name`='" + comShop.getSelectedItem().toString() + "'");
             jTextField4.setText(address);
             jTextField4.setEditable(false);
         }
     }//GEN-LAST:event_comShopPopupMenuWillBecomeInvisible
-
-    private void txtCustomerKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerKeyReleased
-        // TODO add your handling code here:
-        try {
-            jTextField3.setText(txtCustomer.getText());
-            jTextField4.setEditable(true);
-        } catch (Exception e) {
-            jTextField3.setText("");
-        }
-    }//GEN-LAST:event_txtCustomerKeyReleased
 
     private void txtPaidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtPaidActionPerformed
         // TODO add your handling code here:
@@ -811,6 +722,18 @@ public class Sales_due_paid extends javax.swing.JFrame {
         // TODO add your handling code here:
         lbBill.setText(txtBill.getText());
     }//GEN-LAST:event_txtBillKeyReleased
+
+    private void jTextField4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTextField4MouseClicked
+        // TODO add your handling code here:
+        jTextField4.setText("");
+    }//GEN-LAST:event_jTextField4MouseClicked
+
+    private void rbCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCashActionPerformed
+        // TODO add your handling code here:
+        if (rbCash.isSelected()) {
+            Bank.setVisible(false);
+        }
+    }//GEN-LAST:event_rbCashActionPerformed
 
     /**
      * @param args the command line arguments
@@ -868,7 +791,6 @@ public class Sales_due_paid extends javax.swing.JFrame {
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> comBankName;
     private javax.swing.JComboBox<String> comShop;
-    private javax.swing.JComboBox<String> customerType;
     private javax.swing.JPanel headerPane;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
@@ -897,7 +819,6 @@ public class Sales_due_paid extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel42;
     private javax.swing.JLabel jLabel43;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
@@ -910,13 +831,11 @@ public class Sales_due_paid extends javax.swing.JFrame {
     private javax.swing.JTextField jTextField4;
     private javax.swing.JTextField jTextField5;
     private javax.swing.JLabel lbBill;
-    private javax.swing.JLabel lbCustomer;
     private javax.swing.JLabel lbShop;
     private javax.swing.JLabel lb_currentDate;
     private javax.swing.JRadioButton rbBank;
     private javax.swing.JRadioButton rbCash;
     private javax.swing.JTextField txtBill;
-    private javax.swing.JTextField txtCustomer;
     private javax.swing.JLabel txtDue;
     private javax.swing.JTextField txtPaid;
     private javax.swing.JLabel txtSubTotal;
