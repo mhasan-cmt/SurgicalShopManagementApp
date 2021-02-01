@@ -1,9 +1,5 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package prime_surgical;
+import java.awt.Color;
 import javax.swing.*;
 
 /**
@@ -21,6 +17,10 @@ public class Sales_Report extends javax.swing.JFrame {
         customerPanel.setVisible(false);
         billPanel.setVisible(false);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        initial1();
+    }
+    void initial1(){
+        new dbConnection().getDataFromCombo(comCategory, "SELECT `category` FROM `sales entry` group by `category`");
     }
 
     /**
@@ -38,7 +38,7 @@ public class Sales_Report extends javax.swing.JFrame {
         jPanel5 = new javax.swing.JPanel();
         jLabel7 = new javax.swing.JLabel();
         comProduct1 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
+        comCategory = new javax.swing.JComboBox<>();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         comProduct = new javax.swing.JComboBox<>();
         jPanel1 = new javax.swing.JPanel();
@@ -136,23 +136,41 @@ public class Sales_Report extends javax.swing.JFrame {
         header6.add(comProduct1);
         comProduct1.setBounds(1063, 24, 274, 41);
 
-        jComboBox3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
-        header6.add(jComboBox3);
-        jComboBox3.setBounds(10, 100, 320, 40);
+        comCategory.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        comCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        comCategory.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                comCategoryPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        header6.add(comCategory);
+        comCategory.setBounds(10, 100, 320, 50);
         header6.add(jDateChooser1);
-        jDateChooser1.setBounds(650, 100, 352, 40);
+        jDateChooser1.setBounds(650, 100, 352, 50);
 
         comProduct.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         comProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         header6.add(comProduct);
-        comProduct.setBounds(330, 100, 320, 40);
+        comProduct.setBounds(330, 100, 320, 50);
 
-        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
+        jPanel1.setBackground(new java.awt.Color(102, 102, 255));
 
         jLabel8.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Show by Month");
+        jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel8MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel8MouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -162,17 +180,27 @@ public class Sales_Report extends javax.swing.JFrame {
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         header6.add(jPanel1);
-        jPanel1.setBounds(1070, 100, 130, 37);
+        jPanel1.setBounds(1060, 100, 130, 37);
 
         jPanel6.setBackground(new java.awt.Color(102, 102, 255));
 
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Show by Year");
+        jLabel1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel1MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel1MouseExited(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -194,16 +222,19 @@ public class Sales_Report extends javax.swing.JFrame {
         jButton1.setBounds(1130, 140, 150, 44);
 
         jLabel2.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("*Select Cateogory:");
         header6.add(jLabel2);
         jLabel2.setBounds(10, 70, 320, 30);
 
         jLabel3.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Product:");
         header6.add(jLabel3);
         jLabel3.setBounds(330, 70, 320, 30);
 
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setText("Date:");
         header6.add(jLabel5);
         jLabel5.setBounds(650, 70, 350, 30);
@@ -221,7 +252,7 @@ public class Sales_Report extends javax.swing.JFrame {
 
             },
             new String [] {
-                "SL", "Date", "Bill no.", "Company", "Cateogory", "Product", "GR", "Status", "Quantity", "Price", "Total"
+                "SL", "Date", "Bill no.", "Customer", "Cateogory", "Product", "GR", "Status", "Quantity", "Price", "Total"
             }
         ));
         jTable5.setRowHeight(30);
@@ -638,6 +669,32 @@ public class Sales_Report extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void comCategoryPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comCategoryPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        String query="SELECT `product`FROM `sales entry` WHERE `category`='"+comCategory.getSelectedItem().toString()+"' GROUP BY `product`";
+        new dbConnection().getDataFromCombo(comProduct, query);
+    }//GEN-LAST:event_comCategoryPopupMenuWillBecomeInvisible
+
+    private void jLabel8MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseEntered
+        // TODO add your handling code here:
+        jLabel8.setForeground(Color.cyan);
+    }//GEN-LAST:event_jLabel8MouseEntered
+
+    private void jLabel1MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseEntered
+        // TODO add your handling code here:
+        jLabel1.setForeground(Color.cyan);
+    }//GEN-LAST:event_jLabel1MouseEntered
+
+    private void jLabel8MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseExited
+        // TODO add your handling code here:
+        jLabel8.setForeground(Color.black);
+    }//GEN-LAST:event_jLabel8MouseExited
+
+    private void jLabel1MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel1MouseExited
+        // TODO add your handling code here:
+        jLabel1.setForeground(Color.white);
+    }//GEN-LAST:event_jLabel1MouseExited
+
     /**
      * @param args the command line arguments
      */
@@ -677,6 +734,7 @@ public class Sales_Report extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel billPanel;
     private javax.swing.JComboBox<String> comBill;
+    private javax.swing.JComboBox<String> comCategory;
     private javax.swing.JComboBox<String> comCustomer;
     private javax.swing.JComboBox<String> comProduct;
     private javax.swing.JComboBox<String> comProduct1;
@@ -690,7 +748,6 @@ public class Sales_Report extends javax.swing.JFrame {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox5;
     private javax.swing.JComboBox<String> jComboBox7;
     private com.toedter.calendar.JDateChooser jDateChooser1;

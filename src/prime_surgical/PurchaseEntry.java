@@ -778,6 +778,11 @@ public class PurchaseEntry extends javax.swing.JFrame {
         rbDue.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         rbDue.setForeground(new java.awt.Color(255, 255, 255));
         rbDue.setText("Due");
+        rbDue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbDueActionPerformed(evt);
+            }
+        });
         jPanel5.add(rbDue);
         rbDue.setBounds(320, 540, 90, 40);
 
@@ -998,6 +1003,11 @@ public class PurchaseEntry extends javax.swing.JFrame {
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtSearchActionPerformed
+
+    private void rbDueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDueActionPerformed
+        // TODO add your handling code here:
+        Bank.setVisible(false);
+    }//GEN-LAST:event_rbDueActionPerformed
 
     /**
      * @param args the command line arguments

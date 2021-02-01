@@ -1,8 +1,3 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
 package prime_surgical;
 
 import com.toedter.calendar.JCalendar;
@@ -91,7 +86,12 @@ public class SalesEntry extends javax.swing.JFrame {
 
     void addSales() {
         getData();
-        int stockCheck = Integer.parseInt(new dbConnection().singledata("SELECT `stock` FROM `stock` WHERE stock.`product`='" + gProductName + "'"));
+        String stockNullCheck=new dbConnection().singledata("SELECT `stock` FROM `stock` WHERE stock.`product`='" + gProductName + "'");
+        if(stockNullCheck.isEmpty()){
+            JOptionPane.showMessageDialog(this, "Not enough product in stock!");
+        }
+        else{
+            int stockCheck = Integer.parseInt(stockNullCheck);
         int q = Integer.parseInt(txtQuantity.getText());
         if (q<=stockCheck) {
 new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "','" + gBill + "','" + gCustomerName + "','" + gDate + "','" + Ggr + "','" + gCategory + "','" + gProductName + "','" + gProductPrice + "','" + gQuantity + "','" + gTotal + "')", this);
@@ -110,6 +110,8 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
         } else {
             JOptionPane.showMessageDialog(this, "Not enough product in Stock!");
         }
+        }
+        
     }
 
     int blankDataCheck() {
@@ -952,6 +954,11 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
         rbDue.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         rbDue.setForeground(new java.awt.Color(255, 255, 255));
         rbDue.setText("Due");
+        rbDue.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbDueActionPerformed(evt);
+            }
+        });
         jPanel5.add(rbDue);
         rbDue.setBounds(320, 540, 90, 40);
 
@@ -1265,6 +1272,11 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
         // TODO add your handling code here:
         lbBill.setText(txtBill.getText());
     }//GEN-LAST:event_txtBillMouseClicked
+
+    private void rbDueActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbDueActionPerformed
+        // TODO add your handling code here:
+        Bank.setVisible(false);
+    }//GEN-LAST:event_rbDueActionPerformed
 
     /**
      * @param args the command line arguments
