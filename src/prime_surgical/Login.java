@@ -1,5 +1,6 @@
 package prime_surgical;
 
+import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -8,7 +9,9 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JFrame;
 import javax.swing.JOptionPane;
+import javax.swing.JPasswordField;
 
 /**
  *
@@ -23,15 +26,17 @@ public class Login extends javax.swing.JFrame {
     public Login() {
         initComponents();
         users();
+        lbNewUser.setVisible(false);
     } 
     String user,pass;
-    Connection con;
-    PreparedStatement st;
-    ResultSet rs;
+    Connection con=null;
+    PreparedStatement st=null;
+    ResultSet rs=null;
     String url = "jdbc:mysql://localhost:3306/primesurgical";
     String un = "root";
     String pw = "";
     static String uName="Dummy";
+    static String uRole="John Doe";
      void dbConnect() {
         try {
             con = DriverManager.getConnection(url, un, pw);
@@ -55,11 +60,12 @@ public class Login extends javax.swing.JFrame {
             rs=st.executeQuery();
             if(rs.next()){
                 uName=user;
+                uRole=new dbConnection().singledata("SELECT `user_role` FROM `users` WHERE `user_name`='"+uName+"'");
                 new HomePage().setVisible(true);
                 this.dispose();
             }
             else{
-                JOptionPane.showMessageDialog(this, "Username or Password did not matched!");
+                JOptionPane.showMessageDialog(this, "Wrong Password!Try again!");
                 txtPassword.setText("");
             }
         } catch (SQLException ex) {
@@ -79,6 +85,25 @@ public class Login extends javax.swing.JFrame {
             Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    void adminPass(JFrame frame,JPasswordField pass,String add){
+        try {
+            dbConnect();
+            getData();
+            String query= "SELECT * FROM `users` WHERE `user_role`='admin' AND  `user_password`=? ";
+            st=con.prepareStatement(query);
+            st.setString(1, pass.getText());
+            rs=st.executeQuery();
+            if(rs.next()){
+                new dbConnection().addData(add,frame);
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Admin Password did not matched!");
+                txtPassword.setText("");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -88,6 +113,7 @@ public class Login extends javax.swing.JFrame {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
+        popupMenu1 = new java.awt.PopupMenu();
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
@@ -100,6 +126,7 @@ public class Login extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         txtUser = new javax.swing.JTextField();
+        lbNewUser = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -109,6 +136,8 @@ public class Login extends javax.swing.JFrame {
         jPanel3 = new javax.swing.JPanel();
         jLabel10 = new javax.swing.JLabel();
         comUser = new javax.swing.JComboBox<>();
+
+        popupMenu1.setLabel("popupMenu1");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -206,6 +235,23 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(txtUser);
         txtUser.setBounds(50, 60, 370, 70);
 
+        lbNewUser.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        lbNewUser.setForeground(new java.awt.Color(204, 255, 255));
+        lbNewUser.setText("Create new user?");
+        lbNewUser.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                lbNewUserMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                lbNewUserMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                lbNewUserMouseExited(evt);
+            }
+        });
+        jPanel2.add(lbNewUser);
+        lbNewUser.setBounds(50, 236, 140, 20);
+
         jLabel11.setFont(new java.awt.Font("Roboto", 1, 24)); // NOI18N
         jLabel11.setText("Password:");
         jPanel2.add(jLabel11);
@@ -246,7 +292,7 @@ public class Login extends javax.swing.JFrame {
 
         jLabel13.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\beautiful-color-ui-gradients-backgrounds-celestial.png")); // NOI18N
         jPanel2.add(jLabel13);
-        jLabel13.setBounds(0, 0, 460, 350);
+        jLabel13.setBounds(0, 0, 460, 330);
 
         getContentPane().add(jPanel2);
         jPanel2.setBounds(340, 100, 460, 330);
@@ -306,6 +352,11 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         String com=comUser.getSelectedItem().toString();
         txtUser.setText(new dbConnection().singledata("select `user_name` from `users` where `user_role`='"+com+"'"));
+        if(com.equals("Admin")){
+            lbNewUser.setVisible(true);
+        }else{
+            lbNewUser.setVisible(false);
+        }
     }//GEN-LAST:event_comUserPopupMenuWillBecomeInvisible
 
     private void txtUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyPressed
@@ -327,6 +378,22 @@ public class Login extends javax.swing.JFrame {
         }
         
     }//GEN-LAST:event_txtPasswordKeyPressed
+
+    private void lbNewUserMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbNewUserMouseEntered
+        // TODO add your handling code here:
+        lbNewUser.setForeground(Color.CYAN);
+    }//GEN-LAST:event_lbNewUserMouseEntered
+
+    private void lbNewUserMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbNewUserMouseExited
+        // TODO add your handling code here:
+        lbNewUser.setForeground(new Color(204,255,255));
+    }//GEN-LAST:event_lbNewUserMouseExited
+
+    private void lbNewUserMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lbNewUserMouseClicked
+        // TODO add your handling code here:
+        new CreateUser().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_lbNewUserMouseClicked
 
     /**
      * @param args the command line arguments
@@ -383,6 +450,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
+    private javax.swing.JLabel lbNewUser;
+    private java.awt.PopupMenu popupMenu1;
     private javax.swing.JPasswordField txtPassword;
     private javax.swing.JTextField txtUser;
     // End of variables declaration//GEN-END:variables

@@ -27,7 +27,7 @@ public class HomePage extends javax.swing.JFrame {
         initComponents();
         initial();
         jLabel29.setText("Welcome! " + Login.uName);
-        MainAdmin.setVisible(false);
+        userRole=Login.uRole;
     }
     //Database connection
     Connection con = null;
@@ -36,7 +36,7 @@ public class HomePage extends javax.swing.JFrame {
     String url = "jdbc:mysql://localhost:3306/primesurgical";
     String un = "root";
     String pw = "";
-
+    static String userRole="";
     void dbConnect() {
         try {
             con = DriverManager.getConnection(url, un, pw);
@@ -177,15 +177,6 @@ public class HomePage extends javax.swing.JFrame {
         jLabel56 = new javax.swing.JLabel();
         jPanel44 = new javax.swing.JPanel();
         jPanel45 = new javax.swing.JPanel();
-        jLayeredPane2 = new javax.swing.JLayeredPane();
-        LoginPanel = new javax.swing.JPanel();
-        txtAdmin = new javax.swing.JTextField();
-        JLabel = new javax.swing.JLabel();
-        jLabel31 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        logo = new javax.swing.JLabel();
-        txtAdminPass = new javax.swing.JPasswordField();
-        MainAdmin = new javax.swing.JPanel();
         AccountsPanel = new javax.swing.JPanel();
         txtCurrentDate = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
@@ -272,24 +263,25 @@ public class HomePage extends javax.swing.JFrame {
         headerPane.add(jLabel5);
         jLabel5.setBounds(390, 130, 320, 30);
 
-        jLabel42.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\minimize.png")); // NOI18N
+        jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minimize.png"))); // NOI18N
         jLabel42.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel42MouseClicked(evt);
             }
         });
         headerPane.add(jLabel42);
-        jLabel42.setBounds(1262, 10, 40, 40);
+        jLabel42.setBounds(1240, 10, 50, 40);
 
         jLabel43.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel43.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\error.png")); // NOI18N
+        jLabel43.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/error.png"))); // NOI18N
         jLabel43.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel43MouseClicked(evt);
             }
         });
         headerPane.add(jLabel43);
-        jLabel43.setBounds(1310, 10, 40, 40);
+        jLabel43.setBounds(1300, 10, 50, 40);
 
         getContentPane().add(headerPane);
         headerPane.setBounds(0, 0, 1360, 170);
@@ -463,7 +455,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel15.setBounds(0, 100, 290, 50);
 
         jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_cash_100px.png")); // NOI18N
+        jLabel14.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_cash_100px.png"))); // NOI18N
         jLabel14.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel14MouseClicked(evt);
@@ -578,7 +570,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel28.setBounds(0, 100, 200, 50);
 
         jLabel37.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel37.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_bank_100px.png")); // NOI18N
+        jLabel37.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_bank_100px.png"))); // NOI18N
         jLabel37.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel37MouseClicked(evt);
@@ -1125,71 +1117,6 @@ public class HomePage extends javax.swing.JFrame {
         AdminPanel.add(HeaderPanel);
         HeaderPanel.setBounds(0, 0, 210, 40);
 
-        jLayeredPane2.setLayout(new java.awt.CardLayout());
-
-        LoginPanel.setBackground(new java.awt.Color(84, 121, 128));
-        LoginPanel.setLayout(null);
-
-        txtAdmin.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        txtAdmin.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAdminActionPerformed(evt);
-            }
-        });
-        txtAdmin.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtAdminKeyPressed(evt);
-            }
-        });
-        LoginPanel.add(txtAdmin);
-        txtAdmin.setBounds(310, 220, 490, 50);
-
-        JLabel.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        JLabel.setForeground(new java.awt.Color(255, 255, 255));
-        JLabel.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        JLabel.setText("Enter Admin Password:");
-        LoginPanel.add(JLabel);
-        JLabel.setBounds(310, 270, 490, 40);
-
-        jLabel31.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        jLabel31.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel31.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel31.setText("Enter Admin User Name:");
-        LoginPanel.add(jLabel31);
-        jLabel31.setBounds(310, 160, 490, 50);
-
-        jButton1.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        jButton1.setText("Log In");
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        LoginPanel.add(jButton1);
-        jButton1.setBounds(440, 380, 240, 50);
-
-        logo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        logo.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_user_shield_100px_1.png")); // NOI18N
-        LoginPanel.add(logo);
-        logo.setBounds(430, 40, 260, 130);
-
-        txtAdminPass.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtAdminPassActionPerformed(evt);
-            }
-        });
-        LoginPanel.add(txtAdminPass);
-        txtAdminPass.setBounds(310, 310, 490, 50);
-
-        jLayeredPane2.add(LoginPanel, "card3");
-
-        MainAdmin.setBackground(new java.awt.Color(0, 102, 153));
-        MainAdmin.setLayout(null);
-        jLayeredPane2.add(MainAdmin, "card2");
-
-        AdminPanel.add(jLayeredPane2);
-        jLayeredPane2.setBounds(0, 40, 1100, 550);
-
         Container.add(AdminPanel, "card7");
 
         AccountsPanel.setBackground(new java.awt.Color(44, 58, 71));
@@ -1690,7 +1617,8 @@ public class HomePage extends javax.swing.JFrame {
 
     private void jLabel8MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel8MouseClicked
         // TODO add your handling code here:
-        HomePanel.setVisible(false);
+        if(userRole.equals("Admin")){
+          HomePanel.setVisible(false);
         PurchasePanel.setVisible(false);
         SalesPanel.setVisible(false);
         AdminPanel.setVisible(false);
@@ -1707,6 +1635,15 @@ public class HomePage extends javax.swing.JFrame {
         SimpleDateFormat sd = new SimpleDateFormat("dd-MM-yyyy");
         String m = sd.format(jc.getDate());
         txtCurrentDate.setText(m);
+        lbprofit.setText(Double.parseDouble(new dbConnection().singledata("SELECT SUM(`unitProfit`) FROM `salesprofit`"))+"");
+        lbcost.setText(""+Double.parseDouble(new dbConnection().singledata("SELECT SUM(`cost_amount`) FROM `cost data`")));
+        lbloss.setText(Double.parseDouble(new dbConnection().singledata("SELECT SUM(`unitProfit`) AS Loss FROM `salesprofit` WHERE `unitProfit`<0"))+"");
+        lbsales.setText(Double.parseDouble(new dbConnection().singledata("SELECT SUM(`total`) AS totalsales FROM `sales entry`"))+"");
+        }
+        else{
+            JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,"Failed to open",JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_jLabel8MouseClicked
 
     private void jLabel25MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel25MouseClicked
@@ -1741,6 +1678,7 @@ public class HomePage extends javax.swing.JFrame {
 
     private void jLabel10MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseClicked
         // TODO add your handling code here:
+        if(userRole.equals("Admin")){
         HomePanel.setVisible(false);
         PurchasePanel.setVisible(false);
         SalesPanel.setVisible(false);
@@ -1751,8 +1689,10 @@ public class HomePage extends javax.swing.JFrame {
         PurchasP.setVisible(false);
         SalesP.setVisible(false);
         AccountsP.setVisible(false);
-        AdminP.setVisible(true);
-        labelAnimationRevert();
+        AdminP.setVisible(true);    
+        }else{
+JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,"Failed to open",JOptionPane.ERROR_MESSAGE);
+        labelAnimationRevert();}
     }//GEN-LAST:event_jLabel10MouseClicked
 
     private void jLabel10MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel10MouseExited
@@ -1989,20 +1929,6 @@ public class HomePage extends javax.swing.JFrame {
         jPanel14.setBackground(new Color(104, 109, 224));
     }//GEN-LAST:event_jLabel47MouseExited
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        if (!txtAdmin.getText().isEmpty()) {
-        new dbConnection().loginAdmin(this, txtAdmin, txtAdminPass, LoginPanel, logo, MainAdmin);
-        }
-        else {
-            JOptionPane.showMessageDialog(this, "Enter UserName");
-        }
-    }//GEN-LAST:event_jButton1ActionPerformed
-
-    private void txtAdminActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtAdminActionPerformed
-
     private void jLabel50MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel50MouseExited
         // TODO add your handling code here:
         jPanel22.setBackground(new Color(104, 109, 224));
@@ -2193,23 +2119,6 @@ public class HomePage extends javax.swing.JFrame {
         lbcost.setVisible(true);
     }//GEN-LAST:event_lb_costMouseClicked
 
-    private void txtAdminPassActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtAdminPassActionPerformed
-        // TODO add your handling code here:
-        if (!txtAdmin.getText().isEmpty()) {
-        new dbConnection().loginAdmin(this, txtAdmin, txtAdminPass, LoginPanel, logo, MainAdmin);
-        }
-        else {
-            JOptionPane.showMessageDialog(this, "Enter UserName");
-        }
-    }//GEN-LAST:event_txtAdminPassActionPerformed
-
-    private void txtAdminKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtAdminKeyPressed
-        // TODO add your handling code here:
-        if(evt.getKeyCode()==KeyEvent.VK_ENTER){
-            txtAdminPass.requestFocus();
-        }
-    }//GEN-LAST:event_txtAdminKeyPressed
-
     /**
      * @param args the command line arguments
      */
@@ -2253,9 +2162,6 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLayeredPane Container;
     private javax.swing.JPanel HeaderPanel;
     private javax.swing.JPanel HomePanel;
-    private javax.swing.JLabel JLabel;
-    private javax.swing.JPanel LoginPanel;
-    private javax.swing.JPanel MainAdmin;
     private javax.swing.JPanel PurchasP;
     private javax.swing.JPanel PurchasePanel;
     private javax.swing.JPanel SalesP;
@@ -2263,7 +2169,6 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JPanel SideBarPane;
     private javax.swing.JPanel headerPane;
     private javax.swing.JPanel homeP;
-    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2287,7 +2192,6 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
@@ -2324,7 +2228,6 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JLayeredPane jLayeredPane2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel11;
@@ -2376,9 +2279,6 @@ public class HomePage extends javax.swing.JFrame {
     private javax.swing.JLabel lbprofit;
     private javax.swing.JLabel lbrecievable;
     private javax.swing.JLabel lbsales;
-    private javax.swing.JLabel logo;
-    private javax.swing.JTextField txtAdmin;
-    private javax.swing.JPasswordField txtAdminPass;
     private static javax.swing.JLabel txtCurrentDate;
     // End of variables declaration//GEN-END:variables
 }

@@ -44,11 +44,11 @@ CREATE TABLE `bank data` (
   `bank_status` varchar(100) default NULL,
   `bank_amount` varchar(100) default NULL,
   PRIMARY KEY  (`sl_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
 
 /*Data for the table `bank data` */
 
-insert  into `bank data`(`sl_no`,`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) values (1,'2020-12-23','Jamuna bank','1222123233','Purchase','Debit','3000'),(3,'2020-12-23','sonali bank','12221','Purchase','Debit','200'),(4,'2020-12-23','Jamuna Bank','1222123233','Capital','Credit','50000');
+insert  into `bank data`(`sl_no`,`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) values (1,'2020-12-23','Jamuna bank','1222123233','Purchase','Withdraw','3000'),(3,'2020-12-23','sonali bank','12221','Purchase','Withdraw','200'),(4,'2020-12-23','Jamuna Bank','1222123233','Capital','Deposit','50000'),(5,'2020-12-25','Jamuna bank','1222123233','staff salary','Withdraw','1200.0'),(6,'2020-12-26','Jamuna bank','1222123233','Withdraw','Deposit','10000'),(7,'2020-12-26','Jamuna Bank','1222123233','From Cash','Deposit','104.0'),(8,'2020-12-31','Pubali Bank','989876767','From Cash','Deposit','30'),(9,'2020-12-31','Jamuna Bank','1222123233','From Cash','Deposit','60'),(10,'2020-12-31','Pubali Bank','989876767','From Cash','Deposit','270.3'),(11,'2021-12-01','Jamuna Bank','1222123233','Sales','Deposit','1200'),(12,'2021-01-20','sonali bank','12221','Staff salary','Debit','30000'),(13,'2021-01-20','sonali bank','12221','House rent','Debit','3000'),(14,'2021-01-20','Jamuna Bank','1222123233','Stealed money','Withdraw','5000'),(15,'2021-01-20','Jamuna Bank','1222123233','personal','Withdraw','5000'),(16,'2021-01-20','Jamuna Bank','1222123233','personal','Withdraw','3000');
 
 /*Table structure for table `cash data` */
 
@@ -61,11 +61,30 @@ CREATE TABLE `cash data` (
   `cash_status` varchar(100) default NULL,
   `cash_amount` varchar(100) default NULL,
   PRIMARY KEY  (`sl_no`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=75 DEFAULT CHARSET=latin1;
 
 /*Data for the table `cash data` */
 
-insert  into `cash data`(`sl_no`,`cash_date`,`cash_details`,`cash_status`,`cash_amount`) values (1,'2020-12-23','Purchase','Debit','3000'),(2,'2020-12-23','Purchase','Debit','2000'),(3,'2020-12-23','Purchase','Debit','1500'),(4,'2020-12-23','Purchase','Debit','0.00'),(5,'2020-12-24','Capital','Credit','50000'),(6,'2020-12-24','Current bill','debit','1578');
+insert  into `cash data`(`sl_no`,`cash_date`,`cash_details`,`cash_status`,`cash_amount`) values (1,'2020-12-23','Purchase','Debit','3000'),(2,'2020-12-23','Purchase','Debit','2000'),(3,'2020-12-23','Purchase','Debit','1500'),(5,'2020-12-24','Capital','Credit','50000'),(6,'2020-12-24','Current bill','debit','1578'),(7,'2020-12-25','SR comission','Debit','300.0'),(8,'2020-12-25','Purchase','Debit','200'),(9,'2020-12-26','Purchase','Debit','130'),(10,'2020-12-30','sales','credit','500'),(11,'2020-12-30','Personal','credit','100'),(12,'2021-01-01','test','credit','100'),(13,'2020-12-31','Bank Deposited','Debit','60'),(14,'2020-12-31','Bank Deposited','Debit','270.3'),(15,'2021-01-01','Purchase','Debit','440'),(16,'2021-01-01','Purchase Due','Debit','1244'),(17,'2021-01-01','Purchase Due','Debit','1000'),(18,'2021-01-01','Purchase Due','Debit','2000'),(19,'2021-01-01','Purchase Due','Debit','1000'),(20,'2021-01-01','Purchase Due','Debit','2000'),(21,'2021-01-01','Purchase','Debit','500'),(22,'2021-01-02','Purchase Due','Debit','230'),(25,'2021-01-05','Sales','Credit','5000'),(26,'2021-01-05','Purchase','Debit','3000'),(27,'2021-01-05','Purchase','Debit','15000'),(32,'2021-01-05','Purchase','Debit','3000'),(35,'2021-01-05','Sales','Credit','1000'),(42,'2021-01-07','Purchase Due','Debit','8000'),(44,'2021-01-07','Sales','Credit','13350'),(46,'2021-01-07','Sales','Credit','200'),(47,'2021-01-07','Sales','Credit','500'),(53,'2021-01-08','Purchase Due','Debit','3000'),(54,'2021-01-08','Purchase Due','Debit','3000'),(55,'2021-01-08','Purchase Due','Debit','3000'),(56,'2021-01-08','Sales','Credit','400'),(57,'2021-01-08','Sales','Credit','220'),(68,'2021-01-20','Arif cash','debit','3000'),(71,'2021-01-20','Purchase Due','Debit','3000'),(72,'2021-02-03','Sales','Credit','3140'),(73,'2021-02-03','Sales','Credit','510'),(74,'2021-02-03','Sales','Credit','200');
+
+/*Table structure for table `cost data` */
+
+DROP TABLE IF EXISTS `cost data`;
+
+CREATE TABLE `cost data` (
+  `sl_no` int(100) NOT NULL auto_increment,
+  `cost_date` date default NULL,
+  `cost_type` varchar(100) default NULL,
+  `cost_bill` varchar(100) default NULL,
+  `cost_details` varchar(100) default NULL,
+  `cost_paid_by` varchar(100) default NULL,
+  `cost_amount` varchar(100) default NULL,
+  PRIMARY KEY  (`sl_no`)
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
+
+/*Data for the table `cost data` */
+
+insert  into `cost data`(`sl_no`,`cost_date`,`cost_type`,`cost_bill`,`cost_details`,`cost_paid_by`,`cost_amount`) values (1,'2020-12-25','Sales Cost','123','Home delivery','Arif (Staff)','370.0'),(2,'2020-12-25','Others Cost','11','staff salary','Owner','1200.0'),(5,'2021-01-04','Sales cost','1','SR Commision','N/A','20.2');
 
 /*Table structure for table `customers` */
 
@@ -82,7 +101,7 @@ CREATE TABLE `customers` (
 
 /*Data for the table `customers` */
 
-insert  into `customers`(`id`,`customer name`,`mobile`,`shop name`,`address`) values (1,'Md Mahmud','121111','Mahmud Pharma','Uttara, Dhaka');
+insert  into `customers`(`id`,`customer name`,`mobile`,`shop name`,`address`) values (1,'Md Mahmud','121111','Mahmud Pharma','Uttara, Dhaka'),(3,'Md Ahnaf Hossain','012543232','Ahnaf Medical','Fulgazi, Feni'),(202,'Md Arif','01856675556','Arif Pharma','Silonia, Feni');
 
 /*Table structure for table `product cateogory` */
 
@@ -109,19 +128,19 @@ CREATE TABLE `product info` (
   `product_details` varchar(100) default NULL,
   `product_category_id` int(100) default NULL,
   PRIMARY KEY  (`product_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=9 DEFAULT CHARSET=latin1;
 
 /*Data for the table `product info` */
 
-insert  into `product info`(`product_id`,`product_name`,`product_price`,`product_details`,`product_category_id`) values (1,'Alcolf','200','beximco inc.',1),(2,'bashok','190','glaxosmith inc.',1),(3,'napa','50','beximco inc',2),(4,'napa extra','70','beximco inc.',2),(5,'quick bandage','10','square inc',3),(6,'viodin','120','square inc',3);
+insert  into `product info`(`product_id`,`product_name`,`product_price`,`product_details`,`product_category_id`) values (1,'Alcolf','200','beximco inc.',1),(2,'bashok','190','glaxosmith inc.',1),(3,'napa','50','beximco inc',2),(4,'napa extra','70','beximco inc.',2),(5,'quick bandage','10','square inc',3),(6,'viodin','120','square inc',3),(7,'ointment','70','Arise pharma inc',2),(8,'5ml Syringe','15','Arisco pharmatical inc',3);
 
 /*Table structure for table `purchase accounts` */
 
 DROP TABLE IF EXISTS `purchase accounts`;
 
 CREATE TABLE `purchase accounts` (
-  `bill_no` int(100) NOT NULL,
-  `gr` int(100) NOT NULL,
+  `bill_no` varchar(100) NOT NULL,
+  `gr` varchar(100) default '',
   `date` date default NULL,
   `company` varchar(200) default NULL,
   `items` int(100) default NULL,
@@ -129,13 +148,12 @@ CREATE TABLE `purchase accounts` (
   `payment` varchar(200) default NULL,
   `discount` varchar(100) default NULL,
   `paid` varchar(100) default NULL,
-  `due` varchar(100) default NULL,
-  PRIMARY KEY  (`gr`)
+  `due` varchar(100) default NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 /*Data for the table `purchase accounts` */
 
-insert  into `purchase accounts`(`bill_no`,`gr`,`date`,`company`,`items`,`total`,`payment`,`discount`,`paid`,`due`) values (17,172,'2020-12-22','Mamun Medical Supply',1,380,'Cash','0.00',NULL,'380'),(18,181,'2020-12-23','Mamun Medical Supply',1,400,'Cash','10','300','90.0'),(19,191,'2020-12-23','Mamun Medical Supply',1,400,'Cash','0.00','300','100.0'),(20,201,'2020-12-23','Mamun Medical Supply',1,100,'Cash','0.00','100','0.0'),(21,211,'2020-12-23','test',1,210,'Cash','10','200','0.0'),(22,221,'2020-12-23','Mamun Medical Supply',1,600,'Cash','100','400','100.0'),(23,231,'2020-12-23','Mamun Medical Supply',1,200,'Cash','0.00','200','0.0'),(24,242,'2020-12-23','Mamun Medical Supply',1,6100,'Cash','0.00','3000','3100.0'),(25,252,'2020-12-23','Mamun Medical Supply',1,4370,'Cash','300','2000','2070.0'),(26,262,'2020-12-23','test',1,2000,'Cash','0.00','1500','500.0'),(27,272,'2020-12-23','Select',1,4370,'Bank','0.00','0.00','4370.0'),(28,282,'2020-12-23','Mamun Medical Supply',1,5000,'Bank','0.00','3000','2000.0'),(29,292,'2020-12-23','Mamun Medical Supply',1,0,'Cash','0.00','0.00','0'),(30,302,'2020-12-23','Mamun Medical Supply',1,2400,'Bank','0','200','2200.0');
+insert  into `purchase accounts`(`bill_no`,`gr`,`date`,`company`,`items`,`total`,`payment`,`discount`,`paid`,`due`) values ('1','12','2021-01-08','Arif Medical Supply',100,6000,'Cash','0.00','0.00','6000'),('1Arif','Due Paid','2021-01-08','Arif Medical Supply',0,0,'Cash','0','3000','3000.0'),('1','23','2021-01-18','Muruf Medical Supply',100,12000,'Cash','0.00','0.00','12000'),('2Arif','Due Paid','2021-01-20','Arif Medical Supply',0,0,'Cash','0','3000','0.0'),('1','33','2021-01-31','Mamun Medical Supply',12,18840,'Due','0.00','0.00','18840'),('1','11','2021-02-28','Mamun Medical Supply',20,1000,'Due','0.00','0.00','1000'),('1','21','2021-02-01','Arif Medical Supply',10,1700,'Due','0.00','0.00','1700'),('2','31','2021-02-01','Mamun Medical Supply',2,20,'Due','0.00','0.00','20'),('1','41','2021-02-03','Muruf Medical Supply',10,2400,'Due','0.00','0.00','2400'),('2','51','2021-02-03','Arif Medical Supply',100,1520,'Due','0.00','0.00','1520');
 
 /*Table structure for table `purchase entry` */
 
@@ -153,11 +171,52 @@ CREATE TABLE `purchase entry` (
   `quantity` varchar(200) default NULL,
   `total` varchar(1200) default NULL,
   PRIMARY KEY  (`purchase_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=32 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=7 DEFAULT CHARSET=latin1;
 
 /*Data for the table `purchase entry` */
 
-insert  into `purchase entry`(`purchase_id`,`bill_no`,`company_name`,`purchase_date`,`purchase_gr`,`category`,`product`,`price`,`quantity`,`total`) values (1,1,'Mamun Medical Supply','2020-12-21',10,'cough syrup','Alcolf','200','1','200.0'),(2,2,'Mamun Medical Supply','2020-12-22',20,'cough syrup','Alcolf','200','2','400.0'),(3,3,'Mamun Medical Supply','2020-12-22',30,'pain killers','napa extra','70','1','70.0'),(4,4,'Mamun Medical Supply','2020-12-22',40,'pain killers','napa','50','3','150.0'),(5,5,'Mamun Medical Supply','2020-12-22',50,'cough syrup','bashok','190','2','380.0'),(6,6,'Select','2020-12-22',60,'pain killers','napa extra','70','2','140.0'),(7,7,'Mamun Medical Supply','2020-12-22',70,'pain killers','napa extra','70','2','140.0'),(8,8,'Mamun Medical Supply','2020-12-22',80,'pain killers','napa extra','70','2','140.0'),(9,9,'Mamun Medical Supply','2020-12-22',90,'cough syrup','bashok','190','2','380.0'),(10,10,'Mamun Medical Supply','2020-12-22',100,'pain killers','napa extra','70','2','140.0'),(11,11,'Mamun Medical Supply','2020-12-22',110,'pain killers','napa','50','12','600.0'),(12,12,'Mamun Medical Supply','2020-12-22',120,'cough syrup','Alcolf','200','2','400.0'),(13,13,'Mamun Medical Supply','2020-12-22',130,'cough syrup','Alcolf','200','2','400.0'),(14,14,'Select','2020-12-22',140,'pain killers','napa extra','70','2','140.0'),(15,15,'Mamun Medical Supply','2020-12-22',150,'cough syrup','bashok','190','2','380.0'),(16,16,'Mamun Medical Supply','2020-12-22',160,'pain killers','napa extra','70','02','140.0'),(17,17,'Select','2020-12-22',170,'cough syrup','bashok','190','2','380.0'),(18,18,'Mamun Medical Supply','2020-12-23',180,'cough syrup','Alcolf','200','2','400.0'),(19,19,'Mamun Medical Supply','2020-12-23',190,'cough syrup','Alcolf','200','2','400.0'),(20,20,'Mamun Medical Supply','2020-12-23',200,'pain killers','napa','50','2','100.0'),(21,21,'test','2020-12-23',210,'pain killers','napa extra','70','3','210.0'),(22,22,'Mamun Medical Supply','2020-12-23',220,'cough syrup','Alcolf','200','03','600.0'),(23,23,'Mamun Medical Supply','2020-12-23',230,'first aid','quick bandage','10','20','200.0'),(24,23,'Mamun Medical Supply','2020-12-23',231,'Select','Select','','0','0.00'),(25,24,'Mamun Medical Supply','2020-12-23',241,'pain killers','napa','50','122','6100.0'),(26,25,'Mamun Medical Supply','2020-12-23',251,'cough syrup','bashok','190','23','4370.0'),(27,26,'test','2020-12-23',261,'cough syrup','Alcolf','200','10','2000.0'),(28,27,'Select','2020-12-23',271,'cough syrup','bashok','190','23','4370.0'),(29,28,'Mamun Medical Supply','2020-12-23',281,'pain killers','napa','50','100','5000.0'),(30,29,'Mamun Medical Supply','2020-12-23',291,'pain killers','napa','50','0','0.00'),(31,30,'Mamun Medical Supply','2020-12-23',301,'cough syrup','Alcolf','200','12','2400.0');
+insert  into `purchase entry`(`purchase_id`,`bill_no`,`company_name`,`purchase_date`,`purchase_gr`,`category`,`product`,`price`,`quantity`,`total`) values (1,1,'Mamun Medical Supply','2021-02-28',10,'pain killers','napa','50','20','1000.0'),(2,1,'Arif Medical Supply','2021-02-01',20,'pain killers','napa extra','70','10','700.0'),(3,2,'Mamun Medical Supply','2021-02-01',30,'first aid','quick bandage','10','2','20.0'),(4,1,'Muruf Medical Supply','2021-02-03',40,'pain killers','ointment','70','10','700.0'),(5,2,'Arif Medical Supply','2021-02-03',50,'first aid','5ml Syringe','15','100','1500.0'),(6,3,'Mamun Medical Supply','2021-02-03',60,'cough syrup','Alcolf','200','5','1000.0');
+
+/*Table structure for table `purchaseorder` */
+
+DROP TABLE IF EXISTS `purchaseorder`;
+
+CREATE TABLE `purchaseorder` (
+  `orderId` int(100) NOT NULL,
+  `company` varchar(200) default NULL,
+  `orderDate` date default NULL,
+  `deliveryDate` date default NULL,
+  `category` varchar(100) default NULL,
+  `productName` varchar(100) default NULL,
+  `price` varchar(100) default NULL,
+  `quantity` varchar(100) default NULL,
+  `total` varchar(100) default NULL,
+  `gr` varchar(100) default 'Pur',
+  PRIMARY KEY  (`orderId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `purchaseorder` */
+
+/*Table structure for table `sales accounts` */
+
+DROP TABLE IF EXISTS `sales accounts`;
+
+CREATE TABLE `sales accounts` (
+  `bill_no` varchar(100) NOT NULL,
+  `gr` varchar(100) default '',
+  `date` date default NULL,
+  `customer` varchar(200) default NULL,
+  `items` int(100) default NULL,
+  `total` int(100) default NULL,
+  `payment` varchar(200) default NULL,
+  `discount` varchar(100) default NULL,
+  `paid` varchar(100) default NULL,
+  `due` varchar(100) default NULL
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `sales accounts` */
+
+insert  into `sales accounts`(`bill_no`,`gr`,`date`,`customer`,`items`,`total`,`payment`,`discount`,`paid`,`due`) values ('1','30','2021-01-20','Md Ahnaf hossain',22,1540,'Cash','0.00','0.00','1540.0'),('3','50','2021-01-20','Md Ahnaf Hossain',12,1440,'Bank','0.00','0.00','1440.0'),('4','60','2021-01-31','Md Mahmud',10,700,'Due','0.00','0.00','700.0'),('5','70','2021-01-31','Md Naeem',3,180,'Due','0.00','0.00','180.0'),('1','20','2021-02-01','Md Ahnaf Hossain',2,160,'Bank','0.00','0.00','160.0'),('1','20','2021-02-01','Md Arif',7,510,'Due','0.00','0.00','510.0'),('2','30','2021-02-01','Md Mahmud',4,200,'Due','0.00','0.00','200.0'),('3','40','2021-02-03','Ariful islam',1,30,'Due','0.00','0.00','30.0'),('1ahnaf','Due paid','2021-02-03','Md Ahnaf hossain',0,0,'Cash','0.00','3140','0.0'),('1Arif','Due paid','2021-02-03','Md Arif',0,0,'Cash','0.00','510','0.0'),('212','Due paid','2021-02-03','Md Mahmud',0,0,'Cash','0.00','200','700.0');
 
 /*Table structure for table `sales entry` */
 
@@ -175,9 +234,28 @@ CREATE TABLE `sales entry` (
   `quantity` varchar(200) default NULL,
   `total` varchar(1200) default NULL,
   PRIMARY KEY  (`sales_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=28 DEFAULT CHARSET=latin1;
 
 /*Data for the table `sales entry` */
+
+insert  into `sales entry`(`sales_id`,`bill_no`,`customer_name`,`sales_date`,`sales_gr`,`category`,`product`,`price`,`quantity`,`total`) values (13,1,'Md Ahnaf Hossain','2021-02-28',10,'pain killers','napa','80.0','2','160.0'),(14,0,'0','0000-00-00',0,'pain killers','napa','0','0','0'),(19,0,'0',NULL,0,'pain killers','napa extra','0','0','0'),(20,1,'Md Arif','2021-02-01',10,'pain killers','napa extra','90.0','5','350.0'),(21,2,'Md Mahmud','2021-02-01',20,'pain killers','napa','60.0','4','200.0'),(22,3,'Ariful islam','2021-02-03',30,'pain killers','napa','30','1','30.0'),(23,0,'0','0000-00-00',0,'pain killers','ointment','0','0','0'),(24,0,'0','0000-00-00',0,'first aid','quick bandage','0','0','0'),(26,0,'0','0000-00-00',0,'first aid','5ml Syringe','0','0','0'),(27,0,'0','0000-00-00',0,'cough syrup','alcolf','0','0','0');
+
+/*Table structure for table `sales officer commision` */
+
+DROP TABLE IF EXISTS `sales officer commision`;
+
+CREATE TABLE `sales officer commision` (
+  `c-id` int(200) NOT NULL auto_increment,
+  `s-officer-id` int(100) NOT NULL,
+  `c-date` date default NULL,
+  `per` int(100) default NULL,
+  `amount` varchar(200) default NULL,
+  PRIMARY KEY  (`c-id`)
+) ENGINE=InnoDB AUTO_INCREMENT=10 DEFAULT CHARSET=latin1;
+
+/*Data for the table `sales officer commision` */
+
+insert  into `sales officer commision`(`c-id`,`s-officer-id`,`c-date`,`per`,`amount`) values (9,1,'2021-01-04',5,'20.2');
 
 /*Table structure for table `salesofficer` */
 
@@ -200,6 +278,28 @@ CREATE TABLE `salesofficer` (
 
 insert  into `salesofficer`(`id`,`sales_name`,`sales_mobile`,`sales_address`,`sales_salary`,`sales_position`,`sales_joining`,`sales_ref`,`sales_ref_mobile`) values (1,'Md arif','0187596111','Dagonbhuiyan, Feni','4000','staff','2020-12-23','N/A','N/A'),(2,'jokeed','1222312133','dfadf','1000','staff','2020-12-23','N/A','N/A');
 
+/*Table structure for table `salesorder` */
+
+DROP TABLE IF EXISTS `salesorder`;
+
+CREATE TABLE `salesorder` (
+  `orderId` int(100) NOT NULL,
+  `customerName` varchar(200) default NULL,
+  `orderDate` date default NULL,
+  `deliveryDate` date default NULL,
+  `category` varchar(100) default NULL,
+  `productName` varchar(100) default NULL,
+  `stockQuantity` varchar(100) default NULL,
+  `purchasePrice` varchar(100) default NULL,
+  `salesPrice` varchar(100) default NULL,
+  `quantity` varchar(100) default NULL,
+  `total` varchar(100) default NULL,
+  `gr` varchar(100) default 'Pur',
+  PRIMARY KEY  (`orderId`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+/*Data for the table `salesorder` */
+
 /*Table structure for table `suppliers` */
 
 DROP TABLE IF EXISTS `suppliers`;
@@ -215,25 +315,106 @@ CREATE TABLE `suppliers` (
 
 /*Data for the table `suppliers` */
 
-insert  into `suppliers`(`supplier_id`,`supplier_name`,`supplier_company_name`,`supplier_mobile`,`supplier_address`) values (1,'Md Mamun','Mamun Medical Supply','01829928373','Tongi, Gazipur'),(2,'test','test','test','test'),(3,'test','test','test','test');
+insert  into `suppliers`(`supplier_id`,`supplier_name`,`supplier_company_name`,`supplier_mobile`,`supplier_address`) values (1,'Md Mamun','Mamun Medical Supply','01829928373','Tongi, Gazipur'),(2,'test','test','test','test'),(3,'test','test','test','test'),(102,'Maruf Ahmed','Muruf Medical Supply','0199283332','Uttara, Dhaka'),(103,'Md Ariful islam','Arif Medical Supply','0012098983','Agargao, Chittagong');
 
 /*Table structure for table `users` */
 
 DROP TABLE IF EXISTS `users`;
 
 CREATE TABLE `users` (
-  `user_id` int(100) NOT NULL,
+  `user_id` int(100) NOT NULL auto_increment,
   `user_name` varchar(100) default NULL,
   `user_password` varchar(100) default NULL,
   `user_mobile` varchar(100) default NULL,
   `user_email` varchar(100) default NULL,
   `user_role` varchar(100) default NULL,
   PRIMARY KEY  (`user_id`)
-) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
 
 /*Data for the table `users` */
 
-insert  into `users`(`user_id`,`user_name`,`user_password`,`user_mobile`,`user_email`,`user_role`) values (1,'shafin','123','01875965178','mh@123','developer');
+insert  into `users`(`user_id`,`user_name`,`user_password`,`user_mobile`,`user_email`,`user_role`) values (1,'shafin','123','01875965178','mh@123','Admin'),(2,'Md Mustofa arif','4321','01854578102','mustofa@arif.mail','Staff-001');
+
+/*Table structure for table `purchaseq` */
+
+DROP TABLE IF EXISTS `purchaseq`;
+
+/*!50001 DROP VIEW IF EXISTS `purchaseq` */;
+/*!50001 DROP TABLE IF EXISTS `purchaseq` */;
+
+/*!50001 CREATE TABLE  `purchaseq`(
+ `product` varchar(200) ,
+ `purchaseQuantity` double 
+)*/;
+
+/*Table structure for table `salesprofit` */
+
+DROP TABLE IF EXISTS `salesprofit`;
+
+/*!50001 DROP VIEW IF EXISTS `salesprofit` */;
+/*!50001 DROP TABLE IF EXISTS `salesprofit` */;
+
+/*!50001 CREATE TABLE  `salesprofit`(
+ `product` varchar(200) ,
+ `puPrice` varchar(100) ,
+ `saPrice` varchar(100) ,
+ `sQ` varchar(200) ,
+ `unitProfit` double 
+)*/;
+
+/*Table structure for table `salesq` */
+
+DROP TABLE IF EXISTS `salesq`;
+
+/*!50001 DROP VIEW IF EXISTS `salesq` */;
+/*!50001 DROP TABLE IF EXISTS `salesq` */;
+
+/*!50001 CREATE TABLE  `salesq`(
+ `product` varchar(200) ,
+ `salesQuantity` double 
+)*/;
+
+/*Table structure for table `stock` */
+
+DROP TABLE IF EXISTS `stock`;
+
+/*!50001 DROP VIEW IF EXISTS `stock` */;
+/*!50001 DROP TABLE IF EXISTS `stock` */;
+
+/*!50001 CREATE TABLE  `stock`(
+ `product` varchar(200) ,
+ `purchaseQuantity` double ,
+ `salesQuantity` double ,
+ `stock` double 
+)*/;
+
+/*View structure for view purchaseq */
+
+/*!50001 DROP TABLE IF EXISTS `purchaseq` */;
+/*!50001 DROP VIEW IF EXISTS `purchaseq` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `purchaseq` AS (select `purchase entry`.`product` AS `product`,sum(`purchase entry`.`quantity`) AS `purchaseQuantity` from `purchase entry` group by `purchase entry`.`product`) */;
+
+/*View structure for view salesprofit */
+
+/*!50001 DROP TABLE IF EXISTS `salesprofit` */;
+/*!50001 DROP VIEW IF EXISTS `salesprofit` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `salesprofit` AS (select `sales entry`.`product` AS `product`,`purchase entry`.`price` AS `puPrice`,`sales entry`.`price` AS `saPrice`,`sales entry`.`quantity` AS `sQ`,sum(((`sales entry`.`price` - `purchase entry`.`price`) * `sales entry`.`quantity`)) AS `unitProfit` from (`sales entry` left join `purchase entry` on((`sales entry`.`product` = `purchase entry`.`product`))) where (`sales entry`.`price` > 0) group by `sales entry`.`sales_id`) */;
+
+/*View structure for view salesq */
+
+/*!50001 DROP TABLE IF EXISTS `salesq` */;
+/*!50001 DROP VIEW IF EXISTS `salesq` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `salesq` AS (select `sales entry`.`product` AS `product`,sum(`sales entry`.`quantity`) AS `salesQuantity` from `sales entry` group by `sales entry`.`product`) */;
+
+/*View structure for view stock */
+
+/*!50001 DROP TABLE IF EXISTS `stock` */;
+/*!50001 DROP VIEW IF EXISTS `stock` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `stock` AS (select `purchaseq`.`product` AS `product`,`purchaseq`.`purchaseQuantity` AS `purchaseQuantity`,`salesq`.`salesQuantity` AS `salesQuantity`,sum((`purchaseq`.`purchaseQuantity` - `salesq`.`salesQuantity`)) AS `stock` from (`purchaseq` left join `salesq` on((`purchaseq`.`product` = `salesq`.`product`))) group by `purchaseq`.`product`) */;
 
 /*!40101 SET SQL_MODE=@OLD_SQL_MODE */;
 /*!40014 SET FOREIGN_KEY_CHECKS=@OLD_FOREIGN_KEY_CHECKS */;

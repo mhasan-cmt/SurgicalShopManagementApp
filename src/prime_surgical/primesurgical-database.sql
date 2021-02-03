@@ -63,7 +63,7 @@ CREATE TABLE `bank data` (
 
 /*Data for the table `bank data` */
 
-insert  into `bank data`(`sl_no`,`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) values (1,'2020-12-23','Jamuna bank','1222123233','Purchase','Withdraw','3000'),(3,'2020-12-23','sonali bank','12221','Purchase','Withdraw','200'),(4,'2020-12-23','Jamuna Bank','1222123233','Capital','Deposit','50000'),(5,'2020-12-25','Jamuna bank','1222123233','staff salary','Withdraw','1200.0'),(6,'2020-12-26','Jamuna bank','1222123233','Withdraw','Deposit','10000'),(7,'2020-12-26','Jamuna Bank','1222123233','From Cash','Deposit','104.0'),(8,'2020-12-31','Pubali Bank','989876767','From Cash','Deposit','30'),(9,'2020-12-31','Jamuna Bank','1222123233','From Cash','Deposit','60'),(10,'2020-12-31','Pubali Bank','989876767','From Cash','Deposit','270.3'),(11,'2021-12-01','Jamuna Bank','1222123233','Sales','Deposit','1200'),(12,'2021-01-20','sonali bank','12221','Staff salary','Debit','30000'),(13,'2021-01-20','sonali bank','12221','House rent','Debit','3000'),(14,'2021-01-20','Jamuna Bank','1222123233','Stealed money','Withdraw','5000'),(15,'2021-01-20','Jamuna Bank','1222123233','personal','Withdraw','5000'),(16,'2021-01-20','Jamuna Bank','1222123233','personal','Withdraw','3000');
+insert  into `bank data`(`sl_no`,`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) values (1,'2020-12-23','Jamuna bank','1222123233','Purchase','Withdraw','3000'),(3,'2020-12-23','sonali bank','12221','Purchase','Withdraw','200'),(4,'2020-12-23','Jamuna Bank','1222123233','Capital','Deposit','50000'),(5,'2020-12-25','Jamuna bank','1222123233','staff salary','Withdraw','1200.0'),(6,'2020-12-26','Jamuna bank','1222123233','Withdraw','Deposit','10000'),(7,'2020-12-26','Jamuna Bank','1222123233','From Cash','Deposit','104.0'),(8,'2020-12-31','Pubali Bank','989876767','From Cash','Deposit','30'),(9,'2020-12-31','Jamuna Bank','1222123233','From Cash','Deposit','60'),(10,'2020-12-31','Pubali Bank','989876767','From Cash','Deposit','270.3'),(11,'2021-12-01','Jamuna Bank','1222123233','Sales','Deposit','1200'),(12,'2021-01-20','sonali bank','12221','Staff salary','Debit','30000'),(13,'2021-01-20','sonali bank','12221','House rent','Debit','3000'),(14,'2021-01-20','Jamuna Bank','1222123233','Stealed money','Withdraw','5000'),(15,'2021-01-20','Jamuna Bank','1222123233','personal','Withdraw','5000'),(16,'2021-01-20','Jamuna Bank','1222123233','personal','Withdraw','3000'),(17,'2021-02-01','Select','Select','Sales','Deposit','0.00');
 
 /*Table structure for table `cash data` */
 
@@ -168,7 +168,7 @@ CREATE TABLE `purchase accounts` (
 
 /*Data for the table `purchase accounts` */
 
-insert  into `purchase accounts`(`bill_no`,`gr`,`date`,`company`,`items`,`total`,`payment`,`discount`,`paid`,`due`) values ('1','12','2021-01-08','Arif Medical Supply',100,6000,'Cash','0.00','0.00','6000'),('1Arif','Due Paid','2021-01-08','Arif Medical Supply',0,0,'Cash','0','3000','3000.0'),('1','23','2021-01-18','Muruf Medical Supply',100,12000,'Cash','0.00','0.00','12000'),('2Arif','Due Paid','2021-01-20','Arif Medical Supply',0,0,'Cash','0','3000','0.0'),('1','33','2021-01-31','Mamun Medical Supply',12,18840,'Due','0.00','0.00','18840');
+insert  into `purchase accounts`(`bill_no`,`gr`,`date`,`company`,`items`,`total`,`payment`,`discount`,`paid`,`due`) values ('1','12','2021-01-08','Arif Medical Supply',100,6000,'Cash','0.00','0.00','6000'),('1Arif','Due Paid','2021-01-08','Arif Medical Supply',0,0,'Cash','0','3000','3000.0'),('1','23','2021-01-18','Muruf Medical Supply',100,12000,'Cash','0.00','0.00','12000'),('2Arif','Due Paid','2021-01-20','Arif Medical Supply',0,0,'Cash','0','3000','0.0'),('1','33','2021-01-31','Mamun Medical Supply',12,18840,'Due','0.00','0.00','18840'),('1','11','2021-02-28','Mamun Medical Supply',20,1000,'Due','0.00','0.00','1000'),('1','21','2021-02-01','Arif Medical Supply',10,1700,'Due','0.00','0.00','1700');
 
 /*Table structure for table `purchase entry` */
 
@@ -190,7 +190,7 @@ CREATE TABLE `purchase entry` (
 
 /*Data for the table `purchase entry` */
 
-insert  into `purchase entry`(`purchase_id`,`bill_no`,`company_name`,`purchase_date`,`purchase_gr`,`category`,`product`,`price`,`quantity`,`total`) values (1,1,'Arif Medical Supply','2021-01-08',10,'pain killers','napa','50','44','2200.0'),(2,1,'Arif Medical Supply','2021-01-08',11,'pain killers','napa extra','70','50','3500.0'),(3,1,'Muruf Medical Supply','2021-01-18',22,'first aid','viodin','120','100','12000.0'),(4,1,'Mamun Medical Supply','2021-01-31',32,'pain killers','napa extra','70','12','840.0');
+insert  into `purchase entry`(`purchase_id`,`bill_no`,`company_name`,`purchase_date`,`purchase_gr`,`category`,`product`,`price`,`quantity`,`total`) values (1,1,'Mamun Medical Supply','2021-02-28',10,'pain killers','napa','50','20','1000.0'),(2,1,'Arif Medical Supply','2021-02-01',20,'pain killers','napa extra','70','10','700.0');
 
 /*Table structure for table `purchaseorder` */
 
@@ -231,7 +231,7 @@ CREATE TABLE `sales accounts` (
 
 /*Data for the table `sales accounts` */
 
-insert  into `sales accounts`(`bill_no`,`gr`,`date`,`customer`,`items`,`total`,`payment`,`discount`,`paid`,`due`) values ('1','30','2021-01-20','Md Ahnaf hossain',22,1540,'Cash','0.00','0.00','1540.0'),('3','50','2021-01-20','Md Ahnaf Hossain',12,1440,'Bank','0.00','0.00','1440.0'),('4','60','2021-01-31','Md Mahmud',10,700,'Due','0.00','0.00','700.0'),('5','70','2021-01-31','Md Naeem',3,180,'Due','0.00','0.00','180.0');
+insert  into `sales accounts`(`bill_no`,`gr`,`date`,`customer`,`items`,`total`,`payment`,`discount`,`paid`,`due`) values ('1','30','2021-01-20','Md Ahnaf hossain',22,1540,'Cash','0.00','0.00','1540.0'),('3','50','2021-01-20','Md Ahnaf Hossain',12,1440,'Bank','0.00','0.00','1440.0'),('4','60','2021-01-31','Md Mahmud',10,700,'Due','0.00','0.00','700.0'),('5','70','2021-01-31','Md Naeem',3,180,'Due','0.00','0.00','180.0'),('1','20','2021-02-01','Md Ahnaf Hossain',2,160,'Bank','0.00','0.00','160.0'),('1','20','2021-02-01','Md Arif',7,510,'Due','0.00','0.00','510.0'),('2','30','2021-02-01','Md Mahmud',4,200,'Due','0.00','0.00','200.0');
 
 /*Table structure for table `sales entry` */
 
@@ -249,11 +249,11 @@ CREATE TABLE `sales entry` (
   `quantity` varchar(200) default NULL,
   `total` varchar(1200) default NULL,
   PRIMARY KEY  (`sales_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=19 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=22 DEFAULT CHARSET=latin1;
 
 /*Data for the table `sales entry` */
 
-insert  into `sales entry`(`sales_id`,`bill_no`,`customer_name`,`sales_date`,`sales_gr`,`category`,`product`,`price`,`quantity`,`total`) values (10,0,'0','0000-00-00',0,'0','napa','0','0','0'),(11,0,'0','0000-00-00',0,'0','napa extra','0','0','0'),(12,0,'0','0000-00-00',0,'0','viodin','0','0','00'),(13,1,'Md Mahmud','2021-01-20',10,'pain killers','napa extra','70','12','840.0'),(14,1,'Md Mahmud','2021-01-20',20,'pain killers','napa extra','70','10','700.0'),(15,2,'Md Mahmud','2021-01-20',30,'pain killers','napa extra','70','20','2800.0'),(16,3,'Md Ahnaf Hossain','2021-01-20',40,'first aid','viodin','120','11','1320.0'),(17,4,'Md Mahmud','2021-01-31',50,'pain killers','napa extra','70','5','350.0'),(18,5,'Md Naeem','2021-01-31',60,'pain killers','napa','60.0','2','120.0');
+insert  into `sales entry`(`sales_id`,`bill_no`,`customer_name`,`sales_date`,`sales_gr`,`category`,`product`,`price`,`quantity`,`total`) values (13,1,'Md Ahnaf Hossain','2021-02-28',10,'pain killers','napa','80.0','2','160.0'),(14,0,'0','0000-00-00',0,'pain killers','napa','0','0','0'),(19,0,'0',NULL,0,'pain killers','napa extra','0','0','0'),(20,1,'Md Arif','2021-02-01',10,'pain killers','napa extra','90.0','5','350.0'),(21,2,'Md Mahmud','2021-02-01',20,'pain killers','napa','60.0','4','200.0');
 
 /*Table structure for table `sales officer commision` */
 
@@ -362,6 +362,21 @@ DROP TABLE IF EXISTS `purchaseq`;
  `purchaseQuantity` double 
 )*/;
 
+/*Table structure for table `salesprofit` */
+
+DROP TABLE IF EXISTS `salesprofit`;
+
+/*!50001 DROP VIEW IF EXISTS `salesprofit` */;
+/*!50001 DROP TABLE IF EXISTS `salesprofit` */;
+
+/*!50001 CREATE TABLE  `salesprofit`(
+ `product` varchar(200) ,
+ `puPrice` varchar(100) ,
+ `saPrice` varchar(100) ,
+ `sQ` varchar(200) ,
+ `unitProfit` double 
+)*/;
+
 /*Table structure for table `salesq` */
 
 DROP TABLE IF EXISTS `salesq`;
@@ -394,6 +409,13 @@ DROP TABLE IF EXISTS `stock`;
 /*!50001 DROP VIEW IF EXISTS `purchaseq` */;
 
 /*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `purchaseq` AS (select `purchase entry`.`product` AS `product`,sum(`purchase entry`.`quantity`) AS `purchaseQuantity` from `purchase entry` group by `purchase entry`.`product`) */;
+
+/*View structure for view salesprofit */
+
+/*!50001 DROP TABLE IF EXISTS `salesprofit` */;
+/*!50001 DROP VIEW IF EXISTS `salesprofit` */;
+
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `salesprofit` AS (select `sales entry`.`product` AS `product`,`purchase entry`.`price` AS `puPrice`,`sales entry`.`price` AS `saPrice`,`sales entry`.`quantity` AS `sQ`,sum(((`sales entry`.`price` - `purchase entry`.`price`) * `sales entry`.`quantity`)) AS `unitProfit` from (`sales entry` left join `purchase entry` on((`sales entry`.`product` = `purchase entry`.`product`))) where (`sales entry`.`price` > 0) group by `sales entry`.`sales_id`) */;
 
 /*View structure for view salesq */
 

@@ -67,15 +67,9 @@ public class Sales_due_paid extends javax.swing.JFrame {
         } else if (jTextField4.getText().isEmpty()) {
             JOptionPane.showMessageDialog(this, "Address missing!");
             jTextField4.requestFocus();
-        } else if (txtSubTotal.getText().isEmpty() || txtSubTotal.getText().equals("0.00")) {
-            JOptionPane.showMessageDialog(this, "Sub Total is missing!");
-            txtSubTotal.requestFocus();
-        } else if (txtPaid.getText().isEmpty() || txtPaid.getText().equals("0.00")) {
+        } else if (txtPaid.getText().isEmpty() || Integer.parseInt(txtPaid.getText())<0) {
             JOptionPane.showMessageDialog(this, "Paid is missing!");
             txtPaid.requestFocus();
-        } else if (txtDue.getText().isEmpty() || txtDue.getText().equals("0.00")) {
-            JOptionPane.showMessageDialog(this, "Due is missing!");
-            txtDue.requestFocus();
         } else {
             check = 1;
         }
@@ -88,6 +82,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
             if (rbCash.isSelected() || rbBank.isSelected()) {
                 if (rbBank.isSelected()) {
                     getData();
+                    if(Integer.parseInt(paid)>0){
                     String bankName, bankAccount;
                     bankName = comBankName.getSelectedItem().toString();
                     bankAccount = jComboBox1.getSelectedItem().toString();
@@ -98,16 +93,21 @@ public class Sales_due_paid extends javax.swing.JFrame {
                     txtSubTotal.setText("0.00");
                     comShop.setSelectedIndex(0);
                     txtBill.setText("");
-                    dm.setRowCount(0);
+                    dm.setRowCount(0);}
                     
                 } else if (rbCash.isSelected()) {
                     getData();
+                    if(Integer.parseInt(paid)>0){
                     new dbConnection().addData("INSERT INTO `sales accounts` VALUES('" + bill + "','" + "Due paid" + "','" + date + "','" + shop + "','" + "0" + "','" + "0.00" + "','" + pay + "','" + "0.00" + "','" + paid + "','" + due + "')", this);
                     new dbConnection().addBankOrCash("INSERT INTO `cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('" + date + "','" + "Sales" + "','" + "Credit" + "','" + paid + "')");
                     txtSubTotal.setText("0.00");
                     txtPaid.setText("0.00");
                     txtSubTotal.setText("0.00");
-                    dm.setRowCount(0);
+                    dm.setRowCount(0);  
+                    }else{
+                        JOptionPane.showMessageDialog(this, "Enter some amount to pay!");
+                    }
+                    
                 }
             } else {
                 JOptionPane.showMessageDialog(this, "Select Payment method!");
@@ -262,11 +262,6 @@ public class Sales_due_paid extends javax.swing.JFrame {
         rbBank.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         rbBank.setForeground(new java.awt.Color(255, 255, 255));
         rbBank.setText("Bank");
-        rbBank.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rbBankMouseClicked(evt);
-            }
-        });
         rbBank.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 rbBankActionPerformed(evt);
@@ -619,7 +614,8 @@ public class Sales_due_paid extends javax.swing.JFrame {
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
-        salesAccounts();
+          salesAccounts();  
+        
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void rbBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbBankActionPerformed
@@ -631,11 +627,6 @@ public class Sales_due_paid extends javax.swing.JFrame {
             pay = "Bank";
         }
     }//GEN-LAST:event_rbBankActionPerformed
-
-    private void rbBankMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbBankMouseClicked
-        // TODO add your handling code here:
-
-    }//GEN-LAST:event_rbBankMouseClicked
 
     private void rbCashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbCashMouseClicked
         // TODO add your handling code here:
@@ -686,7 +677,6 @@ public class Sales_due_paid extends javax.swing.JFrame {
             jTextField3.setText(shop);
             address = new dbConnection().singledata("SELECT `address` FROM `customers` WHERE `customer name`='" + comShop.getSelectedItem().toString() + "'");
             jTextField4.setText(address);
-            jTextField4.setEditable(false);
         }
     }//GEN-LAST:event_comShopPopupMenuWillBecomeInvisible
 
