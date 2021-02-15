@@ -97,7 +97,7 @@ public class CreateUser extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
-        getContentPane().setLayout(new java.awt.GridLayout());
+        getContentPane().setLayout(new java.awt.GridLayout(1, 0));
 
         jLayeredPane1.setLayout(new java.awt.CardLayout());
 
@@ -223,6 +223,11 @@ public class CreateUser extends javax.swing.JFrame {
 
         jPasswordField1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField1ActionPerformed(evt);
+            }
+        });
         FirstPage.add(jPasswordField1);
         jPasswordField1.setBounds(70, 400, 430, 40);
 
@@ -243,6 +248,11 @@ public class CreateUser extends javax.swing.JFrame {
 
         jPasswordField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jPasswordField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jPasswordField2ActionPerformed(evt);
+            }
+        });
         FinalPage.add(jPasswordField2);
         jPasswordField2.setBounds(100, 100, 370, 50);
 
@@ -296,8 +306,13 @@ public class CreateUser extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         if(blankDataCheck()==1){
-        FinalPage.setVisible(true);
-        FirstPage.setVisible(false);   
+            if(new dbConnection().singledata("SELECT `user_id` FROM `users` WHERE `user_name`='"+txtUserName.getText()+"'").isEmpty()){
+            FinalPage.setVisible(true);
+            FirstPage.setVisible(false);    
+            }
+            else{
+                JOptionPane.showMessageDialog(this, "Already a user exists for this name!");
+            }
         }
         
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -318,7 +333,8 @@ public class CreateUser extends javax.swing.JFrame {
             new Login().adminPass(this, jPasswordField2, "INSERT INTO "
                 + "`users`(`user_name`,`user_password`,`user_mobile`,`user_email`,`user_role`)"
                 + " VALUES('"+userName+"','"+password+"','"+mobile+"','"+email+"','"+role+"')");
-        
+        FinalPage.setVisible(false);
+        FirstPage.setVisible(true);
         }
         
     }//GEN-LAST:event_jButton6ActionPerformed
@@ -327,6 +343,28 @@ public class CreateUser extends javax.swing.JFrame {
         // TODO add your handling code here:
         fieldClear();
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jPasswordField1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField1ActionPerformed
+        // TODO add your handling code here:
+        if(blankDataCheck()==1){
+        FinalPage.setVisible(true);
+        FirstPage.setVisible(false);   
+        }
+    }//GEN-LAST:event_jPasswordField1ActionPerformed
+
+    private void jPasswordField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jPasswordField2ActionPerformed
+        // TODO add your handling code here:
+        getData();
+        if(role.equals("Admin")||role.equals("admin")){
+            JOptionPane.showMessageDialog(this, "There can be only one admin!");
+            this.dispose();
+        }else{
+            new Login().adminPass(this, jPasswordField2, "INSERT INTO "
+                + "`users`(`user_name`,`user_password`,`user_mobile`,`user_email`,`user_role`)"
+                + " VALUES('"+userName+"','"+password+"','"+mobile+"','"+email+"','"+role+"')");
+        
+        }
+    }//GEN-LAST:event_jPasswordField2ActionPerformed
 
     /**
      * @param args the command line arguments

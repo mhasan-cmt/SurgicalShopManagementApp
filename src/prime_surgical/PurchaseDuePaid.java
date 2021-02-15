@@ -93,36 +93,28 @@ int checkBlankData(){
 }
 void addPurchaseAccounts(){
     if(checkBlankData()==1){
-    getData();
-    if(payment.equals("Bank")){
-        getData();
+    if(rbBank.isSelected()){
+     getData();
      new dbConnection().addData("INSERT INTO `purchase accounts` VALUES('"+billNo+"','"+"Due Paid"+"','"+purchaseDate+"','"+companyName+"','"+"0"+"','"+"0"+"','"+payment+"','"+"0"+"','"+paid+"','"+due+"')", this);
-     sendBank();
+     new dbConnection().addDataWithNoMessege("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('"+purchaseDate+"','"+bankName+"','"+bankAccount+"','"+"Purchase Due"+"','"+"Withdraw"+"','"+paid+"')");
      showPurchaseAccounts();
      txtPaid.setText("0.00");
      Bank.setVisible(false);
      comCompany.setSelectedIndex(0);
      txtBill.setText("");
     }
-    else if(payment.equals("Cash")){
-        getData();
+    else if(rbCash.isSelected()){
+     getData();
      new dbConnection().addData("INSERT INTO `purchase accounts` VALUES('"+billNo+"','"+"Due Paid"+"','"+purchaseDate+"','"+companyName+"','"+"0"+"','"+"0.00"+"','"+payment+"','"+"0"+"','"+paid+"','"+due+"')", this);
-     sendCash();
+     new dbConnection().addDataWithNoMessege("INSERT INTO `cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('"+purchaseDate+"','"+"Purchase Due"+"','"+"Debit"+"','"+paid+"')");
      showPurchaseAccounts();
      txtPaid.setText("0.00");
      comCompany.setSelectedIndex(0);
      txtBill.setText("");
     }
-   }
   }
-void sendCash(){
-    getData();
-    new dbConnection().addBankOrCash("INSERT INTO `cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('"+purchaseDate+"','"+"Purchase Due"+"','"+"Debit"+"','"+paid+"')");
 }
-void sendBank(){
-    getData();
-    new dbConnection().addBankOrCash("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('"+purchaseDate+"','"+bankName+"','"+bankAccount+"','"+"Purchase Due"+"','"+"Withdraw"+"','"+paid+"')");
-}
+
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -150,8 +142,6 @@ void sendBank(){
         txtPaid = new javax.swing.JTextField();
         txtDue = new javax.swing.JTextField();
         jLabel20 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        rbBank = new javax.swing.JRadioButton();
         rbCash = new javax.swing.JRadioButton();
         jLabel21 = new javax.swing.JLabel();
         Bank = new javax.swing.JPanel();
@@ -163,6 +153,8 @@ void sendBank(){
         jLabel16 = new javax.swing.JLabel();
         jDateChooser1 = new com.toedter.calendar.JDateChooser();
         jLabel15 = new javax.swing.JLabel();
+        rbBank = new javax.swing.JRadioButton();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -216,6 +208,7 @@ void sendBank(){
         comCompany.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         comCompany.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+                comCompanyPopupMenuCanceled(evt);
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
                 comCompanyPopupMenuWillBecomeInvisible(evt);
@@ -297,33 +290,6 @@ void sendBank(){
         jPanel5.add(jLabel20);
         jLabel20.setBounds(590, 590, 90, 50);
 
-        jButton6.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jButton6.setText("Submit");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        jPanel5.add(jButton6);
-        jButton6.setBounds(590, 660, 170, 40);
-
-        buttonGroup1.add(rbBank);
-        rbBank.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        rbBank.setForeground(new java.awt.Color(255, 255, 255));
-        rbBank.setText("Bank");
-        rbBank.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                rbBankMouseClicked(evt);
-            }
-        });
-        rbBank.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                rbBankActionPerformed(evt);
-            }
-        });
-        jPanel5.add(rbBank);
-        rbBank.setBounds(200, 540, 120, 40);
-
         buttonGroup1.add(rbCash);
         rbCash.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         rbCash.setForeground(new java.awt.Color(255, 255, 255));
@@ -401,6 +367,27 @@ void sendBank(){
         jPanel5.add(jLabel15);
         jLabel15.setBounds(20, 490, 60, 40);
 
+        buttonGroup1.add(rbBank);
+        rbBank.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        rbBank.setForeground(new java.awt.Color(255, 255, 255));
+        rbBank.setText("Bank");
+        rbBank.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                rbBankActionPerformed(evt);
+            }
+        });
+        jPanel5.add(rbBank);
+        rbBank.setBounds(200, 540, 100, 40);
+
+        jButton1.setText("Submit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel5.add(jButton1);
+        jButton1.setBounds(660, 680, 140, 40);
+
         getContentPane().add(jPanel5);
         jPanel5.setBounds(510, 0, 860, 770);
 
@@ -412,20 +399,6 @@ void sendBank(){
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void rbBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbBankActionPerformed
-        // TODO add your handling code here:
-        if(rbBank.isSelected()){
-          Bank.setVisible(true);
-          String query="SELECT `bank_account_name` FROM `bank accounts` group by `bank_account_name`";
-          new dbConnection().getDataFromCombo(comBankName, query);
-      }
-    }//GEN-LAST:event_rbBankActionPerformed
-
-    private void rbBankMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbBankMouseClicked
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_rbBankMouseClicked
 
     private void rbCashMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_rbCashMouseClicked
         // TODO add your handling code here
@@ -445,11 +418,6 @@ showPurchaseAccounts();
     private void comCompanyActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comCompanyActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_comCompanyActionPerformed
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        addPurchaseAccounts();
-    }//GEN-LAST:event_jButton6ActionPerformed
 
     private void rbCashActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbCashActionPerformed
         // TODO add your handling code here:
@@ -472,6 +440,22 @@ showPurchaseAccounts();
         }
         
     }//GEN-LAST:event_txtPaidKeyReleased
+
+    private void rbBankActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rbBankActionPerformed
+        // TODO add your handling code here:
+        Bank.setVisible(true);
+            String query = "SELECT `bank_account_name` FROM `bank accounts` group by `bank_account_name`";
+            new dbConnection().getDataFromCombo(comBankName, query);
+    }//GEN-LAST:event_rbBankActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        addPurchaseAccounts();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void comCompanyPopupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comCompanyPopupMenuCanceled
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comCompanyPopupMenuCanceled
 
     /**
      * @param args the command line arguments
@@ -528,8 +512,8 @@ showPurchaseAccounts();
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> comBankName;
     private javax.swing.JComboBox<String> comCompany;
+    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton6;
     private com.toedter.calendar.JDateChooser jDateChooser1;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;

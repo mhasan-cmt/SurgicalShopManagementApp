@@ -406,14 +406,19 @@ public class Sales_Officers extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         if(dataCheck()==1){
-        dbConnection d=new dbConnection();
-        d.dbconnect();
+            if(new dbConnection().singledata("SELECT `id` FROM `salesofficer` WHERE id='"+txtId.getText()+"'").isEmpty()){
+              new dbConnection().dbconnect();
         getdata();
         String q="INSERT INTO `salesOfficer` VALUES('"+id+"','"+name+"','"+mobile+"','"+address+"','"+salary+"'"
                 + ",'"+position+"','"+joining+"','"+reffarel+"','"+refMobile+"')";
-        d.addData(q, this);
+        new dbConnection().addData(q, this);
             show1();
-            clearData();
+            clearData();  
+            }
+            else{
+              JOptionPane.showMessageDialog(this, "Already a officer exists for this id!");
+            }
+        
         }
     }//GEN-LAST:event_jButton2ActionPerformed
 

@@ -1,4 +1,4 @@
-package prime_surgical;
+    package prime_surgical;
 
 import java.awt.Color;
 import java.awt.event.KeyEvent;
@@ -12,6 +12,7 @@ import java.util.logging.Logger;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JPasswordField;
+import java.text.SimpleDateFormat;
 
 /**
  *
@@ -29,6 +30,7 @@ public class Login extends javax.swing.JFrame {
         lbNewUser.setVisible(false);
     } 
     String user,pass;
+    SimpleDateFormat sm=new SimpleDateFormat("yyyy-MM-dd hh-mm-ss");
     Connection con=null;
     PreparedStatement st=null;
     ResultSet rs=null;
@@ -290,7 +292,7 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(txtPassword);
         txtPassword.setBounds(50, 170, 370, 60);
 
-        jLabel13.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\beautiful-color-ui-gradients-backgrounds-celestial.png")); // NOI18N
+        jLabel13.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/beautiful-color-ui-gradients-backgrounds-celestial.png"))); // NOI18N
         jPanel2.add(jLabel13);
         jLabel13.setBounds(0, 0, 460, 330);
 
@@ -310,7 +312,7 @@ public class Login extends javax.swing.JFrame {
         comUser.setBackground(new java.awt.Color(47, 54, 64));
         comUser.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         comUser.setForeground(new java.awt.Color(199, 236, 238));
-        comUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "User" }));
+        comUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
         comUser.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
@@ -352,6 +354,7 @@ public class Login extends javax.swing.JFrame {
         // TODO add your handling code here:
         String com=comUser.getSelectedItem().toString();
         txtUser.setText(new dbConnection().singledata("select `user_name` from `users` where `user_role`='"+com+"'"));
+        txtPassword.requestFocus();
         if(com.equals("Admin")){
             lbNewUser.setVisible(true);
         }else{

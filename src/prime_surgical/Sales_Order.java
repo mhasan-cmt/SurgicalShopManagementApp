@@ -116,6 +116,11 @@ public class Sales_Order extends javax.swing.JFrame {
                 btnEditMouseClicked(evt);
             }
         });
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnEdit);
         btnEdit.setBounds(250, 630, 170, 30);
 
@@ -156,7 +161,7 @@ public class Sales_Order extends javax.swing.JFrame {
 
         jLabel5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Shop/Hospital:");
+        jLabel5.setText("Customer Name:");
         jPanel1.add(jLabel5);
         jLabel5.setBounds(30, 80, 140, 40);
 
@@ -305,15 +310,15 @@ public class Sales_Order extends javax.swing.JFrame {
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Supplier Name:");
+        jLabel9.setText("Customer Name:");
         jPanel6.add(jLabel9);
-        jLabel9.setBounds(40, 20, 130, 40);
+        jLabel9.setBounds(40, 20, 150, 40);
 
         jLabel14.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel14.setForeground(new java.awt.Color(255, 255, 255));
         jLabel14.setText("Supplier name.");
         jPanel6.add(jLabel14);
-        jLabel14.setBounds(170, 20, 150, 40);
+        jLabel14.setBounds(190, 20, 150, 40);
 
         jLabel15.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -405,6 +410,10 @@ public class Sales_Order extends javax.swing.JFrame {
         this.dispose();
         
     }//GEN-LAST:event_btnEditMouseClicked
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEditActionPerformed
 
     /**
      * @param args the command line arguments

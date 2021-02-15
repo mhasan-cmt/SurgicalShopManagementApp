@@ -854,7 +854,7 @@
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="F:\Java 23\JavaCodes\Prime_Surgical\src\img\taka (1).png"/>
+                          <Image iconType="3" name="/img/taka (1).png"/>
                         </Property>
                         <Property name="text" type="java.lang.String" value="Taka"/>
                       </Properties>
@@ -908,7 +908,7 @@
                         </Property>
                         <Property name="horizontalAlignment" type="int" value="0"/>
                         <Property name="icon" type="javax.swing.Icon" editor="org.netbeans.modules.form.editors2.IconEditor">
-                          <Image iconType="2" name="F:\Java 23\JavaCodes\Prime_Surgical\src\img\percent.png"/>
+                          <Image iconType="3" name="/img/percent.png"/>
                         </Property>
                       </Properties>
                       <Constraints>

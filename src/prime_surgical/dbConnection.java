@@ -208,22 +208,7 @@ public class dbConnection {
                 i++;
                 dtm.addRow(new Object[]{i, rs.getString(5), rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10)});
             }
-
         } catch (Exception e) {
-        }
-    }
-
-    void addBankOrCash(String q) {
-        try {
-            dbconnect();
-            int a = st.executeUpdate(q);
-            if (a > 0) {
-
-            } else {
-            }
-
-        } catch (SQLException ex) {
-            Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
 
@@ -321,21 +306,47 @@ public class dbConnection {
             Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
-    void loginAdmin(JFrame frame,JTextField user,JPasswordField pass,JPanel loginpanel, JLabel logo,JPanel mainAdmin){
+
+    void loginAdmin(JFrame frame, JTextField user, JPasswordField pass, JPanel loginpanel, JLabel logo, JPanel mainAdmin) {
         try {
             dbconnect();
-            String query="SELECT * FROM `adminpower` WHERE `admin_username`=? AND `admin_password`=?";
-            PreparedStatement ps=con.prepareStatement(query);
+            String query = "SELECT * FROM `adminpower` WHERE `admin_username`=? AND `admin_password`=?";
+            PreparedStatement ps = con.prepareStatement(query);
             ps.setString(1, user.getText());
-            ps.setString(2,pass.getText());
-            rs=ps.executeQuery();
-            if(rs.next()){
+            ps.setString(2, pass.getText());
+            rs = ps.executeQuery();
+            if (rs.next()) {
                 loginpanel.setVisible(false);
                 logo.setVisible(false);
                 mainAdmin.setVisible(true);
-            }
-            else{
+            } else {
                 JOptionPane.showMessageDialog(frame, "Username or Password did not matched!");
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+
+    void addDataWithNoMessege(String q) {
+        try {
+            dbconnect();
+            int a = st.executeUpdate(q);
+            if (a > 0) {
+            } else {
+            }
+
+        } catch (SQLException ex) {
+            Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    void showUsers(String query,JTable table){
+        try {
+            dbconnect();
+            DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+            rs = st.executeQuery(query);
+            dtm.setRowCount(0);
+            while(rs.next()){
+                dtm.addRow(new Object[]{rs.getString(2),rs.getString(4),rs.getString(5),rs.getString(6)});
             }
         } catch (SQLException ex) {
             Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex);

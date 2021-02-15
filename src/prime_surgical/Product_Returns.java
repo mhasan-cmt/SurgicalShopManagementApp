@@ -24,7 +24,7 @@ public class Product_Returns extends javax.swing.JFrame {
         comCategory.setEditable(false);
         comProduct.setEditable(false);
     }
-    int quantity, returnQuantity, newQuantity,gr;
+    int quantity, returnQuantity, newQuantity,gr,items;
     Double price, newPrice;
     void purchaseReturn(){
         try {

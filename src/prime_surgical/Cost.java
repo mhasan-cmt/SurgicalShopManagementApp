@@ -65,13 +65,13 @@ public class Cost extends javax.swing.JFrame {
     void addCost(){
              if(rbBank.isSelected()){
               getData();
-              new dbConnection().addBankOrCash("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('"+date+"','"+bankName+"','"+bankAccount+"','"+details+"','"+"Withdraw"+"','"+amount+"')");
+              new dbConnection().addDataWithNoMessege("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('"+date+"','"+bankName+"','"+bankAccount+"','"+details+"','"+"Withdraw"+"','"+amount+"')");
               new dbConnection().addData("INSERT INTO `cost data`(`cost_date`,`cost_type`,`cost_bill`,`cost_details`,`cost_paid_by`,`cost_amount`) VALUES('"+date+"','"+costType+"','"+bill+"','"+details+"','"+paidBy+"','"+amount+"')", this); 
               showCostData();
              }
            else if(rbCash.isSelected()){
                getData();
-               new dbConnection().addBankOrCash("INSERT INTO `cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('"+date+"','"+details+"','"+"Debit"+"','"+amount+"')");
+               new dbConnection().addDataWithNoMessege("INSERT INTO `cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('"+date+"','"+details+"','"+"Debit"+"','"+amount+"')");
                new dbConnection().addData("INSERT INTO `cost data`(`cost_date`,`cost_type`,`cost_bill`,`cost_details`,`cost_paid_by`,`cost_amount`) VALUES('"+date+"','"+costType+"','"+bill+"','"+details+"','"+paidBy+"','"+amount+"')", this); 
                showCostData();
            }

@@ -76,7 +76,8 @@ public class Bank_Data extends javax.swing.JFrame {
         return check;
     }
     void showBank(){
-        new dbConnection().showBankData(jTable1,this,"SELECT * FROM `bank data`");
+        try {
+            new dbConnection().showBankData(jTable1,this,"SELECT * FROM `bank data`");
         String totalWithdraws=new dbConnection().singledata("SELECT SUM(`bank_amount`) FROM `bank data` WHERE `bank_status`=\"Withdraw\"");
         String totalDeposits=new dbConnection().singledata("SELECT SUM(`bank_amount`) FROM `bank data` WHERE `bank_status`=\"Deposit\"");
         jLabel19.setText(totalDeposits);
@@ -84,6 +85,10 @@ public class Bank_Data extends javax.swing.JFrame {
         double total;
         total=Double.parseDouble(totalDeposits)+Double.parseDouble(totalWithdraws);
         jLabel15.setText(""+total);
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "No data in Bank!");
+        }
+        
         
     }
     void addBankAccount(){

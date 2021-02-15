@@ -82,12 +82,12 @@ public class Sales_due_paid extends javax.swing.JFrame {
             if (rbCash.isSelected() || rbBank.isSelected()) {
                 if (rbBank.isSelected()) {
                     getData();
-                    if(Integer.parseInt(paid)>0){
+                    if(Float.parseFloat(paid)>0){
                     String bankName, bankAccount;
                     bankName = comBankName.getSelectedItem().toString();
                     bankAccount = jComboBox1.getSelectedItem().toString();
                     new dbConnection().addData("INSERT INTO `sales accounts` VALUES('" + bill + "','" + "Due paid" + "','" + date + "','" + shop + "','" + "0.00" + "','" + "0.00" + "','" + pay + "','" + "0.00" + "','" + paid + "','" + due + "')", this);
-                    new dbConnection().addBankOrCash("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('" + date + "','" + bankName + "','" + bankAccount + "','" + "Sales" + "','" + "Deposit" + "','" + paid + "')");
+                    new dbConnection().addDataWithNoMessege("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('" + date + "','" + bankName + "','" + bankAccount + "','" + "Sales" + "','" + "Deposit" + "','" + paid + "')");
                     txtSubTotal.setText("0.00");
                     txtPaid.setText("0.00");
                     txtSubTotal.setText("0.00");
@@ -97,9 +97,9 @@ public class Sales_due_paid extends javax.swing.JFrame {
                     
                 } else if (rbCash.isSelected()) {
                     getData();
-                    if(Integer.parseInt(paid)>0){
+                    if(Float.parseFloat(paid)>0){
                     new dbConnection().addData("INSERT INTO `sales accounts` VALUES('" + bill + "','" + "Due paid" + "','" + date + "','" + shop + "','" + "0" + "','" + "0.00" + "','" + pay + "','" + "0.00" + "','" + paid + "','" + due + "')", this);
-                    new dbConnection().addBankOrCash("INSERT INTO `cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('" + date + "','" + "Sales" + "','" + "Credit" + "','" + paid + "')");
+                    new dbConnection().addDataWithNoMessege("INSERT INTO `cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('" + date + "','" + "Sales" + "','" + "Credit" + "','" + paid + "')");
                     txtSubTotal.setText("0.00");
                     txtPaid.setText("0.00");
                     txtSubTotal.setText("0.00");

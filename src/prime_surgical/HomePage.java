@@ -3,7 +3,6 @@ package prime_surgical;
 import AppPackage.AnimationClass;
 import com.toedter.calendar.JCalendar;
 import java.awt.Color;
-import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.ResultSet;
@@ -13,6 +12,7 @@ import java.text.SimpleDateFormat;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -28,6 +28,7 @@ public class HomePage extends javax.swing.JFrame {
         initial();
         jLabel29.setText("Welcome! " + Login.uName);
         userRole=Login.uRole;
+        userPanel.setVisible(false);
     }
     //Database connection
     Connection con = null;
@@ -177,6 +178,12 @@ public class HomePage extends javax.swing.JFrame {
         jLabel56 = new javax.swing.JLabel();
         jPanel44 = new javax.swing.JPanel();
         jPanel45 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        userPanel = new javax.swing.JPanel();
+        jScrollPane1 = new javax.swing.JScrollPane();
+        jTable1 = new javax.swing.JTable();
+        jButton3 = new javax.swing.JButton();
+        jButton4 = new javax.swing.JButton();
         AccountsPanel = new javax.swing.JPanel();
         txtCurrentDate = new javax.swing.JLabel();
         jPanel8 = new javax.swing.JPanel();
@@ -220,6 +227,7 @@ public class HomePage extends javax.swing.JFrame {
         SalesP = new javax.swing.JPanel();
         AccountsP = new javax.swing.JPanel();
         AdminP = new javax.swing.JPanel();
+        jButton1 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -312,7 +320,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel27.setBounds(0, 100, 200, 50);
 
         jLabel44.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel44.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_depot_100px.png")); // NOI18N
+        jLabel44.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_depot_100px.png"))); // NOI18N
         jLabel44.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel44MouseClicked(evt);
@@ -347,7 +355,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel13.setBounds(0, 100, 290, 50);
 
         jLabel47.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel47.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_pill_100px_1.png")); // NOI18N
+        jLabel47.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_pill_100px_1.png"))); // NOI18N
         jLabel47.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel47MouseClicked(evt);
@@ -420,7 +428,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel18.setBounds(0, 100, 290, 50);
 
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel20.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_cost_100px.png")); // NOI18N
+        jLabel20.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_cost_100px.png"))); // NOI18N
         jLabel20.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel20MouseClicked(evt);
@@ -490,7 +498,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel17.setBounds(0, 90, 350, 60);
 
         jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel46.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_gender_neutral_employee_group_100px_1.png")); // NOI18N
+        jLabel46.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_gender_neutral_employee_group_100px_1.png"))); // NOI18N
         jLabel46.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel46MouseClicked(evt);
@@ -598,7 +606,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel23.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_graph_report_100px.png")); // NOI18N
+        jLabel23.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_graph_report_100px.png"))); // NOI18N
         jLabel23.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel23MouseClicked(evt);
@@ -639,7 +647,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_increase_100px_2.png")); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_increase_100px_2.png"))); // NOI18N
         jLabel11.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel11MouseClicked(evt);
@@ -703,7 +711,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel7.setBounds(0, 110, 300, 50);
 
         jLabel33.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel33.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_supplier_100px_1.png")); // NOI18N
+        jLabel33.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_supplier_100px_1.png"))); // NOI18N
         jLabel33.setToolTipText("");
         jLabel33.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -739,7 +747,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel6.setBounds(0, 110, 300, 80);
 
         jLabel34.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel34.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\calendar (1).png")); // NOI18N
+        jLabel34.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/calendar (1).png"))); // NOI18N
         jLabel34.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel34MouseClicked(evt);
@@ -779,7 +787,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel19.setBounds(0, 120, 300, 40);
 
         jLabel35.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel35.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_purchase_order_100px.png")); // NOI18N
+        jLabel35.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_purchase_order_100px.png"))); // NOI18N
         jLabel35.setToolTipText("");
         jLabel35.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -820,7 +828,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel16.setBounds(0, 120, 270, 40);
 
         jLabel32.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel32.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_product_100px_1_1.png")); // NOI18N
+        jLabel32.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_product_100px_3.png"))); // NOI18N
         jLabel32.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel32MouseClicked(evt);
@@ -903,7 +911,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel21.setBounds(0, 120, 270, 40);
 
         jLabel50.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel50.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_sell_100px.png")); // NOI18N
+        jLabel50.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_sell_100px.png"))); // NOI18N
         jLabel50.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel50MouseClicked(evt);
@@ -938,7 +946,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel22.setBounds(0, 120, 270, 40);
 
         jLabel51.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel51.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_purchase_order_100px.png")); // NOI18N
+        jLabel51.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_purchase_order_100px.png"))); // NOI18N
         jLabel51.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel51MouseClicked(evt);
@@ -973,7 +981,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel24.setBounds(0, 120, 270, 40);
 
         jLabel52.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel52.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_cash_in_hand_100px.png")); // NOI18N
+        jLabel52.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_cash_in_hand_100px.png"))); // NOI18N
         jLabel52.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel52MouseClicked(evt);
@@ -1008,7 +1016,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel25.setBounds(0, 120, 270, 40);
 
         jLabel48.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel48.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_customer_100px.png")); // NOI18N
+        jLabel48.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_customer_100px.png"))); // NOI18N
         jLabel48.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel48MouseClicked(evt);
@@ -1117,6 +1125,61 @@ public class HomePage extends javax.swing.JFrame {
         AdminPanel.add(HeaderPanel);
         HeaderPanel.setBounds(0, 0, 210, 40);
 
+        jButton2.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
+        jButton2.setText("Manage Users");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        AdminPanel.add(jButton2);
+        jButton2.setBounds(30, 100, 210, 60);
+
+        userPanel.setBackground(new java.awt.Color(84, 121, 128));
+        userPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
+        userPanel.setLayout(null);
+
+        jTable1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null},
+                {null, null, null, null}
+            },
+            new String [] {
+                "User name", "Mobile no", "Email", "role"
+            }
+        ));
+        jTable1.setRowHeight(30);
+        jScrollPane1.setViewportView(jTable1);
+
+        userPanel.add(jScrollPane1);
+        jScrollPane1.setBounds(10, 10, 1050, 330);
+
+        jButton3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButton3.setText("Delete");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        userPanel.add(jButton3);
+        jButton3.setBounds(450, 350, 120, 40);
+
+        jButton4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jButton4.setText("Create New User");
+        jButton4.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton4ActionPerformed(evt);
+            }
+        });
+        userPanel.add(jButton4);
+        jButton4.setBounds(580, 350, 180, 40);
+
+        AdminPanel.add(userPanel);
+        userPanel.setBounds(30, 160, 1070, 410);
+
         Container.add(AdminPanel, "card7");
 
         AccountsPanel.setBackground(new java.awt.Color(44, 58, 71));
@@ -1133,7 +1196,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel8.setLayout(null);
 
         jLabel55.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel55.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\Group 9.png")); // NOI18N
+        jLabel55.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Group 9.png"))); // NOI18N
         jPanel8.add(jLabel55);
         jLabel55.setBounds(0, 50, 60, 50);
 
@@ -1165,7 +1228,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel7.setLayout(null);
 
         jLabel58.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel58.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\Group 9.png")); // NOI18N
+        jLabel58.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Group 9.png"))); // NOI18N
         jPanel7.add(jLabel58);
         jLabel58.setBounds(0, 50, 60, 50);
 
@@ -1243,7 +1306,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel9.setLayout(null);
 
         jLabel54.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel54.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\Group 6.png")); // NOI18N
+        jLabel54.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Group 6.png"))); // NOI18N
         jPanel9.add(jLabel54);
         jLabel54.setBounds(0, 50, 60, 50);
 
@@ -1275,7 +1338,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel24.setLayout(null);
 
         jLabel60.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel60.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\Group 9.png")); // NOI18N
+        jLabel60.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Group 9.png"))); // NOI18N
         jPanel24.add(jLabel60);
         jLabel60.setBounds(0, 50, 60, 50);
 
@@ -1307,7 +1370,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel11.setLayout(null);
 
         jLabel57.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel57.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\Group 6.png")); // NOI18N
+        jLabel57.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Group 6.png"))); // NOI18N
         jPanel11.add(jLabel57);
         jLabel57.setBounds(0, 50, 60, 50);
 
@@ -1339,7 +1402,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel20.setLayout(null);
 
         jLabel59.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel59.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\Group 6.png")); // NOI18N
+        jLabel59.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Group 6.png"))); // NOI18N
         jPanel20.add(jLabel59);
         jLabel59.setBounds(0, 50, 60, 50);
 
@@ -1384,7 +1447,7 @@ public class HomePage extends javax.swing.JFrame {
         lb_Home.setFont(new java.awt.Font("Roboto", 0, 28)); // NOI18N
         lb_Home.setForeground(new java.awt.Color(255, 255, 255));
         lb_Home.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        lb_Home.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\home.png")); // NOI18N
+        lb_Home.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/home.png"))); // NOI18N
         lb_Home.setText("Home");
         lb_Home.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1403,7 +1466,7 @@ public class HomePage extends javax.swing.JFrame {
         lb_Purchase.setFont(new java.awt.Font("Roboto", 0, 28)); // NOI18N
         lb_Purchase.setForeground(new java.awt.Color(255, 255, 255));
         lb_Purchase.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        lb_Purchase.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\shopping-cart.png")); // NOI18N
+        lb_Purchase.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/shopping-cart.png"))); // NOI18N
         lb_Purchase.setText("Purchase");
         lb_Purchase.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1422,7 +1485,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Roboto", 0, 28)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel9.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\shopping-bag.png")); // NOI18N
+        jLabel9.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/shopping-bag.png"))); // NOI18N
         jLabel9.setText("Sales");
         jLabel9.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1440,8 +1503,8 @@ public class HomePage extends javax.swing.JFrame {
 
         jLabel8.setFont(new java.awt.Font("Roboto", 0, 28)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel8.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\images\\accounting.png")); // NOI18N
+        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel8.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\accounting.png")); // NOI18N
         jLabel8.setText("Accounts");
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1455,12 +1518,12 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
         SideBarPane.add(jLabel8);
-        jLabel8.setBounds(30, 250, 170, 50);
+        jLabel8.setBounds(20, 250, 170, 50);
 
         jLabel10.setFont(new java.awt.Font("Roboto", 0, 28)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel10.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\admin.png")); // NOI18N
+        jLabel10.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/admin.png"))); // NOI18N
         jLabel10.setText("Admin");
         jLabel10.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -1555,6 +1618,16 @@ public class HomePage extends javax.swing.JFrame {
 
         SideBarPane.add(AdminP);
         AdminP.setBounds(0, 300, 20, 50);
+
+        jButton1.setFont(new java.awt.Font("Proxima Nova Rg", 0, 18)); // NOI18N
+        jButton1.setText("Exit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        SideBarPane.add(jButton1);
+        jButton1.setBounds(10, 550, 110, 30);
 
         jLayeredPane1.add(SideBarPane, "card8");
 
@@ -2119,6 +2192,47 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
         lbcost.setVisible(true);
     }//GEN-LAST:event_lb_costMouseClicked
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        int exit = JOptionPane.showConfirmDialog(this, "Sure?", "Exit", JOptionPane.YES_NO_OPTION);
+        if (exit == 0) {
+            dispose();
+            System.exit(0);
+        }
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        if(!userPanel.isVisible()){
+            userPanel.setVisible(true);
+            new dbConnection().showUsers("SELECT * FROM `users`", jTable1);
+        }
+        else if(userPanel.isVisible()){
+            userPanel.setVisible(false);
+        }
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+        // TODO add your handling code here:
+        DefaultTableModel dtm=(DefaultTableModel)jTable1.getModel();
+        if(!dtm.getValueAt(jTable1.getSelectedRow(), 3).toString().equals("Admin")){
+            int confirm=JOptionPane.showConfirmDialog(this, "Sure?");
+            if(confirm==0){
+            new dbConnection().updateData("DELETE FROM `users` WHERE `user_name`='"+dtm.getValueAt(jTable1.getSelectedRow(), 0).toString()+"'", this);
+            new dbConnection().showUsers("SELECT * FROM `users`", jTable1); 
+            }
+        
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Admin can't be deleted!");
+        }
+    }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        new CreateUser().setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -2169,6 +2283,10 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
     private javax.swing.JPanel SideBarPane;
     private javax.swing.JPanel headerPane;
     private javax.swing.JPanel homeP;
+    private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
+    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2225,7 +2343,7 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
     private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
+    javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel1;
@@ -2265,6 +2383,8 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
+    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JTable jTable1;
     private javax.swing.JLabel lb_Home;
     private javax.swing.JLabel lb_Purchase;
     private javax.swing.JLabel lb_cost;
@@ -2280,5 +2400,6 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
     private javax.swing.JLabel lbrecievable;
     private javax.swing.JLabel lbsales;
     private static javax.swing.JLabel txtCurrentDate;
+    private javax.swing.JPanel userPanel;
     // End of variables declaration//GEN-END:variables
 }

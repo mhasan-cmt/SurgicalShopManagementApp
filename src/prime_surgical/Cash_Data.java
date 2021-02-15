@@ -117,7 +117,7 @@ void getSendToBank(){
 void sendToBank(){
    if(checkBlankForBankSection()==1){
        getSendToBank();
-new dbConnection().addBankOrCash("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('"+bDate+"','"+bBank+"','"+bAccount+"','"+"From Cash"+"','"+"Deposit"+"','"+bAmount+"')");
+new dbConnection().addDataWithNoMessege("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('"+bDate+"','"+bBank+"','"+bAccount+"','"+"From Cash"+"','"+"Deposit"+"','"+bAmount+"')");
 new dbConnection().addData("INSERT INTO`cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('"+bDate+"','"+"Bank Deposited"+"','"+"Debit"+"','"+bAmount+"')", this);
 showCash(jTable2);
 showTotals(jLabel27, jLabel28, jLabel26);
@@ -537,7 +537,7 @@ jTextField6.setText("0");
         jLabel18.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel18.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\taka (1).png")); // NOI18N
+        jLabel18.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/taka (1).png"))); // NOI18N
         jLabel18.setText("Taka");
         jPanel6.add(jLabel18);
         jLabel18.setBounds(120, 280, 130, 40);
@@ -567,7 +567,7 @@ jTextField6.setText("0");
         jLabel22.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel22.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\percent.png")); // NOI18N
+        jLabel22.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/percent.png"))); // NOI18N
         jPanel6.add(jLabel22);
         jLabel22.setBounds(20, 280, 80, 40);
 

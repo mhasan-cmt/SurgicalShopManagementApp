@@ -92,7 +92,7 @@ public class SplashScreen extends javax.swing.JFrame {
         progress.setBounds(320, 100, 80, 70);
 
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel11.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\96x96.gif")); // NOI18N
+        jLabel11.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/96x96.gif"))); // NOI18N
         jPanel1.add(jLabel11);
         jLabel11.setBounds(300, 90, 120, 90);
 
@@ -120,7 +120,7 @@ public class SplashScreen extends javax.swing.JFrame {
         jLabel6.setBounds(640, 250, 310, 20);
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel7.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\Untitled-1.png")); // NOI18N
+        jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Untitled-1.png"))); // NOI18N
         jPanel1.add(jLabel7);
         jLabel7.setBounds(0, -20, 980, 320);
 

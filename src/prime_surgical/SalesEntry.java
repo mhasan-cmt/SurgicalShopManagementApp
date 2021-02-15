@@ -46,14 +46,14 @@ public class SalesEntry extends javax.swing.JFrame {
 
     int autoBill() {
         bill = 0;
-        bill = new dbConnection().autoIdorBillorGR("SELECT `bill_no` FROM `sales entry` ");
+        bill = new dbConnection().autoIdorBillorGR("SELECT `bill_no` FROM `sales entry` group by `bill_no`");
         bill++;
         return bill;
     }
 
     int autoGR() {
         gr = 0;
-        gr = new dbConnection().autoIdorBillorGR("SELECT `sales_gr` FROM `sales entry` ");
+        gr = new dbConnection().autoIdorBillorGR("SELECT `sales_gr` FROM `sales entry` group by `sales_gr`");
         gr = gr + 10;
         return gr;
     }
@@ -176,61 +176,54 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
     void salesCommision() {
         getSalesCommision();
         getData();
-        new dbConnection().addBankOrCash("INSERT INTO `cost data`(`cost_date`,`cost_type`,`cost_bill`,`cost_details`,`cost_paid_by`,`cost_amount`) VALUES('" + gDate + "',\"Sales cost\",'" + txtBill.getText() + "',\"SR Commision\",\"N/A\",'" + gSrCommission + "')");
+        new dbConnection().addDataWithNoMessege("INSERT INTO `cost data`(`cost_date`,`cost_type`,`cost_bill`,`cost_details`,`cost_paid_by`,`cost_amount`) VALUES('" + gDate + "',\"Sales cost\",'" + txtBill.getText() + "',\"SR Commision\",\"N/A\",'" + gSrCommission + "')");
     }
 
     void salesAccounts() {
         DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
         if (rbCash.isSelected() || rbBank.isSelected() || rbDue.isSelected()) {
             if (rbBank.isSelected()) {
+                if(Float.parseFloat(txtPaid.getText())>0){
                 getDataForSalesAccounts();
                 String bankName, bankAccount;
                 bankName = comBankName.getSelectedItem().toString();
                 bankAccount = txtAccount.getSelectedItem().toString();
                 new dbConnection().addData("INSERT INTO `sales accounts` VALUES('" + gBill + "','" + Ggr + "','" + gDate + "','" + gCustomerName + "','" + gItems + "','" + gTotal + "','" + gPayment + "','" + gDiscount + "','" + gPaid + "','" + gDue + "')", this);
-                new dbConnection().addBankOrCash("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('" + gDate + "','" + bankName + "','" + bankAccount + "','" + "Sales" + "','" + "Deposit" + "','" + gPaid + "')");
+                new dbConnection().addDataWithNoMessege("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('" + gDate + "','" + bankName + "','" + bankAccount + "','" + "Sales" + "','" + "Deposit" + "','" + gPaid + "')");
                 bill = autoBill();
                 txtBill.setText("" + bill);
                 gr = autoGR();
                 txtGR.setText("" + gr);
-                if (comCustomerType.getSelectedIndex() == 1) {
-                    comCustomer.setSelectedIndex(0);
-                    comCustomerType.setSelectedIndex(0);
-                } else if (comCustomerType.getSelectedIndex() == 2) {
-                    txtCustomerName.setText("");
-                    comCustomerType.setSelectedIndex(0);
-                }
                 txtBill.setEnabled(true);
                 txtSubTotal.setText("0.00");
                 txtPaid.setText("0.00");
                 txtDiscount.setText("0.00");
                 txtDue.setText("0.00");
-                dm.setRowCount(0);
-
+                dm.setRowCount(0);  
+                }else{
+                  JOptionPane.showMessageDialog(this, "Amount should be greater than 0!");
+                }
             } else if (rbCash.isSelected()) {
+                if(Float.parseFloat(txtPaid.getText())>0){
                 getDataForSalesAccounts();
                 new dbConnection().addData("INSERT INTO `sales accounts` VALUES('" + gBill + "','" + Ggr + "','" + gDate + "','" + gCustomerName + "','" + gItems + "','" + gTotal + "','" + gPayment + "','" + gDiscount + "','" + gPaid + "','" + gDue + "')", this);
-                new dbConnection().addBankOrCash("INSERT INTO `cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('" + gDate + "','" + "Sales" + "','" + "Credit" + "','" + gPaid + "')");
+                new dbConnection().addDataWithNoMessege("INSERT INTO `cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('" + gDate + "','" + "Sales" + "','" + "Credit" + "','" + gPaid + "')");
                 bill = autoBill();
                 txtBill.setText("" + bill);
                 gr = autoGR();
                 txtGR.setText("" + gr);
                 txtBill.setEnabled(true);
-                if (comCustomerType.getSelectedIndex() == 1) {
-                    comCustomerType.setSelectedIndex(0);
-                    comCustomerType.setSelectedIndex(0);
-                } else if (comCustomerType.getSelectedIndex() == 2) {
-                    txtCustomerName.setText("");
-                    comCustomerType.setSelectedIndex(0);
-                }
-                
                 txtSubTotal.setText("0.00");
                 txtPaid.setText("0.00");
                 txtDiscount.setText("0.00");
                 txtDue.setText("0.00");
-                dm.setRowCount(0);
+                dm.setRowCount(0);   
+                }else{
+                    JOptionPane.showMessageDialog(this, "Amount should be greater than 0!");
+                }
             }
             else if (rbDue.isSelected()) {
+                if(Float.parseFloat(txtPaid.getText())==0){
                 getDataForSalesAccounts();
                 new dbConnection().addData("INSERT INTO `sales accounts` VALUES('" + gBill + "','" + Ggr + "','" + gDate + "','" + gCustomerName + "','" + gItems + "','" + gTotal + "','" + gPayment + "','" + gDiscount + "','" + gPaid + "','" + gDue + "')", this);
                 bill = autoBill();
@@ -238,19 +231,14 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
                 gr = autoGR();
                 txtGR.setText("" + gr);
                 txtBill.setEnabled(true);
-                if (comCustomerType.getSelectedIndex() == 1) {
-                    comCustomerType.setSelectedIndex(0);
-                    comCustomerType.setSelectedIndex(0);
-                } else if (comCustomerType.getSelectedIndex() == 2) {
-                    txtCustomerName.setText("");
-                    comCustomerType.setSelectedIndex(0);
-                }
-                
                 txtSubTotal.setText("0.00");
                 txtPaid.setText("0.00");
                 txtDiscount.setText("0.00");
                 txtDue.setText("0.00");
-                dm.setRowCount(0);
+                dm.setRowCount(0);    
+                }else{
+                    JOptionPane.showMessageDialog(this, "Amount should be 0!");
+                }
             }
         } else {
             JOptionPane.showMessageDialog(this, "Select Payment method!");
@@ -778,13 +766,18 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
         jLabel15.setBounds(10, 40, 60, 40);
 
         txtSearch.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtSearch.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtSearchActionPerformed(evt);
+            }
+        });
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSearchKeyReleased(evt);
             }
         });
         jPanel6.add(txtSearch);
-        txtSearch.setBounds(620, 90, 220, 40);
+        txtSearch.setBounds(600, 90, 220, 40);
 
         jLabel16.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
@@ -951,6 +944,7 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
         jPanel5.add(Bank);
         Bank.setBounds(60, 580, 430, 100);
 
+        buttonGroup1.add(rbDue);
         rbDue.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
         rbDue.setForeground(new java.awt.Color(255, 255, 255));
         rbDue.setText("Due");
@@ -1183,7 +1177,13 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         if(!txtBill.isEnabled()){
-         salesAccounts();   
+         if(rbBank.isSelected()){
+                if(comBankName.getSelectedIndex()==0 || txtAccount.getSelectedIndex()==0){
+                    JOptionPane.showMessageDialog(this, "Enter all data!");
+                }
+            }else{
+                salesAccounts();
+            }  
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 
@@ -1255,7 +1255,6 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
         String search = txtSearch.getText();
-        String customer = new dbConnection().singledata("SELECT `customer_name` FROM `sales entry` WHERE `bill_no`='" + search + "'");
         if (jComboBox1.getSelectedIndex() == 0) {
             try {
                 new dbConnection().showPurchaseEntry("SELECT *FROM `sales entry` WHERE `bill_no`='" + search + "'", jTable1);
@@ -1277,6 +1276,10 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
         // TODO add your handling code here:
         Bank.setVisible(false);
     }//GEN-LAST:event_rbDueActionPerformed
+
+    private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtSearchActionPerformed
 
     /**
      * @param args the command line arguments

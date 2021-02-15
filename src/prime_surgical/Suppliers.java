@@ -43,7 +43,9 @@ public class Suppliers extends javax.swing.JFrame {
    int datacheck(){
       int check=0; 
        if (txtId.getText().isEmpty() && txtName.getText().isEmpty() && txtMobile.getText().isEmpty() && txtAddress.getText().isEmpty()) {
-          check=1;
+          JOptionPane.showMessageDialog(this, "Enter all data!");
+       }else{
+           check=1;
        }
        return check;
    }
@@ -295,7 +297,7 @@ public class Suppliers extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         getData();
-        while(datacheck()==0){
+        if(datacheck()==1){
        String query="INSERT INTO `suppliers` VALUES('"+id+"','"+name+"','"+company+"','"+mobile+"','"+address+"')";
        new dbConnection().addData(query, this);
        showSuplliers();
