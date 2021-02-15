@@ -1,5 +1,8 @@
 package prime_surgical;
+
+import java.text.SimpleDateFormat;
 import javax.swing.*;
+
 /**
  *
  * @author Mahmudul Hasan
@@ -12,7 +15,12 @@ public class Puchase_Order extends javax.swing.JFrame {
     public Puchase_Order() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        new dbConnection().getDataFromCombo(comSupplierName, "SELECT `supplier_name` FROM `suppliers` ORDER BY `supplier_id`");
+        new dbConnection().getDataFromCombo(comCategory, "SELECT `cateogory` FROM `product cateogory` ORDER BY `cateogory_id`");
     }
+//Variable declaration
+    String supplier, orderId, orderDAte, deliveryDate, category, product, price, quantity, total;
+    SimpleDateFormat sm = new SimpleDateFormat("dd-MM-yyyy");
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -25,7 +33,7 @@ public class Puchase_Order extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        txtBill = new javax.swing.JTextField();
+        txtOrderId = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -36,36 +44,34 @@ public class Puchase_Order extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        txtId = new javax.swing.JTextField();
         jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        txtGR = new javax.swing.JTextField();
         txtTotal = new javax.swing.JTextField();
-        comPname = new javax.swing.JComboBox<>();
+        comCategory = new javax.swing.JComboBox<>();
         jLabel10 = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
-        txtDate = new com.toedter.calendar.JDateChooser();
+        txtDeliveryDate = new com.toedter.calendar.JDateChooser();
+        txtOrderDate = new com.toedter.calendar.JDateChooser();
         txtQuantity = new javax.swing.JTextField();
-        txtDate1 = new com.toedter.calendar.JDateChooser();
-        txtQuantity1 = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
-        txtQuantity2 = new javax.swing.JTextField();
+        txtPrice = new javax.swing.JTextField();
         btnEdit1 = new javax.swing.JButton();
+        comSupplierName = new javax.swing.JComboBox<>();
+        comProduct = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lbOrderId = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        lbSupplier = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
         txtId1 = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
+        lbOrderDate = new javax.swing.JLabel();
+        lbDeliveryDate = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
 
@@ -76,9 +82,17 @@ public class Puchase_Order extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setLayout(null);
 
-        txtBill.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtBill);
-        txtBill.setBounds(160, 170, 290, 40);
+        txtOrderId.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtOrderId.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtOrderIdKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtOrderIdKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txtOrderId);
+        txtOrderId.setBounds(160, 160, 290, 50);
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
@@ -112,17 +126,17 @@ public class Puchase_Order extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnEdit);
-        btnEdit.setBounds(260, 670, 170, 40);
+        btnEdit.setBounds(260, 660, 170, 40);
 
         btnPurchase.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnPurchase.setText("Order");
         jPanel1.add(btnPurchase);
-        btnPurchase.setBounds(50, 620, 130, 40);
+        btnPurchase.setBounds(50, 620, 140, 40);
 
         btnClear.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnClear.setText("Delete");
         jPanel1.add(btnClear);
-        btnClear.setBounds(190, 620, 130, 40);
+        btnClear.setBounds(190, 620, 140, 40);
 
         jButton4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton4.setText("Exit");
@@ -132,7 +146,7 @@ public class Puchase_Order extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(190, 720, 130, 40);
+        jButton4.setBounds(190, 700, 150, 40);
 
         btnDelete.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnDelete.setText("Clear");
@@ -142,20 +156,16 @@ public class Puchase_Order extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnDelete);
-        btnDelete.setBounds(120, 670, 130, 40);
+        btnDelete.setBounds(120, 660, 140, 40);
 
         jPanel4.setBackground(new java.awt.Color(0, 102, 102));
         jPanel4.setLayout(null);
         jPanel1.add(jPanel4);
         jPanel4.setBounds(490, 80, 0, 500);
 
-        txtId.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtId);
-        txtId.setBounds(160, 120, 290, 40);
-
         jLabel5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Company:");
+        jLabel5.setText("Supplier Name:");
         jPanel1.add(jLabel5);
         jLabel5.setBounds(20, 120, 140, 40);
 
@@ -180,23 +190,28 @@ public class Puchase_Order extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 0, 510, 60);
 
-        txtGR.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtGR);
-        txtGR.setBounds(160, 570, 290, 40);
-
         txtTotal.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel1.add(txtTotal);
-        txtTotal.setBounds(160, 520, 290, 40);
+        txtTotal.setBounds(160, 510, 290, 50);
 
-        comPname.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        comPname.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
-        comPname.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comPnameActionPerformed(evt);
+        comCategory.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        comCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        comCategory.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                comCategoryPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
-        jPanel1.add(comPname);
-        comPname.setBounds(160, 320, 290, 40);
+        comCategory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comCategoryActionPerformed(evt);
+            }
+        });
+        jPanel1.add(comCategory);
+        comCategory.setBounds(160, 310, 290, 50);
 
         jLabel10.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -215,24 +230,14 @@ public class Puchase_Order extends javax.swing.JFrame {
         jLabel12.setText("Total:");
         jPanel1.add(jLabel12);
         jLabel12.setBounds(20, 520, 140, 40);
-
-        jLabel13.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel13.setText("GR:");
-        jPanel1.add(jLabel13);
-        jLabel13.setBounds(20, 570, 140, 40);
-        jPanel1.add(txtDate);
-        txtDate.setBounds(160, 270, 290, 40);
+        jPanel1.add(txtDeliveryDate);
+        txtDeliveryDate.setBounds(160, 260, 290, 50);
+        jPanel1.add(txtOrderDate);
+        txtOrderDate.setBounds(160, 210, 290, 50);
 
         txtQuantity.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel1.add(txtQuantity);
-        txtQuantity.setBounds(160, 370, 290, 40);
-        jPanel1.add(txtDate1);
-        txtDate1.setBounds(160, 220, 290, 40);
-
-        txtQuantity1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtQuantity1);
-        txtQuantity1.setBounds(160, 470, 290, 40);
+        txtQuantity.setBounds(160, 460, 290, 50);
 
         jLabel23.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
@@ -240,17 +245,41 @@ public class Puchase_Order extends javax.swing.JFrame {
         jPanel1.add(jLabel23);
         jLabel23.setBounds(20, 320, 140, 40);
 
-        txtQuantity2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtQuantity2);
-        txtQuantity2.setBounds(160, 420, 290, 40);
+        txtPrice.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jPanel1.add(txtPrice);
+        txtPrice.setBounds(160, 410, 290, 50);
 
         btnEdit1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnEdit1.setText("Edit");
         jPanel1.add(btnEdit1);
-        btnEdit1.setBounds(330, 620, 130, 40);
+        btnEdit1.setBounds(330, 620, 140, 40);
+
+        comSupplierName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        comSupplierName.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        comSupplierName.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                comSupplierNamePopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        comSupplierName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comSupplierNameActionPerformed(evt);
+            }
+        });
+        jPanel1.add(comSupplierName);
+        comSupplierName.setBounds(160, 120, 290, 40);
+
+        comProduct.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        comProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        jPanel1.add(comProduct);
+        comProduct.setBounds(160, 360, 290, 50);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 510, 770);
+        jPanel1.setBounds(0, 0, 480, 770);
 
         jPanel5.setBackground(new java.awt.Color(0, 153, 153));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
@@ -260,66 +289,64 @@ public class Puchase_Order extends javax.swing.JFrame {
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel6.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("order id");
-        jPanel6.add(jLabel1);
-        jLabel1.setBounds(120, 120, 130, 40);
+        lbOrderId.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lbOrderId.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel6.add(lbOrderId);
+        lbOrderId.setBounds(90, 60, 210, 40);
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Delivery Date:");
         jPanel6.add(jLabel3);
-        jLabel3.setBounds(350, 120, 120, 40);
+        jLabel3.setBounds(370, 50, 120, 40);
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel9.setText("Company Name:");
+        jLabel9.setText("Supplier Name:");
         jPanel6.add(jLabel9);
-        jLabel9.setBounds(10, 60, 150, 40);
+        jLabel9.setBounds(10, 10, 130, 40);
 
-        jLabel14.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("company name.");
-        jPanel6.add(jLabel14);
-        jLabel14.setBounds(160, 60, 130, 40);
+        lbSupplier.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lbSupplier.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel6.add(lbSupplier);
+        lbSupplier.setBounds(140, 10, 230, 40);
 
         jLabel15.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
         jLabel15.setText("Order id:");
         jPanel6.add(jLabel15);
-        jLabel15.setBounds(20, 120, 90, 40);
+        jLabel15.setBounds(10, 60, 90, 40);
 
         txtId1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel6.add(txtId1);
-        txtId1.setBounds(470, 190, 300, 40);
+        txtId1.setBounds(520, 100, 300, 40);
 
         jLabel16.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("*Search by Order id:");
         jPanel6.add(jLabel16);
-        jLabel16.setBounds(270, 190, 200, 40);
+        jLabel16.setBounds(320, 100, 200, 40);
 
         jLabel24.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Order Date:");
         jPanel6.add(jLabel24);
-        jLabel24.setBounds(350, 60, 120, 40);
+        jLabel24.setBounds(370, 10, 120, 40);
 
-        jLabel25.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel25.setText("order date");
-        jPanel6.add(jLabel25);
-        jLabel25.setBounds(460, 60, 120, 40);
+        lbOrderDate.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lbOrderDate.setForeground(new java.awt.Color(255, 255, 255));
+        lbOrderDate.setText("order date");
+        jPanel6.add(lbOrderDate);
+        lbOrderDate.setBounds(480, 10, 180, 40);
 
-        jLabel26.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel26.setText("delivery date");
-        jPanel6.add(jLabel26);
-        jLabel26.setBounds(480, 120, 120, 40);
+        lbDeliveryDate.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lbDeliveryDate.setForeground(new java.awt.Color(255, 255, 255));
+        lbDeliveryDate.setText("delivery date");
+        jPanel6.add(lbDeliveryDate);
+        lbDeliveryDate.setBounds(490, 50, 170, 40);
 
         jPanel5.add(jPanel6);
-        jPanel6.setBounds(10, 10, 830, 240);
+        jPanel6.setBounds(10, 10, 870, 150);
 
         jTable1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
@@ -334,18 +361,18 @@ public class Puchase_Order extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         jPanel5.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 260, 840, 500);
+        jScrollPane1.setBounds(10, 170, 880, 590);
 
         getContentPane().add(jPanel5);
-        jPanel5.setBounds(510, 0, 860, 770);
+        jPanel5.setBounds(480, 0, 890, 770);
 
         setSize(new java.awt.Dimension(1372, 768));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comPnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comPnameActionPerformed
+    private void comCategoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comCategoryActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comPnameActionPerformed
+    }//GEN-LAST:event_comCategoryActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -360,6 +387,38 @@ public class Puchase_Order extends javax.swing.JFrame {
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void comSupplierNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comSupplierNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comSupplierNameActionPerformed
+
+    private void comCategoryPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comCategoryPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        String productCategoryId = new dbConnection().singledata("SELECT `cateogory_id` FROM `product cateogory` WHERE `cateogory`='" + comCategory.getSelectedItem().toString() + "'");
+        new dbConnection().getDataFromCombo(comProduct, "SELECT `product_name` FROM `product info` where `product_category_id`='" + productCategoryId + "'");
+    }//GEN-LAST:event_comCategoryPopupMenuWillBecomeInvisible
+
+    private void comSupplierNamePopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comSupplierNamePopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        lbSupplier.setText(comSupplierName.getSelectedItem().toString());
+    }//GEN-LAST:event_comSupplierNamePopupMenuWillBecomeInvisible
+
+    private void txtOrderIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyPressed
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_txtOrderIdKeyPressed
+
+    private void txtOrderIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyReleased
+        // TODO add your handling code here:
+        if (!txtOrderId.getText().isEmpty()) {
+            try {
+                Integer.parseInt(txtOrderId.getText());
+                lbOrderId.setText(txtOrderId.getText());
+            } catch (Exception e) {
+                lbOrderId.setText("Invalid");
+            }
+        }
+    }//GEN-LAST:event_txtOrderIdKeyReleased
 
     /**
      * @param args the command line arguments
@@ -406,21 +465,18 @@ public class Puchase_Order extends javax.swing.JFrame {
     private javax.swing.JButton btnEdit1;
     private javax.swing.JButton btnPurchase;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> comPname;
+    private javax.swing.JComboBox<String> comCategory;
+    private javax.swing.JComboBox<String> comProduct;
+    private javax.swing.JComboBox<String> comSupplierName;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
-    private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
@@ -435,15 +491,16 @@ public class Puchase_Order extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtBill;
-    private com.toedter.calendar.JDateChooser txtDate;
-    private com.toedter.calendar.JDateChooser txtDate1;
-    private javax.swing.JTextField txtGR;
-    private javax.swing.JTextField txtId;
+    private javax.swing.JLabel lbDeliveryDate;
+    private javax.swing.JLabel lbOrderDate;
+    private javax.swing.JLabel lbOrderId;
+    private javax.swing.JLabel lbSupplier;
+    private com.toedter.calendar.JDateChooser txtDeliveryDate;
     private javax.swing.JTextField txtId1;
+    private com.toedter.calendar.JDateChooser txtOrderDate;
+    private javax.swing.JTextField txtOrderId;
+    private javax.swing.JTextField txtPrice;
     private javax.swing.JTextField txtQuantity;
-    private javax.swing.JTextField txtQuantity1;
-    private javax.swing.JTextField txtQuantity2;
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

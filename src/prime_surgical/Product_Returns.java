@@ -518,7 +518,7 @@ public class Product_Returns extends javax.swing.JFrame {
             new dbConnection().getDataFromCombo(jComboBox3, "SELECT `supplier_company_name` FROM `suppliers`");
         }
         if (jComboBox2.getSelectedIndex() > 0 && jComboBox2.getSelectedIndex() == 2) {
-            new dbConnection().getDataFromCombo(jComboBox3, "SELECT `customer_name` FROM `sales entry`GROUP BY `customer_name` ORDER BY `bill_no`");
+            new dbConnection().getDataFromCombo(jComboBox3, "SELECT `customer_name` FROM `sales entry` where `bill_no`>0 GROUP BY `customer_name` ORDER BY `bill_no`");
         }
         if (jComboBox2.getSelectedIndex() == 0) {
             DefaultTableModel dtm = (DefaultTableModel) jTable1.getModel();
