@@ -808,7 +808,7 @@
                 <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
                   <StringArray count="2">
                     <StringItem index="0" value="Show Sales"/>
-                    <StringItem index="1" value="Show Submits"/>
+                    <StringItem index="1" value="Show Orders"/>
                   </StringArray>
                 </Property>
               </Properties>
@@ -865,7 +865,7 @@
               </Properties>
               <Constraints>
                 <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                  <AbsoluteConstraints x="420" y="90" width="200" height="40"/>
+                  <AbsoluteConstraints x="400" y="90" width="200" height="40"/>
                 </Constraint>
               </Constraints>
             </Component>

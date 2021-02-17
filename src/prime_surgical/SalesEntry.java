@@ -755,7 +755,7 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
         lbShop.setBounds(150, 80, 270, 50);
 
         jComboBox1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Show Sales", "Show Submits" }));
+        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Show Sales", "Show Orders" }));
         jPanel6.add(jComboBox1);
         jComboBox1.setBounds(650, 10, 190, 40);
 
@@ -783,7 +783,7 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("*Search by Order/Bill no.");
         jPanel6.add(jLabel16);
-        jLabel16.setBounds(420, 90, 200, 40);
+        jLabel16.setBounds(400, 90, 200, 40);
 
         jLabel25.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel25.setForeground(new java.awt.Color(255, 255, 255));

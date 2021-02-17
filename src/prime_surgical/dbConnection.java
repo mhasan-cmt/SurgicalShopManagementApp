@@ -339,6 +339,19 @@ public class dbConnection {
             Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex);
         }
     }
+    void showPurchaseOrders(String query,JTable table){
+        try {
+            dbconnect();
+            DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+            rs = st.executeQuery(query);
+            dtm.setRowCount(0);
+            for(int i=0;rs.next();){i++;
+                dtm.addRow(new Object[]{i,rs.getString(5),rs.getString(6),rs.getString(7),rs.getString(8),rs.getString(9)});
+            }
+        } catch (SQLException ex) {
+            Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
     void showUsers(String query,JTable table){
         try {
             dbconnect();

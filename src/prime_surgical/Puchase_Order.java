@@ -17,11 +17,106 @@ public class Puchase_Order extends javax.swing.JFrame {
         setExtendedState(JFrame.MAXIMIZED_BOTH);
         new dbConnection().getDataFromCombo(comSupplierName, "SELECT `supplier_name` FROM `suppliers` ORDER BY `supplier_id`");
         new dbConnection().getDataFromCombo(comCategory, "SELECT `cateogory` FROM `product cateogory` ORDER BY `cateogory_id`");
+        orderIdIncrement();
+        txtTotal.setEditable(false);
+        txtPrice.setEditable(false);
     }
-//Variable declaration
-    String supplier, orderId, orderDAte, deliveryDate, category, product, price, quantity, total;
-    SimpleDateFormat sm = new SimpleDateFormat("dd-MM-yyyy");
+    //Variable declaration
 
+    String supplier, details, orderId, orderDate, deliveryDate, category, product, price, quantity, total;
+    SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");
+    int orderIdInt = 0;
+
+    //Custom Methods
+    void orderIdIncrement() {
+        orderIdInt = new dbConnection().autoIdorBillorGR("SELECT `orderId` FROM `purchaseorder` ORDER BY `orderId`");
+        orderIdInt++;
+        txtOrderId.setText("" + orderIdInt);
+        lbOrderId.setText("" + orderIdInt);
+    }
+
+    void getData() {
+        supplier = comSupplierName.getSelectedItem().toString();
+        orderId = txtOrderId.getText();
+        orderDate = sm.format(txtOrderDate.getDate());
+        deliveryDate = sm.format(txtDeliveryDate.getDate());
+        category = comCategory.getSelectedItem().toString();
+        if (jRadioButton1.isSelected()) {
+            product = txtProduct.getText();
+            details = txtDetails.getText();
+        } else {
+            product = comProduct.getSelectedItem().toString();
+        }
+        price = txtPrice.getText();
+        quantity = txtQuantity.getText();
+        total = txtTotal.getText();
+    }
+
+    int blankDataCheck() {
+        int check = 0;
+        if (comSupplierName.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Select Supplier Name!");
+            comSupplierName.requestFocus();
+        } else if (txtOrderId.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter Order Id!");
+            txtOrderId.requestFocus();
+        } else if (((JTextField) txtOrderDate.getDateEditor().getUiComponent()).getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter Order Date!");
+            txtOrderDate.requestFocus();
+        } else if (((JTextField) txtDeliveryDate.getDateEditor().getUiComponent()).getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter Delivery Date!");
+            txtDeliveryDate.requestFocus();
+        } else if (comCategory.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Select Product Category!");
+            comCategory.requestFocus();
+        } else if (jRadioButton1.isSelected() && txtProduct.getText().isEmpty() || txtDetails.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter all details about new product!");
+            txtProduct.requestFocus();
+        } else if (!jRadioButton1.isSelected() && comProduct.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Enter Product Name!");
+            comProduct.requestFocus();
+        } else if (txtPrice.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter Product Price!");
+            txtPrice.requestFocus();
+        } else if (txtQuantity.getText().isEmpty() || Integer.parseInt(txtQuantity.getText()) <= 0) {
+            JOptionPane.showMessageDialog(this, "Enter Product quantity!");
+            txtQuantity.requestFocus();
+        } else if (txtTotal.getText().isEmpty() || Float.parseFloat(txtTotal.getText()) <= 0) {
+            JOptionPane.showMessageDialog(this, "Total is Missing!");
+            txtTotal.requestFocus();
+        } else {
+            check = 1;
+        }
+        return check;
+    }
+
+    void order() {
+        if (blankDataCheck() == 1) {
+            if (jRadioButton1.isSelected()) {
+                String productCategoryId = new dbConnection().singledata("SELECT `cateogory_id` FROM `product cateogory` WHERE `cateogory`='" + comCategory.getSelectedItem().toString() + "'");
+                new dbConnection().addDataWithNoMessege("INSERT INTO `product info`(`product_name`,`product_price`,`product_details`,`product_category_id`) VALUES('" + txtProduct.getText() + "','" + txtPrice.getText() + "','" + txtDetails.getText() + "','" + productCategoryId + "')");
+                new dbConnection().addDataWithNoMessege("INSERT INTO `sales entry`(`bill_no`,`customer_name`,`sales_date`,`sales_gr`,`category`,`product`,`price`,`quantity`,`total`) VALUES(0,0,0,0,'" + comCategory.getSelectedItem().toString() + "','" + txtProduct.getText() + "',0,0,0)");
+            }
+            getData();
+            new dbConnection().addData("INSERT INTO `purchaseorder` VALUES('" + orderId + "','" + supplier + "','" + orderDate + "','" + deliveryDate + "','" + category + "','" + product + "','" + price + "','" + quantity + "','" + total + "')", this);
+            showData(txtOrderId);
+            clearFields();
+        }
+    }
+    void clearFields(){
+        comCategory.setSelectedIndex(0);
+        comProduct.setSelectedIndex(0);
+        txtProduct.setText("");
+        txtDetails.setText("");
+        txtPrice.setText("0.00");
+        txtQuantity.setText("0");
+        txtTotal.setText("0.00");
+    }
+    void showData(JTextField txt) {
+        new dbConnection().showPurchaseOrders("select * from `purchaseorder` WHERE `orderId`='" + txt.getText() + "'", jTable1);
+        lbOrderDate.setText(new dbConnection().singledata("SELECT `orderDate` FROM `purchaseorder` where `orderId`='" + lbOrderId.getText() + "'"));
+        lbDeliveryDate.setText(new dbConnection().singledata("SELECT `deliveryDate` FROM `purchaseorder` where `orderId`='" + lbOrderId.getText() + "'"));
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -60,6 +155,10 @@ public class Puchase_Order extends javax.swing.JFrame {
         btnEdit1 = new javax.swing.JButton();
         comSupplierName = new javax.swing.JComboBox<>();
         comProduct = new javax.swing.JComboBox<>();
+        jRadioButton1 = new javax.swing.JRadioButton();
+        txtProduct = new javax.swing.JTextField();
+        txtDetails = new javax.swing.JTextField();
+        jLabel13 = new javax.swing.JLabel();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         lbOrderId = new javax.swing.JLabel();
@@ -67,7 +166,7 @@ public class Puchase_Order extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         lbSupplier = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        txtId1 = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
         lbOrderDate = new javax.swing.JLabel();
@@ -130,6 +229,11 @@ public class Puchase_Order extends javax.swing.JFrame {
 
         btnPurchase.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnPurchase.setText("Order");
+        btnPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPurchaseActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnPurchase);
         btnPurchase.setBounds(50, 620, 140, 40);
 
@@ -191,8 +295,14 @@ public class Puchase_Order extends javax.swing.JFrame {
         jPanel2.setBounds(0, 0, 510, 60);
 
         txtTotal.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtTotal.setText("0.00");
+        txtTotal.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtTotalActionPerformed(evt);
+            }
+        });
         jPanel1.add(txtTotal);
-        txtTotal.setBounds(160, 510, 290, 50);
+        txtTotal.setBounds(160, 560, 290, 50);
 
         comCategory.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         comCategory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
@@ -217,27 +327,38 @@ public class Puchase_Order extends javax.swing.JFrame {
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
         jLabel10.setText("Product Price:");
         jPanel1.add(jLabel10);
-        jLabel10.setBounds(20, 420, 140, 40);
+        jLabel10.setBounds(20, 460, 140, 50);
 
         jLabel11.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
         jLabel11.setText("Product Quantity:");
         jPanel1.add(jLabel11);
-        jLabel11.setBounds(20, 470, 140, 40);
+        jLabel11.setBounds(20, 520, 140, 40);
 
         jLabel12.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel12.setForeground(new java.awt.Color(255, 255, 255));
         jLabel12.setText("Total:");
         jPanel1.add(jLabel12);
-        jLabel12.setBounds(20, 520, 140, 40);
+        jLabel12.setBounds(20, 570, 140, 40);
         jPanel1.add(txtDeliveryDate);
         txtDeliveryDate.setBounds(160, 260, 290, 50);
         jPanel1.add(txtOrderDate);
         txtOrderDate.setBounds(160, 210, 290, 50);
 
         txtQuantity.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtQuantity.setText("0");
+        txtQuantity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQuantityActionPerformed(evt);
+            }
+        });
+        txtQuantity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtQuantityKeyReleased(evt);
+            }
+        });
         jPanel1.add(txtQuantity);
-        txtQuantity.setBounds(160, 460, 290, 50);
+        txtQuantity.setBounds(160, 510, 290, 50);
 
         jLabel23.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
@@ -247,10 +368,10 @@ public class Puchase_Order extends javax.swing.JFrame {
 
         txtPrice.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel1.add(txtPrice);
-        txtPrice.setBounds(160, 410, 290, 50);
+        txtPrice.setBounds(160, 460, 290, 50);
 
         btnEdit1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btnEdit1.setText("Edit");
+        btnEdit1.setText("Update");
         jPanel1.add(btnEdit1);
         btnEdit1.setBounds(330, 620, 140, 40);
 
@@ -275,8 +396,47 @@ public class Puchase_Order extends javax.swing.JFrame {
 
         comProduct.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         comProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        comProduct.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                comProductPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
         jPanel1.add(comProduct);
-        comProduct.setBounds(160, 360, 290, 50);
+        comProduct.setBounds(160, 360, 230, 50);
+
+        jRadioButton1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jRadioButton1.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton1.setText("New");
+        jRadioButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jRadioButton1ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(jRadioButton1);
+        jRadioButton1.setBounds(390, 360, 59, 50);
+
+        txtProduct.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jPanel1.add(txtProduct);
+        txtProduct.setBounds(160, 360, 230, 50);
+
+        txtDetails.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtDetails.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtDetailsActionPerformed(evt);
+            }
+        });
+        jPanel1.add(txtDetails);
+        txtDetails.setBounds(160, 410, 290, 50);
+
+        jLabel13.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel13.setText("Product Details:");
+        jPanel1.add(jLabel13);
+        jLabel13.setBounds(20, 410, 140, 50);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 480, 770);
@@ -298,13 +458,13 @@ public class Puchase_Order extends javax.swing.JFrame {
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("Delivery Date:");
         jPanel6.add(jLabel3);
-        jLabel3.setBounds(370, 50, 120, 40);
+        jLabel3.setBounds(370, 60, 120, 40);
 
         jLabel9.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("Supplier Name:");
         jPanel6.add(jLabel9);
-        jLabel9.setBounds(10, 10, 130, 40);
+        jLabel9.setBounds(10, 0, 130, 50);
 
         lbSupplier.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lbSupplier.setForeground(new java.awt.Color(255, 255, 255));
@@ -317,33 +477,36 @@ public class Puchase_Order extends javax.swing.JFrame {
         jPanel6.add(jLabel15);
         jLabel15.setBounds(10, 60, 90, 40);
 
-        txtId1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel6.add(txtId1);
-        txtId1.setBounds(520, 100, 300, 40);
+        txtSearch.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+        jPanel6.add(txtSearch);
+        txtSearch.setBounds(650, 100, 200, 40);
 
         jLabel16.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("*Search by Order id:");
         jPanel6.add(jLabel16);
-        jLabel16.setBounds(320, 100, 200, 40);
+        jLabel16.setBounds(450, 100, 200, 40);
 
         jLabel24.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
         jLabel24.setText("Order Date:");
         jPanel6.add(jLabel24);
-        jLabel24.setBounds(370, 10, 120, 40);
+        jLabel24.setBounds(370, 0, 120, 60);
 
         lbOrderDate.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lbOrderDate.setForeground(new java.awt.Color(255, 255, 255));
-        lbOrderDate.setText("order date");
         jPanel6.add(lbOrderDate);
-        lbOrderDate.setBounds(480, 10, 180, 40);
+        lbOrderDate.setBounds(480, 0, 180, 50);
 
         lbDeliveryDate.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lbDeliveryDate.setForeground(new java.awt.Color(255, 255, 255));
-        lbDeliveryDate.setText("delivery date");
         jPanel6.add(lbDeliveryDate);
-        lbDeliveryDate.setBounds(490, 50, 170, 40);
+        lbDeliveryDate.setBounds(490, 60, 170, 40);
 
         jPanel5.add(jPanel6);
         jPanel6.setBounds(10, 10, 870, 150);
@@ -381,10 +544,15 @@ public class Puchase_Order extends javax.swing.JFrame {
 
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
+        clearFields();
+        comSupplierName.setSelectedIndex(0);
+        ((JTextField) txtOrderDate.getDateEditor().getUiComponent()).setText("");
+        ((JTextField) txtDeliveryDate.getDateEditor().getUiComponent()).setText("");
     }//GEN-LAST:event_btnDeleteActionPerformed
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
+        new PurchaseEntry().setVisible(true);
         this.dispose();
     }//GEN-LAST:event_btnEditActionPerformed
 
@@ -400,12 +568,14 @@ public class Puchase_Order extends javax.swing.JFrame {
 
     private void comSupplierNamePopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comSupplierNamePopupMenuWillBecomeInvisible
         // TODO add your handling code here:
-        lbSupplier.setText(comSupplierName.getSelectedItem().toString());
+        if (comSupplierName.getSelectedIndex() > 0) {
+            lbSupplier.setText(comSupplierName.getSelectedItem().toString());
+        }
     }//GEN-LAST:event_comSupplierNamePopupMenuWillBecomeInvisible
 
     private void txtOrderIdKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyPressed
         // TODO add your handling code here:
-        
+
     }//GEN-LAST:event_txtOrderIdKeyPressed
 
     private void txtOrderIdKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtOrderIdKeyReleased
@@ -419,6 +589,62 @@ public class Puchase_Order extends javax.swing.JFrame {
             }
         }
     }//GEN-LAST:event_txtOrderIdKeyReleased
+
+    private void jRadioButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jRadioButton1ActionPerformed
+        // TODO add your handling code here:
+        if (jRadioButton1.isSelected()) {
+            txtProduct.setVisible(true);
+            comProduct.setVisible(false);
+            txtPrice.setEditable(true);
+        } else if (!jRadioButton1.isSelected()) {
+            txtProduct.setVisible(false);
+            comProduct.setVisible(true);
+            txtPrice.setEditable(false);
+        }
+    }//GEN-LAST:event_jRadioButton1ActionPerformed
+
+    private void txtDetailsActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtDetailsActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtDetailsActionPerformed
+
+    private void comProductPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comProductPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        String price1 = new dbConnection().singledata("SELECT `product_price` FROM `product info` WHERE `product_name`='" + comProduct.getSelectedItem().toString() + "'");
+        txtDetails.setText(new dbConnection().singledata("SELECT `product_details` FROM `product info` WHERE `product_name`='" + comProduct.getSelectedItem().toString() + "'"));
+        txtPrice.setText(price1);
+    }//GEN-LAST:event_comProductPopupMenuWillBecomeInvisible
+
+    private void btnPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPurchaseActionPerformed
+        order();
+    }//GEN-LAST:event_btnPurchaseActionPerformed
+
+    private void txtTotalActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTotalActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtTotalActionPerformed
+
+    private void txtQuantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantityKeyReleased
+        // TODO add your handling code here:
+        try {
+            txtTotal.setText("" + (Float.parseFloat(txtPrice.getText())) * Integer.parseInt(txtQuantity.getText()));
+        } catch (Exception e) {
+        }
+
+    }//GEN-LAST:event_txtQuantityKeyReleased
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // TODO add your handling code here:
+        try {
+            showData(txtSearch);
+            lbOrderDate.setText(new dbConnection().singledata("SELECT `orderDate` FROM `purchaseorder` where `orderId`='" + txtSearch.getText() + "'"));
+            lbDeliveryDate.setText(new dbConnection().singledata("SELECT `deliveryDate` FROM `purchaseorder` where `orderId`='" + txtSearch.getText() + "'"));
+        } catch (Exception e) {
+        }
+    }//GEN-LAST:event_txtSearchKeyReleased
+
+    private void txtQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantityActionPerformed
+        // TODO add your handling code here:
+        order();
+    }//GEN-LAST:event_txtQuantityActionPerformed
 
     /**
      * @param args the command line arguments
@@ -472,6 +698,7 @@ public class Puchase_Order extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
+    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel15;
     private javax.swing.JLabel jLabel16;
     private javax.swing.JLabel jLabel2;
@@ -489,6 +716,7 @@ public class Puchase_Order extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
+    private javax.swing.JRadioButton jRadioButton1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private javax.swing.JLabel lbDeliveryDate;
@@ -496,11 +724,13 @@ public class Puchase_Order extends javax.swing.JFrame {
     private javax.swing.JLabel lbOrderId;
     private javax.swing.JLabel lbSupplier;
     private com.toedter.calendar.JDateChooser txtDeliveryDate;
-    private javax.swing.JTextField txtId1;
+    private javax.swing.JTextField txtDetails;
     private com.toedter.calendar.JDateChooser txtOrderDate;
     private javax.swing.JTextField txtOrderId;
     private javax.swing.JTextField txtPrice;
+    private javax.swing.JTextField txtProduct;
     private javax.swing.JTextField txtQuantity;
+    private javax.swing.JTextField txtSearch;
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }
