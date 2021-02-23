@@ -182,7 +182,7 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
     void salesAccounts() {
         DefaultTableModel dm = (DefaultTableModel) jTable1.getModel();
         if (rbCash.isSelected() || rbBank.isSelected() || rbDue.isSelected()) {
-            if (rbBank.isSelected()) {
+            if (rbBank.isSelected() && accountsBlankCheck()==1) {
                 if(Float.parseFloat(txtPaid.getText())>0){
                 getDataForSalesAccounts();
                 String bankName, bankAccount;
@@ -255,23 +255,28 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
         gTotal = new dbConnection().singledata("SELECT SUM(`total`) FROM `sales entry` WHERE `bill_no`='" + gBill + "'");
         if (rbBank.isSelected()) {
             gPayment = "Bank";
-        } else if (rbCash.isSelected()) {
+        } 
+        else if (rbCash.isSelected()) {
             gPayment = "Cash";
         }
         else if(rbDue.isSelected()){
             gPayment="Due";
         }
-        if (!txtDiscount.getText().isEmpty()) {
-            gDiscount = txtDiscount.getText();
-        }
-        if (!txtPaid.getText().isEmpty()) {
-            gPaid = txtPaid.getText();
-        }
-        if (!txtDue.getText().isEmpty()) {
-            gDue = txtDue.getText();
-        }
+        gDiscount = txtDiscount.getText();
+        gPaid = txtPaid.getText();
+        gDue = txtDue.getText();    
     }
-
+int accountsBlankCheck(){
+    int check=0;
+    if(comBankName.getSelectedIndex()==0 || txtAccount.getSelectedIndex()==0){
+        JOptionPane.showMessageDialog(this, "Enter all data for bank transaction!");
+        comBankName.requestFocus();
+    }
+    else{
+        check=1;
+    }
+    return check;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1177,13 +1182,7 @@ new dbConnection().addData("INSERT INTO `sales entry` VALUES('" + gSalesId + "',
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
         if(!txtBill.isEnabled()){
-         if(rbBank.isSelected()){
-                if(comBankName.getSelectedIndex()==0 || txtAccount.getSelectedIndex()==0){
-                    JOptionPane.showMessageDialog(this, "Enter all data!");
-                }
-            }else{
-                salesAccounts();
-            }  
+        salesAccounts();  
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 

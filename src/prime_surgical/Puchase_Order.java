@@ -20,6 +20,7 @@ public class Puchase_Order extends javax.swing.JFrame {
         orderIdIncrement();
         txtTotal.setEditable(false);
         txtPrice.setEditable(false);
+        txtOrderId.setEditable(false);
     }
     //Variable declaration
 
@@ -178,7 +179,7 @@ public class Puchase_Order extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(32, 15, 28));
         jPanel1.setLayout(null);
 
         txtOrderId.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -239,6 +240,11 @@ public class Puchase_Order extends javax.swing.JFrame {
 
         btnClear.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnClear.setText("Delete");
+        btnClear.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnClearActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnClear);
         btnClear.setBounds(190, 620, 140, 40);
 
@@ -284,7 +290,9 @@ public class Puchase_Order extends javax.swing.JFrame {
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+            .addGroup(jPanel2Layout.createSequentialGroup()
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 479, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 31, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -469,7 +477,7 @@ public class Puchase_Order extends javax.swing.JFrame {
         lbSupplier.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lbSupplier.setForeground(new java.awt.Color(255, 255, 255));
         jPanel6.add(lbSupplier);
-        lbSupplier.setBounds(140, 10, 230, 40);
+        lbSupplier.setBounds(140, 0, 230, 50);
 
         jLabel15.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -635,9 +643,11 @@ public class Puchase_Order extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             showData(txtSearch);
+            lbSupplier.setText(new dbConnection().singledata("SELECT `supplier` FROM `purchaseorder` WHERE `orderId`='"+txtSearch.getText()+"'"));
             lbOrderDate.setText(new dbConnection().singledata("SELECT `orderDate` FROM `purchaseorder` where `orderId`='" + txtSearch.getText() + "'"));
             lbDeliveryDate.setText(new dbConnection().singledata("SELECT `deliveryDate` FROM `purchaseorder` where `orderId`='" + txtSearch.getText() + "'"));
         } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "something went wrong!");
         }
     }//GEN-LAST:event_txtSearchKeyReleased
 
@@ -645,6 +655,10 @@ public class Puchase_Order extends javax.swing.JFrame {
         // TODO add your handling code here:
         order();
     }//GEN-LAST:event_txtQuantityActionPerformed
+
+    private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnClearActionPerformed
 
     /**
      * @param args the command line arguments

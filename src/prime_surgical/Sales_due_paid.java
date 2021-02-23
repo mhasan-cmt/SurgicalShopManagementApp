@@ -190,7 +190,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(34, 40, 49));
         jPanel1.setLayout(null);
 
         jButton4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -692,10 +692,6 @@ public class Sales_due_paid extends javax.swing.JFrame {
             totalpaid = Double.parseDouble(txtPaid.getText());
             txtDue.setText("" + (totalDue - totalpaid));
         } catch (Exception e) {
-            String customer = jTextField3.getText();
-            subTotal = new dbConnection().singledata("SELECT sum('due') FROM `sales accounts` WHERE `customer`='" + customer + "'");
-            txtSubTotal.setText(subTotal);
-            txtDue.setText(subTotal);
         }
     }//GEN-LAST:event_txtPaidKeyReleased
 

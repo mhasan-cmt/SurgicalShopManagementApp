@@ -296,7 +296,7 @@ public class HomePage extends javax.swing.JFrame {
 
         Container.setLayout(new java.awt.CardLayout());
 
-        HomePanel.setBackground(new java.awt.Color(53, 106, 138));
+        HomePanel.setBackground(new java.awt.Color(34, 40, 49));
         HomePanel.setLayout(null);
 
         jPanel30.setBackground(new java.awt.Color(104, 109, 224));

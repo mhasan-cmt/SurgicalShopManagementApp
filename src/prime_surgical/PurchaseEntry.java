@@ -3,6 +3,7 @@ package prime_surgical;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -117,6 +118,8 @@ public class PurchaseEntry extends javax.swing.JFrame {
                     bankAccount = txtAccount.getSelectedItem().toString();
                     new dbConnection().addData("INSERT INTO `purchase accounts` VALUES('" + pBill + "','" + pGR + "','" + pDate + "','" + pCompany + "','" + pItems + "','" + pTotal + "','" + pPayment + "','" + pDiscount + "','" + pPaid + "','" + pDue + "')", this);
                     new dbConnection().addDataWithNoMessege("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('" + pDate + "','" + bankName + "','" + bankAccount + "','" + "Purchase" + "','" + "Withdraw" + "','" + pPaid + "')");
+                    DefaultTableModel dtm=(DefaultTableModel)jTable1.getModel();
+                    dtm.setRowCount(0);
                     componentEnabled();
                     clearAccountsField();
                     Ggr = Ggr + 10;
@@ -133,6 +136,8 @@ public class PurchaseEntry extends javax.swing.JFrame {
                     getDataForPurchaseAccounts();
                     new dbConnection().addData("INSERT INTO `purchase accounts` VALUES('" + pBill + "','" + pGR + "','" + pDate + "','" + pCompany + "','" + pItems + "','" + pTotal + "','" + pPayment + "','" + pDiscount + "','" + pPaid + "','" + pDue + "')", this);
                     new dbConnection().addDataWithNoMessege("INSERT INTO `cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('" + pDate + "','" + "Purchase" + "','" + "Debit" + "','" + pPaid + "')");
+                    DefaultTableModel dtm=(DefaultTableModel)jTable1.getModel();
+                    dtm.setRowCount(0);
                     componentEnabled();
                     clearAccountsField();
                     Ggr = Ggr + 10;
@@ -146,6 +151,8 @@ public class PurchaseEntry extends javax.swing.JFrame {
                 } else {
                     getDataForPurchaseAccounts();
                     new dbConnection().addData("INSERT INTO `purchase accounts` VALUES('" + pBill + "','" + pGR + "','" + pDate + "','" + pCompany + "','" + pItems + "','" + pTotal + "','" + pPayment + "','" + pDiscount + "','" + pPaid + "','" + pDue + "')", this);
+                    DefaultTableModel dtm=(DefaultTableModel)jTable1.getModel();
+                    dtm.setRowCount(0);
                     componentEnabled();
                     clearAccountsField();
                     Ggr = Ggr + 10;
@@ -180,15 +187,10 @@ public class PurchaseEntry extends javax.swing.JFrame {
         } else if (rbDue.isSelected()) {
             pPayment = "Due";
         }
-        if (!txtDiscount.getText().isEmpty()) {
-            pDiscount = txtDiscount.getText();
-        }
-        if (!txtPaid.getText().isEmpty()) {
-            pPaid = txtPaid.getText();
-        }
-        if (!txtDue.getText().isEmpty()) {
-            pDue = txtDue.getText();
-        }
+        pDiscount = txtDiscount.getText();
+        pPaid = txtPaid.getText();
+        pDue = txtDue.getText();
+
     }
 
     int checkBlankData() {
@@ -228,7 +230,18 @@ public class PurchaseEntry extends javax.swing.JFrame {
         }
         return check;
     }
-
+int accountsblankCheck(){
+    int check=0;
+    if(rbBank.isSelected() && comBankName.getSelectedIndex()==0 || txtAccount.getSelectedIndex()==0){
+       JOptionPane.showMessageDialog(this, "Enter all data for bank transaction!");
+       comBankName.requestFocus();
+    }else if(txtSubTotal.getText().isEmpty() || Float.parseFloat(txtSubTotal.getText())<=0){
+        JOptionPane.showMessageDialog(this, "Subtotal is missing!");
+    }else {
+        check=1;
+    }
+    return check;
+}
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -1002,17 +1015,9 @@ public class PurchaseEntry extends javax.swing.JFrame {
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
         // TODO add your handling code here:
-        if (!txtBill.isEnabled()) {
-            if (rbBank.isSelected()) {
-                if (comBankName.getSelectedIndex() == 0 || txtAccount.getSelectedIndex() == 0) {
-                    JOptionPane.showMessageDialog(this, "Enter all data!");
-                }
-            } else {
-                purchaseAccounts();
-            }
-
+        if (!txtBill.isEnabled() && accountsblankCheck()==1) {
+            purchaseAccounts();
         }
-
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void txtDateMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_txtDateMouseClicked
@@ -1028,19 +1033,19 @@ public class PurchaseEntry extends javax.swing.JFrame {
 
     private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
         // TODO add your handling code here:
-        if(txtBill.isEnabled()){
-        String search = txtSearch.getText();
-        String companyt = comCompany.getSelectedItem().toString();
-        if (jComboBox1.getSelectedIndex() == 1) {
-            if (comCompany.getSelectedIndex() == 0) {
-                JOptionPane.showMessageDialog(this, "Select Supplier Name!");
-                comCompany.requestFocus();
-            } else {
-                new dbConnection().showPurchaseEntry("SELECT *FROM `purchase entry` WHERE `bill_no`='" + search + "' and `company_name`='" + companyt + "'", jTable1);
-                txtSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `purchase entry` WHERE `bill_no`='" + search + "' and `company_name`='" + companyt + "'"));
-                jLabel1.setText(search);
+        if (txtBill.isEnabled()) {
+            String search = txtSearch.getText();
+            String companyt = comCompany.getSelectedItem().toString();
+            if (jComboBox1.getSelectedIndex() == 1) {
+                if (comCompany.getSelectedIndex() == 0) {
+                    JOptionPane.showMessageDialog(this, "Select Supplier Name!");
+                    comCompany.requestFocus();
+                } else {
+                    new dbConnection().showPurchaseEntry("SELECT *FROM `purchase entry` WHERE `bill_no`='" + search + "' and `company_name`='" + companyt + "'", jTable1);
+                    txtSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `purchase entry` WHERE `bill_no`='" + search + "' and `company_name`='" + companyt + "'"));
+                    jLabel1.setText(search);
+                }
             }
-        }            
         }
 
     }//GEN-LAST:event_txtSearchKeyReleased

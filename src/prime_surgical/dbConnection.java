@@ -25,7 +25,7 @@ public class dbConnection {
     String pw = "";
 
     /**
-     * This method is for connection mysql to java class
+     * This method is for connect MySql to java
      */
     void dbconnect() {
         try {
