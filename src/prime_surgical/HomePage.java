@@ -235,7 +235,7 @@ public class HomePage extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         headerPane.setBackground(new java.awt.Color(241, 230, 193));
-        headerPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 102), 3));
+        headerPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 102), 2));
         headerPane.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Kalpurush", 1, 48)); // NOI18N
@@ -299,7 +299,7 @@ public class HomePage extends javax.swing.JFrame {
         HomePanel.setBackground(new java.awt.Color(34, 40, 49));
         HomePanel.setLayout(null);
 
-        jPanel30.setBackground(new java.awt.Color(104, 109, 224));
+        jPanel30.setBackground(new java.awt.Color(132, 168, 179));
         jPanel30.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel30.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
         jPanel30.setLayout(null);
@@ -338,7 +338,7 @@ public class HomePage extends javax.swing.JFrame {
         HomePanel.add(jPanel30);
         jPanel30.setBounds(450, 220, 200, 150);
 
-        jPanel14.setBackground(new java.awt.Color(104, 109, 224));
+        jPanel14.setBackground(new java.awt.Color(132, 168, 179));
         jPanel14.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel14.setLayout(null);
 
@@ -373,7 +373,7 @@ public class HomePage extends javax.swing.JFrame {
         HomePanel.add(jPanel14);
         jPanel14.setBounds(160, 370, 290, 150);
 
-        jPanel10.setBackground(new java.awt.Color(104, 109, 224));
+        jPanel10.setBackground(new java.awt.Color(132, 168, 179));
         jPanel10.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel10.setLayout(null);
 
@@ -408,7 +408,7 @@ public class HomePage extends javax.swing.JFrame {
         HomePanel.add(jPanel10);
         jPanel10.setBounds(650, 70, 350, 150);
 
-        jPanel12.setBackground(new java.awt.Color(104, 109, 224));
+        jPanel12.setBackground(new java.awt.Color(132, 168, 179));
         jPanel12.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel12.setLayout(null);
 
@@ -446,7 +446,7 @@ public class HomePage extends javax.swing.JFrame {
         HomePanel.add(jPanel12);
         jPanel12.setBounds(160, 220, 290, 150);
 
-        jPanel13.setBackground(new java.awt.Color(104, 109, 224));
+        jPanel13.setBackground(new java.awt.Color(132, 168, 179));
         jPanel13.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel13.setLayout(null);
 
@@ -481,7 +481,7 @@ public class HomePage extends javax.swing.JFrame {
         HomePanel.add(jPanel13);
         jPanel13.setBounds(160, 70, 290, 150);
 
-        jPanel15.setBackground(new java.awt.Color(104, 109, 224));
+        jPanel15.setBackground(new java.awt.Color(132, 168, 179));
         jPanel15.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel15.setLayout(null);
 
@@ -495,7 +495,7 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
         jPanel15.add(jLabel17);
-        jLabel17.setBounds(0, 90, 350, 60);
+        jLabel17.setBounds(0, 90, 260, 60);
 
         jLabel46.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel46.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/icons8_gender_neutral_employee_group_100px_1.png"))); // NOI18N
@@ -561,7 +561,7 @@ public class HomePage extends javax.swing.JFrame {
         HomePanel.add(jPanel6);
         jPanel6.setBounds(0, 0, 210, 40);
 
-        jPanel21.setBackground(new java.awt.Color(104, 109, 224));
+        jPanel21.setBackground(new java.awt.Color(132, 168, 179));
         jPanel21.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel21.setLayout(null);
 
@@ -602,7 +602,7 @@ public class HomePage extends javax.swing.JFrame {
         HomePanel.add(jLabel29);
         jLabel29.setBounds(420, 0, 230, 40);
 
-        jPanel2.setBackground(new java.awt.Color(104, 109, 224));
+        jPanel2.setBackground(new java.awt.Color(132, 168, 179));
         jPanel2.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel23.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -643,7 +643,7 @@ public class HomePage extends javax.swing.JFrame {
         HomePanel.add(jPanel2);
         jPanel2.setBounds(450, 370, 200, 150);
 
-        jPanel3.setBackground(new java.awt.Color(104, 109, 224));
+        jPanel3.setBackground(new java.awt.Color(132, 168, 179));
         jPanel3.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
 
         jLabel11.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
@@ -669,7 +669,7 @@ public class HomePage extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jLabel11, javax.swing.GroupLayout.DEFAULT_SIZE, 344, Short.MAX_VALUE)
             .addComponent(jLabel26, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         jPanel3Layout.setVerticalGroup(
@@ -689,7 +689,7 @@ public class HomePage extends javax.swing.JFrame {
         PurchasePanel.setBackground(new java.awt.Color(42, 54, 59));
         PurchasePanel.setLayout(null);
 
-        jPanel16.setBackground(new java.awt.Color(104, 109, 224));
+        jPanel16.setBackground(new java.awt.Color(132, 168, 179));
         jPanel16.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel16.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -730,7 +730,7 @@ public class HomePage extends javax.swing.JFrame {
         PurchasePanel.add(jPanel16);
         jPanel16.setBounds(300, 130, 300, 160);
 
-        jPanel17.setBackground(new java.awt.Color(104, 109, 224));
+        jPanel17.setBackground(new java.awt.Color(132, 168, 179));
         jPanel17.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel17.setLayout(null);
 
@@ -765,7 +765,7 @@ public class HomePage extends javax.swing.JFrame {
         PurchasePanel.add(jPanel17);
         jPanel17.setBounds(600, 290, 300, 160);
 
-        jPanel18.setBackground(new java.awt.Color(104, 109, 224));
+        jPanel18.setBackground(new java.awt.Color(132, 168, 179));
         jPanel18.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel18.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseEntered(java.awt.event.MouseEvent evt) {
@@ -806,7 +806,7 @@ public class HomePage extends javax.swing.JFrame {
         PurchasePanel.add(jPanel18);
         jPanel18.setBounds(300, 290, 300, 160);
 
-        jPanel19.setBackground(new java.awt.Color(104, 109, 224));
+        jPanel19.setBackground(new java.awt.Color(132, 168, 179));
         jPanel19.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel19.setLayout(null);
 
@@ -894,7 +894,7 @@ public class HomePage extends javax.swing.JFrame {
         SalesPanel.setBackground(new java.awt.Color(54, 54, 54));
         SalesPanel.setLayout(null);
 
-        jPanel22.setBackground(new java.awt.Color(104, 109, 224));
+        jPanel22.setBackground(new java.awt.Color(132, 168, 179));
         jPanel22.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel22.setLayout(null);
 
@@ -929,7 +929,7 @@ public class HomePage extends javax.swing.JFrame {
         SalesPanel.add(jPanel22);
         jPanel22.setBounds(330, 120, 270, 160);
 
-        jPanel23.setBackground(new java.awt.Color(104, 109, 224));
+        jPanel23.setBackground(new java.awt.Color(132, 168, 179));
         jPanel23.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel23.setLayout(null);
 
@@ -964,7 +964,7 @@ public class HomePage extends javax.swing.JFrame {
         SalesPanel.add(jPanel23);
         jPanel23.setBounds(610, 120, 270, 160);
 
-        jPanel25.setBackground(new java.awt.Color(104, 109, 224));
+        jPanel25.setBackground(new java.awt.Color(132, 168, 179));
         jPanel25.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel25.setLayout(null);
 
@@ -999,7 +999,7 @@ public class HomePage extends javax.swing.JFrame {
         SalesPanel.add(jPanel25);
         jPanel25.setBounds(330, 290, 270, 160);
 
-        jPanel26.setBackground(new java.awt.Color(104, 109, 224));
+        jPanel26.setBackground(new java.awt.Color(132, 168, 179));
         jPanel26.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel26.setLayout(null);
 
@@ -1441,7 +1441,6 @@ public class HomePage extends javax.swing.JFrame {
         jLayeredPane1.setLayout(new java.awt.CardLayout());
 
         SideBarPane.setBackground(new java.awt.Color(44, 62, 80));
-        SideBarPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 102, 0), 2));
         SideBarPane.setLayout(null);
 
         lb_Home.setFont(new java.awt.Font("Roboto", 0, 28)); // NOI18N
@@ -1461,7 +1460,7 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
         SideBarPane.add(lb_Home);
-        lb_Home.setBounds(20, 100, 130, 50);
+        lb_Home.setBounds(10, 100, 120, 50);
 
         lb_Purchase.setFont(new java.awt.Font("Roboto", 0, 28)); // NOI18N
         lb_Purchase.setForeground(new java.awt.Color(255, 255, 255));
@@ -1480,7 +1479,7 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
         SideBarPane.add(lb_Purchase);
-        lb_Purchase.setBounds(30, 150, 160, 50);
+        lb_Purchase.setBounds(10, 150, 160, 50);
 
         jLabel9.setFont(new java.awt.Font("Roboto", 0, 28)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
@@ -1499,7 +1498,7 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
         SideBarPane.add(jLabel9);
-        jLabel9.setBounds(30, 200, 130, 50);
+        jLabel9.setBounds(10, 200, 130, 50);
 
         jLabel8.setFont(new java.awt.Font("Roboto", 0, 28)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
@@ -1518,7 +1517,7 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
         SideBarPane.add(jLabel8);
-        jLabel8.setBounds(20, 250, 170, 50);
+        jLabel8.setBounds(10, 250, 160, 50);
 
         jLabel10.setFont(new java.awt.Font("Roboto", 0, 28)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(255, 255, 255));
@@ -1537,15 +1536,15 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
         SideBarPane.add(jLabel10);
-        jLabel10.setBounds(30, 300, 120, 50);
+        jLabel10.setBounds(10, 300, 130, 50);
 
-        homeP.setBackground(new java.awt.Color(252, 66, 123));
+        homeP.setBackground(new java.awt.Color(155, 192, 201));
 
         javax.swing.GroupLayout homePLayout = new javax.swing.GroupLayout(homeP);
         homeP.setLayout(homePLayout);
         homePLayout.setHorizontalGroup(
             homePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 10, Short.MAX_VALUE)
         );
         homePLayout.setVerticalGroup(
             homePLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1553,15 +1552,15 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         SideBarPane.add(homeP);
-        homeP.setBounds(0, 100, 20, 50);
+        homeP.setBounds(0, 100, 10, 50);
 
-        PurchasP.setBackground(new java.awt.Color(252, 66, 123));
+        PurchasP.setBackground(new java.awt.Color(155, 192, 201));
 
         javax.swing.GroupLayout PurchasPLayout = new javax.swing.GroupLayout(PurchasP);
         PurchasP.setLayout(PurchasPLayout);
         PurchasPLayout.setHorizontalGroup(
             PurchasPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 10, Short.MAX_VALUE)
         );
         PurchasPLayout.setVerticalGroup(
             PurchasPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1569,15 +1568,15 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         SideBarPane.add(PurchasP);
-        PurchasP.setBounds(0, 150, 20, 50);
+        PurchasP.setBounds(0, 150, 10, 50);
 
-        SalesP.setBackground(new java.awt.Color(252, 66, 123));
+        SalesP.setBackground(new java.awt.Color(155, 192, 201));
 
         javax.swing.GroupLayout SalesPLayout = new javax.swing.GroupLayout(SalesP);
         SalesP.setLayout(SalesPLayout);
         SalesPLayout.setHorizontalGroup(
             SalesPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 10, Short.MAX_VALUE)
         );
         SalesPLayout.setVerticalGroup(
             SalesPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1585,15 +1584,15 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         SideBarPane.add(SalesP);
-        SalesP.setBounds(0, 200, 20, 50);
+        SalesP.setBounds(0, 200, 10, 50);
 
-        AccountsP.setBackground(new java.awt.Color(252, 66, 123));
+        AccountsP.setBackground(new java.awt.Color(155, 192, 201));
 
         javax.swing.GroupLayout AccountsPLayout = new javax.swing.GroupLayout(AccountsP);
         AccountsP.setLayout(AccountsPLayout);
         AccountsPLayout.setHorizontalGroup(
             AccountsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 10, Short.MAX_VALUE)
         );
         AccountsPLayout.setVerticalGroup(
             AccountsPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1601,15 +1600,15 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         SideBarPane.add(AccountsP);
-        AccountsP.setBounds(0, 250, 20, 50);
+        AccountsP.setBounds(0, 250, 10, 50);
 
-        AdminP.setBackground(new java.awt.Color(252, 66, 123));
+        AdminP.setBackground(new java.awt.Color(155, 192, 201));
 
         javax.swing.GroupLayout AdminPLayout = new javax.swing.GroupLayout(AdminP);
         AdminP.setLayout(AdminPLayout);
         AdminPLayout.setHorizontalGroup(
             AdminPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 20, Short.MAX_VALUE)
+            .addGap(0, 10, Short.MAX_VALUE)
         );
         AdminPLayout.setVerticalGroup(
             AdminPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -1617,7 +1616,7 @@ public class HomePage extends javax.swing.JFrame {
         );
 
         SideBarPane.add(AdminP);
-        AdminP.setBounds(0, 300, 20, 50);
+        AdminP.setBounds(0, 300, 10, 50);
 
         jButton1.setFont(new java.awt.Font("Proxima Nova Rg", 0, 18)); // NOI18N
         jButton1.setText("Exit");
@@ -1899,7 +1898,7 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
 
     private void jLabel14MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseExited
         // TODO add your handling code here:
-        jPanel13.setBackground(new Color(104, 109, 224));
+        jPanel13.setBackground(new Color(132, 168, 179));
     }//GEN-LAST:event_jLabel14MouseExited
 
     private void jLabel14MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel14MouseEntered
@@ -1949,7 +1948,7 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
 
     private void jLabel37MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel37MouseExited
         // TODO add your handling code here:
-        jPanel21.setBackground(new Color(104, 109, 224));
+        jPanel21.setBackground(new Color(132, 168, 179));
     }//GEN-LAST:event_jLabel37MouseExited
 
     private void jLabel45MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel45MouseEntered
@@ -1959,7 +1958,7 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
 
     private void jLabel45MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel45MouseExited
         // TODO add your handling code here:
-        jPanel10.setBackground(new Color(104, 109, 224));
+        jPanel10.setBackground(new Color(132, 168, 179));
     }//GEN-LAST:event_jLabel45MouseExited
 
     private void jLabel20MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseEntered
@@ -1969,7 +1968,7 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
 
     private void jLabel20MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel20MouseExited
         // TODO add your handling code here:
-        jPanel12.setBackground(new Color(104, 109, 224));
+        jPanel12.setBackground(new Color(132, 168, 179));
     }//GEN-LAST:event_jLabel20MouseExited
 
     private void jLabel44MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel44MouseEntered
@@ -1979,7 +1978,7 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
 
     private void jLabel44MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel44MouseExited
         // TODO add your handling code here:
-        jPanel30.setBackground(new Color(104, 109, 224));
+        jPanel30.setBackground(new Color(132, 168, 179));
     }//GEN-LAST:event_jLabel44MouseExited
 
     private void jLabel46MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel46MouseEntered
@@ -1989,7 +1988,7 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
 
     private void jLabel46MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel46MouseExited
         // TODO add your handling code here:
-        jPanel15.setBackground(new Color(104, 109, 224));
+        jPanel15.setBackground(new Color(132, 168, 179));
     }//GEN-LAST:event_jLabel46MouseExited
 
     private void jLabel47MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel47MouseEntered
@@ -1999,12 +1998,12 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
 
     private void jLabel47MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel47MouseExited
         // TODO add your handling code here:
-        jPanel14.setBackground(new Color(104, 109, 224));
+        jPanel14.setBackground(new Color(132, 168, 179));
     }//GEN-LAST:event_jLabel47MouseExited
 
     private void jLabel50MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel50MouseExited
         // TODO add your handling code here:
-        jPanel22.setBackground(new Color(104, 109, 224));
+        jPanel22.setBackground(new Color(132, 168, 179));
     }//GEN-LAST:event_jLabel50MouseExited
 
     private void jLabel50MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel50MouseEntered
@@ -2019,7 +2018,7 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
 
     private void jLabel51MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel51MouseExited
         // TODO add your handling code here:
-        jPanel23.setBackground(new Color(104, 109, 224));
+        jPanel23.setBackground(new Color(132, 168, 179));
     }//GEN-LAST:event_jLabel51MouseExited
 
     private void jLabel52MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel52MouseEntered
@@ -2029,7 +2028,7 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
 
     private void jLabel52MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel52MouseExited
         // TODO add your handling code here:
-        jPanel25.setBackground(new Color(104, 109, 224));
+        jPanel25.setBackground(new Color(132, 168, 179));
     }//GEN-LAST:event_jLabel52MouseExited
 
     private void jLabel48MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel48MouseEntered
@@ -2039,7 +2038,7 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
 
     private void jLabel48MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel48MouseExited
         // TODO add your handling code here:
-        jPanel26.setBackground(new Color(104, 109, 224));
+        jPanel26.setBackground(new Color(132, 168, 179));
     }//GEN-LAST:event_jLabel48MouseExited
 
     private void jLabel33MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel33MouseEntered
@@ -2049,7 +2048,7 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
 
     private void jLabel33MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel33MouseExited
         // TODO add your handling code here:
-        jPanel16.setBackground(new Color(104, 109, 224));
+        jPanel16.setBackground(new Color(132, 168, 179));
     }//GEN-LAST:event_jLabel33MouseExited
 
     private void jLabel34MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel34MouseEntered
@@ -2059,7 +2058,7 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
 
     private void jLabel34MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel34MouseExited
         // TODO add your handling code here:
-        jPanel17.setBackground(new Color(104, 109, 224));
+        jPanel17.setBackground(new Color(132, 168, 179));
     }//GEN-LAST:event_jLabel34MouseExited
 
     private void jPanel18MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jPanel18MouseEntered
@@ -2073,7 +2072,7 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
 
     private void jLabel35MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel35MouseExited
         // TODO add your handling code here:
-        jPanel18.setBackground(new Color(104, 109, 224));
+        jPanel18.setBackground(new Color(132, 168, 179));
     }//GEN-LAST:event_jLabel35MouseExited
 
     private void jLabel32MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel32MouseEntered
@@ -2083,7 +2082,7 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
 
     private void jLabel32MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel32MouseExited
         // TODO add your handling code here:
-        jPanel19.setBackground(new Color(104, 109, 224));
+        jPanel19.setBackground(new Color(132, 168, 179));
     }//GEN-LAST:event_jLabel32MouseExited
 
     private void jLabel33MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel33MouseClicked
@@ -2138,12 +2137,12 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
 
     private void jLabel23MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseExited
         // TODO add your handling code here:
-        jPanel2.setBackground(new Color(104, 109, 224));
+        jPanel2.setBackground(new Color(132, 168, 179));
     }//GEN-LAST:event_jLabel23MouseExited
 
     private void jLabel11MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel11MouseExited
         // TODO add your handling code here:
-        jPanel3.setBackground(new Color(104, 109, 224));
+        jPanel3.setBackground(new Color(132, 168, 179));
     }//GEN-LAST:event_jLabel11MouseExited
 
     private void jLabel23MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel23MouseClicked

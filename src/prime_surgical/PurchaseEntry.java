@@ -285,6 +285,7 @@ int accountsblankCheck(){
         jLabel27 = new javax.swing.JLabel();
         jLabel28 = new javax.swing.JLabel();
         txtDetails = new javax.swing.JTextField();
+        btnEdit3 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
@@ -361,9 +362,14 @@ int accountsblankCheck(){
         jLabel7.setBounds(20, 270, 140, 40);
 
         btnEdit.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btnEdit.setText("Delete");
+        btnEdit.setText("Go to Orders");
+        btnEdit.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEditActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnEdit);
-        btnEdit.setBounds(110, 670, 130, 40);
+        btnEdit.setBounds(250, 670, 150, 40);
 
         btnPurchase.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnPurchase.setText("Purchase");
@@ -383,7 +389,7 @@ int accountsblankCheck(){
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(240, 670, 130, 40);
+        jButton4.setBounds(190, 710, 130, 40);
 
         jPanel4.setBackground(new java.awt.Color(0, 102, 102));
         jPanel4.setLayout(null);
@@ -585,6 +591,16 @@ int accountsblankCheck(){
         txtDetails.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jPanel1.add(txtDetails);
         txtDetails.setBounds(160, 390, 290, 40);
+
+        btnEdit3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        btnEdit3.setText("Delete");
+        btnEdit3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEdit3ActionPerformed(evt);
+            }
+        });
+        jPanel1.add(btnEdit3);
+        btnEdit3.setBounds(120, 670, 130, 40);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 520, 770);
@@ -1047,7 +1063,6 @@ int accountsblankCheck(){
                 }
             }
         }
-
     }//GEN-LAST:event_txtSearchKeyReleased
 
     private void txtSearchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtSearchActionPerformed
@@ -1058,6 +1073,16 @@ int accountsblankCheck(){
         // TODO add your handling code here:
         Bank.setVisible(false);
     }//GEN-LAST:event_rbDueActionPerformed
+
+    private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
+        // TODO add your handling code here:
+        new Puchase_Order().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_btnEditActionPerformed
+
+    private void btnEdit3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit3ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEdit3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -1106,6 +1131,7 @@ int accountsblankCheck(){
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnEdit1;
     private javax.swing.JButton btnEdit2;
+    private javax.swing.JButton btnEdit3;
     private javax.swing.JButton btnPurchase;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> comBankName;

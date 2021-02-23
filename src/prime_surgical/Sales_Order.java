@@ -1,19 +1,88 @@
 package prime_surgical;
+import java.text.SimpleDateFormat;
 import javax.swing.*;
-/**
- *
- * @author Mahmudul Hasan
- */
 public class Sales_Order extends javax.swing.JFrame {
 
     /**
-     * Creates new form Suppliers
+     * Creates new form sales_order
      */
     public Sales_Order() {
         initComponents();
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        new dbConnection().getDataFromCombo(comCateogory, "SELECT `cateogory` FROM `product cateogory` order by `cateogory_id`");
+        orderIdIncrement();
     }
-
+//custom variable declaration
+    String customer,orderDate,deliveryDate,orderId,category,product,price,quantity,total;
+    SimpleDateFormat sm=new SimpleDateFormat("yyyy-MM-dd");
+    void getData(){
+        if(comCustomerType.getSelectedIndex()>0 && comCustomerType.getSelectedIndex()==1){
+            customer=comCustomer.getSelectedItem().toString();
+        }else if(comCustomerType.getSelectedIndex()>0 && comCustomerType.getSelectedIndex()==2){
+            customer=txtCustomerName.getText();
+        }
+        orderId=txtOrderId.getText();
+        orderDate = sm.format(txtDate1.getDate());
+        deliveryDate = sm.format(txtDate.getDate());
+        category = comCateogory.getSelectedItem().toString();
+        product=comProduct.getSelectedItem().toString();
+        price=txtSalesPrice.getText();
+        quantity=txtQuantity.getText();
+        total=txtTotal.getText();
+    }
+    void orderIdIncrement() {
+        int orderIdInt = new dbConnection().autoIdorBillorGR("SELECT `orderId` FROM `salesorders` ORDER BY `orderId`");
+        orderIdInt++;
+        txtOrderId.setText("" + orderIdInt);
+        lbOrderId.setText("" + orderIdInt);
+    }
+    int blankDataCheck(){
+        int check=0;
+        if (comCustomerType.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Select Customer Type!");
+            comCustomerType.requestFocus();
+        } else if (txtCustomerName.getText().isEmpty() && comCustomer.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Enter Customer Name!");
+            txtCustomerName.requestFocus();
+        }else if(txtOrderId.getText().isEmpty()){
+            JOptionPane.showMessageDialog(this, "Enter order id!");
+            txtOrderId.requestFocus();
+        }
+        else if (((JTextField) txtDate1.getDateEditor().getUiComponent()).getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter Order Date!");
+            txtDate1.requestFocus();
+        } else if (((JTextField) txtDate.getDateEditor().getUiComponent()).getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter Delivery Date!");
+            txtDate.requestFocus();
+        } else if (comCateogory.getSelectedIndex() == 0) {
+            JOptionPane.showMessageDialog(this, "Select Product Category!");
+            comCateogory.requestFocus();
+        }else if (txtSalesPrice.getText().isEmpty()) {
+            JOptionPane.showMessageDialog(this, "Enter Sales Price!");
+            txtSalesPrice.requestFocus();
+        } else if (txtQuantity.getText().isEmpty() || Integer.parseInt(txtQuantity.getText()) <= 0) {
+            JOptionPane.showMessageDialog(this, "Enter Product quantity!");
+            txtQuantity.requestFocus();
+        } else if (txtTotal.getText().isEmpty() || Float.parseFloat(txtTotal.getText()) <= 0) {
+            JOptionPane.showMessageDialog(this, "Total is Missing!");
+            txtTotal.requestFocus();
+        } else {
+            check = 1;
+        }
+        return check;
+    }
+    void showData(JTextField txt) {
+        new dbConnection().showPurchaseOrders("select * from `salesorders` WHERE `orderId`='" + txt.getText() + "'", table1);
+        lbOrderDate.setText(new dbConnection().singledata("SELECT `orderDate` FROM `salesorders` where `orderId`='" + lbOrderId.getText() + "'"));
+        lbDeliveryDate.setText(new dbConnection().singledata("SELECT `deliveryDate` FROM `salesorders` where `orderId`='" + lbOrderId.getText() + "'"));
+        }
+    void order() {
+        if (blankDataCheck() == 1) {
+            getData();
+            new dbConnection().addData("INSERT INTO `salesorders` VALUES('" + orderId + "','" + customer + "','" + orderDate + "','" + deliveryDate + "','" + category + "','" + product + "','" + price + "','" + quantity + "','" + total + "')", this);
+            showData(txtOrderId);
+        }
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
@@ -25,7 +94,6 @@ public class Sales_Order extends javax.swing.JFrame {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
         jPanel1 = new javax.swing.JPanel();
-        txtBill = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
@@ -36,43 +104,45 @@ public class Sales_Order extends javax.swing.JFrame {
         jButton4 = new javax.swing.JButton();
         btnDelete = new javax.swing.JButton();
         jPanel4 = new javax.swing.JPanel();
-        jLabel5 = new javax.swing.JLabel();
         jPanel2 = new javax.swing.JPanel();
         jLabel8 = new javax.swing.JLabel();
-        txtGR = new javax.swing.JTextField();
-        txtTotal = new javax.swing.JTextField();
-        comPname = new javax.swing.JComboBox<>();
-        jLabel10 = new javax.swing.JLabel();
+        txtSalesPrice = new javax.swing.JTextField();
+        txtPurchasePrice = new javax.swing.JTextField();
         jLabel11 = new javax.swing.JLabel();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         txtDate = new com.toedter.calendar.JDateChooser();
-        txtQuantity = new javax.swing.JTextField();
         txtDate1 = new com.toedter.calendar.JDateChooser();
-        txtQuantity1 = new javax.swing.JTextField();
+        txtStock = new javax.swing.JTextField();
         jLabel23 = new javax.swing.JLabel();
-        txtQuantity2 = new javax.swing.JTextField();
         btnEdit1 = new javax.swing.JButton();
-        txtGR1 = new javax.swing.JTextField();
+        txtQuantity = new javax.swing.JTextField();
         jLabel17 = new javax.swing.JLabel();
-        txtGR2 = new javax.swing.JTextField();
+        txtTotal = new javax.swing.JTextField();
         jLabel18 = new javax.swing.JLabel();
-        comPname1 = new javax.swing.JComboBox<>();
+        comCustomerType = new javax.swing.JComboBox<>();
+        jLabel26 = new javax.swing.JLabel();
+        jLabel14 = new javax.swing.JLabel();
+        txtCustomerName = new javax.swing.JTextField();
+        comCustomer = new javax.swing.JComboBox<>();
+        txtOrderId = new javax.swing.JTextField();
+        comProduct = new javax.swing.JComboBox<>();
+        comCateogory = new javax.swing.JComboBox<>();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
+        lbOrderId = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel9 = new javax.swing.JLabel();
-        jLabel14 = new javax.swing.JLabel();
+        lbCustomer = new javax.swing.JLabel();
         jLabel15 = new javax.swing.JLabel();
-        txtId1 = new javax.swing.JTextField();
+        txtSearch = new javax.swing.JTextField();
         jLabel16 = new javax.swing.JLabel();
         jLabel24 = new javax.swing.JLabel();
-        jLabel25 = new javax.swing.JLabel();
-        jLabel26 = new javax.swing.JLabel();
+        lbOrderDate = new javax.swing.JLabel();
+        lbDeliveryDate = new javax.swing.JLabel();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        table1 = new javax.swing.JTable();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -81,33 +151,29 @@ public class Sales_Order extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setLayout(null);
 
-        txtBill.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtBill);
-        txtBill.setBounds(170, 120, 320, 40);
-
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setText("Order Date:");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(30, 160, 140, 40);
+        jLabel2.setBounds(30, 200, 140, 40);
 
         jLabel4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(255, 255, 255));
         jLabel4.setText("Order Id:");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(30, 120, 140, 40);
+        jLabel4.setBounds(30, 160, 140, 40);
 
         jLabel6.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
         jLabel6.setText("Product Name:");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(30, 280, 140, 40);
+        jLabel6.setBounds(30, 320, 140, 40);
 
         jLabel7.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(255, 255, 255));
         jLabel7.setText("Delivery Date:");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(30, 200, 140, 40);
+        jLabel7.setBounds(30, 240, 140, 40);
 
         btnEdit.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnEdit.setText("Go to Sales");
@@ -122,17 +188,22 @@ public class Sales_Order extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnEdit);
-        btnEdit.setBounds(250, 630, 170, 30);
+        btnEdit.setBounds(260, 630, 130, 40);
 
         btnPurchase.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnPurchase.setText("Order");
+        btnPurchase.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnPurchaseActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnPurchase);
-        btnPurchase.setBounds(70, 600, 130, 30);
+        btnPurchase.setBounds(80, 590, 130, 40);
 
         btnClear.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnClear.setText("Delete");
         jPanel1.add(btnClear);
-        btnClear.setBounds(200, 600, 130, 30);
+        btnClear.setBounds(210, 590, 130, 40);
 
         jButton4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton4.setText("Exit");
@@ -142,7 +213,7 @@ public class Sales_Order extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(190, 660, 130, 30);
+        jButton4.setBounds(190, 670, 130, 40);
 
         btnDelete.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnDelete.setText("Clear");
@@ -152,18 +223,12 @@ public class Sales_Order extends javax.swing.JFrame {
             }
         });
         jPanel1.add(btnDelete);
-        btnDelete.setBounds(120, 630, 130, 30);
+        btnDelete.setBounds(130, 630, 130, 40);
 
         jPanel4.setBackground(new java.awt.Color(0, 102, 102));
         jPanel4.setLayout(null);
         jPanel1.add(jPanel4);
         jPanel4.setBounds(490, 80, 0, 500);
-
-        jLabel5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel5.setText("Customer Name:");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(30, 80, 140, 40);
 
         jPanel2.setBackground(new java.awt.Color(102, 102, 102));
 
@@ -186,29 +251,15 @@ public class Sales_Order extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 0, 510, 60);
 
-        txtGR.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtGR);
-        txtGR.setBounds(170, 440, 320, 40);
+        txtSalesPrice.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtSalesPrice.setText("0.00");
+        jPanel1.add(txtSalesPrice);
+        txtSalesPrice.setBounds(170, 440, 320, 40);
 
-        txtTotal.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtTotal);
-        txtTotal.setBounds(170, 400, 320, 40);
-
-        comPname.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        comPname.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
-        comPname.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comPnameActionPerformed(evt);
-            }
-        });
-        jPanel1.add(comPname);
-        comPname.setBounds(170, 80, 320, 40);
-
-        jLabel10.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel10.setText("GR:");
-        jPanel1.add(jLabel10);
-        jLabel10.setBounds(30, 320, 140, 40);
+        txtPurchasePrice.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtPurchasePrice.setText("0.00");
+        jPanel1.add(txtPurchasePrice);
+        txtPurchasePrice.setBounds(170, 400, 320, 40);
 
         jLabel11.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel11.setForeground(new java.awt.Color(255, 255, 255));
@@ -228,36 +279,40 @@ public class Sales_Order extends javax.swing.JFrame {
         jPanel1.add(jLabel13);
         jLabel13.setBounds(30, 440, 140, 40);
         jPanel1.add(txtDate);
-        txtDate.setBounds(170, 200, 320, 40);
-
-        txtQuantity.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtQuantity);
-        txtQuantity.setBounds(170, 280, 320, 40);
+        txtDate.setBounds(170, 240, 320, 40);
         jPanel1.add(txtDate1);
-        txtDate1.setBounds(170, 160, 320, 40);
+        txtDate1.setBounds(170, 200, 320, 40);
 
-        txtQuantity1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtQuantity1);
-        txtQuantity1.setBounds(170, 360, 320, 40);
+        txtStock.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtStock.setText("0.00");
+        jPanel1.add(txtStock);
+        txtStock.setBounds(170, 360, 320, 40);
 
         jLabel23.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel23.setForeground(new java.awt.Color(255, 255, 255));
         jLabel23.setText("Cateogory:");
         jPanel1.add(jLabel23);
-        jLabel23.setBounds(30, 240, 140, 40);
-
-        txtQuantity2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtQuantity2);
-        txtQuantity2.setBounds(170, 320, 320, 40);
+        jLabel23.setBounds(30, 280, 140, 40);
 
         btnEdit1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        btnEdit1.setText("Edit");
+        btnEdit1.setText("Update");
         jPanel1.add(btnEdit1);
-        btnEdit1.setBounds(330, 600, 130, 30);
+        btnEdit1.setBounds(340, 590, 130, 40);
 
-        txtGR1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtGR1);
-        txtGR1.setBounds(170, 480, 320, 40);
+        txtQuantity.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtQuantity.setText("0");
+        txtQuantity.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtQuantityActionPerformed(evt);
+            }
+        });
+        txtQuantity.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtQuantityKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txtQuantity);
+        txtQuantity.setBounds(170, 480, 320, 40);
 
         jLabel17.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
@@ -265,9 +320,10 @@ public class Sales_Order extends javax.swing.JFrame {
         jPanel1.add(jLabel17);
         jLabel17.setBounds(30, 480, 140, 40);
 
-        txtGR2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel1.add(txtGR2);
-        txtGR2.setBounds(170, 520, 320, 40);
+        txtTotal.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtTotal.setText("0.00");
+        jPanel1.add(txtTotal);
+        txtTotal.setBounds(170, 520, 320, 40);
 
         jLabel18.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel18.setForeground(new java.awt.Color(255, 255, 255));
@@ -275,15 +331,108 @@ public class Sales_Order extends javax.swing.JFrame {
         jPanel1.add(jLabel18);
         jLabel18.setBounds(30, 520, 140, 40);
 
-        comPname1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        comPname1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
-        comPname1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comPname1ActionPerformed(evt);
+        comCustomerType.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        comCustomerType.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select", "Permanent", "Customer" }));
+        comCustomerType.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                comCustomerTypePopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
-        jPanel1.add(comPname1);
-        comPname1.setBounds(170, 240, 320, 40);
+        comCustomerType.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comCustomerTypeActionPerformed(evt);
+            }
+        });
+        jPanel1.add(comCustomerType);
+        comCustomerType.setBounds(170, 80, 320, 40);
+
+        jLabel26.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel26.setText("Customer Type:");
+        jPanel1.add(jLabel26);
+        jLabel26.setBounds(20, 80, 130, 40);
+
+        jLabel14.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel14.setText("Customer Name:");
+        jPanel1.add(jLabel14);
+        jLabel14.setBounds(30, 120, 140, 40);
+
+        txtCustomerName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtCustomerName.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txtCustomerNameActionPerformed(evt);
+            }
+        });
+        txtCustomerName.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtCustomerNameKeyPressed(evt);
+            }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtCustomerNameKeyReleased(evt);
+            }
+        });
+        jPanel1.add(txtCustomerName);
+        txtCustomerName.setBounds(170, 120, 320, 40);
+
+        comCustomer.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        comCustomer.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                comCustomerPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        jPanel1.add(comCustomer);
+        comCustomer.setBounds(170, 120, 290, 40);
+
+        txtOrderId.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jPanel1.add(txtOrderId);
+        txtOrderId.setBounds(170, 160, 320, 40);
+
+        comProduct.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        comProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        comProduct.addContainerListener(new java.awt.event.ContainerAdapter() {
+            public void componentAdded(java.awt.event.ContainerEvent evt) {
+                comProductComponentAdded(evt);
+            }
+        });
+        comProduct.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                comProductPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        jPanel1.add(comProduct);
+        comProduct.setBounds(170, 320, 320, 40);
+
+        comCateogory.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        comCateogory.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        comCateogory.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                comCateogoryPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        comCateogory.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comCateogoryActionPerformed(evt);
+            }
+        });
+        jPanel1.add(comCateogory);
+        comCateogory.setBounds(170, 280, 320, 40);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 510, 770);
@@ -296,11 +445,11 @@ public class Sales_Order extends javax.swing.JFrame {
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel6.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel1.setText("order id");
-        jPanel6.add(jLabel1);
-        jLabel1.setBounds(120, 60, 80, 40);
+        lbOrderId.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lbOrderId.setForeground(new java.awt.Color(255, 255, 255));
+        lbOrderId.setText("order id");
+        jPanel6.add(lbOrderId);
+        lbOrderId.setBounds(120, 60, 80, 40);
 
         jLabel3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
@@ -314,11 +463,10 @@ public class Sales_Order extends javax.swing.JFrame {
         jPanel6.add(jLabel9);
         jLabel9.setBounds(40, 20, 150, 40);
 
-        jLabel14.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel14.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel14.setText("Supplier name.");
-        jPanel6.add(jLabel14);
-        jLabel14.setBounds(190, 20, 150, 40);
+        lbCustomer.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lbCustomer.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel6.add(lbCustomer);
+        lbCustomer.setBounds(190, 20, 150, 40);
 
         jLabel15.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel15.setForeground(new java.awt.Color(255, 255, 255));
@@ -326,15 +474,20 @@ public class Sales_Order extends javax.swing.JFrame {
         jPanel6.add(jLabel15);
         jLabel15.setBounds(40, 60, 80, 40);
 
-        txtId1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jPanel6.add(txtId1);
-        txtId1.setBounds(520, 130, 300, 40);
+        txtSearch.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txtSearchKeyReleased(evt);
+            }
+        });
+        jPanel6.add(txtSearch);
+        txtSearch.setBounds(460, 110, 300, 40);
 
         jLabel16.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel16.setForeground(new java.awt.Color(255, 255, 255));
         jLabel16.setText("*Search by Order id:");
         jPanel6.add(jLabel16);
-        jLabel16.setBounds(320, 130, 200, 40);
+        jLabel16.setBounds(260, 110, 200, 40);
 
         jLabel24.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel24.setForeground(new java.awt.Color(255, 255, 255));
@@ -342,27 +495,27 @@ public class Sales_Order extends javax.swing.JFrame {
         jPanel6.add(jLabel24);
         jLabel24.setBounds(380, 20, 100, 40);
 
-        jLabel25.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel25.setText("order date");
-        jPanel6.add(jLabel25);
-        jLabel25.setBounds(490, 20, 160, 40);
+        lbOrderDate.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lbOrderDate.setForeground(new java.awt.Color(255, 255, 255));
+        lbOrderDate.setText("order date");
+        jPanel6.add(lbOrderDate);
+        lbOrderDate.setBounds(490, 20, 160, 40);
 
-        jLabel26.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel26.setText("delivery date");
-        jPanel6.add(jLabel26);
-        jLabel26.setBounds(510, 60, 120, 40);
+        lbDeliveryDate.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        lbDeliveryDate.setForeground(new java.awt.Color(255, 255, 255));
+        lbDeliveryDate.setText("delivery date");
+        jPanel6.add(lbDeliveryDate);
+        lbDeliveryDate.setBounds(510, 60, 120, 40);
 
         jPanel5.add(jPanel6);
-        jPanel6.setBounds(10, 10, 830, 180);
+        jPanel6.setBounds(10, 10, 830, 160);
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel3.setLayout(null);
 
-        jTable1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        table1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        table1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
             },
@@ -370,14 +523,14 @@ public class Sales_Order extends javax.swing.JFrame {
                 "SL No.", "Cateogory", "Product", "Price", "Quantity", "Total"
             }
         ));
-        jTable1.setRowHeight(30);
-        jScrollPane1.setViewportView(jTable1);
+        table1.setRowHeight(30);
+        jScrollPane1.setViewportView(table1);
 
         jPanel3.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 10, 820, 530);
+        jScrollPane1.setBounds(10, 10, 820, 560);
 
         jPanel5.add(jPanel3);
-        jPanel3.setBounds(10, 200, 840, 550);
+        jPanel3.setBounds(10, 170, 840, 580);
 
         getContentPane().add(jPanel5);
         jPanel5.setBounds(510, 0, 860, 770);
@@ -385,10 +538,6 @@ public class Sales_Order extends javax.swing.JFrame {
         setSize(new java.awt.Dimension(1372, 768));
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
-
-    private void comPnameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comPnameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comPnameActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
@@ -398,10 +547,6 @@ public class Sales_Order extends javax.swing.JFrame {
     private void btnDeleteActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnDeleteActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnDeleteActionPerformed
-
-    private void comPname1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comPname1ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_comPname1ActionPerformed
 
     private void btnEditMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_btnEditMouseClicked
         // TODO add your handling code here:
@@ -413,7 +558,123 @@ public class Sales_Order extends javax.swing.JFrame {
 
     private void btnEditActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEditActionPerformed
         // TODO add your handling code here:
+        new SalesEntry().setVisible(true);
+        this.dispose();
     }//GEN-LAST:event_btnEditActionPerformed
+
+    private void comCustomerTypePopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comCustomerTypePopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        //comCustomer
+        String query = "SELECT `customer name` FROM `customers`";
+        if (!comCustomerType.getSelectedItem().toString().contains("Select")) {
+            if (comCustomerType.getSelectedItem().toString().contains("Permanent")) {
+                comCustomer.setVisible(true);
+                txtCustomerName.setVisible(false);
+                new dbConnection().getDataFromCombo(comCustomer, query);
+            } else {
+                comCustomer.setVisible(false);
+                txtCustomerName.setVisible(true);
+            }
+        } else {
+            comCustomer.setVisible(false);
+            txtCustomerName.setVisible(true);
+        }
+    }//GEN-LAST:event_comCustomerTypePopupMenuWillBecomeInvisible
+
+    private void txtCustomerNameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtCustomerNameActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtCustomerNameActionPerformed
+
+    private void txtCustomerNameKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerNameKeyPressed
+        // TODO add your handling code here:
+        if (comCustomerType.getSelectedIndex() > 0) {
+            try {
+                String customer = txtCustomerName.getText();
+                lbCustomer.setText(customer);
+            } catch (Exception e) {
+            }
+        }
+    }//GEN-LAST:event_txtCustomerNameKeyPressed
+
+    private void txtCustomerNameKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtCustomerNameKeyReleased
+        // TODO add your handling code here:
+        if (comCustomerType.getSelectedIndex() > 0) {
+            try {
+                String customer = txtCustomerName.getText();
+                lbCustomer.setText(customer);
+            } catch (Exception e) {
+            }
+
+        }
+    }//GEN-LAST:event_txtCustomerNameKeyReleased
+
+    private void comCustomerTypeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comCustomerTypeActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comCustomerTypeActionPerformed
+
+    private void comCustomerPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comCustomerPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        if (comCustomer.getSelectedIndex() > 0) {
+            String lCustomer = comCustomer.getSelectedItem().toString();
+            lbCustomer.setText(lCustomer);
+        }
+    }//GEN-LAST:event_comCustomerPopupMenuWillBecomeInvisible
+
+    private void comProductComponentAdded(java.awt.event.ContainerEvent evt) {//GEN-FIRST:event_comProductComponentAdded
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comProductComponentAdded
+
+    private void comProductPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comProductPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        String price = new dbConnection().singledata("SELECT `product_price` FROM `product info` WHERE `product_name`='" + comProduct.getSelectedItem().toString() + "'");
+        txtPurchasePrice.setText(price);
+        txtStock.setText(new dbConnection().singledata("SELECT `stock` FROM `stock` WHERE `product`='"+comProduct.getSelectedItem().toString()+"'"));
+    }//GEN-LAST:event_comProductPopupMenuWillBecomeInvisible
+
+    private void comCateogoryPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comCateogoryPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        String productCategoryId = new dbConnection().singledata("SELECT `cateogory_id` FROM `product cateogory` WHERE `cateogory`='" + comCateogory.getSelectedItem().toString() + "'");
+        new dbConnection().getDataFromCombo(comProduct, "SELECT `product_name` FROM `product info` where `product_category_id`='" + productCategoryId + "'");
+    }//GEN-LAST:event_comCateogoryPopupMenuWillBecomeInvisible
+
+    private void comCateogoryActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comCateogoryActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comCateogoryActionPerformed
+
+    private void txtQuantityActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtQuantityActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_txtQuantityActionPerformed
+
+    private void txtQuantityKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtQuantityKeyReleased
+        // TODO add your handling code here:
+        try {
+         if(comProduct.getSelectedIndex()>0 && Float.parseFloat(txtSalesPrice.getText())>=Float.parseFloat(txtPurchasePrice.getText())){
+            double p = Double.parseDouble(txtSalesPrice.getText());
+                double q = Double.parseDouble(txtQuantity.getText());
+                double t = p * q;
+                txtTotal.setText("" + t);
+        }   
+        } catch (Exception e) {
+        }
+        
+    }//GEN-LAST:event_txtQuantityKeyReleased
+
+    private void btnPurchaseActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnPurchaseActionPerformed
+        // TODO add your handling code here:
+        order();
+    }//GEN-LAST:event_btnPurchaseActionPerformed
+
+    private void txtSearchKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtSearchKeyReleased
+        // TODO add your handling code here:
+        try {
+            showData(txtSearch);
+            lbCustomer.setText(new dbConnection().singledata("SELECT 'customer' FROM `salesorders` WHERE `orderId`='"+txtSearch.getText()+"'"));
+            lbOrderDate.setText(new dbConnection().singledata("SELECT `orderDate` FROM `salesorders` where `orderId`='" + txtSearch.getText() + "'"));
+            lbDeliveryDate.setText(new dbConnection().singledata("SELECT `deliveryDate` FROM `salesorders` where `orderId`='" + txtSearch.getText() + "'"));
+        } catch (Exception e) {
+            JOptionPane.showMessageDialog(this, "something went wrong!");
+        }
+    }//GEN-LAST:event_txtSearchKeyReleased
 
     /**
      * @param args the command line arguments
@@ -462,13 +723,14 @@ public class Sales_Order extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnEdit1;
+    private javax.swing.JButton btnEdit2;
     private javax.swing.JButton btnPurchase;
     private javax.swing.ButtonGroup buttonGroup1;
-    private javax.swing.JComboBox<String> comPname;
-    private javax.swing.JComboBox<String> comPname1;
+    private javax.swing.JComboBox<String> comCateogory;
+    private javax.swing.JComboBox<String> comCustomer;
+    private javax.swing.JComboBox<String> comCustomerType;
+    private javax.swing.JComboBox<String> comProduct;
     private javax.swing.JButton jButton4;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
@@ -480,11 +742,9 @@ public class Sales_Order extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel23;
     private javax.swing.JLabel jLabel24;
-    private javax.swing.JLabel jLabel25;
     private javax.swing.JLabel jLabel26;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
@@ -496,17 +756,20 @@ public class Sales_Order extends javax.swing.JFrame {
     private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable jTable1;
-    private javax.swing.JTextField txtBill;
+    private javax.swing.JLabel lbCustomer;
+    private javax.swing.JLabel lbDeliveryDate;
+    private javax.swing.JLabel lbOrderDate;
+    private javax.swing.JLabel lbOrderId;
+    private javax.swing.JTable table1;
+    private javax.swing.JTextField txtCustomerName;
     private com.toedter.calendar.JDateChooser txtDate;
     private com.toedter.calendar.JDateChooser txtDate1;
-    private javax.swing.JTextField txtGR;
-    private javax.swing.JTextField txtGR1;
-    private javax.swing.JTextField txtGR2;
-    private javax.swing.JTextField txtId1;
+    private javax.swing.JTextField txtOrderId;
+    private javax.swing.JTextField txtPurchasePrice;
     private javax.swing.JTextField txtQuantity;
-    private javax.swing.JTextField txtQuantity1;
-    private javax.swing.JTextField txtQuantity2;
+    private javax.swing.JTextField txtSalesPrice;
+    private javax.swing.JTextField txtSearch;
+    private javax.swing.JTextField txtStock;
     private javax.swing.JTextField txtTotal;
     // End of variables declaration//GEN-END:variables
 }

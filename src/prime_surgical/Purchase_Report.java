@@ -1,4 +1,5 @@
 package prime_surgical;
+import java.awt.Color;
 import javax.swing.*;
 
 /**
@@ -12,9 +13,7 @@ public class Purchase_Report extends javax.swing.JFrame {
      */
     public Purchase_Report() {
         initComponents();
-        productPanel.setVisible(true);
         customerPanel.setVisible(false);
-        billPanel.setVisible(false);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
 
@@ -43,56 +42,8 @@ public class Purchase_Report extends javax.swing.JFrame {
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
         jButton4 = new javax.swing.JButton();
-        jTabbedPane1 = new javax.swing.JTabbedPane();
-        jPanel11 = new javax.swing.JPanel();
         jScrollPane4 = new javax.swing.JScrollPane();
         jTable4 = new javax.swing.JTable();
-        jPanel12 = new javax.swing.JPanel();
-        jPanel13 = new javax.swing.JPanel();
-        billPanel = new javax.swing.JPanel();
-        header5 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
-        jLabel6 = new javax.swing.JLabel();
-        comBill = new javax.swing.JComboBox<>();
-        jComboBox7 = new javax.swing.JComboBox<>();
-        jDateChooser3 = new com.toedter.calendar.JDateChooser();
-        jPanel8 = new javax.swing.JPanel();
-        jLabel14 = new javax.swing.JLabel();
-        jPanel9 = new javax.swing.JPanel();
-        jLabel15 = new javax.swing.JLabel();
-        jButton3 = new javax.swing.JButton();
-        jLabel16 = new javax.swing.JLabel();
-        jLabel18 = new javax.swing.JLabel();
-        jButton6 = new javax.swing.JButton();
-        jTabbedPane2 = new javax.swing.JTabbedPane();
-        jPanel15 = new javax.swing.JPanel();
-        jScrollPane6 = new javax.swing.JScrollPane();
-        jTable6 = new javax.swing.JTable();
-        jPanel16 = new javax.swing.JPanel();
-        jPanel17 = new javax.swing.JPanel();
-        productPanel = new javax.swing.JPanel();
-        header6 = new javax.swing.JPanel();
-        jPanel5 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        comProduct1 = new javax.swing.JComboBox<>();
-        jComboBox3 = new javax.swing.JComboBox<>();
-        jDateChooser1 = new com.toedter.calendar.JDateChooser();
-        comProduct = new javax.swing.JComboBox<>();
-        jPanel1 = new javax.swing.JPanel();
-        jLabel8 = new javax.swing.JLabel();
-        jPanel6 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
-        jButton5 = new javax.swing.JButton();
-        jTabbedPane3 = new javax.swing.JTabbedPane();
-        jPanel14 = new javax.swing.JPanel();
-        jScrollPane5 = new javax.swing.JScrollPane();
-        jTable5 = new javax.swing.JTable();
-        jPanel18 = new javax.swing.JPanel();
-        jPanel19 = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -100,11 +51,11 @@ public class Purchase_Report extends javax.swing.JFrame {
         jLayeredPane1.setBackground(new java.awt.Color(0, 153, 153));
         jLayeredPane1.setLayout(new java.awt.CardLayout());
 
-        customerPanel.setBackground(new java.awt.Color(0, 153, 153));
+        customerPanel.setBackground(new java.awt.Color(51, 51, 51));
         customerPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         customerPanel.setLayout(null);
 
-        header3.setBackground(new java.awt.Color(0, 204, 204));
+        header3.setBackground(new java.awt.Color(132, 168, 179));
         header3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
         header3.setLayout(null);
 
@@ -143,7 +94,7 @@ public class Purchase_Report extends javax.swing.JFrame {
             }
         });
         header3.add(comCustomer);
-        comCustomer.setBounds(1069, 17, 274, 41);
+        comCustomer.setBounds(1080, 10, 274, 50);
 
         jComboBox5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
@@ -155,6 +106,7 @@ public class Purchase_Report extends javax.swing.JFrame {
         jPanel3.setBackground(new java.awt.Color(153, 153, 255));
 
         jLabel10.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
         jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel10.setText("Show by Year");
 
@@ -162,19 +114,24 @@ public class Purchase_Report extends javax.swing.JFrame {
         jPanel3.setLayout(jPanel3Layout);
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 130, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         header3.add(jPanel3);
-        jPanel3.setBounds(1050, 80, 130, 37);
+        jPanel3.setBounds(750, 120, 130, 37);
 
         jPanel7.setBackground(new java.awt.Color(102, 102, 255));
 
         jLabel9.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel9.setText("Show by Month");
 
@@ -182,7 +139,9 @@ public class Purchase_Report extends javax.swing.JFrame {
         jPanel7.setLayout(jPanel7Layout);
         jPanel7Layout.setHorizontalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel9, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jLabel9))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -192,19 +151,21 @@ public class Purchase_Report extends javax.swing.JFrame {
         );
 
         header3.add(jPanel7);
-        jPanel7.setBounds(1180, 80, 124, 37);
+        jPanel7.setBounds(880, 120, 124, 37);
 
         jButton2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jButton2.setText("Show All");
         header3.add(jButton2);
-        jButton2.setBounds(1110, 120, 150, 44);
+        jButton2.setBounds(1140, 80, 170, 44);
 
         jLabel11.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel11.setText("*Select Customer/Shop Name:");
+        jLabel11.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel11.setText("*Select Supplier Name:");
         header3.add(jLabel11);
         jLabel11.setBounds(10, 70, 330, 42);
 
         jLabel13.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setText("Date:");
         header3.add(jLabel13);
         jLabel13.setBounds(370, 70, 350, 42);
@@ -220,11 +181,7 @@ public class Purchase_Report extends javax.swing.JFrame {
             }
         });
         customerPanel.add(jButton4);
-        jButton4.setBounds(610, 720, 240, 40);
-
-        jTabbedPane1.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-
-        jPanel11.setLayout(null);
+        jButton4.setBounds(610, 690, 240, 50);
 
         jTable4.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
         jTable4.setModel(new javax.swing.table.DefaultTableModel(
@@ -238,343 +195,11 @@ public class Purchase_Report extends javax.swing.JFrame {
         jTable4.setRowHeight(30);
         jScrollPane4.setViewportView(jTable4);
 
-        jPanel11.add(jScrollPane4);
-        jScrollPane4.setBounds(0, 0, 1360, 510);
-
-        jTabbedPane1.addTab("Textual Report", jPanel11);
-
-        jPanel12.setLayout(null);
-        jTabbedPane1.addTab("Bar Chart", jPanel12);
-
-        jPanel13.setLayout(null);
-        jTabbedPane1.addTab("Pie Chart", jPanel13);
-
-        customerPanel.add(jTabbedPane1);
-        jTabbedPane1.setBounds(0, 180, 1360, 540);
+        customerPanel.add(jScrollPane4);
+        jScrollPane4.setBounds(0, 170, 1360, 510);
 
         jLayeredPane1.setLayer(customerPanel, javax.swing.JLayeredPane.DRAG_LAYER);
         jLayeredPane1.add(customerPanel, "");
-
-        billPanel.setBackground(new java.awt.Color(0, 153, 153));
-        billPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        billPanel.setLayout(null);
-
-        header5.setBackground(new java.awt.Color(0, 204, 204));
-        header5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        header5.setLayout(null);
-
-        jLabel6.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
-        jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel6.setText("Purchase Report (Bill)");
-
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
-        );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
-        );
-
-        header5.add(jPanel4);
-        jPanel4.setBounds(3, 3, 408, 62);
-
-        comBill.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        comBill.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Product", "Customer", "Bill" }));
-        comBill.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                comBillPopupMenuWillBecomeInvisible(evt);
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-        });
-        header5.add(comBill);
-        comBill.setBounds(1063, 24, 274, 41);
-
-        jComboBox7.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jComboBox7.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
-        header5.add(jComboBox7);
-        jComboBox7.setBounds(10, 110, 320, 50);
-        header5.add(jDateChooser3);
-        jDateChooser3.setBounds(330, 110, 352, 50);
-
-        jPanel8.setBackground(new java.awt.Color(153, 153, 255));
-
-        jLabel14.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel14.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel14.setText("Show by Month");
-
-        javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
-        jPanel8.setLayout(jPanel8Layout);
-        jPanel8Layout.setHorizontalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel8Layout.setVerticalGroup(
-            jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel8Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel14, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        header5.add(jPanel8);
-        jPanel8.setBounds(1070, 70, 130, 37);
-
-        jPanel9.setBackground(new java.awt.Color(102, 102, 255));
-
-        jLabel15.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel15.setText("Show by Year");
-
-        javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
-        jPanel9.setLayout(jPanel9Layout);
-        jPanel9Layout.setHorizontalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-        jPanel9Layout.setVerticalGroup(
-            jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel9Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel15, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        header5.add(jPanel9);
-        jPanel9.setBounds(1200, 70, 124, 37);
-
-        jButton3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jButton3.setText("Show All");
-        header5.add(jButton3);
-        jButton3.setBounds(1130, 110, 150, 44);
-
-        jLabel16.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel16.setText("*Select By bill no.");
-        header5.add(jLabel16);
-        jLabel16.setBounds(10, 70, 320, 42);
-
-        jLabel18.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel18.setText("Date:");
-        header5.add(jLabel18);
-        jLabel18.setBounds(330, 70, 320, 42);
-
-        billPanel.add(header5);
-        header5.setBounds(0, 0, 1360, 170);
-
-        jButton6.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jButton6.setText("Exit");
-        jButton6.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton6ActionPerformed(evt);
-            }
-        });
-        billPanel.add(jButton6);
-        jButton6.setBounds(690, 720, 160, 40);
-
-        jTabbedPane2.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-
-        jPanel15.setLayout(null);
-
-        jTable6.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
-        jTable6.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "SL", "Date", "Bill no.", "Company", "Cateogory", "Product", "GR", "Status", "Quantity", "Price", "Total"
-            }
-        ));
-        jTable6.setRowHeight(30);
-        jScrollPane6.setViewportView(jTable6);
-
-        jPanel15.add(jScrollPane6);
-        jScrollPane6.setBounds(0, 0, 1360, 510);
-
-        jTabbedPane2.addTab("Textual Report", jPanel15);
-
-        jPanel16.setLayout(null);
-        jTabbedPane2.addTab("Bar Chart", jPanel16);
-
-        jPanel17.setLayout(null);
-        jTabbedPane2.addTab("Pie Chart", jPanel17);
-
-        billPanel.add(jTabbedPane2);
-        jTabbedPane2.setBounds(0, 170, 1360, 540);
-
-        jLayeredPane1.setLayer(billPanel, javax.swing.JLayeredPane.DRAG_LAYER);
-        jLayeredPane1.add(billPanel, "");
-
-        productPanel.setBackground(new java.awt.Color(0, 153, 153));
-        productPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
-        productPanel.setLayout(null);
-
-        header6.setBackground(new java.awt.Color(0, 204, 204));
-        header6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 3));
-        header6.setLayout(null);
-
-        jLabel7.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
-        jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel7.setText("Purchase Report (Product)");
-
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 408, Short.MAX_VALUE)
-        );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, 62, Short.MAX_VALUE)
-        );
-
-        header6.add(jPanel5);
-        jPanel5.setBounds(3, 3, 408, 62);
-
-        comProduct1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        comProduct1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Product", "Customer", "Bill" }));
-        comProduct1.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
-            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
-            }
-            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                comProduct1PopupMenuWillBecomeInvisible(evt);
-            }
-            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
-            }
-        });
-        header6.add(comProduct1);
-        comProduct1.setBounds(1063, 24, 274, 41);
-
-        jComboBox3.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jComboBox3.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
-        header6.add(jComboBox3);
-        jComboBox3.setBounds(10, 110, 320, 50);
-        header6.add(jDateChooser1);
-        jDateChooser1.setBounds(650, 110, 352, 50);
-
-        comProduct.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        comProduct.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
-        header6.add(comProduct);
-        comProduct.setBounds(330, 110, 320, 50);
-
-        jPanel1.setBackground(new java.awt.Color(153, 153, 255));
-
-        jLabel8.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Show by Month");
-
-        javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
-        jPanel1.setLayout(jPanel1Layout);
-        jPanel1Layout.setHorizontalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel1Layout.setVerticalGroup(
-            jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        header6.add(jPanel1);
-        jPanel1.setBounds(1070, 80, 130, 37);
-
-        jPanel6.setBackground(new java.awt.Color(102, 102, 255));
-
-        jLabel1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Show by Year");
-
-        javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
-        jPanel6.setLayout(jPanel6Layout);
-        jPanel6Layout.setHorizontalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 118, Short.MAX_VALUE)
-                .addContainerGap())
-        );
-        jPanel6Layout.setVerticalGroup(
-            jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel6Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
-        );
-
-        header6.add(jPanel6);
-        jPanel6.setBounds(1200, 80, 124, 37);
-
-        jButton1.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jButton1.setText("Show All");
-        header6.add(jButton1);
-        jButton1.setBounds(1130, 120, 150, 44);
-
-        jLabel2.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel2.setText("*Select Cateogory:");
-        header6.add(jLabel2);
-        jLabel2.setBounds(10, 70, 320, 42);
-
-        jLabel3.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel3.setText("Product:");
-        header6.add(jLabel3);
-        jLabel3.setBounds(330, 70, 320, 42);
-
-        jLabel5.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel5.setText("Date:");
-        header6.add(jLabel5);
-        jLabel5.setBounds(650, 70, 320, 42);
-
-        productPanel.add(header6);
-        header6.setBounds(0, 0, 1360, 170);
-
-        jButton5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jButton5.setText("Exit");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
-            }
-        });
-        productPanel.add(jButton5);
-        jButton5.setBounds(600, 720, 210, 40);
-
-        jTabbedPane3.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
-
-        jPanel14.setLayout(null);
-
-        jTable5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jTable5.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-
-            },
-            new String [] {
-                "SL", "Date", "Bill no.", "Company", "Cateogory", "Product", "GR", "Status", "Quantity", "Price", "Total"
-            }
-        ));
-        jScrollPane5.setViewportView(jTable5);
-
-        jPanel14.add(jScrollPane5);
-        jScrollPane5.setBounds(0, 0, 1360, 510);
-
-        jTabbedPane3.addTab("Textual Report", jPanel14);
-
-        jPanel18.setLayout(null);
-        jTabbedPane3.addTab("Bar Chart", jPanel18);
-
-        jPanel19.setLayout(null);
-        jTabbedPane3.addTab("Pie Chart", jPanel19);
-
-        productPanel.add(jTabbedPane3);
-        jTabbedPane3.setBounds(0, 170, 1360, 550);
-
-        jLayeredPane1.setLayer(productPanel, javax.swing.JLayeredPane.DRAG_LAYER);
-        jLayeredPane1.add(productPanel, "");
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -594,93 +219,14 @@ public class Purchase_Report extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_comCustomerActionPerformed
 
-    private void comBillPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comBillPopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-        String p=comBill.getSelectedItem().toString();
-        if(p.contains("Product")){
-            productPanel.setVisible(true);
-            customerPanel.setVisible(false);
-            billPanel.setVisible(false);
-            comProduct1.setSelectedItem("Product");
-        }
-        else if(p.contains("Customer")){
-            customerPanel.setVisible(true);
-            billPanel.setVisible(false);
-            productPanel.setVisible(false);
-            comCustomer.setSelectedItem("Customer");
-        }
-        else if(p.contains("Bill")){
-            billPanel.setVisible(true);
-            customerPanel.setVisible(false);
-            productPanel.setVisible(false);
-            comBill.setSelectedItem("Bill");
-            
-        }
-    }//GEN-LAST:event_comBillPopupMenuWillBecomeInvisible
-
-    private void comProduct1PopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comProduct1PopupMenuWillBecomeInvisible
-        // TODO add your handling code here:
-        //Product, Customer, Bill
-        String p=comProduct1.getSelectedItem().toString();
-        if(p.contains("Product")){
-            productPanel.setVisible(true);
-            customerPanel.setVisible(false);
-            billPanel.setVisible(false);
-            comProduct1.setSelectedItem("Product");
-        }
-        else if(p.contains("Customer")){
-            customerPanel.setVisible(true);
-            billPanel.setVisible(false);
-            productPanel.setVisible(false);
-           comCustomer.setSelectedItem("Customer");
-        }
-        else if(p.contains("Bill")){
-            billPanel.setVisible(true);
-            customerPanel.setVisible(false);
-            productPanel.setVisible(false);
-            comBill.setSelectedItem("Bill");
-            
-        }
-    }//GEN-LAST:event_comProduct1PopupMenuWillBecomeInvisible
-
     private void comCustomerPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comCustomerPopupMenuWillBecomeInvisible
         // TODO add your handling code here:
-        String c=comCustomer.getSelectedItem().toString();
-        if(c.contains("Customer")){
-            customerPanel.setVisible(true);
-            productPanel.setVisible(false);
-            billPanel.setVisible(false);
-            comCustomer.setSelectedItem("Customer");
-        }
-        else if(c.contains("Product")){
-            productPanel.setVisible(true);
-            billPanel.setVisible(false);
-            customerPanel.setVisible(false);
-            comProduct.setSelectedItem("Product");
-        }
-        else if(c.contains("Bill")){
-            billPanel.setVisible(true);
-            customerPanel.setVisible(false);
-            productPanel.setVisible(false);
-            comBill.setSelectedItem("Bill");
-            
-        }
     }//GEN-LAST:event_comCustomerPopupMenuWillBecomeInvisible
-
-    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-        this.dispose();
-    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -718,71 +264,23 @@ public class Purchase_Report extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JPanel billPanel;
-    private javax.swing.JComboBox<String> comBill;
     private javax.swing.JComboBox<String> comCustomer;
-    private javax.swing.JComboBox<String> comProduct;
-    private javax.swing.JComboBox<String> comProduct1;
     private javax.swing.JPanel customerPanel;
     private javax.swing.JPanel header3;
-    private javax.swing.JPanel header5;
-    private javax.swing.JPanel header6;
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
-    private javax.swing.JButton jButton6;
-    private javax.swing.JComboBox<String> jComboBox3;
     private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JComboBox<String> jComboBox7;
-    private com.toedter.calendar.JDateChooser jDateChooser1;
-    private com.toedter.calendar.JDateChooser jDateChooser3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel14;
-    private javax.swing.JLabel jLabel15;
-    private javax.swing.JLabel jLabel16;
-    private javax.swing.JLabel jLabel18;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
-    private javax.swing.JPanel jPanel1;
-    private javax.swing.JPanel jPanel11;
-    private javax.swing.JPanel jPanel12;
-    private javax.swing.JPanel jPanel13;
-    private javax.swing.JPanel jPanel14;
-    private javax.swing.JPanel jPanel15;
-    private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel17;
-    private javax.swing.JPanel jPanel18;
-    private javax.swing.JPanel jPanel19;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
-    private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
-    private javax.swing.JPanel jPanel8;
-    private javax.swing.JPanel jPanel9;
     private javax.swing.JScrollPane jScrollPane4;
-    private javax.swing.JScrollPane jScrollPane5;
-    private javax.swing.JScrollPane jScrollPane6;
-    private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTabbedPane jTabbedPane2;
-    private javax.swing.JTabbedPane jTabbedPane3;
     private javax.swing.JTable jTable4;
-    private javax.swing.JTable jTable5;
-    private javax.swing.JTable jTable6;
-    private javax.swing.JPanel productPanel;
     private com.toedter.calendar.JDateChooser txtDate;
     // End of variables declaration//GEN-END:variables
 }

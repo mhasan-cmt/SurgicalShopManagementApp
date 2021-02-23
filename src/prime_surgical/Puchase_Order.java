@@ -117,6 +117,7 @@ public class Puchase_Order extends javax.swing.JFrame {
         new dbConnection().showPurchaseOrders("select * from `purchaseorder` WHERE `orderId`='" + txt.getText() + "'", jTable1);
         lbOrderDate.setText(new dbConnection().singledata("SELECT `orderDate` FROM `purchaseorder` where `orderId`='" + lbOrderId.getText() + "'"));
         lbDeliveryDate.setText(new dbConnection().singledata("SELECT `deliveryDate` FROM `purchaseorder` where `orderId`='" + lbOrderId.getText() + "'"));
+        lbSupplier.setText(new dbConnection().singledata("select `supplier` from `purchaseorder` WHERE `orderId`='" + txt.getText() + "'"));
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -380,6 +381,11 @@ public class Puchase_Order extends javax.swing.JFrame {
 
         btnEdit1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         btnEdit1.setText("Update");
+        btnEdit1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnEdit1ActionPerformed(evt);
+            }
+        });
         jPanel1.add(btnEdit1);
         btnEdit1.setBounds(330, 620, 140, 40);
 
@@ -659,6 +665,10 @@ public class Puchase_Order extends javax.swing.JFrame {
     private void btnClearActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnClearActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_btnClearActionPerformed
+
+    private void btnEdit1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnEdit1ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_btnEdit1ActionPerformed
 
     /**
      * @param args the command line arguments

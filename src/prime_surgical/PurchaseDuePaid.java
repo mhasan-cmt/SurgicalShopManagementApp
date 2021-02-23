@@ -2,6 +2,7 @@ package prime_surgical;
 import com.toedter.calendar.JCalendar;
 import java.text.SimpleDateFormat;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 /**
  *
  * @author Mahmudul Hasan
@@ -76,15 +77,8 @@ int checkBlankData(){
     else if(!rbCash.isSelected() && !rbBank.isSelected()){
         JOptionPane.showMessageDialog(this,"Payment Method is missing!","Error!",JOptionPane.WARNING_MESSAGE);
     }
-    else if(rbBank.isSelected()){
-        if(comBankName.getSelectedIndex()==0){
-            JOptionPane.showMessageDialog(this, "Enter Bank Name!");
-            comBankName.requestFocus();
-        }
-        else if(txtAccount.getSelectedIndex()==0){
-            JOptionPane.showMessageDialog(this, "Enter Account Number!");
-            txtAccount.requestFocus();
-        }
+    else if(rbBank.isSelected()&&comBankName.getSelectedIndex()==0 || txtAccount.getSelectedIndex()==0){
+        JOptionPane.showMessageDialog(this, "Enter all data for bank transaction!");
     }
     else{
         check=1;
@@ -93,23 +87,24 @@ int checkBlankData(){
 }
 void addPurchaseAccounts(){
     if(checkBlankData()==1){
-    if(rbBank.isSelected()){
+    if(rbBank.isSelected() && Float.parseFloat(txtSubTotal.getText())>0){
      getData();
      new dbConnection().addData("INSERT INTO `purchase accounts` VALUES('"+billNo+"','"+"Due Paid"+"','"+purchaseDate+"','"+companyName+"','"+"0"+"','"+"0"+"','"+payment+"','"+"0"+"','"+paid+"','"+due+"')", this);
      new dbConnection().addDataWithNoMessege("INSERT INTO `bank data`(`bank_date`,`bank_name`,`bank_account`,`bank_details`,`bank_status`,`bank_amount`) VALUES('"+purchaseDate+"','"+bankName+"','"+bankAccount+"','"+"Purchase Due"+"','"+"Withdraw"+"','"+paid+"')");
      showPurchaseAccounts();
      txtPaid.setText("0.00");
      Bank.setVisible(false);
-     comCompany.setSelectedIndex(0);
+     comBankName.setSelectedIndex(0);
+     txtAccount.setSelectedIndex(0);
      txtBill.setText("");
     }
-    else if(rbCash.isSelected()){
+    else if(rbCash.isSelected() && Float.parseFloat(txtSubTotal.getText())>0){
      getData();
      new dbConnection().addData("INSERT INTO `purchase accounts` VALUES('"+billNo+"','"+"Due Paid"+"','"+purchaseDate+"','"+companyName+"','"+"0"+"','"+"0.00"+"','"+payment+"','"+"0"+"','"+paid+"','"+due+"')", this);
      new dbConnection().addDataWithNoMessege("INSERT INTO `cash data`(`cash_date`,`cash_details`,`cash_status`,`cash_amount`) VALUES('"+purchaseDate+"','"+"Purchase Due"+"','"+"Debit"+"','"+paid+"')");
      showPurchaseAccounts();
      txtPaid.setText("0.00");
-     comCompany.setSelectedIndex(0);
+     rbCash.setSelected(false);
      txtBill.setText("");
     }
   }
@@ -379,6 +374,7 @@ void addPurchaseAccounts(){
         jPanel5.add(rbBank);
         rbBank.setBounds(200, 540, 100, 40);
 
+        jButton1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton1.setText("Submit");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
