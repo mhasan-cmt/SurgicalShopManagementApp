@@ -155,7 +155,7 @@ void addPurchaseAccounts(){
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(91, 113, 137));
         jPanel1.setLayout(null);
 
         jButton4.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -234,7 +234,7 @@ void addPurchaseAccounts(){
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 510, 770);
 
-        jPanel5.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel5.setBackground(new java.awt.Color(91, 113, 137));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel5.setLayout(null);
 

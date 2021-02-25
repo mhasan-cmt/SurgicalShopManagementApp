@@ -204,10 +204,10 @@ jTextField6.setText("0");
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(68, 64, 81));
         jPanel1.setLayout(null);
 
-        jPanel2.setBackground(new java.awt.Color(0, 204, 204));
+        jPanel2.setBackground(new java.awt.Color(172, 221, 222));
         jPanel2.setLayout(null);
 
         jPanel3.setBackground(new java.awt.Color(51, 51, 51));
@@ -245,6 +245,8 @@ jTextField6.setText("0");
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 0, 1360, 70);
 
+        jTabbedPane1.setBackground(new java.awt.Color(225, 248, 220));
+        jTabbedPane1.setForeground(new java.awt.Color(0, 0, 0));
         jTabbedPane1.setFont(new java.awt.Font("Open Sans", 0, 24)); // NOI18N
         jTabbedPane1.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -252,7 +254,7 @@ jTextField6.setText("0");
             }
         });
 
-        jPanel4.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel4.setBackground(new java.awt.Color(21, 45, 50));
         jPanel4.setLayout(null);
 
         jTable1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
@@ -270,9 +272,10 @@ jTextField6.setText("0");
         jPanel4.add(jScrollPane1);
         jScrollPane1.setBounds(0, 160, 1360, 380);
 
+        jTabbedPane2.setBackground(new java.awt.Color(21, 45, 50));
         jTabbedPane2.setFont(new java.awt.Font("Segoe UI", 1, 18)); // NOI18N
 
-        jPanel9.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel9.setBackground(new java.awt.Color(68, 64, 81));
         jPanel9.setLayout(null);
 
         jTextField4.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
@@ -334,7 +337,7 @@ jTextField6.setText("0");
 
         jTabbedPane2.addTab("ADD Data", jPanel9);
 
-        jPanel10.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel10.setBackground(new java.awt.Color(193, 196, 206));
         jPanel10.setLayout(null);
 
         jDateChooser2.addPropertyChangeListener(new java.beans.PropertyChangeListener() {
@@ -346,7 +349,7 @@ jTextField6.setText("0");
         jDateChooser2.setBounds(90, 10, 380, 50);
 
         jLabel12.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel12.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel12.setForeground(new java.awt.Color(0, 0, 0));
         jLabel12.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel12.setText("Date:");
         jPanel10.add(jLabel12);
@@ -354,7 +357,7 @@ jTextField6.setText("0");
 
         buttonGroup2.add(jRadioButton3);
         jRadioButton3.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jRadioButton3.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton3.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton3.setText("All");
         jRadioButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -366,7 +369,7 @@ jTextField6.setText("0");
 
         buttonGroup2.add(jRadioButton4);
         jRadioButton4.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jRadioButton4.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton4.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton4.setText("Purchase");
         jRadioButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -378,7 +381,7 @@ jTextField6.setText("0");
 
         buttonGroup2.add(jRadioButton5);
         jRadioButton5.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jRadioButton5.setForeground(new java.awt.Color(255, 255, 255));
+        jRadioButton5.setForeground(new java.awt.Color(0, 0, 0));
         jRadioButton5.setText("Sales");
         jRadioButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -389,6 +392,7 @@ jTextField6.setText("0");
         jRadioButton5.setBounds(210, 80, 100, 40);
 
         jButton6.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(0, 0, 0));
         jButton6.setText("Year");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -399,6 +403,7 @@ jTextField6.setText("0");
         jButton6.setBounds(670, 10, 150, 50);
 
         jButton8.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton8.setForeground(new java.awt.Color(0, 0, 0));
         jButton8.setText("Month");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -409,6 +414,7 @@ jTextField6.setText("0");
         jButton8.setBounds(510, 10, 150, 50);
 
         jButton9.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
+        jButton9.setForeground(new java.awt.Color(0, 0, 0));
         jButton9.setText("Show All");
         jPanel10.add(jButton9);
         jButton9.setBounds(510, 70, 310, 50);
@@ -418,7 +424,7 @@ jTextField6.setText("0");
         jPanel4.add(jTabbedPane2);
         jTabbedPane2.setBounds(0, 0, 1360, 160);
 
-        jPanel11.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel11.setBackground(new java.awt.Color(142, 181, 186));
         jPanel11.setLayout(null);
 
         jLabel13.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
@@ -461,7 +467,7 @@ jTextField6.setText("0");
         jLabel20.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jLabel20.setText("0.00");
         jPanel11.add(jLabel20);
-        jLabel20.setBounds(110, 40, 430, 30);
+        jLabel20.setBounds(160, 40, 380, 30);
 
         jPanel4.add(jPanel11);
         jPanel11.setBounds(800, 540, 560, 100);
@@ -488,10 +494,10 @@ jTextField6.setText("0");
 
         jTabbedPane1.addTab("Cash", jPanel4);
 
-        jPanel5.setBackground(new java.awt.Color(0, 102, 153));
+        jPanel5.setBackground(new java.awt.Color(21, 45, 50));
         jPanel5.setLayout(null);
 
-        jPanel6.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel6.setBackground(new java.awt.Color(193, 196, 206));
         jPanel6.setLayout(null);
         jPanel6.add(jDateChooser3);
         jDateChooser3.setBounds(20, 30, 340, 50);
@@ -632,7 +638,7 @@ jTextField6.setText("0");
         jPanel5.add(jLabel4);
         jLabel4.setBounds(1150, 20, 200, 40);
 
-        jPanel12.setBackground(new java.awt.Color(204, 204, 204));
+        jPanel12.setBackground(new java.awt.Color(142, 181, 186));
         jPanel12.setLayout(null);
 
         jLabel23.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N

@@ -105,14 +105,14 @@ public class CreateUser extends javax.swing.JFrame {
         FirstPage.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         FirstPage.setLayout(null);
 
-        Header.setBackground(new java.awt.Color(204, 204, 255));
+        Header.setBackground(new java.awt.Color(60, 80, 104));
         Header.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Header.setForeground(new java.awt.Color(204, 204, 255));
         Header.setLayout(null);
 
         jLabel2.setBackground(new java.awt.Color(0, 0, 0));
         jLabel2.setFont(new java.awt.Font("SansSerif", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(204, 204, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Create New User");
         Header.add(jLabel2);
@@ -127,13 +127,15 @@ public class CreateUser extends javax.swing.JFrame {
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Enter user name:");
         FirstPage.add(jLabel3);
-        jLabel3.setBounds(200, 70, 160, 30);
+        jLabel3.setBounds(200, 50, 160, 30);
 
+        txtUserName.setBackground(new java.awt.Color(60, 80, 104));
         txtUserName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        txtUserName.setForeground(new java.awt.Color(0, 0, 0));
+        txtUserName.setForeground(new java.awt.Color(204, 204, 204));
         txtUserName.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtUserName.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         FirstPage.add(txtUserName);
-        txtUserName.setBounds(70, 100, 430, 40);
+        txtUserName.setBounds(70, 80, 430, 40);
 
         jLabel4.setBackground(new java.awt.Color(0, 0, 0));
         jLabel4.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -141,19 +143,23 @@ public class CreateUser extends javax.swing.JFrame {
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel4.setText("Mobile Number:");
         FirstPage.add(jLabel4);
-        jLabel4.setBounds(200, 150, 160, 30);
+        jLabel4.setBounds(200, 130, 160, 30);
 
+        txtMobile.setBackground(new java.awt.Color(60, 80, 104));
         txtMobile.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        txtMobile.setForeground(new java.awt.Color(0, 0, 0));
+        txtMobile.setForeground(new java.awt.Color(204, 204, 204));
         txtMobile.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtMobile.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         FirstPage.add(txtMobile);
-        txtMobile.setBounds(70, 180, 430, 40);
+        txtMobile.setBounds(70, 160, 430, 40);
 
+        txtEmail.setBackground(new java.awt.Color(60, 80, 104));
         txtEmail.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        txtEmail.setForeground(new java.awt.Color(0, 0, 0));
+        txtEmail.setForeground(new java.awt.Color(204, 204, 204));
         txtEmail.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtEmail.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         FirstPage.add(txtEmail);
-        txtEmail.setBounds(70, 260, 430, 40);
+        txtEmail.setBounds(70, 240, 430, 40);
 
         jLabel5.setBackground(new java.awt.Color(0, 0, 0));
         jLabel5.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -161,13 +167,15 @@ public class CreateUser extends javax.swing.JFrame {
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel5.setText("Email-Address:");
         FirstPage.add(jLabel5);
-        jLabel5.setBounds(200, 230, 160, 30);
+        jLabel5.setBounds(200, 210, 160, 30);
 
+        txtRole.setBackground(new java.awt.Color(60, 80, 104));
         txtRole.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        txtRole.setForeground(new java.awt.Color(0, 0, 0));
+        txtRole.setForeground(new java.awt.Color(204, 204, 204));
         txtRole.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtRole.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         FirstPage.add(txtRole);
-        txtRole.setBounds(70, 330, 430, 40);
+        txtRole.setBounds(70, 310, 430, 40);
 
         jLabel6.setBackground(new java.awt.Color(0, 0, 0));
         jLabel6.setFont(new java.awt.Font("SansSerif", 1, 18)); // NOI18N
@@ -175,7 +183,7 @@ public class CreateUser extends javax.swing.JFrame {
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Role:");
         FirstPage.add(jLabel6);
-        jLabel6.setBounds(200, 300, 160, 30);
+        jLabel6.setBounds(200, 280, 160, 30);
 
         jLabel1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
@@ -189,7 +197,7 @@ public class CreateUser extends javax.swing.JFrame {
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Password:");
         FirstPage.add(jLabel7);
-        jLabel7.setBounds(200, 370, 160, 30);
+        jLabel7.setBounds(200, 350, 160, 30);
 
         jButton2.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jButton2.setText("Exit");
@@ -199,7 +207,7 @@ public class CreateUser extends javax.swing.JFrame {
             }
         });
         FirstPage.add(jButton2);
-        jButton2.setBounds(40, 480, 160, 40);
+        jButton2.setBounds(30, 480, 160, 40);
 
         jButton3.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
         jButton3.setText("Create");
@@ -209,29 +217,32 @@ public class CreateUser extends javax.swing.JFrame {
             }
         });
         FirstPage.add(jButton3);
-        jButton3.setBounds(360, 480, 160, 40);
+        jButton3.setBounds(370, 480, 160, 40);
 
         jButton4.setFont(new java.awt.Font("SansSerif", 1, 24)); // NOI18N
-        jButton4.setText("Back");
+        jButton4.setText("Go to Log-in");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
         FirstPage.add(jButton4);
-        jButton4.setBounds(200, 480, 160, 40);
+        jButton4.setBounds(190, 480, 180, 40);
 
+        jPasswordField1.setBackground(new java.awt.Color(60, 80, 104));
         jPasswordField1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jPasswordField1.setForeground(new java.awt.Color(204, 204, 204));
         jPasswordField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPasswordField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jPasswordField1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordField1ActionPerformed(evt);
             }
         });
         FirstPage.add(jPasswordField1);
-        jPasswordField1.setBounds(70, 400, 430, 40);
+        jPasswordField1.setBounds(70, 380, 430, 40);
 
-        jButton1.setFont(new java.awt.Font("SansSerif", 0, 14)); // NOI18N
+        jButton1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton1.setText("Clear all");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -239,15 +250,18 @@ public class CreateUser extends javax.swing.JFrame {
             }
         });
         FirstPage.add(jButton1);
-        jButton1.setBounds(465, 50, 90, 30);
+        jButton1.setBounds(370, 420, 130, 40);
 
         jLayeredPane1.add(FirstPage, "card2");
 
         FinalPage.setBackground(new java.awt.Color(44, 58, 71));
         FinalPage.setLayout(null);
 
+        jPasswordField2.setBackground(new java.awt.Color(60, 80, 104));
         jPasswordField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPasswordField2.setForeground(new java.awt.Color(255, 255, 255));
         jPasswordField2.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        jPasswordField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 255, 255)));
         jPasswordField2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jPasswordField2ActionPerformed(evt);

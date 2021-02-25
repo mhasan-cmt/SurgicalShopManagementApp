@@ -12,7 +12,7 @@ public class Suppliers extends javax.swing.JFrame {
      */
     public Suppliers() {
         initComponents();
-        showSuplliers();
+        showSuplliers("SELECT * FROM `suppliers`");
         setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
     /**
@@ -29,8 +29,7 @@ public class Suppliers extends javax.swing.JFrame {
         company=txtCompany.getText();
         address=txtAddress.getText();
     }
-   void showSuplliers(){
-       String q="SELECT * FROM `suppliers`";
+   void showSuplliers(String q){
        new dbConnection().showDataForSuppliersTable(q, jTable1);
    }
    void clear(){
@@ -229,10 +228,36 @@ public class Suppliers extends javax.swing.JFrame {
 
         jPanel3.setBackground(new java.awt.Color(0, 153, 153));
         jPanel3.setLayout(null);
+
+        jTextField1.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
         jPanel3.add(jTextField1);
         jTextField1.setBounds(610, 40, 260, 40);
+
+        jTextField2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jTextField2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jTextField2ActionPerformed(evt);
+            }
+        });
+        jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField2KeyReleased(evt);
+            }
+        });
         jPanel3.add(jTextField2);
         jTextField2.setBounds(10, 40, 290, 40);
+
+        jTextField3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField3KeyReleased(evt);
+            }
+        });
         jPanel3.add(jTextField3);
         jTextField3.setBounds(320, 40, 280, 40);
 
@@ -300,7 +325,7 @@ public class Suppliers extends javax.swing.JFrame {
         if(datacheck()==1){
        String query="INSERT INTO `suppliers` VALUES('"+id+"','"+name+"','"+company+"','"+mobile+"','"+address+"')";
        new dbConnection().addData(query, this);
-       showSuplliers();
+       showSuplliers("SELECT * FROM `suppliers`");
         clear();   
         }
         
@@ -312,7 +337,7 @@ public class Suppliers extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // show data to table:
-        showSuplliers();
+        showSuplliers("SELECT * FROM `suppliers`");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
@@ -334,6 +359,25 @@ public class Suppliers extends javax.swing.JFrame {
         address=dtm.getValueAt(jTable1.getSelectedRow(), 4).toString();
         txtAddress.setText(address);
     }//GEN-LAST:event_jTable1MouseClicked
+
+    private void jTextField2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField2ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jTextField2ActionPerformed
+
+    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+        // TODO add your handling code here:
+        showSuplliers("SELECT * FROM `suppliers` where `supplier_name` LIKE '%"+jTextField2.getText()+"%'");
+    }//GEN-LAST:event_jTextField2KeyReleased
+
+    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
+        // TODO add your handling code here:
+        showSuplliers("SELECT * FROM `suppliers` where `supplier_address` LIKE '%"+jTextField3.getText()+"%'");
+    }//GEN-LAST:event_jTextField3KeyReleased
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        // TODO add your handling code here:
+        showSuplliers("SELECT * FROM `suppliers` WHERE `supplier_company_name` LIKE '%"+jTextField1.getText()+"%'");
+    }//GEN-LAST:event_jTextField1KeyReleased
 
     /**
      * @param args the command line arguments

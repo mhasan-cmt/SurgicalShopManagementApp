@@ -321,7 +321,7 @@ int accountsblankCheck(){
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(58, 83, 155));
         jPanel1.setLayout(null);
 
         txtBill.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -413,7 +413,7 @@ int accountsblankCheck(){
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 510, Short.MAX_VALUE)
+            .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, 520, Short.MAX_VALUE)
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -421,7 +421,7 @@ int accountsblankCheck(){
         );
 
         jPanel1.add(jPanel2);
-        jPanel2.setBounds(0, 0, 510, 100);
+        jPanel2.setBounds(0, 0, 520, 100);
 
         txtTotal.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         txtTotal.setText("0.00");
@@ -605,11 +605,11 @@ int accountsblankCheck(){
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 520, 770);
 
-        jPanel5.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel5.setBackground(new java.awt.Color(58, 83, 155));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel5.setLayout(null);
 
-        jPanel6.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel6.setBackground(new java.awt.Color(58, 83, 155));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel6.setLayout(null);
 

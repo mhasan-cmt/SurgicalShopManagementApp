@@ -130,7 +130,7 @@ public class Product_Cateogory extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(54, 74, 114));
         jPanel1.setLayout(null);
 
         btnAdd.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -221,7 +221,7 @@ public class Product_Cateogory extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, -10, 450, 500);
 
-        jPanel3.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel3.setBackground(new java.awt.Color(50, 68, 105));
         jPanel3.setLayout(null);
 
         txtSearch.addActionListener(new java.awt.event.ActionListener() {
@@ -246,7 +246,7 @@ public class Product_Cateogory extends javax.swing.JFrame {
         getContentPane().add(jPanel3);
         jPanel3.setBounds(450, 0, 700, 80);
 
-        jPanel5.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel5.setBackground(new java.awt.Color(50, 68, 105));
         jPanel5.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
         jPanel5.setLayout(null);
 

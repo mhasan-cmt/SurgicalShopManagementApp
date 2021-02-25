@@ -1,4 +1,5 @@
 package prime_surgical;
+
 import java.awt.Color;
 import javax.swing.*;
 
@@ -15,6 +16,8 @@ public class Purchase_Report extends javax.swing.JFrame {
         initComponents();
         customerPanel.setVisible(false);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        new dbConnection().getDataFromCombo(comShow, "SELECT `company_name` FROM `purchase entry` GROUP BY `company_name`");
+        new dbConnection().showPurchaseReport("select * from `purchase entry`", jTable4);
     }
 
     /**
@@ -31,13 +34,13 @@ public class Purchase_Report extends javax.swing.JFrame {
         header3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        comCustomer = new javax.swing.JComboBox<>();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        comSelect = new javax.swing.JComboBox<>();
+        comShow = new javax.swing.JComboBox<>();
         txtDate = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
-        jLabel10 = new javax.swing.JLabel();
+        lbYear = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
-        jLabel9 = new javax.swing.JLabel();
+        lbMonth = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
         jLabel11 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
@@ -61,7 +64,7 @@ public class Purchase_Report extends javax.swing.JFrame {
 
         jLabel4.setFont(new java.awt.Font("Roboto", 0, 30)); // NOI18N
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("Purchase Report (Customer)");
+        jLabel4.setText("Purchase Report (Supplier)");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -77,38 +80,52 @@ public class Purchase_Report extends javax.swing.JFrame {
         header3.add(jPanel2);
         jPanel2.setBounds(3, 3, 408, 62);
 
-        comCustomer.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        comCustomer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Product", "Customer", "Bill" }));
-        comCustomer.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+        comSelect.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        comSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Supplier", "Product", "Bill" }));
+        comSelect.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                comCustomerPopupMenuWillBecomeInvisible(evt);
+                comSelectPopupMenuWillBecomeInvisible(evt);
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
-        comCustomer.addActionListener(new java.awt.event.ActionListener() {
+        comSelect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comCustomerActionPerformed(evt);
+                comSelectActionPerformed(evt);
             }
         });
-        header3.add(comCustomer);
-        comCustomer.setBounds(1080, 10, 274, 50);
+        header3.add(comSelect);
+        comSelect.setBounds(1080, 10, 274, 50);
 
-        jComboBox5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
-        header3.add(jComboBox5);
-        jComboBox5.setBounds(10, 110, 350, 50);
+        comShow.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        comShow.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        comShow.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                comShowPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        comShow.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                comShowActionPerformed(evt);
+            }
+        });
+        header3.add(comShow);
+        comShow.setBounds(10, 110, 350, 50);
         header3.add(txtDate);
         txtDate.setBounds(370, 110, 350, 50);
 
         jPanel3.setBackground(new java.awt.Color(153, 153, 255));
 
-        jLabel10.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel10.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel10.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel10.setText("Show by Year");
+        lbYear.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        lbYear.setForeground(new java.awt.Color(0, 0, 0));
+        lbYear.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbYear.setText("Show by Year");
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -116,13 +133,13 @@ public class Purchase_Report extends javax.swing.JFrame {
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lbYear, javax.swing.GroupLayout.PREFERRED_SIZE, 130, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel10, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lbYear, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         header3.add(jPanel3);
@@ -130,10 +147,10 @@ public class Purchase_Report extends javax.swing.JFrame {
 
         jPanel7.setBackground(new java.awt.Color(102, 102, 255));
 
-        jLabel9.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jLabel9.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Show by Month");
+        lbMonth.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        lbMonth.setForeground(new java.awt.Color(0, 0, 0));
+        lbMonth.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        lbMonth.setText("Show by Month");
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -141,13 +158,13 @@ public class Purchase_Report extends javax.swing.JFrame {
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel9))
+                .addComponent(lbMonth))
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel7Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addComponent(lbMonth, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
 
         header3.add(jPanel7);
@@ -155,6 +172,11 @@ public class Purchase_Report extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jButton2.setText("Show All");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         header3.add(jButton2);
         jButton2.setBounds(1140, 80, 170, 44);
 
@@ -189,7 +211,7 @@ public class Purchase_Report extends javax.swing.JFrame {
 
             },
             new String [] {
-                "SL", "Date", "Bill no.", "Company", "Cateogory", "Product", "GR", "Status", "Quantity", "Price", "Total"
+                "SL", "Date", "Bill no.", "Supplier", "Cateogory", "Product", "GR", "Quantity", "Price", "Total"
             }
         ));
         jTable4.setRowHeight(30);
@@ -215,18 +237,48 @@ public class Purchase_Report extends javax.swing.JFrame {
         setBounds(0, 0, 1366, 768);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comCustomerActionPerformed
+    private void comSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comSelectActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comCustomerActionPerformed
+    }//GEN-LAST:event_comSelectActionPerformed
 
-    private void comCustomerPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comCustomerPopupMenuWillBecomeInvisible
+    private void comSelectPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comSelectPopupMenuWillBecomeInvisible
         // TODO add your handling code here:
-    }//GEN-LAST:event_comCustomerPopupMenuWillBecomeInvisible
+        switch (comSelect.getSelectedIndex()) {
+            case 0 -> {
+                jLabel4.setText("Purchase Report (Supplier)");
+                jLabel11.setText("*Select Supplier Name:");
+                new dbConnection().getDataFromCombo(comShow, "SELECT `company_name` FROM `purchase entry` GROUP BY `company_name`");
+            }
+            case 1 -> {
+                jLabel4.setText("Purchase Report (Product)");
+                new dbConnection().getDataFromCombo(comShow, "SELECT `product` FROM `purchase entry` GROUP BY `product`");
+                jLabel11.setText("*Select Product Name:");
+            }
+            case 2 -> {
+                jLabel4.setText("Purchase Report (Bill)");
+                new dbConnection().getDataFromCombo(comShow, "SELECT `bill_no` FROM `purchase entry` GROUP BY `bill_no`");
+                jLabel11.setText("*Select Bill Number:");
+            }
+        }
+    }//GEN-LAST:event_comSelectPopupMenuWillBecomeInvisible
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+        new dbConnection().showPurchaseReport("select * from `purchase entry`", jTable4);
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void comShowPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comShowPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comShowPopupMenuWillBecomeInvisible
+
+    private void comShowActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comShowActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_comShowActionPerformed
 
     /**
      * @param args the command line arguments
@@ -264,23 +316,23 @@ public class Purchase_Report extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> comCustomer;
+    private javax.swing.JComboBox<String> comSelect;
+    private javax.swing.JComboBox<String> comShow;
     private javax.swing.JPanel customerPanel;
     private javax.swing.JPanel header3;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox5;
-    private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JLayeredPane jLayeredPane1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JScrollPane jScrollPane4;
     private javax.swing.JTable jTable4;
+    private javax.swing.JLabel lbMonth;
+    private javax.swing.JLabel lbYear;
     private com.toedter.calendar.JDateChooser txtDate;
     // End of variables declaration//GEN-END:variables
 }

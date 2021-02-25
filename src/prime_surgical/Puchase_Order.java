@@ -180,7 +180,7 @@ public class Puchase_Order extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(32, 15, 28));
+        jPanel1.setBackground(new java.awt.Color(50, 68, 105));
         jPanel1.setLayout(null);
 
         txtOrderId.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -455,14 +455,15 @@ public class Puchase_Order extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 480, 770);
 
-        jPanel5.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel5.setBackground(new java.awt.Color(54, 74, 114));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel5.setLayout(null);
 
-        jPanel6.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel6.setBackground(new java.awt.Color(59, 80, 122));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel6.setLayout(null);
 
+        lbOrderId.setBackground(new java.awt.Color(59, 80, 122));
         lbOrderId.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         lbOrderId.setForeground(new java.awt.Color(255, 255, 255));
         jPanel6.add(lbOrderId);

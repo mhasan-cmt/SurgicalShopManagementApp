@@ -73,8 +73,7 @@ public class dbConnection {
             dtm.setRowCount(0);
             rs = st.executeQuery(query);
             while (rs.next()) {
-                dtm.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-                    rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9)});
+                dtm.addRow(new Object[]{rs.getString(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9)});
             }
         } catch (SQLException ex) {
             Logger.getLogger(Sales_Officers.class.getName()).log(Level.SEVERE, null, ex);
@@ -363,6 +362,20 @@ public class dbConnection {
             }
         } catch (SQLException ex) {
             Logger.getLogger(dbConnection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+    }
+    void showPurchaseReport(String query, JTable table){
+        try {
+            dbconnect();
+            DefaultTableModel dtm = (DefaultTableModel) table.getModel();
+            dtm.setRowCount(0);
+            rs = st.executeQuery(query);
+            int i = 0;
+            while (rs.next()) {
+                i++;
+                dtm.addRow(new Object[]{i, rs.getString(4), rs.getString(2), rs.getString(3), rs.getString(6), rs.getString(7), rs.getString(5), rs.getString(9),rs.getString(8),rs.getString(10)});
+            }
+        } catch (Exception e) {
         }
     }
 }

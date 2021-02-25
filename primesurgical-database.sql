@@ -25,11 +25,11 @@ CREATE TABLE `bank accounts` (
   `bank_account_name` varchar(100) default NULL,
   `bank_account_number` varchar(100) default NULL,
   PRIMARY KEY  (`bank_id`)
-) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=latin1;
+) ENGINE=InnoDB AUTO_INCREMENT=6 DEFAULT CHARSET=latin1;
 
 /*Data for the table `bank accounts` */
 
-insert  into `bank accounts`(`bank_id`,`bank_account_name`,`bank_account_number`) values (1,'Jamuna Bank','123321131'),(2,'sonali bank','12221'),(3,'Pubali Bank','989876767');
+insert  into `bank accounts`(`bank_id`,`bank_account_name`,`bank_account_number`) values (1,'Jamuna Bank','123321131'),(2,'sonali bank','12221'),(3,'Pubali Bank','989876767'),(4,'Al Arafah Islami Bank','21231212123322212'),(5,'Islami Bank Limited','3211123322122');
 
 /*Table structure for table `bank data` */
 
@@ -313,7 +313,7 @@ CREATE TABLE `suppliers` (
 
 /*Data for the table `suppliers` */
 
-insert  into `suppliers`(`supplier_id`,`supplier_name`,`supplier_company_name`,`supplier_mobile`,`supplier_address`) values (1,'Md Mamun','Mamun Medical Supply','01829928373','Tongi, Gazipur'),(2,'test','test','test','test'),(3,'test','test','test','test'),(102,'Maruf Ahmed','Muruf Medical Supply','0199283332','Uttara, Dhaka'),(103,'Md Ariful islam','Arif Medical Supply','0012098983','Agargao, Chittagong');
+insert  into `suppliers`(`supplier_id`,`supplier_name`,`supplier_company_name`,`supplier_mobile`,`supplier_address`) values (1,'Md Mamun','Mamun Medical Supply','01829928373','Tongi, Gazipur'),(2,'test','test','test','test'),(3,'test','test','test','test'),(102,'Maruf Ahmed','Muruf Medical Supply','0199283332','Uttara, Dhaka'),(103,'Md Ariful islam','Arif Medical Supply','0012098983','Agargao, Chittagong'),(211,'Abdur Rahim','AR Rahman Enterprise','019232323','Andarkilla, chattogram');
 
 /*Table structure for table `users` */
 
@@ -353,6 +353,7 @@ DROP TABLE IF EXISTS `salesprofit`;
 /*!50001 DROP TABLE IF EXISTS `salesprofit` */;
 
 /*!50001 CREATE TABLE  `salesprofit`(
+ `date` date ,
  `product` varchar(200) ,
  `puPrice` varchar(100) ,
  `saPrice` varchar(100) ,
@@ -398,7 +399,7 @@ DROP TABLE IF EXISTS `stock`;
 /*!50001 DROP TABLE IF EXISTS `salesprofit` */;
 /*!50001 DROP VIEW IF EXISTS `salesprofit` */;
 
-/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `salesprofit` AS (select `sales entry`.`product` AS `product`,`purchase entry`.`price` AS `puPrice`,`sales entry`.`price` AS `saPrice`,`sales entry`.`quantity` AS `sQ`,sum(((`sales entry`.`price` - `purchase entry`.`price`) * `sales entry`.`quantity`)) AS `unitProfit` from (`sales entry` left join `purchase entry` on((`sales entry`.`product` = `purchase entry`.`product`))) where (`sales entry`.`price` > 0) group by `sales entry`.`sales_id`) */;
+/*!50001 CREATE ALGORITHM=UNDEFINED DEFINER=`root`@`localhost` SQL SECURITY DEFINER VIEW `salesprofit` AS (select `sales entry`.`sales_date` AS `date`,`sales entry`.`product` AS `product`,`purchase entry`.`price` AS `puPrice`,`sales entry`.`price` AS `saPrice`,`sales entry`.`quantity` AS `sQ`,sum(((`sales entry`.`price` - `purchase entry`.`price`) * `sales entry`.`quantity`)) AS `unitProfit` from (`sales entry` left join `purchase entry` on((`sales entry`.`product` = `purchase entry`.`product`))) where (`sales entry`.`price` > 0) group by `sales entry`.`sales_id`) */;
 
 /*View structure for view salesq */
 

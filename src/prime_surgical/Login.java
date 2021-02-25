@@ -146,7 +146,6 @@ public class Login extends javax.swing.JFrame {
         getContentPane().setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(48, 51, 107));
-        jPanel1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 102), 2));
         jPanel1.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Kalpurush", 1, 36)); // NOI18N
@@ -217,7 +216,9 @@ public class Login extends javax.swing.JFrame {
         jPanel2.setBackground(new java.awt.Color(255, 255, 255));
         jPanel2.setLayout(null);
 
+        txtUser.setBackground(new java.awt.Color(220, 211, 205));
         txtUser.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        txtUser.setForeground(new java.awt.Color(0, 0, 0));
         txtUser.setText("Enter User Name");
         txtUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -284,6 +285,8 @@ public class Login extends javax.swing.JFrame {
         jPanel2.add(jButton3);
         jButton3.setBounds(260, 270, 190, 40);
 
+        txtPassword.setBackground(new java.awt.Color(220, 211, 205));
+        txtPassword.setForeground(new java.awt.Color(0, 0, 0));
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtPasswordKeyPressed(evt);
@@ -299,7 +302,7 @@ public class Login extends javax.swing.JFrame {
         getContentPane().add(jPanel2);
         jPanel2.setBounds(340, 100, 460, 330);
 
-        jPanel3.setBackground(new java.awt.Color(41, 128, 185));
+        jPanel3.setBackground(new java.awt.Color(60, 80, 104));
         jPanel3.setLayout(null);
 
         jLabel10.setFont(new java.awt.Font("Arial Rounded MT Bold", 1, 48)); // NOI18N
@@ -309,7 +312,7 @@ public class Login extends javax.swing.JFrame {
         jPanel3.add(jLabel10);
         jLabel10.setBounds(0, 20, 220, 60);
 
-        comUser.setBackground(new java.awt.Color(47, 54, 64));
+        comUser.setBackground(new java.awt.Color(153, 153, 153));
         comUser.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         comUser.setForeground(new java.awt.Color(199, 236, 238));
         comUser.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));

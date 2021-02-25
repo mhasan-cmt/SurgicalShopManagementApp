@@ -361,7 +361,7 @@ int accountsBlankCheck(){
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(3, 32, 60));
         jPanel1.setLayout(null);
 
         txtCustomerName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -730,11 +730,11 @@ int accountsBlankCheck(){
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 510, 770);
 
-        jPanel5.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel5.setBackground(new java.awt.Color(3, 32, 60));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel5.setLayout(null);
 
-        jPanel6.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel6.setBackground(new java.awt.Color(3, 32, 60));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel6.setLayout(null);
 

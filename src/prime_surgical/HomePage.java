@@ -85,6 +85,12 @@ public class HomePage extends javax.swing.JFrame {
         lbsales.setVisible(false);
         lbprofit.setVisible(false);
         lbloss.setVisible(false);
+        jLabel62.setVisible(false);
+        jLabel61.setVisible(false);
+        jLabel30.setVisible(false);
+        jLabel63.setVisible(false);
+        jLabel64.setVisible(false);
+        jLabel31.setVisible(false);
     }
 
     /**
@@ -175,10 +181,11 @@ public class HomePage extends javax.swing.JFrame {
         jPanel37 = new javax.swing.JPanel();
         AdminPanel = new javax.swing.JPanel();
         HeaderPanel = new javax.swing.JPanel();
-        jLabel56 = new javax.swing.JLabel();
         jPanel44 = new javax.swing.JPanel();
         jPanel45 = new javax.swing.JPanel();
+        jLabel66 = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
+        jButton5 = new javax.swing.JButton();
         userPanel = new javax.swing.JPanel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
@@ -190,10 +197,12 @@ public class HomePage extends javax.swing.JFrame {
         jLabel55 = new javax.swing.JLabel();
         lb_payable = new javax.swing.JLabel();
         lbpayable = new javax.swing.JLabel();
+        jLabel62 = new javax.swing.JLabel();
         jPanel7 = new javax.swing.JPanel();
         jLabel58 = new javax.swing.JLabel();
         lb_cost = new javax.swing.JLabel();
         lbcost = new javax.swing.JLabel();
+        jLabel30 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         jLabel36 = new javax.swing.JLabel();
         jPanel42 = new javax.swing.JPanel();
@@ -202,19 +211,24 @@ public class HomePage extends javax.swing.JFrame {
         jLabel54 = new javax.swing.JLabel();
         lb_recievable = new javax.swing.JLabel();
         lbrecievable = new javax.swing.JLabel();
+        jLabel61 = new javax.swing.JLabel();
         jPanel24 = new javax.swing.JPanel();
         jLabel60 = new javax.swing.JLabel();
         lb_loss = new javax.swing.JLabel();
         lbloss = new javax.swing.JLabel();
+        jLabel31 = new javax.swing.JLabel();
         jPanel11 = new javax.swing.JPanel();
         jLabel57 = new javax.swing.JLabel();
         lb_sales = new javax.swing.JLabel();
         lbsales = new javax.swing.JLabel();
+        jLabel63 = new javax.swing.JLabel();
         jPanel20 = new javax.swing.JPanel();
         jLabel59 = new javax.swing.JLabel();
         lb_profit = new javax.swing.JLabel();
         lbprofit = new javax.swing.JLabel();
+        jLabel64 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
+        jLabel65 = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         SideBarPane = new javax.swing.JPanel();
         lb_Home = new javax.swing.JLabel();
@@ -1084,12 +1098,6 @@ public class HomePage extends javax.swing.JFrame {
 
         HeaderPanel.setLayout(null);
 
-        jLabel56.setFont(new java.awt.Font("Roboto", 0, 28)); // NOI18N
-        jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel56.setText("Admin");
-        HeaderPanel.add(jLabel56);
-        jLabel56.setBounds(0, 0, 210, 40);
-
         jPanel44.setBackground(new java.awt.Color(51, 51, 51));
 
         javax.swing.GroupLayout jPanel44Layout = new javax.swing.GroupLayout(jPanel44);
@@ -1122,6 +1130,12 @@ public class HomePage extends javax.swing.JFrame {
         HeaderPanel.add(jPanel45);
         jPanel45.setBounds(200, 0, 10, 40);
 
+        jLabel66.setFont(new java.awt.Font("Roboto", 0, 28)); // NOI18N
+        jLabel66.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jLabel66.setText("Admin");
+        HeaderPanel.add(jLabel66);
+        jLabel66.setBounds(0, 0, 210, 40);
+
         AdminPanel.add(HeaderPanel);
         HeaderPanel.setBounds(0, 0, 210, 40);
 
@@ -1134,6 +1148,16 @@ public class HomePage extends javax.swing.JFrame {
         });
         AdminPanel.add(jButton2);
         jButton2.setBounds(30, 100, 210, 60);
+
+        jButton5.setFont(new java.awt.Font("SansSerif", 0, 20)); // NOI18N
+        jButton5.setText("Change Admin Password");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
+        AdminPanel.add(jButton5);
+        jButton5.setBounds(240, 100, 260, 60);
 
         userPanel.setBackground(new java.awt.Color(84, 121, 128));
         userPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0)));
@@ -1155,7 +1179,7 @@ public class HomePage extends javax.swing.JFrame {
         jScrollPane1.setViewportView(jTable1);
 
         userPanel.add(jScrollPane1);
-        jScrollPane1.setBounds(10, 10, 1050, 330);
+        jScrollPane1.setBounds(20, 20, 1050, 330);
 
         jButton3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton3.setText("Delete");
@@ -1178,7 +1202,7 @@ public class HomePage extends javax.swing.JFrame {
         jButton4.setBounds(580, 350, 180, 40);
 
         AdminPanel.add(userPanel);
-        userPanel.setBounds(30, 160, 1070, 410);
+        userPanel.setBounds(0, 160, 1110, 430);
 
         Container.add(AdminPanel, "card7");
 
@@ -1220,6 +1244,12 @@ public class HomePage extends javax.swing.JFrame {
         jPanel8.add(lbpayable);
         lbpayable.setBounds(80, 60, 220, 40);
 
+        jLabel62.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel62.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel62.setText("See Details");
+        jPanel8.add(jLabel62);
+        jLabel62.setBounds(200, 100, 100, 30);
+
         AccountsPanel.add(jPanel8);
         jPanel8.setBounds(89, 161, 300, 132);
 
@@ -1251,6 +1281,12 @@ public class HomePage extends javax.swing.JFrame {
         lbcost.setFocusable(false);
         jPanel7.add(lbcost);
         lbcost.setBounds(80, 60, 220, 40);
+
+        jLabel30.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel30.setText("See Details");
+        jPanel7.add(jLabel30);
+        jLabel30.setBounds(200, 100, 100, 30);
 
         AccountsPanel.add(jPanel7);
         jPanel7.setBounds(710, 160, 300, 132);
@@ -1330,6 +1366,12 @@ public class HomePage extends javax.swing.JFrame {
         jPanel9.add(lbrecievable);
         lbrecievable.setBounds(80, 60, 220, 40);
 
+        jLabel61.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel61.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel61.setText("See Details");
+        jPanel9.add(jLabel61);
+        jLabel61.setBounds(200, 100, 100, 30);
+
         AccountsPanel.add(jPanel9);
         jPanel9.setBounds(400, 160, 300, 132);
 
@@ -1361,6 +1403,12 @@ public class HomePage extends javax.swing.JFrame {
         lbloss.setFocusable(false);
         jPanel24.add(lbloss);
         lbloss.setBounds(80, 60, 220, 40);
+
+        jLabel31.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel31.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel31.setText("See Details");
+        jPanel24.add(jLabel31);
+        jLabel31.setBounds(200, 100, 100, 30);
 
         AccountsPanel.add(jPanel24);
         jPanel24.setBounds(710, 300, 300, 132);
@@ -1394,6 +1442,12 @@ public class HomePage extends javax.swing.JFrame {
         jPanel11.add(lbsales);
         lbsales.setBounds(80, 60, 220, 40);
 
+        jLabel63.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel63.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel63.setText("See Details");
+        jPanel11.add(jLabel63);
+        jLabel63.setBounds(200, 100, 100, 30);
+
         AccountsPanel.add(jPanel11);
         jPanel11.setBounds(90, 300, 300, 132);
 
@@ -1426,12 +1480,35 @@ public class HomePage extends javax.swing.JFrame {
         jPanel20.add(lbprofit);
         lbprofit.setBounds(80, 60, 220, 40);
 
+        jLabel64.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        jLabel64.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel64.setText("See Details");
+        jLabel64.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel64MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel64MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel64MouseExited(evt);
+            }
+        });
+        jPanel20.add(jLabel64);
+        jLabel64.setBounds(200, 100, 100, 30);
+
         AccountsPanel.add(jPanel20);
         jPanel20.setBounds(400, 300, 300, 132);
 
         jLabel53.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\Rectangle 18.png")); // NOI18N
         AccountsPanel.add(jLabel53);
         jLabel53.setBounds(710, 60, 300, 50);
+
+        jLabel65.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jLabel65.setForeground(new java.awt.Color(204, 204, 204));
+        jLabel65.setText("Tip: Click to view the amounts");
+        AccountsPanel.add(jLabel65);
+        jLabel65.setBounds(100, 460, 290, 30);
 
         Container.add(AccountsPanel, "card7");
 
@@ -1503,7 +1580,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel8.setFont(new java.awt.Font("Roboto", 0, 28)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(255, 255, 255));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\accounting.png")); // NOI18N
+        jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/accounting.png"))); // NOI18N
         jLabel8.setText("Accounts");
         jLabel8.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -2159,36 +2236,42 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
         // TODO add your handling code here:
         labelAnimation(lb_payable);
         lbpayable.setVisible(true);
+        jLabel62.setVisible(true);
     }//GEN-LAST:event_lb_payableMouseClicked
 
     private void lb_salesMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_salesMouseClicked
         // TODO add your handling code here:
         labelAnimation(lb_sales);
         lbsales.setVisible(true);
+        jLabel63.setVisible(true);
     }//GEN-LAST:event_lb_salesMouseClicked
 
     private void lb_recievableMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_recievableMouseClicked
         // TODO add your handling code here:
         labelAnimation(lb_recievable);
         lbrecievable.setVisible(true);
+        jLabel61.setVisible(true);
     }//GEN-LAST:event_lb_recievableMouseClicked
 
     private void lb_profitMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_profitMouseClicked
         // TODO add your handling code here:
         labelAnimation(lb_profit);
         lbprofit.setVisible(true);
+        jLabel64.setVisible(true);
     }//GEN-LAST:event_lb_profitMouseClicked
 
     private void lb_lossMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_lossMouseClicked
         // TODO add your handling code here:
         labelAnimation(lb_loss);
         lbloss.setVisible(true);
+        jLabel31.setVisible(true);
     }//GEN-LAST:event_lb_lossMouseClicked
 
     private void lb_costMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_lb_costMouseClicked
         // TODO add your handling code here:
         labelAnimation(lb_cost);
         lbcost.setVisible(true);
+        jLabel30.setVisible(true);
     }//GEN-LAST:event_lb_costMouseClicked
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -2231,6 +2314,24 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
         // TODO add your handling code here:
         new CreateUser().setVisible(true);
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jLabel64MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel64MouseEntered
+        // TODO add your handling code here:
+        jLabel64.setForeground(Color.cyan);
+    }//GEN-LAST:event_jLabel64MouseEntered
+
+    private void jLabel64MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel64MouseExited
+        // TODO add your handling code here:
+        jLabel64.setForeground(new Color(204,204,204));
+    }//GEN-LAST:event_jLabel64MouseExited
+
+    private void jLabel64MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel64MouseClicked
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jLabel64MouseClicked
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -2286,6 +2387,7 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
@@ -2309,6 +2411,8 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
     private javax.swing.JLabel jLabel28;
     private javax.swing.JLabel jLabel29;
     private javax.swing.JLabel jLabel3;
+    private javax.swing.JLabel jLabel30;
+    private javax.swing.JLabel jLabel31;
     private javax.swing.JLabel jLabel32;
     private javax.swing.JLabel jLabel33;
     private javax.swing.JLabel jLabel34;
@@ -2335,12 +2439,17 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
-    private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel60;
+    private javax.swing.JLabel jLabel61;
+    private javax.swing.JLabel jLabel62;
+    private javax.swing.JLabel jLabel63;
+    private javax.swing.JLabel jLabel64;
+    private javax.swing.JLabel jLabel65;
+    private javax.swing.JLabel jLabel66;
     private javax.swing.JLabel jLabel7;
     javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;

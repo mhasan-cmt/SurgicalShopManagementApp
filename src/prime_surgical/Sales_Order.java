@@ -148,7 +148,7 @@ public class Sales_Order extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(3, 32, 60));
         jPanel1.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -437,12 +437,12 @@ public class Sales_Order extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 510, 770);
 
-        jPanel5.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel5.setBackground(new java.awt.Color(3, 32, 60));
+        jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
         jPanel5.setLayout(null);
 
-        jPanel6.setBackground(new java.awt.Color(0, 153, 153));
-        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
+        jPanel6.setBackground(new java.awt.Color(3, 32, 60));
+        jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
         jPanel6.setLayout(null);
 
         lbOrderId.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -510,7 +510,7 @@ public class Sales_Order extends javax.swing.JFrame {
         jPanel5.add(jPanel6);
         jPanel6.setBounds(10, 10, 830, 160);
 
-        jPanel3.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel3.setBackground(new java.awt.Color(3, 32, 60));
         jPanel3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel3.setLayout(null);
 
@@ -723,7 +723,6 @@ public class Sales_Order extends javax.swing.JFrame {
     private javax.swing.JButton btnDelete;
     private javax.swing.JButton btnEdit;
     private javax.swing.JButton btnEdit1;
-    private javax.swing.JButton btnEdit2;
     private javax.swing.JButton btnPurchase;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JComboBox<String> comCateogory;

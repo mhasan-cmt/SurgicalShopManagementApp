@@ -16,7 +16,7 @@ public class Customer extends javax.swing.JFrame {
      */
     public Customer() {
         initComponents();
-        showData();
+        showData("select * from `customers`");
         
     }
     
@@ -64,7 +64,7 @@ public class Customer extends javax.swing.JFrame {
             int a=st.executeUpdate(q);
             if(a>0){
                 JOptionPane.showMessageDialog(this, "Data Added...!");
-                showData();
+                showData("select * from `customers`");
                 dataClear();
                 txtId.requestFocus();
             }
@@ -77,11 +77,10 @@ public class Customer extends javax.swing.JFrame {
         }}
         
     }
-    void showData(){
+    void showData(String s){
         try {
             dbConnect();
             DefaultTableModel dtm = (DefaultTableModel)jTable1.getModel();
-            String s="select * from `customers`";
             dtm.setRowCount(0);
             rs=st.executeQuery(s);
             while(rs.next()){
@@ -109,7 +108,7 @@ public class Customer extends javax.swing.JFrame {
             int a=st.executeUpdate(q);
             if(a>0){
                 JOptionPane.showMessageDialog(this, "Data Deleted...!");
-                showData();
+                showData("select * from `customers`");
                 dataClear();
                 txtId.requestFocus();
             }
@@ -130,7 +129,7 @@ public class Customer extends javax.swing.JFrame {
             int a=st.executeUpdate(q);
             if(a>0){
                 JOptionPane.showMessageDialog(this, "Data Updated...!");
-                showData();
+                showData("select * from `customers`");
                 dataClear();
                 txtId.requestFocus();
             }
@@ -186,10 +185,12 @@ public class Customer extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(51, 44, 60));
         jPanel1.setLayout(null);
 
+        txtName.setBackground(new java.awt.Color(60, 80, 104));
         txtName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtName.setForeground(new java.awt.Color(204, 204, 204));
         txtName.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNameKeyPressed(evt);
@@ -198,7 +199,9 @@ public class Customer extends javax.swing.JFrame {
         jPanel1.add(txtName);
         txtName.setBounds(180, 170, 290, 40);
 
+        txtAddress.setBackground(new java.awt.Color(60, 80, 104));
         txtAddress.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtAddress.setForeground(new java.awt.Color(204, 204, 204));
         txtAddress.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtAddressKeyPressed(evt);
@@ -207,7 +210,9 @@ public class Customer extends javax.swing.JFrame {
         jPanel1.add(txtAddress);
         txtAddress.setBounds(180, 320, 290, 40);
 
+        txtMobile.setBackground(new java.awt.Color(60, 80, 104));
         txtMobile.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtMobile.setForeground(new java.awt.Color(204, 204, 204));
         txtMobile.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtMobileKeyPressed(evt);
@@ -216,7 +221,9 @@ public class Customer extends javax.swing.JFrame {
         jPanel1.add(txtMobile);
         txtMobile.setBounds(180, 220, 290, 40);
 
+        txtShop.setBackground(new java.awt.Color(60, 80, 104));
         txtShop.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtShop.setForeground(new java.awt.Color(204, 204, 204));
         txtShop.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtShopKeyPressed(evt);
@@ -257,7 +264,7 @@ public class Customer extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(320, 390, 130, 40);
+        jButton1.setBounds(310, 390, 130, 40);
 
         jButton2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton2.setText("ADD");
@@ -267,7 +274,7 @@ public class Customer extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(40, 390, 130, 40);
+        jButton2.setBounds(50, 390, 130, 40);
 
         jButton3.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton3.setText("Update");
@@ -287,7 +294,7 @@ public class Customer extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(170, 490, 130, 40);
+        jButton4.setBounds(170, 470, 130, 40);
 
         jButton5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton5.setText("Show");
@@ -297,7 +304,7 @@ public class Customer extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton5);
-        jButton5.setBounds(100, 440, 130, 40);
+        jButton5.setBounds(100, 430, 130, 40);
 
         jButton6.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton6.setText("Clear");
@@ -307,14 +314,16 @@ public class Customer extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton6);
-        jButton6.setBounds(240, 440, 130, 40);
+        jButton6.setBounds(230, 430, 130, 40);
 
         jPanel4.setBackground(new java.awt.Color(0, 102, 102));
         jPanel4.setLayout(null);
         jPanel1.add(jPanel4);
         jPanel4.setBounds(490, 80, 0, 500);
 
+        txtId.setBackground(new java.awt.Color(60, 80, 104));
         txtId.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
+        txtId.setForeground(new java.awt.Color(204, 204, 204));
         txtId.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtIdKeyPressed(evt);
@@ -329,20 +338,21 @@ public class Customer extends javax.swing.JFrame {
         jPanel1.add(jLabel5);
         jLabel5.setBounds(10, 120, 170, 40);
 
-        jPanel2.setBackground(new java.awt.Color(102, 102, 102));
+        jPanel2.setBackground(new java.awt.Color(182, 169, 176));
 
-        jLabel8.setFont(new java.awt.Font("SansSerif", 0, 24)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel8.setBackground(new java.awt.Color(182, 169, 176));
+        jLabel8.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
+        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel8.setText("Permanent Customer's Data:");
+        jLabel8.setText("Permanent Customer's Data");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
         jPanel2Layout.setHorizontalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel2Layout.createSequentialGroup()
-                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 490, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 0, Short.MAX_VALUE))
+                .addComponent(jLabel8, javax.swing.GroupLayout.PREFERRED_SIZE, 470, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 20, Short.MAX_VALUE))
         );
         jPanel2Layout.setVerticalGroup(
             jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -353,49 +363,77 @@ public class Customer extends javax.swing.JFrame {
         jPanel2.setBounds(0, 0, 490, 90);
 
         getContentPane().add(jPanel1);
-        jPanel1.setBounds(0, 0, 490, 560);
+        jPanel1.setBounds(0, 0, 470, 560);
 
-        jPanel3.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel3.setBackground(new java.awt.Color(60, 80, 104));
         jPanel3.setLayout(null);
+
+        jTextField1.setBackground(new java.awt.Color(60, 80, 104));
+        jTextField1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextField1.setForeground(new java.awt.Color(204, 204, 204));
+        jTextField1.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jTextField1.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField1KeyReleased(evt);
+            }
+        });
         jPanel3.add(jTextField1);
         jTextField1.setBounds(470, 40, 210, 40);
 
+        jTextField2.setBackground(new java.awt.Color(60, 80, 104));
+        jTextField2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextField2.setForeground(new java.awt.Color(204, 204, 204));
+        jTextField2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
         jTextField2.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 jTextField2KeyPressed(evt);
             }
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField2KeyReleased(evt);
+            }
         });
         jPanel3.add(jTextField2);
         jTextField2.setBounds(10, 40, 220, 40);
+
+        jTextField3.setBackground(new java.awt.Color(60, 80, 104));
+        jTextField3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jTextField3.setForeground(new java.awt.Color(204, 204, 204));
+        jTextField3.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204)));
+        jTextField3.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                jTextField3KeyReleased(evt);
+            }
+        });
         jPanel3.add(jTextField3);
         jTextField3.setBounds(240, 40, 220, 40);
 
-        jLabel1.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel1.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setText("*Select by Hospital/Shop Name");
         jPanel3.add(jLabel1);
         jLabel1.setBounds(470, 0, 220, 40);
 
-        jLabel3.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel3.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setText("*Select by Customer's Name");
         jPanel3.add(jLabel3);
         jLabel3.setBounds(10, 0, 220, 40);
 
-        jLabel9.setFont(new java.awt.Font("SansSerif", 1, 14)); // NOI18N
+        jLabel9.setFont(new java.awt.Font("SansSerif", 0, 16)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(255, 255, 255));
         jLabel9.setText("*Select by Customer's Address");
         jPanel3.add(jLabel9);
         jLabel9.setBounds(230, 0, 220, 40);
 
         getContentPane().add(jPanel3);
-        jPanel3.setBounds(490, 0, 690, 90);
+        jPanel3.setBounds(470, 0, 710, 90);
 
         jPanel5.setBackground(new java.awt.Color(0, 153, 153));
         jPanel5.setLayout(null);
 
-        jTable1.setBorder(new javax.swing.border.LineBorder(new java.awt.Color(0, 0, 0), 2, true));
+        jTable1.setBackground(new java.awt.Color(60, 80, 104));
         jTable1.setFont(new java.awt.Font("Candara", 0, 18)); // NOI18N
+        jTable1.setForeground(new java.awt.Color(204, 204, 204));
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -416,7 +454,7 @@ public class Customer extends javax.swing.JFrame {
         jScrollPane1.setBounds(0, 0, 690, 470);
 
         getContentPane().add(jPanel5);
-        jPanel5.setBounds(490, 90, 690, 470);
+        jPanel5.setBounds(470, 90, 710, 470);
 
         setSize(new java.awt.Dimension(1178, 560));
         setLocationRelativeTo(null);
@@ -474,7 +512,7 @@ public class Customer extends javax.swing.JFrame {
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
-        showData();
+        showData("select * from `customers`");
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -501,6 +539,21 @@ public class Customer extends javax.swing.JFrame {
     private void jTextField2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyPressed
 
     }//GEN-LAST:event_jTextField2KeyPressed
+
+    private void jTextField2KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField2KeyReleased
+        // TODO add your handling code here:
+        showData("SELECT * FROM `customers` WHERE `customer name` LIKE '%"+jTextField2.getText()+"%'");
+    }//GEN-LAST:event_jTextField2KeyReleased
+
+    private void jTextField3KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField3KeyReleased
+        // TODO add your handling code here:
+        showData("SELECT * FROM `customers` WHERE `address` LIKE '%"+jTextField3.getText()+"%'");
+    }//GEN-LAST:event_jTextField3KeyReleased
+
+    private void jTextField1KeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jTextField1KeyReleased
+        // TODO add your handling code here:
+        showData("SELECT * FROM `customers` WHERE `shop name` LIKE '%"+jTextField1.getText()+"%'");
+    }//GEN-LAST:event_jTextField1KeyReleased
 
     /**
      * @param args the command line arguments

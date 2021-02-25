@@ -150,10 +150,10 @@ public class Product_Returns extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(50, 68, 105));
         jPanel1.setLayout(null);
 
-        jPanel2.setBackground(new java.awt.Color(0, 153, 204));
+        jPanel2.setBackground(new java.awt.Color(50, 68, 105));
         jPanel2.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 0, 153)));
         jPanel2.setLayout(null);
 
@@ -174,7 +174,7 @@ public class Product_Returns extends javax.swing.JFrame {
         jPanel3.setBounds(0, 0, 30, 100);
 
         jLabel2.setFont(new java.awt.Font("Roboto Black", 0, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
+        jLabel2.setForeground(new java.awt.Color(255, 255, 255));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Product Returns");
         jPanel2.add(jLabel2);

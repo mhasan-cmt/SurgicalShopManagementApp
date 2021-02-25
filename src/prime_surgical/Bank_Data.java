@@ -163,13 +163,13 @@ public class Bank_Data extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
 
-        jPanel1.setBackground(new java.awt.Color(0, 102, 102));
+        jPanel1.setBackground(new java.awt.Color(68, 64, 81));
         jPanel1.setLayout(null);
 
-        jPanel2.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel2.setBackground(new java.awt.Color(159, 155, 172));
         jPanel2.setLayout(null);
 
-        jPanel3.setBackground(new java.awt.Color(255, 255, 255));
+        jPanel3.setBackground(new java.awt.Color(68, 64, 81));
 
         javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
         jPanel3.setLayout(jPanel3Layout);
@@ -186,6 +186,7 @@ public class Bank_Data extends javax.swing.JFrame {
         jPanel3.setBounds(0, 0, 20, 80);
 
         jLabel2.setFont(new java.awt.Font("Roboto Black", 0, 36)); // NOI18N
+        jLabel2.setForeground(new java.awt.Color(0, 0, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Bank Data");
         jPanel2.add(jLabel2);
@@ -203,7 +204,7 @@ public class Bank_Data extends javax.swing.JFrame {
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, -1, 1370, 80);
 
-        jPanel4.setBackground(new java.awt.Color(0, 153, 153));
+        jPanel4.setBackground(new java.awt.Color(68, 64, 81));
         jPanel4.setBorder(new javax.swing.border.SoftBevelBorder(javax.swing.border.BevelBorder.RAISED));
         jPanel4.setLayout(null);
 
@@ -254,8 +255,9 @@ public class Bank_Data extends javax.swing.JFrame {
         jPanel5.setBackground(new java.awt.Color(153, 153, 153));
         jPanel5.setLayout(null);
 
-        jLabel3.setBackground(new java.awt.Color(153, 153, 153));
-        jLabel3.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel3.setBackground(new java.awt.Color(68, 64, 81));
+        jLabel3.setFont(new java.awt.Font("Roboto", 0, 26)); // NOI18N
+        jLabel3.setForeground(new java.awt.Color(0, 0, 0));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel3.setText("Add Bank Account:");
         jPanel5.add(jLabel3);
@@ -264,7 +266,7 @@ public class Bank_Data extends javax.swing.JFrame {
         jPanel1.add(jPanel5);
         jPanel5.setBounds(0, 80, 540, 60);
 
-        jPanel6.setBackground(new java.awt.Color(0, 102, 153));
+        jPanel6.setBackground(new java.awt.Color(99, 92, 125));
         jPanel6.setBorder(new javax.swing.border.MatteBorder(null));
         jPanel6.setLayout(null);
 
@@ -378,7 +380,8 @@ public class Bank_Data extends javax.swing.JFrame {
         jPanel7.setBackground(new java.awt.Color(153, 153, 153));
         jPanel7.setLayout(null);
 
-        jLabel6.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel6.setFont(new java.awt.Font("Roboto", 0, 26)); // NOI18N
+        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Bank Withdraws & Deposits:");
         jPanel7.add(jLabel6);
@@ -462,7 +465,7 @@ public class Bank_Data extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(1160, 80, 200, 50);
+        jButton4.setBounds(1140, 80, 200, 50);
 
         jPanel9.setBackground(new java.awt.Color(204, 204, 204));
         jPanel9.setLayout(null);
@@ -552,7 +555,7 @@ public class Bank_Data extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         addBankAccount();
-        showBank();
+        initital();
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jTextField5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jTextField5ActionPerformed

@@ -13,8 +13,9 @@ public class Sales_Report extends javax.swing.JFrame {
      */
     public Sales_Report() {
         initComponents();
-        customerPanel.setVisible(false);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
+        new dbConnection().getDataFromCombo(comShow, "SELECT `customer_name` FROM `sales entry` WHERE `price`>0 GROUP BY `customer_name` ");
+        new dbConnection().showPurchaseReport("SELECT * FROM `sales entry` WHERE `price`>0", jTable4);
     }
     /**
      * This method is called from within the constructor to initialize the form.
@@ -30,8 +31,8 @@ public class Sales_Report extends javax.swing.JFrame {
         header3 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jLabel4 = new javax.swing.JLabel();
-        comCustomer = new javax.swing.JComboBox<>();
-        jComboBox5 = new javax.swing.JComboBox<>();
+        comSelect = new javax.swing.JComboBox<>();
+        comShow = new javax.swing.JComboBox<>();
         jDateChooser2 = new com.toedter.calendar.JDateChooser();
         jPanel3 = new javax.swing.JPanel();
         jLabel9 = new javax.swing.JLabel();
@@ -51,7 +52,7 @@ public class Sales_Report extends javax.swing.JFrame {
         jLayeredPane1.setBackground(new java.awt.Color(0, 153, 153));
         jLayeredPane1.setLayout(new java.awt.CardLayout());
 
-        customerPanel.setBackground(new java.awt.Color(0, 153, 153));
+        customerPanel.setBackground(new java.awt.Color(51, 51, 51));
         customerPanel.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         customerPanel.setLayout(null);
 
@@ -77,29 +78,38 @@ public class Sales_Report extends javax.swing.JFrame {
         header3.add(jPanel2);
         jPanel2.setBounds(3, 3, 408, 62);
 
-        comCustomer.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        comCustomer.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Product", "Customer", "Bill" }));
-        comCustomer.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+        comSelect.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        comSelect.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Customer", "Product", "Bill" }));
+        comSelect.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
             public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
             }
             public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
-                comCustomerPopupMenuWillBecomeInvisible(evt);
+                comSelectPopupMenuWillBecomeInvisible(evt);
             }
             public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
             }
         });
-        comCustomer.addActionListener(new java.awt.event.ActionListener() {
+        comSelect.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                comCustomerActionPerformed(evt);
+                comSelectActionPerformed(evt);
             }
         });
-        header3.add(comCustomer);
-        comCustomer.setBounds(1080, 10, 274, 60);
+        header3.add(comSelect);
+        comSelect.setBounds(1080, 10, 274, 60);
 
-        jComboBox5.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        jComboBox5.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
-        header3.add(jComboBox5);
-        jComboBox5.setBounds(20, 130, 360, 50);
+        comShow.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
+        comShow.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Select" }));
+        comShow.addPopupMenuListener(new javax.swing.event.PopupMenuListener() {
+            public void popupMenuCanceled(javax.swing.event.PopupMenuEvent evt) {
+            }
+            public void popupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {
+                comShowPopupMenuWillBecomeInvisible(evt);
+            }
+            public void popupMenuWillBecomeVisible(javax.swing.event.PopupMenuEvent evt) {
+            }
+        });
+        header3.add(comShow);
+        comShow.setBounds(20, 130, 360, 50);
         header3.add(jDateChooser2);
         jDateChooser2.setBounds(380, 130, 350, 50);
 
@@ -120,9 +130,7 @@ public class Sales_Report extends javax.swing.JFrame {
         );
         jPanel3Layout.setVerticalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 37, javax.swing.GroupLayout.PREFERRED_SIZE))
+            .addComponent(jLabel9, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 37, Short.MAX_VALUE)
         );
 
         header3.add(jPanel3);
@@ -154,6 +162,11 @@ public class Sales_Report extends javax.swing.JFrame {
 
         jButton2.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
         jButton2.setText("Show All");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
         header3.add(jButton2);
         jButton2.setBounds(1140, 80, 170, 44);
 
@@ -182,7 +195,7 @@ public class Sales_Report extends javax.swing.JFrame {
 
             },
             new String [] {
-                "SL", "Date", "Bill no.", "Company", "Cateogory", "Product", "GR", "Status", "Quantity", "Price", "Total"
+                "SL", "Date", "Bill no.", "Company", "Cateogory", "Product", "GR", "Quantity", "Price", "Total"
             }
         ));
         jTable4.setRowHeight(30);
@@ -221,18 +234,47 @@ public class Sales_Report extends javax.swing.JFrame {
         setBounds(0, 0, 1366, 768);
     }// </editor-fold>//GEN-END:initComponents
 
-    private void comCustomerActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comCustomerActionPerformed
+    private void comSelectActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_comSelectActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_comCustomerActionPerformed
+    }//GEN-LAST:event_comSelectActionPerformed
 
-    private void comCustomerPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comCustomerPopupMenuWillBecomeInvisible
+    private void comSelectPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comSelectPopupMenuWillBecomeInvisible
         // TODO add your handling code here:
-    }//GEN-LAST:event_comCustomerPopupMenuWillBecomeInvisible
+        switch (comSelect.getSelectedIndex()) {
+            case 0:
+                jLabel4.setText("Sales Report (Customer)");
+                jLabel11.setText("*Select Customer Name:");
+                new dbConnection().getDataFromCombo(comShow, "SELECT `customer_name` FROM `sales entry` WHERE `price`>0 GROUP BY `customer_name` ");
+                break;
+            case 1:
+                jLabel4.setText("Sales Report (Product)");
+                jLabel11.setText("*Select Product Name:");
+                new dbConnection().getDataFromCombo(comShow, "SELECT `product` FROM `sales entry` WHERE `price`>0 GROUP BY `product` ");
+                break;
+            case 2:
+                jLabel4.setText("Sales Report (Bill)");
+                jLabel11.setText("*Select Bill Number:");
+                new dbConnection().getDataFromCombo(comShow, "SELECT `bill_no` FROM `sales entry` WHERE `price`>0 GROUP BY `bill_no` ");
+                break;
+            default:
+                break;
+        }
+    }//GEN-LAST:event_comSelectPopupMenuWillBecomeInvisible
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         // TODO add your handling code here:
         this.dispose();
     }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void comShowPopupMenuWillBecomeInvisible(javax.swing.event.PopupMenuEvent evt) {//GEN-FIRST:event_comShowPopupMenuWillBecomeInvisible
+        // TODO add your handling code here:
+        
+    }//GEN-LAST:event_comShowPopupMenuWillBecomeInvisible
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+        // TODO add your handling code here:
+       new dbConnection().showPurchaseReport("SELECT * FROM `sales entry` WHERE `price`>0", jTable4);
+    }//GEN-LAST:event_jButton2ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -271,12 +313,12 @@ public class Sales_Report extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JComboBox<String> comCustomer;
+    private javax.swing.JComboBox<String> comSelect;
+    private javax.swing.JComboBox<String> comShow;
     private javax.swing.JPanel customerPanel;
     private javax.swing.JPanel header3;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox5;
     private com.toedter.calendar.JDateChooser jDateChooser2;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
