@@ -7,6 +7,7 @@ package prime_surgical;
 import com.toedter.calendar.JCalendar;
 import java.text.SimpleDateFormat;
 import javax.swing.*;
+import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -172,7 +173,6 @@ jTextField6.setText("0");
         jLabel19 = new javax.swing.JLabel();
         jLabel20 = new javax.swing.JLabel();
         jButton7 = new javax.swing.JButton();
-        jButton10 = new javax.swing.JButton();
         jPanel5 = new javax.swing.JPanel();
         jPanel6 = new javax.swing.JPanel();
         jDateChooser3 = new com.toedter.calendar.JDateChooser();
@@ -480,17 +480,7 @@ jTextField6.setText("0");
             }
         });
         jPanel4.add(jButton7);
-        jButton7.setBounds(380, 580, 310, 40);
-
-        jButton10.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton10.setText("Show All");
-        jButton10.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton10ActionPerformed(evt);
-            }
-        });
-        jPanel4.add(jButton10);
-        jButton10.setBounds(380, 540, 310, 40);
+        jButton7.setBounds(380, 550, 310, 50);
 
         jTabbedPane1.addTab("Cash", jPanel4);
 
@@ -607,6 +597,11 @@ jTextField6.setText("0");
             }
         ));
         jTable2.setRowHeight(30);
+        jTable2.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable2MouseClicked(evt);
+            }
+        });
         jScrollPane2.setViewportView(jTable2);
 
         jPanel5.add(jScrollPane2);
@@ -623,7 +618,7 @@ jTextField6.setText("0");
         jButton13.setBounds(540, 530, 310, 60);
 
         jButton14.setFont(new java.awt.Font("Segoe UI", 0, 24)); // NOI18N
-        jButton14.setText("Show All");
+        jButton14.setText("Refresh");
         jButton14.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton14ActionPerformed(evt);
@@ -828,15 +823,16 @@ jTextField6.setText("0");
         showTotals(jLabel27, jLabel28, jLabel26);
     }//GEN-LAST:event_jButton14ActionPerformed
 
-    private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
-        // TODO add your handling code here:
-        showCash(jTable1);
-    }//GEN-LAST:event_jButton10ActionPerformed
-
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
         new dbConnection().showCashData("SELECT * FROM `cash data` ORDER BY MONTH(`cash_date`)", jTable1);
     }//GEN-LAST:event_jButton8ActionPerformed
+
+    private void jTable2MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable2MouseClicked
+        // TODO add your handling code here:
+        DefaultTableModel dtm=(DefaultTableModel)jTable2.getModel();
+         ((JTextField)jDateChooser3.getDateEditor().getUiComponent()).setText(dtm.getValueAt(jTable2.getSelectedRow(), 1).toString());
+    }//GEN-LAST:event_jTable2MouseClicked
 
     /**
      * @param args the command line arguments
@@ -880,7 +876,6 @@ jTextField6.setText("0");
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.ButtonGroup buttonGroup2;
-    private javax.swing.JButton jButton10;
     private javax.swing.JButton jButton11;
     private javax.swing.JButton jButton13;
     private javax.swing.JButton jButton14;

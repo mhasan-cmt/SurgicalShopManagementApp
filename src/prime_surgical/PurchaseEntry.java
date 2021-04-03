@@ -321,7 +321,7 @@ int accountsblankCheck(){
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(58, 83, 155));
+        jPanel1.setBackground(new java.awt.Color(91, 113, 137));
         jPanel1.setLayout(null);
 
         txtBill.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -609,7 +609,7 @@ int accountsblankCheck(){
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel5.setLayout(null);
 
-        jPanel6.setBackground(new java.awt.Color(58, 83, 155));
+        jPanel6.setBackground(new java.awt.Color(91, 113, 137));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel6.setLayout(null);
 
@@ -1033,6 +1033,9 @@ int accountsblankCheck(){
         // TODO add your handling code here:
         if (!txtBill.isEnabled() && accountsblankCheck()==1) {
             purchaseAccounts();
+        }
+        else{
+            JOptionPane.showMessageDialog(this, "Purchase a Product First!");
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 

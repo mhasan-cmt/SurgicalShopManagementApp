@@ -73,10 +73,10 @@ public class Product_Returns extends javax.swing.JFrame {
             JOptionPane.showMessageDialog(this, "Please Enter Return Quantity!");
             txtReturn.requestFocus();
         }
-        else if(txtNewQuantity.getText().isEmpty() || Integer.parseInt(txtNewQuantity.getText())<=0 ){
+        else if(txtNewQuantity.getText().isEmpty() ){
             JOptionPane.showMessageDialog(this, "New Quantity is Missing!");
         }
-        else if(txtNewTotalPrice.getText().isEmpty() || Double.parseDouble(txtNewTotalPrice.getText())<=0){
+        else if(txtNewTotalPrice.getText().isEmpty()){
             JOptionPane.showMessageDialog(this, "New Price is Missing!");
         }
         else {
@@ -85,8 +85,6 @@ public class Product_Returns extends javax.swing.JFrame {
         return check;
     }
     void clearData(){
-        jComboBox2.setSelectedIndex(0);
-        jComboBox3.setSelectedIndex(0);
         comBill.setSelectedIndex(0);
         comGR.setSelectedIndex(0);
         comCategory.setSelectedIndex(0);
@@ -536,7 +534,7 @@ public class Product_Returns extends javax.swing.JFrame {
             new dbConnection().getDataFromCombo(comBill, "SELECT `bill_no` FROM `purchase entry` WHERE `company_name`='" + companyName + "' GROUP BY `bill_no` ORDER BY `bill_no`");
             new dbConnection().getDataFromCombo(comGR, "SELECT `purchase_gr` FROM `purchase entry` WHERE `company_name`='"+companyName+"'");
             new dbConnection().showPurchaseEntry("SELECT * FROM `purchase entry` WHERE `company_name`= '" + companyName + "'", jTable1);
-            lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `purchase accounts` WHERE `company`= '" + companyName + "'"));
+            lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `purchase entry` WHERE `company_name`= '" + companyName + "'"));
             lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `purchase accounts` WHERE `company`= '" + companyName + "'"));
             lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `purchase accounts` WHERE `company`= '" + companyName + "'"));
             lbDue.setText(new dbConnection().singledata("SELECT SUM(`purchase accounts`.`total`-`purchase accounts`.`paid`) AS due\n"
@@ -546,7 +544,7 @@ public class Product_Returns extends javax.swing.JFrame {
             new dbConnection().getDataFromCombo(comBill, "SELECT `bill_no` FROM `sales entry` WHERE `customer_name`='" + companyName + "' GROUP BY `bill_no` ORDER BY `bill_no`");
             new dbConnection().getDataFromCombo(comGR, "SELECT `sales_gr` FROM `sales entry` WHERE `customer_name`='"+companyName+"'");
             new dbConnection().showPurchaseEntry("SELECT * FROM `sales entry` WHERE `customer_name`= '" + companyName + "'", jTable1);
-            lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `sales accounts` WHERE `customer`='" + companyName +"'"));
+            lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `sales entry` WHERE `customer_name`='" + companyName +"'"));
             lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `sales accounts` WHERE `customer`= '"+companyName+"'"));
             lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `sales accounts` WHERE `customer`= '" +companyName+ "'"));
             lbDue.setText(new dbConnection().singledata("SELECT SUM(`due`) FROM `sales accounts` WHERE `customer`= '"+companyName +"'"));
@@ -558,7 +556,7 @@ public class Product_Returns extends javax.swing.JFrame {
         if (jComboBox2.getSelectedIndex() == 1) {
             String companyName = jComboBox3.getSelectedItem().toString();
             new dbConnection().showPurchaseEntry("SELECT * FROM `purchase entry` WHERE `company_name`= '" + companyName + "' and bill_no='"+comBill.getSelectedItem().toString()+"'", jTable1);
-            lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `purchase accounts` WHERE `company`= '" + companyName + "'"));
+            lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `purchase entry` WHERE `company_name`= '" + companyName + "'"));
             lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `purchase accounts` WHERE `company`= '" + companyName + "'"));
             lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `purchase accounts` WHERE `company`= '" + companyName + "'"));
             lbDue.setText(new dbConnection().singledata("SELECT SUM(`purchase accounts`.`total`-`purchase accounts`.`paid`) AS due\n"
@@ -567,7 +565,7 @@ public class Product_Returns extends javax.swing.JFrame {
             String companyName = jComboBox3.getSelectedItem().toString();
             String Bill = comBill.getSelectedItem().toString();
             new dbConnection().showPurchaseEntry("SELECT * FROM `sales entry` WHERE `bill_no`='" + comBill.getSelectedItem().toString() + "' and `customer_name`='" + companyName + "' ", jTable1);
-            lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `sales accounts` WHERE `customer`= '" + companyName + "' AND `bill_no`='" + Bill + "'"));
+            lbSubTotal.setText(new dbConnection().singledata("SELECT SUM(`total`) FROM `sales entry` WHERE `customer_`= '" + companyName + "'"));
             lbPaid.setText(new dbConnection().singledata("SELECT SUM(`paid`) FROM `sales accounts` WHERE `customer`= '" + companyName + "' AND `bill_no`='" + Bill + "'"));
             lbDiscount.setText(new dbConnection().singledata("SELECT SUM(`discount`) FROM `sales accounts` WHERE `customer`= '" + companyName + "' AND `bill_no`='" + Bill + "'"));
             lbDue.setText(new dbConnection().singledata("SELECT SUM(`sales accounts`.`total`-`sales accounts`.`paid`) AS due\n"

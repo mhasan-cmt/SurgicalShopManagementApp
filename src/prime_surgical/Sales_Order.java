@@ -148,7 +148,7 @@ public class Sales_Order extends javax.swing.JFrame {
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(3, 32, 60));
+        jPanel1.setBackground(new java.awt.Color(34, 40, 49));
         jPanel1.setLayout(null);
 
         jLabel2.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -437,11 +437,11 @@ public class Sales_Order extends javax.swing.JFrame {
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 510, 770);
 
-        jPanel5.setBackground(new java.awt.Color(3, 32, 60));
+        jPanel5.setBackground(new java.awt.Color(34, 40, 49));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
         jPanel5.setLayout(null);
 
-        jPanel6.setBackground(new java.awt.Color(3, 32, 60));
+        jPanel6.setBackground(new java.awt.Color(34, 40, 49));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(204, 204, 204), 2));
         jPanel6.setLayout(null);
 
@@ -668,7 +668,7 @@ public class Sales_Order extends javax.swing.JFrame {
         // TODO add your handling code here:
         try {
             showData(txtSearch);
-            lbCustomer.setText(new dbConnection().singledata("SELECT 'customer' FROM `salesorders` WHERE `orderId`='"+txtSearch.getText()+"'"));
+            lbCustomer.setText(new dbConnection().singledata("SELECT `customer` FROM `salesorders` WHERE `orderId`='"+txtSearch.getText()+"'"));
             lbOrderDate.setText(new dbConnection().singledata("SELECT `orderDate` FROM `salesorders` where `orderId`='" + txtSearch.getText() + "'"));
             lbDeliveryDate.setText(new dbConnection().singledata("SELECT `deliveryDate` FROM `salesorders` where `orderId`='" + txtSearch.getText() + "'"));
         } catch (Exception e) {

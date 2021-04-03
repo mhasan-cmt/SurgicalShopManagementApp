@@ -361,7 +361,7 @@ int accountsBlankCheck(){
         setUndecorated(true);
         getContentPane().setLayout(null);
 
-        jPanel1.setBackground(new java.awt.Color(3, 32, 60));
+        jPanel1.setBackground(new java.awt.Color(34, 40, 49));
         jPanel1.setLayout(null);
 
         txtCustomerName.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
@@ -730,11 +730,11 @@ int accountsBlankCheck(){
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 510, 770);
 
-        jPanel5.setBackground(new java.awt.Color(3, 32, 60));
+        jPanel5.setBackground(new java.awt.Color(34, 40, 49));
         jPanel5.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel5.setLayout(null);
 
-        jPanel6.setBackground(new java.awt.Color(3, 32, 60));
+        jPanel6.setBackground(new java.awt.Color(34, 40, 49));
         jPanel6.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(0, 0, 0), 2));
         jPanel6.setLayout(null);
 
@@ -1183,6 +1183,8 @@ int accountsBlankCheck(){
         // TODO add your handling code here:
         if(!txtBill.isEnabled()){
         salesAccounts();  
+        }else{
+            JOptionPane.showMessageDialog(this, "Sale a Product First!");
         }
     }//GEN-LAST:event_jButton6ActionPerformed
 

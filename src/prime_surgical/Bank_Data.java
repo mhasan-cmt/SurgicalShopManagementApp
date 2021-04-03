@@ -209,6 +209,7 @@ public class Bank_Data extends javax.swing.JFrame {
         jPanel4.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel1.setText("Account Number:");
         jPanel4.add(jLabel1);
@@ -225,6 +226,7 @@ public class Bank_Data extends javax.swing.JFrame {
         jTextField2.setBounds(190, 10, 350, 50);
 
         jLabel5.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
+        jLabel5.setForeground(new java.awt.Color(255, 255, 255));
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel5.setText("Bank Name:");
         jPanel4.add(jLabel5);

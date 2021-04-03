@@ -260,7 +260,7 @@ void addPurchaseAccounts(){
 
         jLabel17.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jLabel17.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel17.setText("Sub Total:");
+        jLabel17.setText("Sub Total");
         jPanel5.add(jLabel17);
         jLabel17.setBounds(590, 490, 90, 50);
 
@@ -306,7 +306,7 @@ void addPurchaseAccounts(){
         jLabel21.setForeground(new java.awt.Color(255, 255, 255));
         jLabel21.setText("Paid");
         jPanel5.add(jLabel21);
-        jLabel21.setBounds(590, 550, 90, 40);
+        jLabel21.setBounds(590, 540, 90, 50);
 
         Bank.setBackground(new java.awt.Color(0, 153, 153));
         Bank.setBorder(new javax.swing.border.MatteBorder(null));
