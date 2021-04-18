@@ -61,6 +61,7 @@ public class HomePage extends javax.swing.JFrame {
         SalesP.setVisible(false);
         AccountsP.setVisible(false);
         AdminP.setVisible(false);
+        aboutP.setVisible(false);
     }
 
     void labelAnimation(JLabel label) {
@@ -229,6 +230,8 @@ public class HomePage extends javax.swing.JFrame {
         jLabel64 = new javax.swing.JLabel();
         jLabel53 = new javax.swing.JLabel();
         jLabel65 = new javax.swing.JLabel();
+        aboutPanel = new javax.swing.JPanel();
+        jLabel67 = new javax.swing.JLabel();
         jLayeredPane1 = new javax.swing.JLayeredPane();
         SideBarPane = new javax.swing.JPanel();
         lb_Home = new javax.swing.JLabel();
@@ -242,6 +245,8 @@ public class HomePage extends javax.swing.JFrame {
         AccountsP = new javax.swing.JPanel();
         AdminP = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
+        jLabel56 = new javax.swing.JLabel();
+        aboutP = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setUndecorated(true);
@@ -1512,6 +1517,26 @@ public class HomePage extends javax.swing.JFrame {
 
         Container.add(AccountsPanel, "card7");
 
+        jLabel67.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel67.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\About Section.png")); // NOI18N
+        jLabel67.setText("jLabel67");
+
+        javax.swing.GroupLayout aboutPanelLayout = new javax.swing.GroupLayout(aboutPanel);
+        aboutPanel.setLayout(aboutPanelLayout);
+        aboutPanelLayout.setHorizontalGroup(
+            aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, aboutPanelLayout.createSequentialGroup()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jLabel67, javax.swing.GroupLayout.PREFERRED_SIZE, 1285, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(218, 218, 218))
+        );
+        aboutPanelLayout.setVerticalGroup(
+            aboutPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addComponent(jLabel67, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 600, Short.MAX_VALUE)
+        );
+
+        Container.add(aboutPanel, "card7");
+
         getContentPane().add(Container);
         Container.setBounds(250, 170, 1110, 600);
 
@@ -1613,7 +1638,7 @@ public class HomePage extends javax.swing.JFrame {
             }
         });
         SideBarPane.add(jLabel10);
-        jLabel10.setBounds(10, 300, 130, 50);
+        jLabel10.setBounds(20, 300, 130, 50);
 
         homeP.setBackground(new java.awt.Color(155, 192, 201));
 
@@ -1705,6 +1730,41 @@ public class HomePage extends javax.swing.JFrame {
         SideBarPane.add(jButton1);
         jButton1.setBounds(10, 550, 110, 30);
 
+        jLabel56.setFont(new java.awt.Font("Roboto", 0, 28)); // NOI18N
+        jLabel56.setForeground(new java.awt.Color(255, 255, 255));
+        jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jLabel56.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\prime_surgical\\about.png")); // NOI18N
+        jLabel56.setText("About");
+        jLabel56.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jLabel56MouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jLabel56MouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jLabel56MouseExited(evt);
+            }
+        });
+        SideBarPane.add(jLabel56);
+        jLabel56.setBounds(20, 350, 130, 50);
+
+        aboutP.setBackground(new java.awt.Color(155, 192, 201));
+
+        javax.swing.GroupLayout aboutPLayout = new javax.swing.GroupLayout(aboutP);
+        aboutP.setLayout(aboutPLayout);
+        aboutPLayout.setHorizontalGroup(
+            aboutPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 10, Short.MAX_VALUE)
+        );
+        aboutPLayout.setVerticalGroup(
+            aboutPLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGap(0, 50, Short.MAX_VALUE)
+        );
+
+        SideBarPane.add(aboutP);
+        aboutP.setBounds(0, 350, 10, 50);
+
         jLayeredPane1.add(SideBarPane, "card8");
 
         getContentPane().add(jLayeredPane1);
@@ -1725,6 +1785,7 @@ public class HomePage extends javax.swing.JFrame {
         AccountsP.setVisible(false);
         AdminP.setVisible(false);
         homeP.setVisible(true);
+        aboutP.setVisible(false);
         HomePanel.setVisible(true);
         labelAnimationRevert();
         accountsAmountInvisible();
@@ -1742,6 +1803,7 @@ public class HomePage extends javax.swing.JFrame {
         AccountsP.setVisible(false);
         AdminP.setVisible(false);
         PurchasP.setVisible(true);
+        aboutP.setVisible(false);
         PurchasePanel.setVisible(true);
         labelAnimationRevert();
         accountsAmountInvisible();
@@ -1759,6 +1821,7 @@ public class HomePage extends javax.swing.JFrame {
         AccountsP.setVisible(false);
         AdminP.setVisible(false);
         SalesP.setVisible(true);
+        aboutP.setVisible(false);
         SalesPanel.setVisible(true);
         labelAnimationRevert();
         accountsAmountInvisible();
@@ -1777,6 +1840,7 @@ public class HomePage extends javax.swing.JFrame {
         PurchasP.setVisible(false);
         SalesP.setVisible(false);
         AdminP.setVisible(false);
+        aboutP.setVisible(false);
         AccountsP.setVisible(true);
         AccountsPanel.setVisible(true);
         accountsAmountInvisible();
@@ -1837,6 +1901,7 @@ public class HomePage extends javax.swing.JFrame {
         homeP.setVisible(false);
         PurchasP.setVisible(false);
         SalesP.setVisible(false);
+        aboutP.setVisible(false);
         AccountsP.setVisible(false);
         AdminP.setVisible(true);    
         }else{
@@ -2333,6 +2398,34 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
 
+    private void jLabel56MouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel56MouseExited
+        // TODO add your handling code here:
+        jLabel56.setForeground(Color.WHITE);
+    }//GEN-LAST:event_jLabel56MouseExited
+
+    private void jLabel56MouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel56MouseEntered
+        // TODO add your handling code here:
+        jLabel56.setForeground(Color.CYAN);
+    }//GEN-LAST:event_jLabel56MouseEntered
+
+    private void jLabel56MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jLabel56MouseClicked
+        // TODO add your handling code here:
+        HomePanel.setVisible(false);
+        PurchasePanel.setVisible(false);
+        AccountsPanel.setVisible(false);
+        AdminPanel.setVisible(false);
+        jLabel9.setForeground(Color.red);
+        homeP.setVisible(false);
+        PurchasP.setVisible(false);
+        AccountsP.setVisible(false);
+        AdminP.setVisible(false);
+        SalesP.setVisible(false);
+        SalesPanel.setVisible(false);
+        aboutP.setVisible(true);
+        aboutPanel.setVisible(true);
+        labelAnimationRevert();
+    }//GEN-LAST:event_jLabel56MouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -2381,6 +2474,8 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
     private javax.swing.JPanel SalesP;
     private javax.swing.JPanel SalesPanel;
     private javax.swing.JPanel SideBarPane;
+    private javax.swing.JPanel aboutP;
+    private javax.swing.JPanel aboutPanel;
     private javax.swing.JPanel headerPane;
     private javax.swing.JPanel homeP;
     private javax.swing.JButton jButton1;
@@ -2439,6 +2534,7 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
     private javax.swing.JLabel jLabel53;
     private javax.swing.JLabel jLabel54;
     private javax.swing.JLabel jLabel55;
+    private javax.swing.JLabel jLabel56;
     private javax.swing.JLabel jLabel57;
     private javax.swing.JLabel jLabel58;
     private javax.swing.JLabel jLabel59;
@@ -2450,6 +2546,7 @@ JOptionPane.showMessageDialog(this,"You are not authorized to view this page!" ,
     private javax.swing.JLabel jLabel64;
     private javax.swing.JLabel jLabel65;
     private javax.swing.JLabel jLabel66;
+    private javax.swing.JLabel jLabel67;
     private javax.swing.JLabel jLabel7;
     javax.swing.JLabel jLabel8;
     private javax.swing.JLabel jLabel9;
