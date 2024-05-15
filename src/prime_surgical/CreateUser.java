@@ -102,11 +102,9 @@ public class CreateUser extends javax.swing.JFrame {
         jLayeredPane1.setLayout(new java.awt.CardLayout());
 
         FirstPage.setBackground(new java.awt.Color(44, 58, 71));
-        FirstPage.setBorder(javax.swing.BorderFactory.createEmptyBorder(1, 1, 1, 1));
         FirstPage.setLayout(null);
 
         Header.setBackground(new java.awt.Color(60, 80, 104));
-        Header.setBorder(javax.swing.BorderFactory.createBevelBorder(javax.swing.border.BevelBorder.RAISED));
         Header.setForeground(new java.awt.Color(204, 204, 255));
         Header.setLayout(null);
 
@@ -116,7 +114,7 @@ public class CreateUser extends javax.swing.JFrame {
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel2.setText("Create New User");
         Header.add(jLabel2);
-        jLabel2.setBounds(0, 10, 560, 50);
+        jLabel2.setBounds(0, 10, 500, 50);
 
         FirstPage.add(Header);
         Header.setBounds(0, -10, 560, 60);
@@ -311,12 +309,6 @@ public class CreateUser extends javax.swing.JFrame {
         this.dispose();
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-         new Login().setVisible(true);
-        this.dispose();
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         if(blankDataCheck()==1){
@@ -379,6 +371,12 @@ public class CreateUser extends javax.swing.JFrame {
         
         }
     }//GEN-LAST:event_jPasswordField2ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        new Login().setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton4ActionPerformed
 
     /**
      * @param args the command line arguments

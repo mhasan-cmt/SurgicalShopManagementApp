@@ -1,0 +1,13 @@
+<component name="libraryTable">
+  <library name="SurgicalShopManagementApp">
+    <CLASSES>
+      <root url="jar://$PROJECT_DIR$/AnimatonClass.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jfreechart.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jcommon.jar!/" />
+      <root url="jar://$PROJECT_DIR$/jcalendar-1.4.jar!/" />
+      <root url="jar://$PROJECT_DIR$/mysql-connector-java-5.1.48-bin.jar!/" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES />
+  </library>
+</component>

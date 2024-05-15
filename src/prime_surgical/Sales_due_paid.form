@@ -439,31 +439,11 @@
                       <Color blue="66" green="66" red="0" type="rgb"/>
                     </Property>
                     <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="&#x9aa;&#x9cd;&#x9b0;&#x9be;&#x987;&#x9ae; &#x9b8;&#x9be;&#x9b0;&#x9cd;&#x99c;&#x9bf;&#x995;&#x9cd;&#x9af;&#x9be;&#x9b2; &#x98f;&#x9a8;&#x9cd;&#x9a1; &#x9b8;&#x9be;&#x9df;&#x9c7;&#x9a8;&#x9cd;&#x99f;&#x9bf;&#x9ab;&#x9bf;&#x995;"/>
+                    <Property name="text" type="java.lang.String" value="CP FRESH SHOP"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
                       <AbsoluteConstraints x="140" y="30" width="480" height="-1"/>
-                    </Constraint>
-                  </Constraints>
-                </Component>
-                <Component class="javax.swing.JLabel" name="jLabel2">
-                  <Properties>
-                    <Property name="background" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="66" green="66" red="0" type="rgb"/>
-                    </Property>
-                    <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Roboto" size="24" style="0"/>
-                    </Property>
-                    <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
-                      <Color blue="0" green="99" red="ff" type="rgb"/>
-                    </Property>
-                    <Property name="horizontalAlignment" type="int" value="0"/>
-                    <Property name="text" type="java.lang.String" value="Prime Surgical &amp; Scientific"/>
-                  </Properties>
-                  <Constraints>
-                    <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="200" y="70" width="310" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -472,11 +452,11 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Kalpurush" size="18" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value=" &#x99f;&#x9cd;&#x9b0;&#x9be;&#x982;&#x995; &#x9b0;&#x9cb;&#x9a1;, &#x9ab;&#x9c7;&#x9a8;&#x9c0;&#x964;"/>
+                    <Property name="text" type="java.lang.String" value="Sonargaon Janapath, Dhaka 1230"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="290" y="120" width="130" height="30"/>
+                      <AbsoluteConstraints x="250" y="110" width="250" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -488,7 +468,7 @@
                     <Property name="foreground" type="java.awt.Color" editor="org.netbeans.beaninfo.editors.ColorEditor">
                       <Color blue="33" green="0" red="cc" type="rgb"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Email: primesugical95@gmail.com"/>
+                    <Property name="text" type="java.lang.String" value="Email: cpfresh.uttara@gmail.com"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
@@ -538,11 +518,11 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Kalpurush" size="18" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="&#x9af;&#x9ae;&#x9c1;&#x9a8;&#x9be; &#x9b6;&#x9aa;&#x9bf;&#x982; &#x9b8;&#x9c7;&#x9a8;&#x9cd;&#x99f;&#x9be;&#x9b0;(&#x989;&#x9a4;&#x9cd;&#x9a4;&#x9b0;&#x9be; &#x9ac;&#x9cd;&#x9af;&#x9be;&#x982;&#x995;&#x9c7;&#x9b0; &#x9a8;&#x9bf;&#x99a; &#x9a4;&#x9b2;&#x9be;,"/>
+                    <Property name="text" type="java.lang.String" value="House-05, Navana oval,"/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="80" y="100" width="-1" height="30"/>
+                      <AbsoluteConstraints x="190" y="80" width="180" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>
@@ -551,11 +531,11 @@
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
                       <Font name="Kalpurush" size="18" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="&#x9ab;&#x9c7;&#x9a8;&#x9c0; &#x9b8;&#x9b0;&#x995;&#x9be;&#x9b0;&#x9bf; &#x9ac;&#x9be;&#x9b2;&#x9bf;&#x995;&#x9be; &#x9ac;&#x9bf;&#x9a6;&#x9cd;&#x9af;&#x9be;&#x9b2;&#x9df;&#x9c7;&#x9b0; &#x989;&#x9a4;&#x9cd;&#x9a4;&#x9b0; &#x9aa;&#x9be;&#x9b0;&#x9cd;&#x9b6;&#x9c7;), "/>
+                    <Property name="text" type="java.lang.String" value="Ground floor, Sector-07 "/>
                   </Properties>
                   <Constraints>
                     <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-                      <AbsoluteConstraints x="370" y="100" width="310" height="30"/>
+                      <AbsoluteConstraints x="370" y="80" width="200" height="30"/>
                     </Constraint>
                   </Constraints>
                 </Component>

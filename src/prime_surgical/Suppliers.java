@@ -13,7 +13,6 @@ public class Suppliers extends javax.swing.JFrame {
     public Suppliers() {
         initComponents();
         showSuplliers("SELECT * FROM `suppliers`");
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
     }
     /**
      * custom variable

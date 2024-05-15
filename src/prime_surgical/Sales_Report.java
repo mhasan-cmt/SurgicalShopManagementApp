@@ -13,7 +13,6 @@ public class Sales_Report extends javax.swing.JFrame {
      */
     public Sales_Report() {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
         new dbConnection().getDataFromCombo(comShow, "SELECT `customer_name` FROM `sales entry` WHERE `price`>0 GROUP BY `customer_name` ");
         new dbConnection().showPurchaseReport("SELECT * FROM `sales entry` WHERE `price`>0", jTable4);
     }

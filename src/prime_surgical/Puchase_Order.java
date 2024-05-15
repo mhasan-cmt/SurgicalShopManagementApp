@@ -14,7 +14,6 @@ public class Puchase_Order extends javax.swing.JFrame {
      */
     public Puchase_Order() {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
         new dbConnection().getDataFromCombo(comSupplierName, "SELECT `supplier_name` FROM `suppliers` ORDER BY `supplier_id`");
         new dbConnection().getDataFromCombo(comCategory, "SELECT `cateogory` FROM `product cateogory` ORDER BY `cateogory_id`");
         orderIdIncrement();

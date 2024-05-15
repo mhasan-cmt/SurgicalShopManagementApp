@@ -55,7 +55,6 @@ public class HomePage extends javax.swing.JFrame {
         SalesPanel.setVisible(false);
         AccountsPanel.setVisible(false);
         AdminPanel.setVisible(false);
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
         homeP.setVisible(true);
         PurchasP.setVisible(false);
         SalesP.setVisible(false);
@@ -260,27 +259,26 @@ public class HomePage extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Kalpurush", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("প্রাইম সার্জিক্যাল এন্ড সায়েন্টিফিক");
+        jLabel1.setText("CP FRESH SHOP");
         headerPane.add(jLabel1);
-        jLabel1.setBounds(230, 0, 890, 90);
+        jLabel1.setBounds(230, 10, 890, 60);
 
         jLabel2.setBackground(new java.awt.Color(0, 102, 102));
         jLabel2.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 153, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Prime Surgical & Scientific");
+        jLabel2.setText("Departmental Store Management System");
         headerPane.add(jLabel2);
-        jLabel2.setBounds(440, 60, 470, 40);
+        jLabel2.setBounds(340, 60, 700, 40);
 
         jLabel3.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
         jLabel3.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel3.setText("Email: primesugicall95@gmail.com");
+        jLabel3.setText("Email: cpfresh.uttara@gmail.com");
         headerPane.add(jLabel3);
-        jLabel3.setBounds(710, 130, 320, 24);
+        jLabel3.setBounds(710, 140, 320, 24);
 
         jLabel4.setFont(new java.awt.Font("Kalpurush", 0, 24)); // NOI18N
-        jLabel4.setForeground(new java.awt.Color(0, 0, 0));
-        jLabel4.setText("যমুনা শপিং সেন্টার(উত্তরা ব্যাংকের নিচ তলা, ফেনী সরকারি বালিকা বিদ্যালয়ের উত্তর পার্শে), ট্রাংক রোড, ফেনী।");
+        jLabel4.setText("House-05, Navana oval, Ground floor, Sector-07 Sonargaon Janapath, Dhaka 1230");
         headerPane.add(jLabel4);
         jLabel4.setBounds(210, 100, 960, 40);
 
@@ -288,7 +286,7 @@ public class HomePage extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(204, 0, 51));
         jLabel5.setText("মোবাইলঃ ০১৮৮৭-০৩৩৩১১, ০১৮৬৩-৮০৮৯৮১");
         headerPane.add(jLabel5);
-        jLabel5.setBounds(390, 130, 320, 30);
+        jLabel5.setBounds(390, 140, 320, 30);
 
         jLabel42.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel42.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/minimize.png"))); // NOI18N
@@ -324,7 +322,6 @@ public class HomePage extends javax.swing.JFrame {
         jPanel30.setLayout(null);
 
         jLabel27.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
-        jLabel27.setForeground(new java.awt.Color(0, 0, 0));
         jLabel27.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel27.setText("Stock");
         jLabel27.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -362,7 +359,6 @@ public class HomePage extends javax.swing.JFrame {
         jPanel14.setLayout(null);
 
         jLabel13.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
-        jLabel13.setForeground(new java.awt.Color(0, 0, 0));
         jLabel13.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel13.setText("Product Category");
         jLabel13.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -397,7 +393,6 @@ public class HomePage extends javax.swing.JFrame {
         jPanel10.setLayout(null);
 
         jLabel49.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
-        jLabel49.setForeground(new java.awt.Color(0, 0, 0));
         jLabel49.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel49.setText("Product Returns");
         jLabel49.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -409,7 +404,6 @@ public class HomePage extends javax.swing.JFrame {
         jLabel49.setBounds(0, 90, 350, 60);
 
         jLabel45.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel45.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\icons8_product_100px_3.png")); // NOI18N
         jLabel45.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel45MouseClicked(evt);
@@ -432,7 +426,6 @@ public class HomePage extends javax.swing.JFrame {
         jPanel12.setLayout(null);
 
         jLabel18.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
-        jLabel18.setForeground(new java.awt.Color(0, 0, 0));
         jLabel18.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel18.setText("Costs");
         jLabel18.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -470,7 +463,6 @@ public class HomePage extends javax.swing.JFrame {
         jPanel13.setLayout(null);
 
         jLabel15.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
-        jLabel15.setForeground(new java.awt.Color(0, 0, 0));
         jLabel15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel15.setText("Cash Data");
         jLabel15.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -505,7 +497,6 @@ public class HomePage extends javax.swing.JFrame {
         jPanel15.setLayout(null);
 
         jLabel17.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
-        jLabel17.setForeground(new java.awt.Color(0, 0, 0));
         jLabel17.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel17.setText("Sales Officer's");
         jLabel17.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -585,7 +576,6 @@ public class HomePage extends javax.swing.JFrame {
         jPanel21.setLayout(null);
 
         jLabel28.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
-        jLabel28.setForeground(new java.awt.Color(0, 0, 0));
         jLabel28.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel28.setText("Bank Data");
         jLabel28.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -639,7 +629,6 @@ public class HomePage extends javax.swing.JFrame {
         });
 
         jLabel38.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
-        jLabel38.setForeground(new java.awt.Color(0, 0, 0));
         jLabel38.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel38.setText("Sales Report");
 
@@ -680,7 +669,6 @@ public class HomePage extends javax.swing.JFrame {
         });
 
         jLabel26.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
-        jLabel26.setForeground(new java.awt.Color(0, 0, 0));
         jLabel26.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel26.setText("Purchase Report");
 
@@ -718,7 +706,6 @@ public class HomePage extends javax.swing.JFrame {
         jPanel16.setLayout(null);
 
         jLabel7.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
-        jLabel7.setForeground(new java.awt.Color(0, 0, 0));
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel7.setText("Suppliers");
         jLabel7.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -754,7 +741,6 @@ public class HomePage extends javax.swing.JFrame {
         jPanel17.setLayout(null);
 
         jLabel6.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(0, 0, 0));
         jLabel6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel6.setText("Purchase Due Paid");
         jLabel6.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -794,7 +780,6 @@ public class HomePage extends javax.swing.JFrame {
         jPanel18.setLayout(null);
 
         jLabel19.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
-        jLabel19.setForeground(new java.awt.Color(0, 0, 0));
         jLabel19.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel19.setText("Purchase Order's");
         jLabel19.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -830,7 +815,6 @@ public class HomePage extends javax.swing.JFrame {
         jPanel19.setLayout(null);
 
         jLabel16.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
-        jLabel16.setForeground(new java.awt.Color(0, 0, 0));
         jLabel16.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel16.setText("Purchase Entry");
         jLabel16.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -918,7 +902,6 @@ public class HomePage extends javax.swing.JFrame {
         jPanel22.setLayout(null);
 
         jLabel21.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
-        jLabel21.setForeground(new java.awt.Color(0, 0, 0));
         jLabel21.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel21.setText("Sales Entry");
         jLabel21.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -953,7 +936,6 @@ public class HomePage extends javax.swing.JFrame {
         jPanel23.setLayout(null);
 
         jLabel22.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
-        jLabel22.setForeground(new java.awt.Color(0, 0, 0));
         jLabel22.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel22.setText("Sales Orders");
         jLabel22.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -988,7 +970,6 @@ public class HomePage extends javax.swing.JFrame {
         jPanel25.setLayout(null);
 
         jLabel24.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
-        jLabel24.setForeground(new java.awt.Color(0, 0, 0));
         jLabel24.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel24.setText("Sales Collection");
         jLabel24.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1023,7 +1004,6 @@ public class HomePage extends javax.swing.JFrame {
         jPanel26.setLayout(null);
 
         jLabel25.setFont(new java.awt.Font("Candara", 0, 36)); // NOI18N
-        jLabel25.setForeground(new java.awt.Color(0, 0, 0));
         jLabel25.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel25.setText("Customers");
         jLabel25.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -1250,7 +1230,6 @@ public class HomePage extends javax.swing.JFrame {
         lbpayable.setBounds(80, 60, 220, 40);
 
         jLabel62.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel62.setForeground(new java.awt.Color(0, 0, 0));
         jLabel62.setText("See Details");
         jPanel8.add(jLabel62);
         jLabel62.setBounds(200, 100, 100, 30);
@@ -1288,7 +1267,6 @@ public class HomePage extends javax.swing.JFrame {
         lbcost.setBounds(80, 60, 220, 40);
 
         jLabel30.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel30.setForeground(new java.awt.Color(0, 0, 0));
         jLabel30.setText("See Details");
         jPanel7.add(jLabel30);
         jLabel30.setBounds(200, 100, 100, 30);
@@ -1372,7 +1350,6 @@ public class HomePage extends javax.swing.JFrame {
         lbrecievable.setBounds(80, 60, 220, 40);
 
         jLabel61.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
-        jLabel61.setForeground(new java.awt.Color(0, 0, 0));
         jLabel61.setText("See Details");
         jPanel9.add(jLabel61);
         jLabel61.setBounds(200, 100, 100, 30);
@@ -1504,8 +1481,6 @@ public class HomePage extends javax.swing.JFrame {
 
         AccountsPanel.add(jPanel20);
         jPanel20.setBounds(400, 300, 300, 132);
-
-        jLabel53.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\Rectangle 18.png")); // NOI18N
         AccountsPanel.add(jLabel53);
         jLabel53.setBounds(710, 60, 300, 50);
 
@@ -1518,7 +1493,6 @@ public class HomePage extends javax.swing.JFrame {
         Container.add(AccountsPanel, "card7");
 
         jLabel67.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel67.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\About Section.png")); // NOI18N
         jLabel67.setText("jLabel67");
 
         javax.swing.GroupLayout aboutPanelLayout = new javax.swing.GroupLayout(aboutPanel);
@@ -1733,7 +1707,6 @@ public class HomePage extends javax.swing.JFrame {
         jLabel56.setFont(new java.awt.Font("Roboto", 0, 28)); // NOI18N
         jLabel56.setForeground(new java.awt.Color(255, 255, 255));
         jLabel56.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
-        jLabel56.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\prime_surgical\\about.png")); // NOI18N
         jLabel56.setText("About");
         jLabel56.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {

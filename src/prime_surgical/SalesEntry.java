@@ -17,7 +17,6 @@ public class SalesEntry extends javax.swing.JFrame {
      */
     public SalesEntry() {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
         initial();
     }
     SimpleDateFormat sm = new SimpleDateFormat("yyyy-MM-dd");

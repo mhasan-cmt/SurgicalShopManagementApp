@@ -8,7 +8,6 @@ public class Sales_Order extends javax.swing.JFrame {
      */
     public Sales_Order() {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
         new dbConnection().getDataFromCombo(comCateogory, "SELECT `cateogory` FROM `product cateogory` order by `cateogory_id`");
         orderIdIncrement();
     }

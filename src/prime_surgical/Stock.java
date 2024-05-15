@@ -13,7 +13,6 @@ public class Stock extends javax.swing.JFrame{
      */
     public Stock() {
         initComponents();
-        setExtendedState(MAXIMIZED_BOTH);
         showStock("SELECT * FROM `stock`", jTable1);
     }
     void showStock(String query, JTable table){
@@ -35,6 +34,7 @@ public class Stock extends javax.swing.JFrame{
         jPanel3 = new javax.swing.JPanel();
         jLabel2 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         txtQuantitySearch = new javax.swing.JTextField();
@@ -76,7 +76,6 @@ public class Stock extends javax.swing.JFrame{
         jLabel2.setBounds(20, 0, 200, 90);
 
         jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setIcon(new javax.swing.ImageIcon("F:\\Java 23\\JavaCodes\\Prime_Surgical\\src\\img\\error.png")); // NOI18N
         jLabel5.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
                 jLabel5MouseClicked(evt);
@@ -84,6 +83,15 @@ public class Stock extends javax.swing.JFrame{
         });
         jPanel2.add(jLabel5);
         jLabel5.setBounds(1310, 0, 50, 40);
+
+        jButton1.setText("Exit");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        jPanel2.add(jButton1);
+        jButton1.setBounds(1270, 10, 51, 23);
 
         jPanel1.add(jPanel2);
         jPanel2.setBounds(0, 0, 1560, 90);
@@ -159,7 +167,7 @@ public class Stock extends javax.swing.JFrame{
             jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel4Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 46, Short.MAX_VALUE)
+                .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
         );
 
@@ -232,6 +240,11 @@ public class Stock extends javax.swing.JFrame{
         jLabel1.setForeground(Color.BLACK);
     }//GEN-LAST:event_jLabel1MouseExited
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -268,6 +281,7 @@ public class Stock extends javax.swing.JFrame{
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

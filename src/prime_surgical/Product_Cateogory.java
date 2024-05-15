@@ -31,7 +31,7 @@ public class Product_Cateogory extends javax.swing.JFrame {
     ResultSet rs = null;
     String url = "jdbc:mysql://localhost:3306/primesurgical";
     String un = "root";
-    String pw = "";
+    String pw = "Shafin*71";
     static String c="";
     String Cateogory="";
      void dbConnect() {

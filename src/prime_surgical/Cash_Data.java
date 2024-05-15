@@ -20,7 +20,6 @@ public class Cash_Data extends javax.swing.JFrame {
      */
     public Cash_Data() {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
         showCash(jTable1);
         new dbConnection().getDataFromCombo(jComboBox2, "SELECT `bank_account_name` FROM `bank accounts` group by `bank_account_name`");
     }

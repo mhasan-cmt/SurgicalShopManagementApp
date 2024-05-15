@@ -20,9 +20,9 @@ public class dbConnection {
     Connection con = null;
     Statement st = null;
     ResultSet rs = null;
-    String url = "jdbc:mysql://localhost:3306/primesurgical";
+    String url = "jdbc:mysql://localhost:3306/primesurgical?autoReconnect=true&useSSL=false";
     String un = "root";
-    String pw = "";
+    String pw = "Shafin*71";
 
     /**
      * This method is for connect MySql to java

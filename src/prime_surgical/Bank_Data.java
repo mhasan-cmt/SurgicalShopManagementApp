@@ -18,7 +18,6 @@ public class Bank_Data extends javax.swing.JFrame {
      */
     public Bank_Data() {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
         initital();
     }
     String bankName,bankAccount,date,details,amount,status;

@@ -27,7 +27,7 @@ public class Customer extends javax.swing.JFrame {
     ResultSet rs = null;
     String url = "jdbc:mysql://localhost:3306/primesurgical";
     String un = "root";
-    String pw = "";
+    String pw = "Shafin*71";
     void dbConnect() {
         try {
             con = DriverManager.getConnection(url, un, pw);
@@ -342,7 +342,6 @@ public class Customer extends javax.swing.JFrame {
 
         jLabel8.setBackground(new java.awt.Color(182, 169, 176));
         jLabel8.setFont(new java.awt.Font("SansSerif", 0, 36)); // NOI18N
-        jLabel8.setForeground(new java.awt.Color(0, 0, 0));
         jLabel8.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jLabel8.setText("Permanent Customer's Data");
 

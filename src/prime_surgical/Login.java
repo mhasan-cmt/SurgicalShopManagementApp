@@ -34,16 +34,16 @@ public class Login extends javax.swing.JFrame {
     Connection con=null;
     PreparedStatement st=null;
     ResultSet rs=null;
-    String url = "jdbc:mysql://localhost:3306/primesurgical";
+    String url = "jdbc:mysql://localhost:3306/primesurgical?ssl=false";
     String un = "root";
-    String pw = "";
+    String pw = "Shafin*71";
     static String uName="Dummy";
     static String uRole="John Doe";
      void dbConnect() {
         try {
             con = DriverManager.getConnection(url, un, pw);
         } catch (SQLException ex) {
-            Logger.getLogger(Login.class.getName()).log(Level.SEVERE, null, ex);
+            System.out.println(ex);
         }
         
      }
@@ -117,11 +117,8 @@ public class Login extends javax.swing.JFrame {
 
         popupMenu1 = new java.awt.PopupMenu();
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jLabel6 = new javax.swing.JLabel();
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
@@ -148,53 +145,31 @@ public class Login extends javax.swing.JFrame {
         jPanel1.setBackground(new java.awt.Color(48, 51, 107));
         jPanel1.setLayout(null);
 
-        jLabel1.setFont(new java.awt.Font("Kalpurush", 1, 36)); // NOI18N
-        jLabel1.setForeground(new java.awt.Color(106, 176, 76));
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("এন্ড ");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(0, 70, 340, 40);
-
-        jLabel2.setFont(new java.awt.Font("Kalpurush", 1, 36)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(106, 176, 76));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("সায়েন্টিফিক");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(0, 110, 340, 50);
-
         jLabel3.setFont(new java.awt.Font("Kalpurush", 1, 36)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(106, 176, 76));
+        jLabel3.setForeground(new java.awt.Color(255, 255, 255));
         jLabel3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel3.setText("প্রাইম সার্জিক্যাল ");
+        jLabel3.setText("CP FRESH SHOP");
         jPanel1.add(jLabel3);
-        jLabel3.setBounds(0, 20, 340, 60);
+        jLabel3.setBounds(0, 140, 340, 60);
 
-        jLabel4.setFont(new java.awt.Font("Kalpurush", 0, 24)); // NOI18N
+        jLabel4.setFont(new java.awt.Font("Kalpurush", 0, 18)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(199, 236, 238));
         jLabel4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel4.setText("ট্রাংক রোড, ফেনী।");
+        jLabel4.setText("Sonargaon Janapath, Dhaka 1230");
         jPanel1.add(jLabel4);
-        jLabel4.setBounds(0, 270, 340, 50);
-
-        jLabel5.setBackground(new java.awt.Color(0, 102, 102));
-        jLabel5.setFont(new java.awt.Font("Roboto", 0, 27)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(255, 255, 0));
-        jLabel5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel5.setText("Prime Surgical & Scientific");
-        jPanel1.add(jLabel5);
-        jLabel5.setBounds(10, 150, 320, 50);
+        jLabel4.setBounds(0, 260, 340, 50);
 
         jLabel6.setFont(new java.awt.Font("Kalpurush", 0, 20)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(199, 236, 238));
-        jLabel6.setText("যমুনা শপিং সেন্টার(উত্তরা ব্যাংকের নিচ তলা,");
+        jLabel6.setText("House-05, Navana oval");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(20, 210, 310, 40);
+        jLabel6.setBounds(70, 200, 192, 40);
 
         jLabel7.setFont(new java.awt.Font("Kalpurush", 0, 20)); // NOI18N
         jLabel7.setForeground(new java.awt.Color(199, 236, 238));
-        jLabel7.setText(" ফেনী সরকারি বালিকা বিদ্যালয়ের উত্তর পার্শে), ");
+        jLabel7.setText("Ground floor, Sector-07");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(0, 240, 340, 50);
+        jLabel7.setBounds(60, 230, 220, 50);
 
         jLabel8.setFont(new java.awt.Font("Kalpurush", 0, 18)); // NOI18N
         jLabel8.setForeground(new java.awt.Color(186, 220, 88));
@@ -206,9 +181,9 @@ public class Login extends javax.swing.JFrame {
         jLabel9.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
         jLabel9.setForeground(new java.awt.Color(186, 220, 88));
         jLabel9.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel9.setText("Email: primesugicall95@gmail.com");
+        jLabel9.setText("Email: cpfresh.uttara@gmail.com");
         jPanel1.add(jLabel9);
-        jLabel9.setBounds(0, 370, 340, 24);
+        jLabel9.setBounds(0, 360, 340, 24);
 
         getContentPane().add(jPanel1);
         jPanel1.setBounds(0, 0, 340, 430);
@@ -218,7 +193,6 @@ public class Login extends javax.swing.JFrame {
 
         txtUser.setBackground(new java.awt.Color(220, 211, 205));
         txtUser.setFont(new java.awt.Font("Roboto", 0, 18)); // NOI18N
-        txtUser.setForeground(new java.awt.Color(0, 0, 0));
         txtUser.setText("Enter User Name");
         txtUser.addMouseListener(new java.awt.event.MouseAdapter() {
             public void mouseClicked(java.awt.event.MouseEvent evt) {
@@ -286,7 +260,6 @@ public class Login extends javax.swing.JFrame {
         jButton3.setBounds(260, 270, 190, 40);
 
         txtPassword.setBackground(new java.awt.Color(220, 211, 205));
-        txtPassword.setForeground(new java.awt.Color(0, 0, 0));
         txtPassword.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtPasswordKeyPressed(evt);
@@ -440,15 +413,12 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JComboBox<String> comUser;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel13;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;

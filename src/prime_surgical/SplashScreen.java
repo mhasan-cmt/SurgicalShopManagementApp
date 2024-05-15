@@ -28,9 +28,7 @@ public class SplashScreen extends javax.swing.JFrame {
         headerPane = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
-        jLabel5 = new javax.swing.JLabel();
         jPanel1 = new javax.swing.JPanel();
         progress = new javax.swing.JLabel();
         jLabel11 = new javax.swing.JLabel();
@@ -44,41 +42,29 @@ public class SplashScreen extends javax.swing.JFrame {
         setUndecorated(true);
 
         headerPane.setBackground(new java.awt.Color(48, 51, 107));
-        headerPane.setBorder(javax.swing.BorderFactory.createLineBorder(new java.awt.Color(255, 0, 102), 3));
+        headerPane.setToolTipText("");
         headerPane.setLayout(null);
 
         jLabel1.setFont(new java.awt.Font("Kalpurush", 1, 48)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(106, 176, 76));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("প্রাইম সার্জিক্যাল এন্ড সায়েন্টিফিক");
+        jLabel1.setText("CP FRESH SHOP");
         headerPane.add(jLabel1);
-        jLabel1.setBounds(30, 0, 890, 100);
+        jLabel1.setBounds(30, 20, 890, 60);
 
         jLabel2.setBackground(new java.awt.Color(0, 102, 102));
-        jLabel2.setFont(new java.awt.Font("Roboto", 0, 36)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
         jLabel2.setForeground(new java.awt.Color(255, 153, 0));
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Prime Surgical & Scientific");
+        jLabel2.setText("Departmental Store Management System");
         headerPane.add(jLabel2);
-        jLabel2.setBounds(240, 60, 470, 50);
-
-        jLabel3.setFont(new java.awt.Font("Open Sans", 0, 18)); // NOI18N
-        jLabel3.setForeground(new java.awt.Color(186, 220, 88));
-        jLabel3.setText("Email: primesugicall95@gmail.com");
-        headerPane.add(jLabel3);
-        jLabel3.setBounds(510, 140, 320, 24);
+        jLabel2.setBounds(120, 70, 700, 50);
 
         jLabel4.setFont(new java.awt.Font("Kalpurush", 0, 24)); // NOI18N
         jLabel4.setForeground(new java.awt.Color(199, 236, 238));
-        jLabel4.setText("যমুনা শপিং সেন্টার(উত্তরা ব্যাংকের নিচ তলা, ফেনী সরকারি বালিকা বিদ্যালয়ের উত্তর পার্শে), ট্রাংক রোড, ফেনী।");
+        jLabel4.setText("House-05, Navana oval, Ground floor, Sector-07 Sonargaon Janapath, Dhaka 1230");
         headerPane.add(jLabel4);
-        jLabel4.setBounds(10, 100, 960, 50);
-
-        jLabel5.setFont(new java.awt.Font("Kalpurush", 0, 18)); // NOI18N
-        jLabel5.setForeground(new java.awt.Color(186, 220, 88));
-        jLabel5.setText("মোবাইলঃ ০১৮৮৭-০৩৩৩১১, ০১৮৬৩-৮০৮৯৮১");
-        headerPane.add(jLabel5);
-        jLabel5.setBounds(190, 140, 320, 30);
+        jLabel4.setBounds(40, 110, 840, 50);
 
         jPanel1.setBackground(new java.awt.Color(0, 102, 102));
         jPanel1.setLayout(null);
@@ -115,9 +101,9 @@ public class SplashScreen extends javax.swing.JFrame {
 
         jLabel6.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
         jLabel6.setForeground(new java.awt.Color(255, 255, 255));
-        jLabel6.setText("Developed by Mahmudul Hasan Shafin(UTC)");
+        jLabel6.setText("Developed by Mahmud, Ashis, Shoriful, Nadim, Pavel, Parvez");
         jPanel1.add(jLabel6);
-        jLabel6.setBounds(640, 250, 310, 20);
+        jLabel6.setBounds(540, 250, 430, 20);
 
         jLabel7.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/img/Untitled-1.png"))); // NOI18N
@@ -186,7 +172,7 @@ public class SplashScreen extends javax.swing.JFrame {
         });
         for (int i = 5; i <= 100; i++) {
             try {
-                Thread.sleep(100);
+                Thread.sleep(20);
                 bar.setValue(i);
                 progress.setText(""+i+"%");
                 bar.setForeground(Color.red);
@@ -212,9 +198,7 @@ public class SplashScreen extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
     private static javax.swing.JLabel jLabel7;
     private javax.swing.JLabel jLabel8;
