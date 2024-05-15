@@ -14,7 +14,6 @@ public class Product_Returns extends javax.swing.JFrame {
      */
     public Product_Returns() {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
         new dbConnection().getDataFromCombo(comCategory, "SELECT `cateogory` FROM `product cateogory` order by `cateogory_id`");
         txtQuantity.setEditable(false);
         txtNewQuantity.setEditable(false);

@@ -18,7 +18,6 @@ public class Sales_due_paid extends javax.swing.JFrame {
      */
     public Sales_due_paid() {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
         Bank.setVisible(false);;
         JCalendar jc = new JCalendar();
         SimpleDateFormat sd = new SimpleDateFormat("yyyy-MM-dd");
@@ -154,7 +153,6 @@ public class Sales_due_paid extends javax.swing.JFrame {
         billPanel = new javax.swing.JPanel();
         headerPane = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
         jLabel10 = new javax.swing.JLabel();
         jLabel42 = new javax.swing.JLabel();
@@ -345,7 +343,7 @@ public class Sales_due_paid extends javax.swing.JFrame {
         );
 
         jPanel1.add(Bank);
-        Bank.setBounds(50, 350, 420, 115);
+        Bank.setBounds(50, 350, 420, 120);
 
         jButton5.setFont(new java.awt.Font("SansSerif", 0, 18)); // NOI18N
         jButton5.setText("Exit");
@@ -381,26 +379,18 @@ public class Sales_due_paid extends javax.swing.JFrame {
         jLabel1.setFont(new java.awt.Font("Kalpurush", 1, 36)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(0, 102, 102));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("প্রাইম সার্জিক্যাল এন্ড সায়েন্টিফিক");
+        jLabel1.setText("CP FRESH SHOP");
         headerPane.add(jLabel1);
         jLabel1.setBounds(140, 30, 480, 57);
 
-        jLabel2.setBackground(new java.awt.Color(0, 102, 102));
-        jLabel2.setFont(new java.awt.Font("Roboto", 0, 24)); // NOI18N
-        jLabel2.setForeground(new java.awt.Color(255, 153, 0));
-        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Prime Surgical & Scientific");
-        headerPane.add(jLabel2);
-        jLabel2.setBounds(200, 70, 310, 30);
-
         jLabel4.setFont(new java.awt.Font("Kalpurush", 0, 18)); // NOI18N
-        jLabel4.setText(" ট্রাংক রোড, ফেনী।");
+        jLabel4.setText("Sonargaon Janapath, Dhaka 1230");
         headerPane.add(jLabel4);
-        jLabel4.setBounds(290, 120, 130, 30);
+        jLabel4.setBounds(250, 110, 250, 30);
 
         jLabel10.setFont(new java.awt.Font("Kalpurush", 0, 18)); // NOI18N
         jLabel10.setForeground(new java.awt.Color(204, 0, 51));
-        jLabel10.setText("Email: primesugical95@gmail.com");
+        jLabel10.setText("Email: cpfresh.uttara@gmail.com");
         headerPane.add(jLabel10);
         jLabel10.setBounds(380, 140, 320, 30);
 
@@ -430,14 +420,14 @@ public class Sales_due_paid extends javax.swing.JFrame {
         jLabel11.setBounds(40, 140, 320, 30);
 
         jLabel12.setFont(new java.awt.Font("Kalpurush", 0, 18)); // NOI18N
-        jLabel12.setText("যমুনা শপিং সেন্টার(উত্তরা ব্যাংকের নিচ তলা,");
+        jLabel12.setText("House-05, Navana oval,");
         headerPane.add(jLabel12);
-        jLabel12.setBounds(80, 100, 287, 30);
+        jLabel12.setBounds(190, 80, 180, 30);
 
         jLabel13.setFont(new java.awt.Font("Kalpurush", 0, 18)); // NOI18N
-        jLabel13.setText("ফেনী সরকারি বালিকা বিদ্যালয়ের উত্তর পার্শে), ");
+        jLabel13.setText("Ground floor, Sector-07 ");
         headerPane.add(jLabel13);
-        jLabel13.setBounds(370, 100, 310, 30);
+        jLabel13.setBounds(370, 80, 200, 30);
 
         jPanel6.setBackground(new java.awt.Color(0, 102, 204));
 
@@ -792,7 +782,6 @@ public class Sales_due_paid extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel17;
     private javax.swing.JLabel jLabel18;
     private javax.swing.JLabel jLabel19;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel20;
     private javax.swing.JLabel jLabel21;
     private javax.swing.JLabel jLabel22;

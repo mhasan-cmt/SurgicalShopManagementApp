@@ -17,7 +17,6 @@ public class Sales_Officers extends javax.swing.JFrame {
     */
     public Sales_Officers() {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
         show1();
         
     }

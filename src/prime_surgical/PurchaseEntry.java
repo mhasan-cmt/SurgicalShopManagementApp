@@ -16,7 +16,6 @@ public class PurchaseEntry extends javax.swing.JFrame {
      */
     public PurchaseEntry() {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
         Bank.setVisible(false);
         initial();
         new dbConnection().showPurchaseEntry("select * from 'purchase entry'", jTable1);

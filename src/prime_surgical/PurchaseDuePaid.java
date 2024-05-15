@@ -14,7 +14,6 @@ public class PurchaseDuePaid extends javax.swing.JFrame {
      */
     public PurchaseDuePaid() {
         initComponents();
-        setExtendedState(JFrame.MAXIMIZED_BOTH);
         Bank.setVisible(false);
         getCompany();
         JCalendar jc=new JCalendar();
